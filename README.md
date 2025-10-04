@@ -16,9 +16,9 @@ AdidasStore/
 ├── Scripts/
 │   └── filejs              #file.js
 │
-├── Trangchu.html           #Trang Home
+├── Home                    #Trang chủ
 ├── Product                 #Danh sách sản phẩm
-├── Product-detail          #Trang sản phẩm         
+├── Product-detail          #Thông tin sản phẩm       
 ├── Cart                    #Giỏ hàng
 ├── Checkout                #Thanh toán
 ├── Order-history           #Lịch sử mua hàng

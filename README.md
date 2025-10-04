@@ -1,4 +1,4 @@
-🏪 AdidasStore Website
+##🏪 AdidasStore Website
 
 📁 Cấu trúc thư mục dự án
 ```
@@ -27,7 +27,7 @@ AdidasStore/
 └── ...
 ```
 
-📌 Giải thích nhanh:
+##📌 Giải thích nhanh:
 
 Content/assets/ → chứa CSS cho từng trang
 
@@ -85,7 +85,7 @@ Sau đó merge, giải quyết xung đột (nếu có), rồi push lại:
 ```
 git push origin feature/<ten-tinh-nang>
 ```
-📅 Thời gian hoàn thành dự án
+##📅 Thời gian hoàn thành dự án
 ```
 ## 📅 Tiến độ dự án
 
@@ -96,7 +96,7 @@ git push origin feature/<ten-tinh-nang>
 | 📄 Nộp báo cáo & thi vấn đáp | Tổng kết toàn bộ dự án    | 20/11/2025 | 05/12/2025 - 9:59 PM  | ⚪ Chưa bắt đầu |
 
 ```
-👥 Thành viên Nhóm
+##👥 Thành viên Nhóm
 ```
 ## 👥 Thành viên
 

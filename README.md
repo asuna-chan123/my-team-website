@@ -86,14 +86,25 @@ Sau đó merge, giải quyết xung đột (nếu có), rồi push lại:
 git push origin feature/<ten-tinh-nang>
 ```
 📅 Thời gian hoàn thành dự án
-Giai đoạn	Nội dung	Bắt đầu	Deadline
 ```
-🧑‍💻 Báo cáo tiến độ lần 1	Phát triển Front-End (FE)	01/10/2025	14/10/2025 - 10:00 AM
-🛠️ Báo cáo tiến độ lần 2	Phát triển Back-End (BE)	09/09/2025	16/09/2025 - 12:00 AM
-📄 Nộp báo cáo & thi vấn đáp	Tổng kết toàn bộ dự án	20/11/2025	05/12/2025 - 9:59 PM
+## 📅 Tiến độ dự án
+
+|           Giai đoạn          |        Nội dung            |   Bắt đầu  |       Kết thúc       |    Tình trạng    |
+|------------------------------|----------------------------|------------|----------------------|------------------|
+| 🧑‍💻 Báo cáo tiến độ lần 1     | Phát triển Front-End (FE) | 01/10/2025 | 14/10/2025 - 10:00 AM | 🟡 Đang bắt đầu |
+| 🛠️ Báo cáo tiến độ lần 2     | Phát triển Back-End (BE)  | 09/09/2025 | 16/09/2025 - 12:00 AM | 🔵 Sắp bắt đầu  |
+| 📄 Nộp báo cáo & thi vấn đáp | Tổng kết toàn bộ dự án    | 20/11/2025 | 05/12/2025 - 9:59 PM  | ⚪ Chưa bắt đầu |
+
 ```
-👥 Thành viên phát triển
-Tên	Vai trò	Ghi chú
-🧑‍💻 Thành viên 1	FE Developer	Phát triển giao diện người dùng
-🧑‍💻 Thành viên 2	BE Developer	Xử lý logic backend
-🧑‍💻 Thành viên 3	QA / Tester	Kiểm thử và tối ưu UI/UX
+👥 Thành viên Nhóm
+```
+## 👥 Thành viên
+
+|           Tên          |        Vai trò             |  Ghi chú   |
+|------------------------|----------------------------|------------|
+| Nguyễn Ngọc Duy Khánh  |                            |            | 
+| Trần Dức An            |                            |            | 
+| Đặng Minh Khôi         |                            |            | 
+
+
+```

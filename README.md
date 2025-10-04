@@ -1,5 +1,5 @@
 ##🏪 AdidasStore Website
-
+---
 📁 Cấu trúc thư mục dự án
 ```
 AdidasStore/
@@ -28,7 +28,7 @@ AdidasStore/
 ```
 
 ##📌 Giải thích nhanh:
-
+---
 Content/assets/ → chứa CSS cho từng trang
 
 Content/partials/ → header, footer và các phần giao diện tái sử dụng
@@ -37,7 +37,8 @@ Scripts/ → chứa các file JavaScript
 
 Trangchu.html, Product-detail-Yeezy-Boost.html → các trang chính của website
 
-👩‍💻 Hướng dẫn thành viên clone & phát triển dự án
+##👩‍💻 Hướng dẫn thành viên clone & phát triển dự án
+---
 1️⃣ Clone dự án về máy
 ```
 git clone https://github.com/asuna-chan123/my-team-website.git
@@ -86,6 +87,7 @@ Sau đó merge, giải quyết xung đột (nếu có), rồi push lại:
 git push origin feature/<ten-tinh-nang>
 ```
 ##📅 Thời gian hoàn thành dự án
+---
 ```
 ## 📅 Tiến độ dự án
 
@@ -97,6 +99,7 @@ git push origin feature/<ten-tinh-nang>
 
 ```
 ##👥 Thành viên Nhóm
+---
 ```
 ## 👥 Thành viên
 

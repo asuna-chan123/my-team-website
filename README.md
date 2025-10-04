@@ -4,31 +4,27 @@
 ```
 AdidasStore/
 ├── Content/
-│   ├── assets/
-│   │   ├── Product-detail-Yeezy-Boost.css
-│   │   └── Trangchu.css
-│   └── partials/
-│       ├── iconheader/
-│       │   ├── adidas-black-logo.png
-│       │   ├── heart_.png
-│       │   ├── search_.png
-│       │   ├── shop_.png
-│       │   ├── user_.png
-│       │   └── video.mp4
-│       ├── adidascard.html
-│       ├── footer.css
-│       ├── footer.html
-│       ├── header.css
-│       ├── header.html
-│       └── header.js
+│   ├── assets/             #ảnh, video nội dung
+│   ├── adidascard          #ảnh, video nền
+│   └── file.css            #file.css
+│        
+├── partials/               #modul có thể tái sử dụng
+│   ├── iconheader/         #icon, ảnh
+│   ├── footer              #file footer
+│   └── header              #file header
+│ 
 ├── Scripts/
-│   ├── Product-detail-Yeezy-Boost.js
-│   └── Trangchu.js
-├── Product-detail-Yeezy-Boost.html
-├── Trangchu.html
-├── Web.config
-├── packages.config
-└── src.csproj
+│   └── filejs              #file.js
+│
+├── Trangchu.html           #Trang Home
+├── Product                 #Danh sách sản phẩm
+├── Product-detail          #Trang sản phẩm         
+├── Cart                    #Giỏ hàng
+├── Checkout                #Thanh toán
+├── Order-history           #Lịch sử mua hàng
+├── login                   #Đăng nhập
+├── register                #Đăng kí
+└── ...
 ```
 
 📌 Giải thích nhanh:

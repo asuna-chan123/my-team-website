@@ -1,7 +1,5 @@
 🏪 AdidasStore Website
 
-Dự án AdidasStore là một website bán hàng giao diện tĩnh mô phỏng trang web thương mại điện tử của Adidas. Dự án tập trung vào phần Front-End (HTML/CSS/JS) và có cấu trúc rõ ràng để các thành viên dễ dàng phát triển và mở rộng tính năng.
-
 📁 Cấu trúc thư mục dự án
 ```
 AdidasStore/

@@ -39,8 +39,9 @@ Trangchu.html, Product-detail-Yeezy-Boost.html → các trang chính của websi
 
 ##👩‍💻 Hướng dẫn thành viên clone & phát triển dự án
 ---
+```
 *Phải chạy bằng ASP.NET được dùng các thư viện Angular,...
-
+```
 1️⃣ Clone dự án về máy
 ```
 git clone https://github.com/asuna-chan123/my-team-website.git

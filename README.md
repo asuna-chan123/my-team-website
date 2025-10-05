@@ -55,9 +55,14 @@ Mỗi thành viên nên tạo nhánh riêng để phát triển tính năng và 
 git checkout -b feature/<ten-tinh-nang>
 ```
 
-Ví dụ:
+Ví dụ tạo "nhánh" Trang chủ:
 ```
-git checkout -b feature/add-cart-page
+git checkout -b feature/Home
+```
+Tự tạo thư mục và file cần thiết:
+```
+mkdir Home
+touch Home/index.html Home/home.js Home/home.css
 ```
 3️⃣ Commit & push code lên GitHub
 

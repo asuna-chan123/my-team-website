@@ -1,4 +1,5 @@
 ##🏪 AdidasStore Website
+Phải chạy bằng ASP.NET được dùng các thư viện Angular,...
 ---
 📁 Cấu trúc thư mục dự án
 ```

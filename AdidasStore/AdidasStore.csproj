@@ -99,6 +99,7 @@
     <Content Include="Content\assets\adidasgif.gif" />
     <Content Include="Content\assets\FW_25_Motorsport.png" />
     <Content Include="Content\Product-detail-Yeezy-Boost.css" />
+    <Content Include="Content\Product-man.css" />
     <Content Include="Content\Trangchu.css" />
     <Content Include="partials\adidascard.html" />
     <Content Include="partials\footer.css" />
@@ -106,8 +107,13 @@
     <Content Include="partials\header.css" />
     <Content Include="partials\header.html" />
     <Content Include="partials\header.js" />
+    <Content Include="partials\iconheader\6203594_CAM_Onsite_Motion_ADIZERO_EVO_SL_FW_25_JP_MH_DT_MEN_GLP_2880x1280_D_7005ada588.mp4" />
     <Content Include="partials\iconheader\adidas-black-logo.png" />
+    <Content Include="partials\iconheader\ao-dau-liverpool-fc-terrace-icons.png" />
+    <Content Include="partials\iconheader\ao-thun-liverpool-fc-terrace-icons.png" />
+    <Content Include="partials\iconheader\giay-samba-og.png" />
     <Content Include="partials\iconheader\heart_.png" />
+    <Content Include="partials\iconheader\quan-dang-chuan-hoa-tiet-monogram.png" />
     <Content Include="partials\iconheader\search_.png" />
     <Content Include="partials\iconheader\shop_.png" />
     <Content Include="partials\iconheader\user_.png" />
@@ -116,6 +122,7 @@
     <Content Include="Scripts\Product-detail-Yeezy-Boost.js" />
     <Content Include="Scripts\Trangchu.js" />
     <Content Include="src.csproj.user" />
+    <Content Include="Product-man.html" />
     <Content Include="Trangchu.html" />
     <Content Include="Web.config" />
   </ItemGroup>

@@ -1,0 +1,792 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adidas </title>
+
+    <!-- Font chữ -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- header css must come after Tailwind so its rules override Tailwind utilities -->
+    <link rel="stylesheet" href="partials/header.css" />
+
+    <!-- Your page CSS -->
+    <link rel="stylesheet" href="/Content/Trangchu.css">
+</head>
+<body>
+
+    <!-- header placeholder: will be replaced by /partials/header.html -->
+    <div id="header-placeholder" aria-hidden="true"></div>
+
+    <script>
+        (function loadHeader() {
+            const placeholder = document.getElementById('header-placeholder');
+            if (!placeholder) return;
+
+            const partialPath = 'partials/header.html';
+            const cssPath = 'partials/header.css';
+            const jsPath = 'partials/header.js';
+
+            fetch(partialPath)
+                .then(resp => {
+                    if (!resp.ok) throw new Error('Header partial not found: ' + resp.status);
+                    return resp.text();
+                })
+                .then(html => {
+                    // Insert HTML
+                    placeholder.innerHTML = html;
+                    placeholder.removeAttribute('aria-hidden');
+
+                    // Load CSS if present (non-blocking)
+                    fetch(cssPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const link = document.createElement('link');
+                                link.rel = 'stylesheet';
+                                link.href = cssPath;
+                                document.head.appendChild(link);
+                            }
+                        })
+                        .catch(() => { /* ignore missing css */ });
+
+                    // Load JS if present (append after HTML so it can attach handlers)
+                    fetch(jsPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const s = document.createElement('script');
+                                s.src = jsPath;
+                                s.defer = true;
+                                document.body.appendChild(s);
+                            }
+                        })
+                        .catch(() => { /* ignore missing js */ });
+                })
+                .catch(err => {
+                    console.warn('Failed to load header partial:', err);
+                    // Optional: fallback UI
+                    // placeholder.innerHTML = '<!-- header load failed -->';
+                });
+        })();
+    </script>
+
+    <!-- ✅ TEMPLATE CHO CAROUSEL -->
+    <template id="adidas-card-template">
+        <div class="container">
+            <h1 class="section-title"></h1>
+            <div class="carousel-container">
+                <button class="nav-button prev">‹</button>
+                <button class="nav-button next">›</button>
+                <div class="carousel-wrapper"></div>
+            </div>
+        </div>
+    </template>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="wrap">
+            <div class="adidas-container">
+                <div class="adidas">
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                </div>
+                <div class="text">adidas</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ảnh đầu trang -->
+    <div class="banner-container">
+        <video autoplay muted loop playsinline class="banner-img"
+               style="
+            margin-top:6%;
+            z-index: 1;">
+            <source src="/partials/iconheader/6203594_CAM_Onsite_Motion_ADIZERO_EVO_SL_FW_25_JP_MH_DT_MEN_GLP_2880x1280_D_7005ada588.mp4" type="video/mp4" />
+            Trình duyệt của bạn không hỗ trợ video.
+        </video>
+
+        <div class="banner-button">
+            <h2 class="banner-title"
+                style=" opacity: 0; width: 125px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000;">
+                ADIZERO EVO SL
+            </h2>
+            <p class="banner-subtitle"
+               style="opacity: 0; margin-bottom: 20px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000; ">
+                Evo SL mang đến cho bạn tốc độ nhanh
+            </p>
+
+            <a href="#" class="btn">Mua ngay →</a>
+        </div>
+    </div>
+
+    <!--4 ảnh-->
+    <div class="categories-container" style="margin-top:5%;">
+        <div class="category-card" onclick="navigateToCategory('sneakers')">
+            <div class="category-content">
+                <h2 class="category-title">Sneakers</h2>
+            </div>
+            <div class="category-image">
+                <img src="partials/iconheader/giay-samba-og.png" alt="Sneakers">
+            </div>
+        </div>
+
+        <div class="category-card" onclick="navigateToCategory('t-shirts')">
+            <div class="category-content">
+                <h2 class="category-title">T-Shirts</h2>
+            </div>
+            <div class="category-image">
+                <img src="partials/iconheader/ao-thun-liverpool-fc-terrace-icons.png" alt="T-Shirts">
+            </div>
+        </div>
+
+        <div class="category-card" onclick="navigateToCategory('jerseys')">
+            <div class="category-content">
+                <h2 class="category-title">Jerseys</h2>
+            </div>
+            <div class="category-image">
+                <img src="partials/iconheader/ao-dau-liverpool-fc-terrace-icons.png" alt="Jerseys">
+            </div>
+        </div>
+
+        <div class="category-card" onclick="navigateToCategory('pants')">
+            <div class="category-content">
+                <h2 class="category-title">Pants</h2>
+            </div>
+            <div class="category-image">
+                <img src="partials/iconheader/quan-dang-chuan-hoa-tiet-monogram.png" alt="Pants">
+            </div>
+        </div>
+    </div>
+
+    <!-- adidas card -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .card {
+            min-width: 340px;
+            margin-right: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .card-button {
+            background: transparent;
+            border: 2px solid #000;
+            padding: 12px 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+            .card-button:hover {
+                background: #000;
+                color: white;
+            }
+
+            .card-button.coming-soon {
+                border-color: #999;
+                color: #999;
+            }
+
+                .card-button.coming-soon:hover {
+                    background: #999;
+                    color: white;
+                }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: 2px solid #ddd;
+            width: 50px;
+            height: 50px;
+            border-radius: 0%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            z-index: 9999; /* ensure nav buttons sit above most content */
+            pointer-events: auto;
+        }
+
+            .nav-button:hover {
+                background: #000;
+                color: white;
+                border-color: #000;
+            }
+
+            .nav-button.prev {
+                left: 30px;
+            }
+
+            .nav-button.next {
+                right: 30px;
+            }
+
+            .nav-button:disabled {
+                opacity: 0.3;
+                cursor: not-allowed;
+            }
+
+                .nav-button:disabled:hover {
+                    background: white;
+                    color: #333;
+                    border-color: #ddd;
+                }
+
+        @media (max-width: 768px) {
+            .card {
+                min-width: 280px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="section-title">WHATS' HOT</h1>
+
+            <div class="carousel-container">
+                <button class="nav-button prev" id="prevBtn">‹</button>
+                <button class="nav-button next" id="nextBtn">›</button>
+
+                <div class="carousel-wrapper" id="carousel">
+                    <div class="card">
+                        <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/glbl_football_FW_25_WC_26_OMB_Launch_Combined_Cat_LP_TC_d_3e63fc826d.jpg" alt="Vot Pickleball" class="card-image" style="width: 340px; height: 500px;">
+                        <div class="card-content">
+                            <h3 class="card-title">Trionda</h3>
+                            <p class="card-description">Quả bóng thi đấu chính thức của FIFA World Cup 26™ đã xuất hiện.</p>
+                            <button class="card-button">MUA SẮM NGAY</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/global_anthony_edwards_2_originals_fw25_launch_hp_navigation_card_teaser_asset_d_c093548884.jpg" alt="Vot Pickleball" class="card-image" style="width: 340px; height: 500px;">
+                        <div class="card-content">
+                            <h3 class="card-title">Anthony Edwards 2</h3>
+                            <p class="card-description">Kỹ thuật hóa cho lối chơi của Ant. Thiết kế để khai mở tiềm năng của bạn.</p>
+                            <button class="card-button">Mua ngay</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/global_lightblaze_sportswear_fw25_launch_mglp_navigation_card_teaser_d_22f947061c.jpg" alt="Vot Pickleball" class="card-image" style="width: 340px; height: 500px;">
+                        <div class="card-content">
+                            <h3 class="card-title">Lightblaze</h3>
+                            <p class="card-description">Nhanh như ánh sáng — giờ đây với những gam màu mới.</p>
+                            <button class="card-button">Mua ngay</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/global_adizero_aruku_originals_fw25_launch_hp_navigation_card_teaser_asset_d_9dd9dbe76f.jpg" alt="Vot Pickleball" class="card-image" style="width: 340px; height: 500px;">
+                        <div class="card-content">
+                            <h3 class="card-title">LIGHT THE BAY</h3>
+                            <p class="card-description">Gear up with the adidas x Mercedes-AMG PETRONAS F1 Team collection.</p>
+                            <button class="card-button coming-soon">Sắp ra mắt</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/FW_25_Motorsport_Phase_3_Onsite_SEA_Teaser_Carousel_1050x1400_1_d2f0b7db09.jpg" alt="Vot Pickleball" class="card-image" style="width: 340px; height: 500px;">
+                        <div class="card-content">
+                            <h3 class="card-title">Y-3 FW25</h3>
+                            <p class="card-description">Chụp bởi Daido Moriyama.</p>
+                            <button class="card-button">Mua ngay</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/global_y3_intention_y3_fw25_launch_mglp_card_teaser_d_18f90be00c.jpg" alt="Vot Pickleball" class="card-image" style="width: 340px; height: 500px;">
+                        <div class="card-content">
+                            <h3 class="card-title">1.800.000₫</h3>
+                            <p class="card-description">Vợt Pickleball Match Light 2025</p>
+                            <button class="card-button">Mua ngay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Carousel-->
+        <script>
+            class Carousel {
+                constructor() {
+                    this.carousel = document.getElementById('carousel');
+                    this.prevBtn = document.getElementById('prevBtn');
+                    this.nextBtn = document.getElementById('nextBtn');
+                    this.cards = document.querySelectorAll('.card');
+                    this.currentIndex = 0;
+                    this.cardWidth = 360; // card width + margin
+                    this.visibleCards = this.getVisibleCards();
+                    this.maxIndex = Math.max(0, this.cards.length - this.visibleCards);
+
+                    this.init();
+                }
+
+                getVisibleCards() {
+                    const containerWidth = document.querySelector('.carousel-container').offsetWidth;
+                    return Math.floor(containerWidth / this.cardWidth);
+                }
+
+                init() {
+                    this.prevBtn.addEventListener('click', () => this.prev());
+                    this.nextBtn.addEventListener('click', () => this.next());
+
+                    // Handle window resize
+                    window.addEventListener('resize', () => {
+                        this.visibleCards = this.getVisibleCards();
+                        this.maxIndex = Math.max(0, this.cards.length - this.visibleCards);
+                        this.updateCarousel();
+                    });
+
+                    // Touch/swipe support for mobile
+                    let startX = 0;
+                    let isDragging = false;
+
+                    this.carousel.addEventListener('touchstart', (e) => {
+                        startX = e.touches[0].clientX;
+                        isDragging = true;
+                    });
+
+                    this.carousel.addEventListener('touchmove', (e) => {
+                        if (!isDragging) return;
+                        e.preventDefault();
+                    });
+
+                    this.carousel.addEventListener('touchend', (e) => {
+                        if (!isDragging) return;
+                        isDragging = false;
+
+                        const endX = e.changedTouches[0].clientX;
+                        const diff = startX - endX;
+
+                        if (Math.abs(diff) > 50) {
+                            if (diff > 0) {
+                                this.next();
+                            } else {
+                                this.prev();
+                            }
+                        }
+                    });
+
+                    this.updateButtons();
+                }
+
+                prev() {
+                    if (this.currentIndex > 0) {
+                        this.currentIndex--;
+                        this.updateCarousel();
+                    }
+                }
+
+                next() {
+                    if (this.currentIndex < this.maxIndex) {
+                        this.currentIndex++;
+                        this.updateCarousel();
+                    }
+                }
+
+                updateCarousel() {
+                    const translateX = -this.currentIndex * this.cardWidth;
+                    this.carousel.style.transform = `translateX(${translateX}px)`;
+                    this.updateButtons();
+                }
+
+                updateButtons() {
+                    this.prevBtn.disabled = this.currentIndex === 0;
+                    this.nextBtn.disabled = this.currentIndex >= this.maxIndex;
+                }
+            }
+
+            // Initialize carousel when DOM is loaded
+            document.addEventListener('DOMContentLoaded', () => {
+                new Carousel();
+            });
+
+            // Add smooth scrolling and button interactions
+            document.querySelectorAll('.card-button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    // Add click animation
+                    button.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        button.style.transform = 'scale(1)';
+                    }, 150);
+
+                    // Simulate navigation (you can replace with actual navigation logic)
+                    console.log('Navigating to product page...');
+                });
+            });
+        </script>
+        <!-- end adidas card -->
+        <!-- video giữa trang -->
+        <div class="banner-container" style="margin-bottom:30vh;">
+            <video src="https://brand.assets.adidas.com/video/upload/f_auto:video,q_auto/if_w_gt_1920,w_1920/6118318_CAM_Onsite_FW_25_Superstar_Fire_Bird_Sustain_25_Aug_SEA_Masthead_DT_2880x1280_TH_VN_dc84a22f6b.mp4" alt="Banner" class="banner-img"></video>
+
+            <div style="position: relative;margin-top:-200px;">
+                <banner-button></banner-button>
+            </div>
+        </div>
+
+        <!-- Carousel 1 -->
+        <section id="carousel-1"
+                 data-title="ICONIC KITS. TIMELESS LEGACY."
+                 data-products='[
+
+           {"img":"https://assets.adidas.com/images/w_600,f_auto,q_auto/5cea04997b1a44d2a0321d3a7d3c1e0e_9366/Ao_Thun_Liverpool_FC_Terrace_Icons_DJen_JW5470_HM1.jpg",
+                 "price":"1.200.000₫",
+                 "desc":"Áo Thun Liverpool FC Terrace Icons","height":"450px"},
+
+           {"img":"https://assets.adidas.com/images/w_600,f_auto,q_auto/00bbbd34a7d448458ca1bb1a84dee9d9_9366/Ao_DJau_Liverpool_FC_Terrace_Icons_trang_JW5466_HM1.jpg",
+                 "price":"1.800.000₫",
+                 "desc":"Áo Đấu Liverpool FC Terrace Icons","height":"450px"},
+
+           {"img":"https://assets.adidas.com/images/w_600,f_auto,q_auto/21d0abf65dcd4eaebbb1b3e8f1ca3d99_9366/Ao_DJau_Thu_Ba_Liverpool_FC_Mua_Giai_25-26_mau_xanh_la_JV6428_000_plp_model.jpg",
+                 "price":"2.200.000₫",
+                 "desc":"Áo Đấu Thứ Ba Liverpool FC Mùa Giải 25/26","height":"450px"},
+
+           {"img":"https://assets.adidas.com/images/w_600,f_auto,q_auto/f16db08d69d940d4bc2ab78e56cfa2e4_9366/Ao_DJau_Thu_Ba_Juventus_Mua_Giai_25-26_DJen_KC3486_000_plp_model.jpg",
+                 "price":"2.200.000₫",
+                 "desc":"Áo Đấu Thứ Ba Juventus Mùa Giải 25/26.","height":"450px"},
+
+            {"img":"https://assets.adidas.com/images/w_600,f_auto,q_auto/fa2cf99408c74ba9afba3cc487b0b3b3_9366/Ao_DJau_Thu_Ba_Liverpool_FC_Mua_Giai_25-26_Danh_Cho_Tre_Em_mau_xanh_la_JV6468_000_plp_model.jpg",
+                "price":"1.500.000₫",
+                "desc":"Áo Đấu Thứ Ba Liverpool FC Mùa Giải 25/26 Dành Cho Trẻ Em",
+                "height":"450px"},
+
+           {"img":"https://assets.adidas.com/images/w_600,f_auto,q_auto/eaccf955b5974cb28b87fe2db4abe86c_9366/Quan_Short_Liverpool_FC_Terrace_Icons_DJen_JW8005_000_plp_model.jpg"
+                 ,"price":"1.200.000₫",
+                 "desc":"Quần Short Liverpool FC Terrace Icons","height":"450px"},
+
+           {"img":"https://assets.adidas.com/images/w_600,f_auto,q_auto/7d17b3034abe415687ed324dc33b93bb_9366/Bo_Trang_Phuc_Thi_DJau_Thu_Ba_Liverpool_FC_Mua_Giai_25-26_-_Phien_Ban_Mini_cho_Tre_Em_mau_xanh_la_JV6470_000_plp_model.jpg",
+                 "price":"1.500.000₫",
+                 "desc":"Bộ Trang Phục Thi Đấu Thứ Ba Liverpool FC Mùa Giải 25/26 – Phiên Bản Mini cho Trẻ Em","height":"450px"}
+         ]'></section>
+
+        <!-- Carousel 2 -->
+        <section id="carousel-2"
+                 data-title="WHAT'S HOT"
+                 data-products='[
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_400,w_400/global_adidas_zne_sportswear_fw25_launch_mglp_carousel_styling_9_d_3342bc9b05.jpg",
+                 "price":"CLOT Taekwondo by Caroline Hú",
+                 "desc":"Thanh thoát nhưng kiên định.","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_400,w_400/global_adidas_zne_sportswear_fw25_launch_mglp_carousel_styling_8_d_8ecec31a30.jpg",
+                 "price":"Lightblaze","desc":"Nhanh như ánh sáng — giờ đây với những gam màu mới.","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_400,w_400/global_adidas_zne_sportswear_fw25_launch_mglp_carousel_styling_1_d_15dbc7881b.jpg",
+                 "price":"ADIZERO ARUKU","desc":"Built for the pace of now.","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_400,w_400/global_adidas_zne_sportswear_fw25_launch_mglp_carousel_styling_3_d_9f89f999f0.jpg",
+                 "price":"Coral Blaze Pack","desc":"F50, Predator và Copa với phối màu mới đầy nổi bật.","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_400,w_400/global_adidas_zne_sportswear_fw25_launch_mglp_carousel_styling_3_d_9f89f999f0.jpg",
+                 "price":"ADIDAS Z.N.E.","desc":"Designed for play, pause and in between.","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_400,w_400/global_adidas_zne_sportswear_fw25_launch_mglp_carousel_styling_4_d_1f58d6111f.jpg",
+                 "price":"Glory for athletes","desc":"9 gold medals. 12 gold medals. 11 bronze medals. Tokyo 2025 with Adizero.","height":"450px"}
+         ]'></section>
+
+        <!-- Mục lục -->
+        <section class="petronas-section">
+            <h1 class="section-title" style=" text-align: center;">ADIDAS MEN’S CLOTHING & SHOES</h1>
+            <h6 style=" text-align: center; ">Our wins are ours to gain. adidas clothing & shoes don’t break our PB. We do. That extra mile. One more rep. Leg day, run away or lounge all day. Find something to match you. Jerseys for the player, or the fan. Running shoes to run on, or to walk in. Training gear for weekday practise, or Sunday chill. A pair of white trainers to go with… basically anything. All we need is us. All we want is here, in men’s apparel and footwear.</h6>
+
+
+            <nav class="category-navigation">
+                <div class="category-column">
+                    <h3>Giày</h3>
+                    <ul>
+                        <li><a href="#giay-chay-bo">giày chạy bộ</a></li>
+                        <li><a href="#giay-da-bong">giày đá bóng</a></li>
+                        <li><a href="#giay-bong-ro">giày bóng rổ</a></li>
+                        <li><a href="#giay-tap-gym">giày tập gym</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-column">
+                    <h3>Quần</h3>
+                    <ul>
+                        <li><a href="#quan-chay-bo">quần chạy bộ</a></li>
+                        <li><a href="#quan-bong-da">quần bóng đá</a></li>
+                        <li><a href="#quan-short-bong-ro">quần short bóng rổ</a></li>
+                        <li><a href="#quan-dui-tap-gym">quần dùi tập gym</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-column">
+                    <h3>Áo</h3>
+                    <ul>
+                        <li><a href="#ao-singlet-chay-bo">áo singlet chạy bộ</a></li>
+                        <li><a href="#ao-dau-bong-da">áo đấu bóng đá</a></li>
+                        <li><a href="#ao-jersey-bong-ro">áo jersey bóng rổ</a></li>
+                        <li><a href="#ao-tap-gym">áo tập gym</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-column">
+                    <h3>Phụ kiện</h3>
+                    <ul>
+                        <li><a href="#tat-chay-bo">tất chạy bộ</a></li>
+                        <li><a href="#gang-tay-thu-mon">găng tay thủ môn</a></li>
+                        <li><a href="#mu-luoi-trai">mũ lưỡi trai</a></li>
+                        <li><a href="#ao-nguc-the-thao">áo ngực thể thao</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+        <script>
+            function navigateTo(category) {
+                console.log('[v0] Navigating to category:', category);
+                // Add navigation logic here
+                alert(`Điều hướng đến: ${category}`);
+            }
+        </script>
+
+        <!-- Script -->
+        <script src="Scripts/Trangchu.js"></script>
+
+        <!-- footer  -->
+        <div id="footer-placeholder" aria-hidden="true"></div>
+
+        <script>
+            (function loadFooter() {
+                const placeholder = document.getElementById('footer-placeholder');
+                if (!placeholder) return;
+
+                const partialPath = 'partials/footer.html';
+                const cssPath = 'partials/footer.css';
+                const jsPath = 'partials/footer.js'; // nếu có file JS cho footer
+
+                fetch(partialPath)
+                    .then(resp => {
+                        if (!resp.ok) throw new Error('Footer partial not found: ' + resp.status);
+                        return resp.text();
+                    })
+                    .then(html => {
+                        // Insert HTML
+                        placeholder.innerHTML = html;
+                        placeholder.removeAttribute('aria-hidden');
+
+                        // Load CSS nếu tồn tại
+                        fetch(cssPath, { method: 'HEAD' })
+                            .then(r => {
+                                if (r.ok) {
+                                    const link = document.createElement('link');
+                                    link.rel = 'stylesheet';
+                                    link.href = cssPath;
+                                    document.head.appendChild(link);
+                                }
+                            });
+
+                        // Load JS nếu tồn tại
+                        fetch(jsPath, { method: 'HEAD' })
+                            .then(r => {
+                                if (r.ok) {
+                                    const s = document.createElement('script');
+                                    s.src = jsPath;
+                                    s.defer = true;
+                                    document.body.appendChild(s);
+                                }
+                            });
+                    })
+                    .catch(err => {
+                        console.warn('Failed to load footer partial:', err);
+                    });
+            })();
+        </script>
+
+        <!--Banner -->
+        <script>
+            class BannerButton extends HTMLElement {
+                connectedCallback() {
+                    this.innerHTML = `
+                                                        <div class="banner-button">
+                                                        <h2 class="banner-title"
+                                                        style=" opacity: 0; width: 125px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000;"
+                                                        >LIGHT THE BAY</h2>
+                                                        <p class="banner-subtitle"
+                                                        style="opacity: 0; margin-bottom: 20px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000; "
+                                                        >
+                                                            Sẵn sàng tăng tốc cùng bộ sưu tập adidas x Mercedes-<br />AMG PETRONAS F1 Team
+                                                        </p>
+                                                        <a href="#" class="btn">Mua ngay →</a>
+                                                        </div>
+                                                    `;
+                }
+            }
+            customElements.define('banner-button', BannerButton);
+        </script>
+
+        <!-- ✅ Script clone template + gắn logic carousel -->
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const template = document.getElementById("adidas-card-template");
+
+                document.querySelectorAll("section[id^='carousel-']").forEach((section, index) => {
+                    const clone = template.content.cloneNode(true);
+
+                    // Gắn tiêu đề
+                    clone.querySelector(".section-title").textContent = section.dataset.title;
+
+                    // Parse data sản phẩm
+                    const products = JSON.parse(section.dataset.products);
+                    const wrapper = clone.querySelector(".carousel-wrapper");
+
+                    // Tạo card động
+                    products.forEach(p => {
+                        const card = document.createElement("div");
+                        card.className = "card";
+                        card.innerHTML = `
+                                                                                    <img src="${p.img}" class="card-image" style="height: ${p.height || '380px'}; object-fit: cover;" />
+                                                                                    <div class="card-content">
+                                                                                      <h3 class="card-title">${p.price}</h3>
+                                                                                      <p class="card-description">${p.desc}</p>
+                                                                                      <button class="card-button">Mua ngay</button>
+                                                                                    </div>
+                                                                                  `;
+                        wrapper.appendChild(card);
+                    });
+
+
+                    // Gắn vào DOM
+                    section.appendChild(clone);
+
+                    // 🎯 Gắn logic carousel RIÊNG CHO MỖI SECTION
+                    const carousel = section.querySelector(".carousel-wrapper");
+                    const prevBtn = section.querySelector(".nav-button.prev");
+                    const nextBtn = section.querySelector(".nav-button.next");
+                    const cards = section.querySelectorAll(".card");
+                    let currentIndex = 0;
+                    const cardWidth = 360;
+                    const visibleCards = Math.floor(section.offsetWidth / cardWidth);
+                    const maxIndex = Math.max(0, cards.length - visibleCards);
+
+                    function updateCarousel() {
+                        carousel.style.transform = `translateX(${-currentIndex * cardWidth}px)`;
+                        prevBtn.disabled = currentIndex === 0;
+                        nextBtn.disabled = currentIndex >= maxIndex;
+                    }
+
+                    prevBtn.addEventListener("click", () => {
+                        if (currentIndex > 0) {
+                            currentIndex--;
+                            updateCarousel();
+                        }
+                    });
+
+                    nextBtn.addEventListener("click", () => {
+                        if (currentIndex < maxIndex) {
+                            currentIndex++;
+                            updateCarousel();
+                        }
+                    });
+
+                    updateCarousel();
+                });
+            });
+        </script>
+
+        <!--4 ảnh-->
+        <script>
+            function navigateToCategory(category) {
+                console.log('[v0] Navigating to category:', category);
+                // Add your navigation logic here
+                // window.location.href = `/category/${category}`;
+            }
+
+            // Add touch feedback for mobile
+            const cards = document.querySelectorAll('.category-card');
+            cards.forEach(card => {
+                card.addEventListener('touchstart', function () {
+                    this.style.opacity = '0.8';
+                });
+
+                card.addEventListener('touchend', function () {
+                    this.style.opacity = '1';
+                });
+            });
+        </script>
+    </body>
+</html>

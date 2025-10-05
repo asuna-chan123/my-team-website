@@ -103,7 +103,7 @@ git push origin feature/<ten-tinh-nang>
 ```
 ## 👥 Thành viên
 
-|           Tên          |        Vai trò             |  Ghi chú   |
+|           Tên          |          Nhiệm vụ          |  Ghi chú   |
 |------------------------|----------------------------|------------|
 | Nguyễn Ngọc Duy Khánh  |                            |            | 
 | Trần Dức An            |                            |            | 

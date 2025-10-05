@@ -108,6 +108,6 @@ git push origin feature/<ten-tinh-nang>
 | Nguyễn Ngọc Duy Khánh  |                            |            | 
 | Trần Dức An            |                            |            | 
 | Đặng Minh Khôi         |                            |            | 
-hihi
+
 
 ```

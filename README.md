@@ -71,7 +71,7 @@ git checkout -b feature/Home
 Khi đã hoàn thành tính năng:
 
 ```
-git add .
+git add AdidasStore/<ten-tinh-nang>
 git commit -m "<Ghi chú>"
 git push origin feature/<ten-tinh-nang>
 ```

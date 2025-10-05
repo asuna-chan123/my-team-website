@@ -65,8 +65,8 @@ git checkout -b feature/Home
 Khi đã hoàn thành tính năng:
 ```
 git add .
-git commit -m "Thêm tính năng giỏ hàng"
-git push origin feature/add-cart-page
+git commit -m "Thêm trang chủ"
+git push origin feature/Home
 ```
 4️⃣ Tạo Pull Request (PR)
 

@@ -1,0 +1,37 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build results
+bin/
+obj/
+Debug/
+Release/
+
+# Temporary files
+*.cache
+*.pdb
+*.db
+*.log
+
+# IDE specific
+*.ide
+*.ncb
+*.aps
+*.ilk
+*.tmp
+
+# Packages
+packages/
+*.nupkg
+
+# Others
+*.dll
+*.exe
+
+# Rider / JetBrains
+.idea/
+
+# Publish output
+publish/

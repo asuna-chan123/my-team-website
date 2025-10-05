@@ -63,6 +63,13 @@ git checkout -b feature/Home
 3️⃣ Commit & push code lên GitHub
 
 Khi đã hoàn thành tính năng:
+
+```
+git add .
+git commit -m "<Ghi chú>"
+git push origin feature/<ten-tinh-nang>
+```
+Ví dụ :
 ```
 git add .
 git commit -m "Thêm trang chủ"

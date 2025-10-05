@@ -75,10 +75,10 @@ git add .
 git commit -m "<Ghi chú>"
 git push origin feature/<ten-tinh-nang>
 ```
-Ví dụ :
+Ví dụ push 1 file nhất định:
 ```
-git add .
-git commit -m "Thêm trang chủ"
+git add AdidasStore/Home.html
+git commit -m "Update Home.html UI"
 git push origin feature/Home
 ```
 4️⃣ Tạo Pull Request (PR)

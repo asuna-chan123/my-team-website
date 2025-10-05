@@ -59,6 +59,9 @@ Ví dụ tạo "nhánh" Trang chủ:
 ```
 git checkout -b feature/Home
 ```
+```
+*LƯU Ý: chỉ tạo nhánh chứ không tạo file, tạo file thì làm thủ công nha
+```
 
 3️⃣ Commit & push code lên GitHub
 

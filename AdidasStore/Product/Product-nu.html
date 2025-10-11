@@ -1,0 +1,637 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adidas </title>
+
+    <!-- Font chữ -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- header css must come after Tailwind so its rules override Tailwind utilities -->
+    <link rel="stylesheet" href="../partials/header.css" />
+
+    <!-- Your page CSS -->
+    <link rel="stylesheet" href="../Content/Product.css">
+
+    <!--Product-->
+    <style>
+        <style >
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #fff;
+            color: #000;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Navigation */
+        .back-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+            .back-nav a {
+                color: #000;
+                text-decoration: none;
+            }
+
+                .back-nav a:hover {
+                    text-decoration: underline;
+                }
+
+        .back-arrow {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Page Header */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
+
+        .page-title {
+            flex: 1;
+        }
+
+            .page-title h1 {
+                font-size: 32px;
+                font-weight: bold;
+                margin-bottom: 8px;
+            }
+
+        .item-count {
+            font-size: 14px;
+            color: #767677;
+            margin-bottom: 16px;
+        }
+
+        .description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #000;
+            max-width: 800px;
+        }
+
+        .filter-button {
+            background: #fff;
+            border: 1px solid #000;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+            .filter-button:hover {
+                background: #000;
+                color: #fff;
+            }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px 20px; /* 40px vertical gap, 20px horizontal gap */
+            margin-top: 30px;
+        }
+
+        .product-card {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+            .product-card:hover {
+                transform: translateY(-4px);
+            }
+
+        .product-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            background: #f5f5f5;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+            .product-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: opacity 0.4s ease;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+                .product-image img.main {
+                    opacity: 1;
+                }
+
+                .product-image img.hover {
+                    opacity: 0;
+                }
+
+        .product-card:hover .product-image img.hover {
+            opacity: 1;
+        }
+
+        .product-card:hover .product-image img.main {
+            opacity: 0;
+        }
+
+        .product-info {
+            padding: 0 4px;
+        }
+
+        .product-price {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .product-category {
+            font-size: 13px;
+            color: #767677;
+            margin-bottom: 4px;
+        }
+
+        .product-colors {
+            font-size: 13px;
+            color: #767677;
+            margin-bottom: 4px;
+        }
+
+        .product-badge {
+            font-size: 13px;
+            color: #000;
+            font-weight: 500;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .page-header {
+                flex-direction: column;
+            }
+
+            .page-title h1 {
+                font-size: 24px;
+            }
+
+            .filter-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .description {
+                font-size: 13px;
+            }
+
+            /* 2 columns on mobile */
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px 16px; /* 32px vertical gap, 16px horizontal gap */
+                margin-top: 20px;
+            }
+
+            .product-info {
+                padding: 0 2px;
+            }
+
+            .product-price {
+                font-size: 13px;
+            }
+
+            .product-name {
+                font-size: 13px;
+            }
+
+            .product-category,
+            .product-colors,
+            .product-badge {
+                font-size: 12px;
+            }
+        }
+
+        /* Tablet Styles */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 36px 20px;
+            }
+        }
+    </style>
+    <!--end Product-->
+</head>
+<body>
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="wrap">
+            <div class="adidas-container">
+                <div class="adidas">
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                </div>
+                <div class="text">adidas</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- header placeholder: will be replaced by /partials/header.html -->
+    <div id="header-placeholder" aria-hidden="true"></div>
+
+    <script>
+        (function loadHeader() {
+            const placeholder = document.getElementById('header-placeholder');
+            if (!placeholder) return;
+
+            const partialPath = '../partials/header.html';
+            const cssPath = '../partials/header.css';
+            const jsPath = '../partials/header.js';
+
+            fetch(partialPath)
+                .then(resp => {
+                    if (!resp.ok) throw new Error('Header partial not found: ' + resp.status);
+                    return resp.text();
+                })
+                .then(html => {
+                    // Insert HTML
+                    placeholder.innerHTML = html;
+                    placeholder.removeAttribute('aria-hidden');
+
+                    // Fix relative asset paths inside the injected partial so they resolve relative to the partial file
+                    // This prevents icons/images in header.html (e.g. "partials/iconheader/...") from resolving relative
+                    // to the calling page (Product-detail folder) which causes broken images.
+                    try {
+                        const partialBase = partialPath.replace(/[^\/]+$/, ''); // e.g. "../partials/"
+
+                        // Adjust src and href attributes that are relative (not absolute/data/# or starting with / or protocol)
+                        placeholder.querySelectorAll('[src], [href]').forEach(el => {
+                            // Remove any stylesheet link inside the partial (we load css separately below)
+                            if (el.tagName.toLowerCase() === 'link' && el.getAttribute('rel') === 'stylesheet') {
+                                el.remove();
+                                return;
+                            }
+
+                            const attr = el.hasAttribute('src') ? 'src' : 'href';
+                            const val = el.getAttribute(attr);
+                            if (!val) return;
+                            // skip absolute URLs, protocol-relative, root-relative, data URIs and anchors
+                            if (/^(https?:|\/\/|\/|data:|#)/i.test(val)) return;
+
+                            // If the partial's markup already used "partials/..." (intended to be relative to root partials folder),
+                            // normalize by removing the leading "partials/" then prefix with partialBase so both top-level pages
+                            // and pages in subfolders will resolve correctly.
+                            let newVal;
+                            if (val.startsWith('partials/')) {
+                                newVal = partialBase + val.replace(/^partials\//, '');
+                            } else {
+                                newVal = partialBase + val;
+                            }
+
+                            el.setAttribute(attr, newVal);
+                        });
+                    } catch (e) {
+                        console.warn('Failed to rewrite partial asset paths', e);
+                    }
+
+                    // Load CSS if present (non-blocking)
+                    fetch(cssPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const link = document.createElement('link');
+                                link.rel = 'stylesheet';
+                                link.href = cssPath;
+                                document.head.appendChild(link);
+                            }
+                        })
+                        .catch(() => { /* ignore missing css */ });
+
+                    // Load JS if present (append after HTML so it can attach handlers)
+                    fetch(jsPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const s = document.createElement('script');
+                                s.src = jsPath;
+                                s.defer = true;
+                                document.body.appendChild(s);
+                            }
+                        })
+                        .catch(() => { /* ignore missing js */ });
+                })
+                .catch(err => {
+                    console.warn('Failed to load header partial:', err);
+                    // Optional: fallback UI
+                    // placeholder.innerHTML = '<!-- header load failed -->';
+                });
+        })();
+    </script>
+
+    <!--Product-->
+    <div class="container">
+
+        <div class="back-nav" style=" margin-top:100px;">
+            <span class="back-arrow">←</span>
+            <span>BACK</span>
+            <a href="#">Home</a>
+            <span>/</span>
+            <span>Giày</span>
+        </div>
+
+
+        <div class="page-header">
+            <div class="page-title">
+                <h1>GIÀY</h1>
+                <div class="item-count">[items]</div>
+                <p class="description">
+                    Với đầy đủ mọi mẫu mà bạn đã và đang tìm kiếm, cho dù là chơi thể thao sâm hối của adidas. Thể thao sâm hối của adidas.
+                </p>
+            </div>
+            <button class="filter-button">
+                LỌC & SẮP XẾP ☰
+            </button>
+        </div>
+
+
+        <div class="product-grid" id="productGrid">
+
+        </div>
+    </div>
+
+    <script>
+        // Sample product data
+        const products = [
+            {
+                image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/d6c6cd212fc64f5fb58403b9acdf0151_9366/ao-thun-graphic-bac-mau-adidas-originals.jpg',
+                hoverImage: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/68d196a88f2f4440bfed304fb9de36c5_9366/ao-thun-graphic-bac-mau-adidas-originals.jpg',
+                price: '1.300.000₫',
+                name: 'ÁO THUN GRAPHIC BẠC MÀU ADIDAS ORIGINALS',
+                category: 'Originals',
+                colors: '13 colours',
+                badge: 'Trending'
+            },
+            {
+                image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/e278d05dda05401d8a9add3ea392c620_9366/ao-thun-runners-unisex.jpg',
+                hoverImage: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/126d44e6d2974737917bc06fc1ef346c_9366/ao-thun-runners-unisex.jpg',
+                price: '1.050.000₫',
+                name: 'Giày Predetal',
+                category: 'Nam Chạy',
+                colors: '6 colours',
+                badge: 'Mới'
+            },
+            {
+                image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/7c7c858cf5594cecb20a6d836b05d01d_9366/gfx-hanoi-w-tee---white.jpg',
+                hoverImage: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/0043a246b45146f59e7967a3e4be76a9_9366/gfx-hanoi-w-tee---white.jpg',
+                price: '800.000₫',
+                name: 'GFX HANOI W TEE - WHITE',
+                category: 'Nữ Sportswearr',
+                colors: '4 colours',
+                badge: 'Mới'
+            },
+            {
+                image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/d977ea69b36e4ed587e939f82a5eec6c_9366/ao-thun-own-the-run.jpg',
+                hoverImage: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/ca38a5492f3b41499cd77bfbc372430d_9366/ao-thun-own-the-run.jpg',
+                price: '800.000₫',
+                name: 'Áo Thun Own The Run',
+                category: 'Nữ Chạy',
+                colors: '6 colours',
+                badge: 'Mới'
+            },
+            {
+                image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/86e30f36466143239909e5c6be6acb3c_9366/ao-thun-bong-ro-khong-tay-adidas-unisex.jpg',
+                hoverImage: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/cbead102561143879f5bbd1950d063ea_9366/ao-thun-bong-ro-khong-tay-adidas-unisex.jpg',
+                price: '900.000₫',
+                name: 'Áo Thun Bóng Rổ Không Tay adidas (Unisex)',
+                category: 'Bóng Rổ',
+                colors: '2 colours',
+                badge: 'Mới'
+            },
+            {
+                image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/7e528fba9a7b42e4a7f9fcd96e8d97b2_9366/ao-thun-cotton-3-soc-essentials.jpg',
+                hoverImage: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/3eb53c2ad2f447b289fdf40099cb9738_9366/ao-thun-cotton-3-soc-essentials.jpg',
+                price: '700.000₫',
+                name: 'Áo Thun Cotton 3 Sọc Essentials',
+                category: 'Originals',
+                colors: '4 colours',
+                badge: 'Mới'
+            },
+            {
+                image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/7ccc2f280a334ff7a0243aceff00d59e_9366/ao-thun-own-the-run.jpg',
+                hoverImage: 'https://assets.adidas.com/images/w_178,h_178,f_auto,q_auto,fl_lossy,c_fill,g_auto/f4e3b7ec2879445c90d4f99c53f111f8_9366/ao-thun-own-the-run.jpg',
+                price: '700.000₫',
+                name: 'Áo Thun Own The Run',
+                category: 'Nữ Chạy',
+                colors: '2 colours',
+                badge: 'Mới'
+            },
+            {
+                image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/d2f499e603f5460facc91a5663dacbda_9366/ao-thun-dai-tay-runners-unisex.jpg',
+                hoverImage: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/78d4bf6f18774a0097d5887670839bdb_9366/ao-thun-dai-tay-runners-unisex.jpg',
+                price: '1.700.000₫',
+                name: 'Áo Thun Dài Tay Runners (Unisex)',
+                category: ' Chạy',
+                colors: '2 colours',
+                badge: ''
+            },
+        ];
+
+        // Render products
+        const productGrid = document.getElementById('productGrid');
+
+        products.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+
+            card.innerHTML = `
+                      <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}" class="main">
+                        <img src="${product.hoverImage}" alt="${product.name} hover" class="hover">
+                      </div>
+                      <div class="product-info">
+                        <div class="product-price">${product.price}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-category">${product.category}</div>
+                        <div class="product-colors">${product.colors}</div>
+                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                      </div>
+                    `;
+            productGrid.appendChild(card);
+        });
+    </script>
+    <!--end Product-->
+    </head>
+    <body>
+
+
+        <!-- Mục lục -->
+        <section class="petronas-section">
+
+            <nav class="category-navigation">
+                <div class="category-column">
+                    <h3>Giày</h3>
+                    <ul>
+                        <li><a href="#giay-chay-bo">giày chạy bộ</a></li>
+                        <li><a href="#giay-da-bong">giày đá bóng</a></li>
+                        <li><a href="#giay-bong-ro">giày bóng rổ</a></li>
+                        <li><a href="#giay-tap-gym">giày tập gym</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-column">
+                    <h3>Quần</h3>
+                    <ul>
+                        <li><a href="#quan-chay-bo">quần chạy bộ</a></li>
+                        <li><a href="#quan-bong-da">quần bóng đá</a></li>
+                        <li><a href="#quan-short-bong-ro">quần short bóng rổ</a></li>
+                        <li><a href="#quan-dui-tap-gym">quần dùi tập gym</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-column">
+                    <h3>Áo</h3>
+                    <ul>
+                        <li><a href="#ao-singlet-chay-bo">áo singlet chạy bộ</a></li>
+                        <li><a href="#ao-dau-bong-da">áo đấu bóng đá</a></li>
+                        <li><a href="#ao-jersey-bong-ro">áo jersey bóng rổ</a></li>
+                        <li><a href="#ao-tap-gym">áo tập gym</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-column">
+                    <h3>Phụ kiện</h3>
+                    <ul>
+                        <li><a href="#tat-chay-bo">tất chạy bộ</a></li>
+                        <li><a href="#gang-tay-thu-mon">găng tay thủ môn</a></li>
+                        <li><a href="#mu-luoi-trai">mũ lưỡi trai</a></li>
+                        <li><a href="#ao-nguc-the-thao">áo ngực thể thao</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+        <script>
+            function navigateTo(category) {
+                console.log('[v0] Navigating to category:', category);
+                // Add navigation logic here
+                alert(`Điều hướng đến: ${category}`);
+            }
+        </script>
+
+        <!-- Script -->
+        <script src="../Scripts/Trangchu.js"></script>
+
+        <!-- footer  -->
+        <div id="footer-placeholder" aria-hidden="true"></div>
+
+        <script>
+            (function loadFooter() {
+                const placeholder = document.getElementById('footer-placeholder');
+                if (!placeholder) return;
+
+                const partialPath = '../partials/footer.html';
+                const cssPath = '../partials/footer.css';
+                const jsPath = '../partials/footer.js'; // nếu có file JS cho footer
+
+                fetch(partialPath)
+                    .then(resp => {
+                        if (!resp.ok) throw new Error('Footer partial not found: ' + resp.status);
+                        return resp.text();
+                    })
+                    .then(html => {
+                        // Insert HTML
+                        placeholder.innerHTML = html;
+                        placeholder.removeAttribute('aria-hidden');
+
+                        // Load CSS nếu tồn tại
+                        fetch(cssPath, { method: 'HEAD' })
+                            .then(r => {
+                                if (r.ok) {
+                                    const link = document.createElement('link');
+                                    link.rel = 'stylesheet';
+                                    link.href = cssPath;
+                                    document.head.appendChild(link);
+                                }
+                            });
+
+                        // Load JS nếu tồn tại
+                        fetch(jsPath, { method: 'HEAD' })
+                            .then(r => {
+                                if (r.ok) {
+                                    const s = document.createElement('script');
+                                    s.src = jsPath;
+                                    s.defer = true;
+                                    document.body.appendChild(s);
+                                }
+                            });
+                    })
+                    .catch(err => {
+                        console.warn('Failed to load footer partial:', err);
+                    });
+            })();
+        </script>
+
+        <script>
+            class BannerButton extends HTMLElement {
+                connectedCallback() {
+                    this.innerHTML = `
+                                                                                                                                                                      <div class="banner-button">
+                                                                                                                                                                        <h2 class="banner-title"
+                                                                                                                                                                        style=" opacity: 0; width: 125px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000;"
+                                                                                                                                                                        >LIGHT THE BAY</h2>
+                                                                                                                                                                        <p class="banner-subtitle"
+                                                                                                                                                                        style="opacity: 0; margin-bottom: 20px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000; "
+                                                                                                                                                                        >
+                                                                                                                                                                          Sẵn sàng tăng tốc cùng bộ sưu tập adidas x Mercedes-<br />AMG PETRONAS F1 Team
+                                                                                                                                                                        </p>
+                                                                                                                                                                        <a href="#" class="btn">Mua ngay →</a>
+                                                                                                                                                                      </div>
+                                                                                                                                                                    `;
+                }
+            }
+            customElements.define('banner-button', BannerButton);
+        </script>
+
+
+
+    </body>
+</html>

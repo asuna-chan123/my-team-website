@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adidas Loading</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="partials/header.css">
+</head>
+<body>
+    <!-- Header (Adidas demo header) -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+        <!-- Top utility bar -->
+        <div class="border-b border-gray-200/20 bg-white/10 backdrop-blur-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-end items-center h-8 text-xs space-x-3">
+                    <button class="text-gray-700 hover:text-black transition-colors capitalize">help</button>
+                    <span class="text-gray-300">|</span>
+                    <button class="text-gray-700 hover:text-black transition-colors capitalize">order tracker</button>
+                    <span class="text-gray-300">|</span>
+                    <button class="text-gray-700 hover:text-black transition-colors capitalize">become a member</button>
+                </div>
+            </div>
+        </div>
+        <!-- Main header -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
+            <div class="flex items-center justify-between h-16">
+                <!-- Mobile hamburger (left), Logo (center on mobile) -->
+                <button id="mobileMenuToggle" class="p-2 mr-2 lg:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                    <!-- simple 3-bar icon -->
+                    <span class="block w-5 h-0.5 bg-black mb-1"></span>
+                    <span class="block w-5 h-0.5 bg-black mb-1"></span>
+                    <span class="block w-5 h-0.5 bg-black"></span>
+                </button>
+
+                <!-- Logo -->
+                <div class="flex-shrink-0 group cursor-pointer logo-wrapper">
+                    <div class="flex items-center justify-center transform transition-transform duration-200 group-hover:scale-105">
+                        <img src="partials/iconheader/adidas-black-logo.png" alt="Adidas logo" loading="lazy" class="w-20 h-auto logo-img" />
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <button class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                        SHOES
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                    <button class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                        MEN
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                    <button class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                        WOMEN
+                        <span class="absolute -bottom-1 left-0 w-0.5 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                    <button class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                        KIDS
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                    <button class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                        SPORTS
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                    <button class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                        BRANDS
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                    <button class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                        OUTLET
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                </nav>
+
+                <!-- Right side icons -->
+                <div class="flex items-center space-x-4">
+                    <!-- Search -->
+                    <div class="relative">
+                        <!-- Desktop: visible search box -->
+                        <form class="hidden lg:flex items-center bg-gray-100 rounded-lg px-2 py-1 search-box relative" role="search" action="#" method="get">
+                            <button type="submit" class="search-btn absolute right-2">
+                                <img src="partials/iconheader/search_.png" alt="Search" loading="lazy" class="w-5 h-5" />
+                            </button>
+                            <input name="q" type="text" placeholder="Search" class="search-input bg-transparent w-full text-sm text-gray-700 placeholder-gray-500 focus:outline-none pl-2 pr-10" />
+                        </form>
+
+                        <!-- Mobile / small screens: icon toggle -->
+                        <button id="searchToggle" class="p-2 hover:bg-gray-100 rounded transition-colors lg:hidden">
+                            <img src="src/assets/search_.png" alt="Search" loading="lazy" class="w-5 h-5" />
+                        </button>
+
+                        <!-- Dropdown search (used by the toggle) -->
+                        <div id="searchDropdown" class="search-dropdown absolute top-full right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border search-hidden">
+                            <div class="p-4">
+                                <input type="text" placeholder="Search products..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User -->
+                    <button class="relative p-2 hover:bg-gray-100 rounded transition-colors">
+                        <i data-lucide="user" class="w-5 h-5"></i>
+                        <span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                        <img src="partials/iconheader/user_.png" alt="User" loading="lazy" class="w-5 h-auto" />
+                    </button>
+
+                    <!-- Wishlist -->
+                    <button class="p-2 hover:bg-gray-100 rounded transition-colors group">
+                        <i data-lucide="heart" class="w-5 h-5 group-hover:text-red-500 transition-colors"></i>
+                        <img src="partials/iconheader/heart_.png" alt=" Wishlist" loading="lazy" class="w-5 h-auto" />
+                    </button>
+
+                    <!-- Shopping bag -->
+                    <button class="relative p-2 hover:bg-gray-100 rounded transition-colors">
+                        <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                        <span class="absolute -top-1 -right-1 w-5 h-5 bg-black text-white text-xs rounded-full flex items-center justify-center font-medium">0</span>
+                        <img src="partials/iconheader/shop_.png" alt="Shopping bag" loading="lazy" class="w-5 h-auto" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile menu panel -->
+    <div id="mobileMenu" class="mobile-menu lg:hidden" aria-hidden="true">
+        <button id="mobileMenuClose" aria-label="Close menu" class="mobile-menu-close">✕</button>
+        <nav>
+            <a href="#">SHOES</a>
+            <a href="#">MEN</a>
+            <a href="#">WOMEN</a>
+            <a href="#">KIDS</a>
+            <a href="#">SPORTS</a>
+            <a href="#">BRANDS</a>
+            <a href="#">OUTLET</a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

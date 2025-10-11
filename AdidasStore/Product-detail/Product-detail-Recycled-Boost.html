@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adidas </title>
+
+    <!-- Font chữ -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- header css must come after Tailwind so its rules override Tailwind utilities -->
+    <link rel="stylesheet" href="../partials/header.css" />
+
+    <!-- Your page CSS -->
+    <link rel="stylesheet" href="../Content/Product-detail-Yeezy-Boost.css">
+
+    <style>
+        :root {
+            --bg: #FB9E3A;
+            --o: #000000;
+            --y: #EA2F14;
+        }
+
+        body {
+            background-color: var(--bg);
+        }
+        .bento-card.logo {
+            grid-area: 1 / 2 / 2 / 4;
+            background-image: linear-gradient(-225deg, #fffeff 0%, #FCEF91 100%);
+        }
+
+            .bento-card.logo h2 {
+                color: #a39a56;
+            }
+
+        .bento-card.inbox {
+            background-image: linear-gradient(-225deg, #ffffff 0%, #FCEF91 100%);
+        }
+
+            .bento-card.inbox h3 {
+                color: #a39a56;
+            }
+    </style>
+
+</head>
+<body>
+
+    <!-- header placeholder: will be replaced by /partials/header.html -->
+    <div id="header-placeholder" aria-hidden="true"></div>
+
+    <script>
+        (function loadHeader() {
+            const placeholder = document.getElementById('header-placeholder');
+            if (!placeholder) return;
+
+            const partialPath = '../partials/header.html';
+            const cssPath = '../partials/header.css';
+            const jsPath = '../partials/header.js';
+
+            fetch(partialPath)
+                .then(resp => {
+                    if (!resp.ok) throw new Error('Header partial not found: ' + resp.status);
+                    return resp.text();
+                })
+                .then(html => {
+                    // Insert HTML
+                    placeholder.innerHTML = html;
+                    placeholder.removeAttribute('aria-hidden');
+
+                    // Fix relative asset paths inside the injected partial so they resolve relative to the partial file
+                    // This prevents icons/images in header.html (e.g. "partials/iconheader/...") from resolving relative
+                    // to the calling page (Product-detail folder) which causes broken images.
+                    try {
+                        const partialBase = partialPath.replace(/[^\/]+$/, ''); // e.g. "../partials/"
+
+                        // Adjust src and href attributes that are relative (not absolute/data/# or starting with / or protocol)
+                        placeholder.querySelectorAll('[src], [href]').forEach(el => {
+                            // Remove any stylesheet link inside the partial (we load css separately below)
+                            if (el.tagName.toLowerCase() === 'link' && el.getAttribute('rel') === 'stylesheet') {
+                                el.remove();
+                                return;
+                            }
+
+                            const attr = el.hasAttribute('src') ? 'src' : 'href';
+                            const val = el.getAttribute(attr);
+                            if (!val) return;
+                            // skip absolute URLs, protocol-relative, root-relative, data URIs and anchors
+                            if (/^(https?:|\/\/|\/|data:|#)/i.test(val)) return;
+
+                            // If the partial's markup already used "partials/..." (intended to be relative to root partials folder),
+                            // normalize by removing the leading "partials/" then prefix with partialBase so both top-level pages
+                            // and pages in subfolders will resolve correctly.
+                            let newVal;
+                            if (val.startsWith('partials/')) {
+                                newVal = partialBase + val.replace(/^partials\//, '');
+                            } else {
+                                newVal = partialBase + val;
+                            }
+
+                            el.setAttribute(attr, newVal);
+                        });
+                    } catch (e) {
+                        console.warn('Failed to rewrite partial asset paths', e);
+                    }
+
+                    // Load CSS if present (non-blocking)
+                    fetch(cssPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const link = document.createElement('link');
+                                link.rel = 'stylesheet';
+                                link.href = cssPath;
+                                document.head.appendChild(link);
+                            }
+                        })
+                        .catch(() => { /* ignore missing css */ });
+
+                    // Load JS if present (append after HTML so it can attach handlers)
+                    fetch(jsPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const s = document.createElement('script');
+                                s.src = jsPath;
+                                s.defer = true;
+                                document.body.appendChild(s);
+                            }
+                        })
+                        .catch(() => { /* ignore missing js */ });
+                })
+                .catch(err => {
+                    console.warn('Failed to load header partial:', err);
+                    // Optional: fallback UI
+                    // placeholder.innerHTML = '<!-- header load failed -->';
+                });
+        })();
+    </script>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="wrap">
+            <div class="adidas-container">
+                <div class="adidas">
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                </div>
+                <div class="text">adidas</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video -->
+    <div id="wrap" style="position: relative; width: 100%; height: 120vh; overflow: hidden;">
+        <iframe src="https://player.vimeo.com/video/1009383631?background=1&autoplay=1&muted=1&loop=1"
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+                style="position: absolute; top: -50px; left: 0; width: 100%; height: 100%; object-fit: cover;">
+        </iframe>
+    </div>
+
+
+
+    <!-- Bento layout không đè lên video -->
+    <section id="bento-section" style="margin-top:-0%;">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <div class="container">
+            <div class="grid-features">
+
+                <!-- Bento Bên trái ở trên -->
+                <div class="bento-card cloud">
+                    <div class="bento-card-description">
+                        <h2>Material</h2>
+                        <p>
+                            Designed by Kanye West, this is a sneaker that combines fashion and performance, loved by many people.<br><br>
+                            The upper is made from Primeknit fabric, making the shoe light, breathable and hugs the foot.
+                        </p>
+                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/672559207435805.66e03c4035303.png" alt="Mô tả chất liệu Yeezy" loading="lazy"
+                             style="display: block; max-width: 100%; height: auto; border: 5px solid #FB9E3A; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); ">
+                    </div>
+                </div>
+
+                <!-- Bento Bên phải ở trên -->
+                <div class="bento-card logo" style="">
+                    <div class="bento-card-description">
+                        <h2 class="bento-heading">Technology </h2>
+                        <p class="bento-heading-content">
+                            Cushioning system: The shoe is equipped with Boost cushioning technology, providing a soft feeling and maximum support for the foot, especially when moving a lot.<br><br>
+                            Shoe sole: Rubber outsole with special pattern design, providing good grip and high durability.
+                        </p>
+                    </div>
+                    <div class="bento-card-details logo">
+                    </div>
+                </div>
+
+                <!-- Bento ở giữa / ảnh GIF -->
+                <div class="bento-card device">
+                    <div class="bento-card-description">
+                        <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/91b8027a14b64eb190dbc902b22a0333_9366/SAMBA_OG_-_TAL_Red_IG8905_43_detail.jpg" alt="Mô tả chất liệu Yeezy" loading="lazy"
+                             class="bento-image" style="border: 5px solid #FB9E3A; ">
+                    </div>
+                </div>
+
+                <!-- Bento Bên phải ở giữa -->
+                <div class="bento-card inbox">
+                    <div class="bento-card-description">
+                        <h3>Features</h3>
+                        <p>
+                            Support: The foot-hugging design helps keep your foot stable during movement.<br><br>
+                            Breathability: Primeknit fabric allows air to circulate, keeping your feet comfortable and dry.
+                        </p>
+                    </div>
+                    <div class="bento-card-details inbox">
+                    </div>
+                </div>
+
+                <!-- Bento Bên trái ở dưới -->
+                <div class="bento-card device-2">
+                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/07c521a7d73d43a38418f5e27df6488d_9366/SAMBA_OG_-_TAL_Red_IG8905_42_detail.jpg" alt="Mô tả chất liệu Yeezy" loading="lazy"
+                         class="bento-image" style="height:500px; border: 5px solid #FB9E3A; ">
+                </div>
+
+                <!-- Bento Bên phải ở dưới -->
+                <div class="bento-card ai-gen">
+                    <div class="bento-card-description">
+                        <h2>Utilities</h2>
+                        <p>
+                            Durability: High-quality materials and sturdy construction ensure longevity, making it suitable for everyday use.<br><br>
+                            Style: Modern and trendy design makes this shoe a must-have in any fashionista's shoe closet.
+                        </p>
+                    </div>
+                    <div class="bento-card-details ai-gen">
+
+                    </div>
+                </div>
+            </div>
+        </div><!-- .container -->
+    </section>
+    <!-- End Bento features grid -->
+    <!-- ĐẶT HÀNG: tên, giá và nút cố định; panel trượt từ phải -->
+    <h1 id="Nameboost"
+        style="
+      position: fixed;
+      right: 20px;
+      bottom: 120px; /* above the button */
+      color: #fff;
+      z-index: 5;
+      font-weight: 700;
+      font-family: 'Raleway', sans-serif;
+      font-size: 50px;
+      color: #ffffff;
+    ">
+        Samba TAL Boost
+    </h1>
+
+    <!--Tên đôi giày-->
+    <div id="orderPriceBox" class="order-price">$99.00</div>
+    <button id="orderBtn" class="order-btn" aria-controls="orderPanel" style="font-size:20px ;">Đặt hàng</button>
+
+    <aside id="orderPanel" class="order-panel" aria-hidden="true">
+        <button id="closeOrder" class="order-close" aria-label="Đóng">×</button>
+
+        <h2>Đặt hàng</h2>
+        <form id="orderForm">
+            <h1 style="font-size:50px ; color:rgb(255, 255, 255)">Samba TAL Boost</h1>
+            <h1 style="font-size:25px ; color:white">$99.000</h1>
+
+            <!-- Size -->
+            <div class="field">
+                <div class="field-title">Size</div>
+                <div class="option-grid size-grid" role="list">
+                    <button type="button" class="option-tile" data-value="3.5 UK">3.5 UK</button>
+                    <button type="button" class="option-tile" data-value="4 UK">4 UK</button>
+                    <button type="button" class="option-tile" data-value="4.5 UK">4.5 UK</button>
+                    <button type="button" class="option-tile" data-value="5 UK">5 UK</button>
+                    <button type="button" class="option-tile" data-value="5.5 UK">5.5 UK</button>
+
+                    <button type="button" class="option-tile" data-value="6 UK">6 UK</button>
+                    <button type="button" class="option-tile" data-value="6.5 UK">6.5 UK</button>
+                    <button type="button" class="option-tile" data-value="7 UK">7 UK</button>
+                    <button type="button" class="option-tile" data-value="7.5 UK">7.5 UK</button>
+                    <button type="button" class="option-tile" data-value="8 UK">8 UK</button>
+
+                    <button type="button" class="option-tile" data-value="8.5 UK">8.5 UK</button>
+                    <button type="button" class="option-tile" data-value="9 UK">9 UK</button>
+                    <button type="button" class="option-tile" data-value="9.5 UK">9.5 UK</button>
+                    <button type="button" class="option-tile" data-value="10 UK">10 UK</button>
+                    <button type="button" class="option-tile" data-value="10.5 UK">10.5 UK</button>
+
+                    <button type="button" class="option-tile" data-value="11 UK">11 UK</button>
+                    <button type="button" class="option-tile" data-value="11.5 UK">11.5 UK</button>
+                    <button type="button" class="option-tile" data-value="12 UK">12 UK</button>
+                    <button type="button" class="option-tile" data-value="12.5 UK">12.5 UK</button>
+                    <button type="button" class="option-tile" data-value="13 UK">13 UK</button>
+                </div>
+            </div>
+
+            <!-- màu sắc -->
+            <div class="field">
+                <div class="field-title">Màu sắc</div>
+                <div class="option-grid color-grid" role="list">
+                    <button type="button" class="option-tile color-tile" data-value="Đen">Đen</button>
+                    <button type="button" class="option-tile color-tile" data-value="Trắng">Trắng</button>
+                    <button type="button" class="option-tile color-tile" data-value="Xanh">Xanh</button>
+                    <button type="button" class="option-tile color-tile" data-value="Đỏ">Đỏ</button>
+                    <button type="button" class="option-tile color-tile" data-value="Xám">Xám</button>
+                </div>
+            </div>
+
+            <!-- ẩn nút khi nhấn đặt hàng -->
+            <input type="hidden" name="size" id="selectedSize" />
+            <input type="hidden" name="color" id="selectedColor" />
+
+            <button type="submit" class="order-add">Thêm vào giỏ hàng</button>
+        </form>
+    </aside>
+
+    <!-- Script -->
+    <script src="../Scripts/Product-detail-Yeezy-Boost.js"></script>
+    <!-- footer placeholder -->
+    <div id="footer-placeholder" aria-hidden="true"></div>
+
+    <script>
+        (function loadFooter() {
+            const placeholder = document.getElementById('footer-placeholder');
+            if (!placeholder) return;
+
+            const partialPath = '../partials/footer.html';
+            const cssPath = '../partials/footer.css';
+            const jsPath = '../partials/footer.js'; // nếu có file JS cho footer
+
+            fetch(partialPath)
+                .then(resp => {
+                    if (!resp.ok) throw new Error('Footer partial not found: ' + resp.status);
+                    return resp.text();
+                })
+                .then(html => {
+                    // Insert HTML
+                    placeholder.innerHTML = html;
+                    placeholder.removeAttribute('aria-hidden');
+
+                    // Load CSS nếu tồn tại
+                    fetch(cssPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const link = document.createElement('link');
+                                link.rel = 'stylesheet';
+                                link.href = cssPath;
+                                document.head.appendChild(link);
+                            }
+                        });
+
+                    // Load JS nếu tồn tại
+                    fetch(jsPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const s = document.createElement('script');
+                                s.src = jsPath;
+                                s.defer = true;
+                                document.body.appendChild(s);
+                            }
+                        });
+                })
+                .catch(err => {
+                    console.warn('Failed to load footer partial:', err);
+                });
+        })();
+    </script>
+
+
+</body>
+</html>

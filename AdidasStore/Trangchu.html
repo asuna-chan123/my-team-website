@@ -1,0 +1,718 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adidas </title>
+
+    <!-- Font chữ -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- header css must come after Tailwind so its rules override Tailwind utilities -->
+    <link rel="stylesheet" href="partials/header.css" />
+
+    <!-- Your page CSS -->
+    <link rel="stylesheet" href="/Content/Trangchu.css">
+</head>
+<body>
+
+    <!-- header placeholder: will be replaced by /partials/header.html -->
+    <div id="header-placeholder" aria-hidden="true"></div>
+
+    <script>
+        (function loadHeader() {
+            const placeholder = document.getElementById('header-placeholder');
+            if (!placeholder) return;
+
+            const partialPath = 'partials/header.html';
+            const cssPath = 'partials/header.css';
+            const jsPath = 'partials/header.js';
+
+            fetch(partialPath)
+                .then(resp => {
+                    if (!resp.ok) throw new Error('Header partial not found: ' + resp.status);
+                    return resp.text();
+                })
+                .then(html => {
+                    // Insert HTML
+                    placeholder.innerHTML = html;
+                    placeholder.removeAttribute('aria-hidden');
+
+                    // Load CSS if present (non-blocking)
+                    fetch(cssPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const link = document.createElement('link');
+                                link.rel = 'stylesheet';
+                                link.href = cssPath;
+                                document.head.appendChild(link);
+                            }
+                        })
+                        .catch(() => { /* ignore missing css */ });
+
+                    // Load JS if present (append after HTML so it can attach handlers)
+                    fetch(jsPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const s = document.createElement('script');
+                                s.src = jsPath;
+                                s.defer = true;
+                                document.body.appendChild(s);
+                            }
+                        })
+                        .catch(() => { /* ignore missing js */ });
+                })
+                .catch(err => {
+                    console.warn('Failed to load header partial:', err);
+                    // Optional: fallback UI
+                    // placeholder.innerHTML = '<!-- header load failed -->';
+                });
+        })();
+    </script>
+
+    <!-- ✅ TEMPLATE CHO CAROUSEL -->
+    <template id="adidas-card-template">
+        <div class="container">
+            <h1 class="section-title"></h1>
+            <div class="carousel-container">
+                <button class="nav-button prev">‹</button>
+                <button class="nav-button next">›</button>
+                <div class="carousel-wrapper"></div>
+            </div>
+        </div>
+    </template>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="wrap">
+            <div class="adidas-container">
+                <div class="adidas">
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                </div>
+                <div class="text">adidas</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ảnh đầu trang -->
+    <div class="banner-container">
+        <img src="/Content/assets/FW_25_Motorsport.png" alt="Banner" class="banner-img" />
+
+        <div class="banner-button">
+            <h2 class="banner-title"
+                style=" opacity: 0; width: 125px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000;">
+                LIGHT THE BAY
+            </h2>
+            <p class="banner-subtitle"
+               style="opacity: 0; margin-bottom: 20px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000; ">
+                Sẵn sàng tăng tốc cùng bộ sưu tập adidas x Mercedes-<br />AMG PETRONAS F1 Team
+            </p>
+
+            <a href="#" class="btn">Mua ngay →</a>
+        </div>
+    </div>
+
+    <!-- adidas card -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .card {
+            min-width: 340px;
+            margin-right: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .card-button {
+            background: transparent;
+            border: 2px solid #000;
+            padding: 12px 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+            .card-button:hover {
+                background: #000;
+                color: white;
+            }
+
+            .card-button.coming-soon {
+                border-color: #999;
+                color: #999;
+            }
+
+                .card-button.coming-soon:hover {
+                    background: #999;
+                    color: white;
+                }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: 2px solid #ddd;
+            width: 50px;
+            height: 50px;
+            border-radius: 0%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            z-index: 9999; /* ensure nav buttons sit above most content */
+            pointer-events: auto;
+        }
+
+            .nav-button:hover {
+                background: #000;
+                color: white;
+                border-color: #000;
+            }
+
+            .nav-button.prev {
+                left: 30px;
+            }
+
+            .nav-button.next {
+                right: 30px;
+            }
+
+            .nav-button:disabled {
+                opacity: 0.3;
+                cursor: not-allowed;
+            }
+
+                .nav-button:disabled:hover {
+                    background: white;
+                    color: #333;
+                    border-color: #ddd;
+                }
+
+        @media (max-width: 768px) {
+            .card {
+                min-width: 280px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="section-title">Pickleball</h1>
+
+            <div class="carousel-container">
+                <button class="nav-button prev" id="prevBtn">‹</button>
+                <button class="nav-button next" id="nextBtn">›</button>
+
+                <div class="carousel-wrapper" id="carousel">
+                    <div class="card">
+                        <img src="/Content/assets/adidascard/1.png" alt="Vot Pickleball" class="card-image" style="width: 340px; height: 350px;">
+                        <div class="card-content">
+                            <h3 class="card-title">3.600.000₫</h3>
+                            <p class="card-description">Vợt Pickleball Rx carbon ATTK 2025.</p>
+                            <button class="card-button">MUA SẮM NGAY</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="/Content/assets/adidascard/2.png" alt="Vot Pickleball" class="card-image" style="width: 340px; height: 350px;">
+                        <div class="card-content">
+                            <h3 class="card-title">2.400.000₫</h3>
+                            <p class="card-description">Vợt Pickleball RX Team ATTK</p>
+                            <button class="card-button">Mua ngay</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="/Content/assets/adidascard/3.png" alt="Vot Pickleball" class="card-image" style="width: 340px; height: 350px;">
+                        <div class="card-content">
+                            <h3 class="card-title">1.800.000₫</h3>
+                            <p class="card-description">Chiếc Vợt Pickleball Match 2025</p>
+                            <button class="card-button">Mua ngay</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="/Content/assets/adidascard/4.png" alt="Vot Pickleball" class="card-image" style="width: 340px; height: 350px;">
+                        <div class="card-content">
+                            <h3 class="card-title">3.600.000₫</h3>
+                            <p class="card-description">Vợt Pickleball RX Carbon CTRL</p>
+                            <button class="card-button coming-soon">Sắp ra mắt</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="/Content/assets/adidascard/5.png" alt="Vot Pickleball" class="card-image" style="width: 340px; height: 350px;">
+                        <div class="card-content">
+                            <h3 class="card-title">2.400.000₫</h3>
+                            <p class="card-description">Vợt Pickleball RX Team CTRL</p>
+                            <button class="card-button">Mua ngay</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="/Content/assets/adidascard/6.png" alt="Vot Pickleball" class="card-image" style="width: 340px; height: 350px;">
+                        <div class="card-content">
+                            <h3 class="card-title">1.800.000₫</h3>
+                            <p class="card-description">Vợt Pickleball Match Light 2025</p>
+                            <button class="card-button">Mua ngay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            class Carousel {
+                constructor() {
+                    this.carousel = document.getElementById('carousel');
+                    this.prevBtn = document.getElementById('prevBtn');
+                    this.nextBtn = document.getElementById('nextBtn');
+                    this.cards = document.querySelectorAll('.card');
+                    this.currentIndex = 0;
+                    this.cardWidth = 360; // card width + margin
+                    this.visibleCards = this.getVisibleCards();
+                    this.maxIndex = Math.max(0, this.cards.length - this.visibleCards);
+
+                    this.init();
+                }
+
+                getVisibleCards() {
+                    const containerWidth = document.querySelector('.carousel-container').offsetWidth;
+                    return Math.floor(containerWidth / this.cardWidth);
+                }
+
+                init() {
+                    this.prevBtn.addEventListener('click', () => this.prev());
+                    this.nextBtn.addEventListener('click', () => this.next());
+
+                    // Handle window resize
+                    window.addEventListener('resize', () => {
+                        this.visibleCards = this.getVisibleCards();
+                        this.maxIndex = Math.max(0, this.cards.length - this.visibleCards);
+                        this.updateCarousel();
+                    });
+
+                    // Touch/swipe support for mobile
+                    let startX = 0;
+                    let isDragging = false;
+
+                    this.carousel.addEventListener('touchstart', (e) => {
+                        startX = e.touches[0].clientX;
+                        isDragging = true;
+                    });
+
+                    this.carousel.addEventListener('touchmove', (e) => {
+                        if (!isDragging) return;
+                        e.preventDefault();
+                    });
+
+                    this.carousel.addEventListener('touchend', (e) => {
+                        if (!isDragging) return;
+                        isDragging = false;
+
+                        const endX = e.changedTouches[0].clientX;
+                        const diff = startX - endX;
+
+                        if (Math.abs(diff) > 50) {
+                            if (diff > 0) {
+                                this.next();
+                            } else {
+                                this.prev();
+                            }
+                        }
+                    });
+
+                    this.updateButtons();
+                }
+
+                prev() {
+                    if (this.currentIndex > 0) {
+                        this.currentIndex--;
+                        this.updateCarousel();
+                    }
+                }
+
+                next() {
+                    if (this.currentIndex < this.maxIndex) {
+                        this.currentIndex++;
+                        this.updateCarousel();
+                    }
+                }
+
+                updateCarousel() {
+                    const translateX = -this.currentIndex * this.cardWidth;
+                    this.carousel.style.transform = `translateX(${translateX}px)`;
+                    this.updateButtons();
+                }
+
+                updateButtons() {
+                    this.prevBtn.disabled = this.currentIndex === 0;
+                    this.nextBtn.disabled = this.currentIndex >= this.maxIndex;
+                }
+            }
+
+            // Initialize carousel when DOM is loaded
+            document.addEventListener('DOMContentLoaded', () => {
+                new Carousel();
+            });
+
+            // Add smooth scrolling and button interactions
+            document.querySelectorAll('.card-button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    // Add click animation
+                    button.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        button.style.transform = 'scale(1)';
+                    }, 150);
+
+                    // Simulate navigation (you can replace with actual navigation logic)
+                    console.log('Navigating to product page...');
+                });
+            });
+        </script>
+        <!-- end adidas card -->
+        <!-- video giữa trang -->
+        <div class="banner-container" style="margin-bottom:30vh;">
+            <video src="/partials/iconheader/video.mp4" alt="Banner" class="banner-img"></video>
+
+            <div style="position: relative;margin-top:-200px;">
+                <banner-button></banner-button>
+            </div>
+        </div>
+
+        <!-- Carousel 1 -->
+        <section id="carousel-1"
+                 data-title="ICONIC KITS. TIMELESS LEGACY."
+                 data-products='[
+
+           {"img":"/Content/assets/adidascard/7.png","price":"Liverpool FC 25/26 Third kit","desc":"Những huyền thoại tái hợp trong sắc xanh","height":"450px"},
+           {"img":"/Content/assets/adidascard/8.png","price":"ManUtd 25/26 Third Kit","desc":"Một biểu tượng bóng đá được cải biên","height":"450px"},
+           {"img":"/Content/assets/adidascard/9.png","price":"Juventus 25/26 Third Kit","desc":"Nâng ly chúc mừng Bianconeri","height":"450px"},
+           {"img":"/Content/assets/adidascard/10.png","price":"Real Madrid 25/26 Third Kit","desc":"Màu xanh biểu tượng. Madrid trường tồn.","height":"450px"},
+           {"img":"/Content/assets/adidascard/11.png","price":"Áo Đấu Thứ Ba Arsenal 25/26","desc":"Dư âm Highbury","height":"450px"},
+           {"img":"/Content/assets/adidascard/12.png","price":"FC Bayern 25/26 Third Kit","desc":"Sinh ra từ những chiến thắng","height":"450px"},
+           {"img":"/Content/assets/adidascard/12.png","price":"Juventus 25/26 Away Kit","desc":"Historic stripes, stitched with pride.","height":"450px"}
+         ]'></section>
+
+        <!-- Carousel 2 -->
+        <section id="carousel-2"
+                 data-title="WHAT'S HOT"
+                 data-products='[
+           {"img":"/Content/assets/adidascard/21.png","price":"CLOT Taekwondo by Caroline Hú","desc":"Thanh thoát nhưng kiên định.","height":"450px"},
+           {"img":"/Content/assets/adidascard/22.png","price":"Lightblaze","desc":"Nhanh như ánh sáng — giờ đây với những gam màu mới.","height":"450px"},
+           {"img":"/Content/assets/adidascard/23.png","price":"ADIZERO ARUKU","desc":"Built for the pace of now.","height":"450px"},
+           {"img":"/Content/assets/adidascard/24.png","price":"Coral Blaze Pack","desc":"F50, Predator và Copa với phối màu mới đầy nổi bật.","height":"450px"},
+           {"img":"/Content/assets/adidascard/25.png","price":"ADIDAS Z.N.E.","desc":"Designed for play, pause and in between.","height":"450px"},
+           {"img":"/Content/assets/adidascard/26.png","price":"Glory for athletes","desc":"9 gold medals. 12 gold medals. 11 bronze medals. Tokyo 2025 with Adizero.","height":"450px"},
+           {"img":"/Content/assets/adidascard/27.png","price":"Sporty & Rich","desc":"Hội ngộ sau giờ chạy","height":"450px"}
+         ]'></section>
+
+        <!-- Mục lục -->
+        <section class="petronas-section">
+            <h1 class="section-title">Adidas x Mercedes-AMG Petronas F1</h1>
+
+            <div class="product-grid">
+                <div class="product-card" onclick="navigateTo('clothing')">
+                    <img src="/Content/assets/adidascard/31.png" alt="Quần áo Mercedes-AMG Petronas F1">
+                    <div class="product-label">Quần áo</div>
+                </div>
+
+                <div class="product-card" onclick="navigateTo('shoes')">
+                    <img src="/Content/assets/adidascard/32.png" alt="Giày Mercedes-AMG Petronas F1">
+                    <div class="product-label">Giày</div>
+                </div>
+
+                <div class="product-card" onclick="navigateTo('accessories')">
+                    <img src="/Content/assets/adidascard/33.png" alt="Phụ kiện Mercedes-AMG Petronas F1">
+                    <div class="product-label">Phụ kiện</div>
+                </div>
+
+                <div class="product-card" onclick="navigateTo('all-motorsport')">
+                    <img src="/Content/assets/adidascard/34.png" alt="Tất cả sản phẩm Motorsport">
+                    <div class="product-label">Tất cả các sản phẩm Motorsport</div>
+                </div>
+            </div>
+
+            <nav class="category-navigation">
+                <div class="category-column">
+                    <h3>Giày</h3>
+                    <ul>
+                        <li><a href="#giay-chay-bo">giày chạy bộ</a></li>
+                        <li><a href="#giay-da-bong">giày đá bóng</a></li>
+                        <li><a href="#giay-bong-ro">giày bóng rổ</a></li>
+                        <li><a href="#giay-tap-gym">giày tập gym</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-column">
+                    <h3>Quần</h3>
+                    <ul>
+                        <li><a href="#quan-chay-bo">quần chạy bộ</a></li>
+                        <li><a href="#quan-bong-da">quần bóng đá</a></li>
+                        <li><a href="#quan-short-bong-ro">quần short bóng rổ</a></li>
+                        <li><a href="#quan-dui-tap-gym">quần dùi tập gym</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-column">
+                    <h3>Áo</h3>
+                    <ul>
+                        <li><a href="#ao-singlet-chay-bo">áo singlet chạy bộ</a></li>
+                        <li><a href="#ao-dau-bong-da">áo đấu bóng đá</a></li>
+                        <li><a href="#ao-jersey-bong-ro">áo jersey bóng rổ</a></li>
+                        <li><a href="#ao-tap-gym">áo tập gym</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-column">
+                    <h3>Phụ kiện</h3>
+                    <ul>
+                        <li><a href="#tat-chay-bo">tất chạy bộ</a></li>
+                        <li><a href="#gang-tay-thu-mon">găng tay thủ môn</a></li>
+                        <li><a href="#mu-luoi-trai">mũ lưỡi trai</a></li>
+                        <li><a href="#ao-nguc-the-thao">áo ngực thể thao</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+        <script>
+            function navigateTo(category) {
+                console.log('[v0] Navigating to category:', category);
+                // Add navigation logic here
+                alert(`Điều hướng đến: ${category}`);
+            }
+        </script>
+
+        <!-- Script -->
+        <script src="Scripts/Trangchu.js"></script>
+
+        <!-- footer  -->
+        <div id="footer-placeholder" aria-hidden="true"></div>
+
+        <script>
+            (function loadFooter() {
+                const placeholder = document.getElementById('footer-placeholder');
+                if (!placeholder) return;
+
+                const partialPath = 'partials/footer.html';
+                const cssPath = 'partials/footer.css';
+                const jsPath = 'partials/footer.js'; // nếu có file JS cho footer
+
+                fetch(partialPath)
+                    .then(resp => {
+                        if (!resp.ok) throw new Error('Footer partial not found: ' + resp.status);
+                        return resp.text();
+                    })
+                    .then(html => {
+                        // Insert HTML
+                        placeholder.innerHTML = html;
+                        placeholder.removeAttribute('aria-hidden');
+
+                        // Load CSS nếu tồn tại
+                        fetch(cssPath, { method: 'HEAD' })
+                            .then(r => {
+                                if (r.ok) {
+                                    const link = document.createElement('link');
+                                    link.rel = 'stylesheet';
+                                    link.href = cssPath;
+                                    document.head.appendChild(link);
+                                }
+                            });
+
+                        // Load JS nếu tồn tại
+                        fetch(jsPath, { method: 'HEAD' })
+                            .then(r => {
+                                if (r.ok) {
+                                    const s = document.createElement('script');
+                                    s.src = jsPath;
+                                    s.defer = true;
+                                    document.body.appendChild(s);
+                                }
+                            });
+                    })
+                    .catch(err => {
+                        console.warn('Failed to load footer partial:', err);
+                    });
+            })();
+        </script>
+
+        <script>
+            class BannerButton extends HTMLElement {
+                connectedCallback() {
+                    this.innerHTML = `
+                                                                                                                              <div class="banner-button">
+                                                                                                                                <h2 class="banner-title"
+                                                                                                                                style=" opacity: 0; width: 125px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000;"
+                                                                                                                                >LIGHT THE BAY</h2>
+                                                                                                                                <p class="banner-subtitle"
+                                                                                                                                style="opacity: 0; margin-bottom: 20px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000; "
+                                                                                                                                >
+                                                                                                                                  Sẵn sàng tăng tốc cùng bộ sưu tập adidas x Mercedes-<br />AMG PETRONAS F1 Team
+                                                                                                                                </p>
+                                                                                                                                <a href="#" class="btn">Mua ngay →</a>
+                                                                                                                              </div>
+                                                                                                                            `;
+                }
+            }
+            customElements.define('banner-button', BannerButton);
+        </script>
+
+        <!-- ✅ Script clone template + gắn logic carousel -->
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const template = document.getElementById("adidas-card-template");
+
+                document.querySelectorAll("section[id^='carousel-']").forEach((section, index) => {
+                    const clone = template.content.cloneNode(true);
+
+                    // Gắn tiêu đề
+                    clone.querySelector(".section-title").textContent = section.dataset.title;
+
+                    // Parse data sản phẩm
+                    const products = JSON.parse(section.dataset.products);
+                    const wrapper = clone.querySelector(".carousel-wrapper");
+
+                    // Tạo card động
+                    products.forEach(p => {
+                        const card = document.createElement("div");
+                        card.className = "card";
+                        card.innerHTML = `
+                                                    <img src="${p.img}" class="card-image" style="height: ${p.height || '380px'}; object-fit: cover;" />
+                                                    <div class="card-content">
+                                                      <h3 class="card-title">${p.price}</h3>
+                                                      <p class="card-description">${p.desc}</p>
+                                                      <button class="card-button">Mua ngay</button>
+                                                    </div>
+                                                  `;
+                        wrapper.appendChild(card);
+                    });
+
+
+                    // Gắn vào DOM
+                    section.appendChild(clone);
+
+                    // 🎯 Gắn logic carousel RIÊNG CHO MỖI SECTION
+                    const carousel = section.querySelector(".carousel-wrapper");
+                    const prevBtn = section.querySelector(".nav-button.prev");
+                    const nextBtn = section.querySelector(".nav-button.next");
+                    const cards = section.querySelectorAll(".card");
+                    let currentIndex = 0;
+                    const cardWidth = 360;
+                    const visibleCards = Math.floor(section.offsetWidth / cardWidth);
+                    const maxIndex = Math.max(0, cards.length - visibleCards);
+
+                    function updateCarousel() {
+                        carousel.style.transform = `translateX(${-currentIndex * cardWidth}px)`;
+                        prevBtn.disabled = currentIndex === 0;
+                        nextBtn.disabled = currentIndex >= maxIndex;
+                    }
+
+                    prevBtn.addEventListener("click", () => {
+                        if (currentIndex > 0) {
+                            currentIndex--;
+                            updateCarousel();
+                        }
+                    });
+
+                    nextBtn.addEventListener("click", () => {
+                        if (currentIndex < maxIndex) {
+                            currentIndex++;
+                            updateCarousel();
+                        }
+                    });
+
+                    updateCarousel();
+                });
+            });
+        </script>
+
+    </body>
+</html>

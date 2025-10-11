@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adidas </title>
+
+    <!-- Font chữ -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- header css must come after Tailwind so its rules override Tailwind utilities -->
+    <link rel="stylesheet" href="../partials/header.css" />
+
+    <!-- Your page CSS -->
+    <link rel="stylesheet" href="../Content/Product-detail-Yeezy-Boost.css">
+
+    <style>
+        :root {
+            --bg: #093FB4;
+            --o: #000000;
+            --y: #ED3500;
+        }
+
+        body {
+            background-color: var(--bg);
+        }
+
+        .bento-card.logo {
+            grid-area: 1 / 2 / 2 / 4;
+            background-image: linear-gradient(-225deg, #fffeff 0%, #FFD8D8 100%);
+        }
+
+            .bento-card.logo h2 {
+                color: #ED3500;
+            }
+
+        .bento-card.inbox {
+            background-image: linear-gradient(-225deg, #ffffff 0%, #FFD8D8 100%);
+        }
+
+            .bento-card.inbox h3 {
+                color: #ED3500;
+            }
+    </style>
+
+</head>
+<body>
+
+    <!-- header placeholder: will be replaced by /partials/header.html -->
+    <div id="header-placeholder" aria-hidden="true"></div>
+
+    <script>
+        (function loadHeader() {
+            const placeholder = document.getElementById('header-placeholder');
+            if (!placeholder) return;
+
+            const partialPath = '../partials/header.html';
+            const cssPath = '../partials/header.css';
+            const jsPath = '../partials/header.js';
+
+            fetch(partialPath)
+                .then(resp => {
+                    if (!resp.ok) throw new Error('Header partial not found: ' + resp.status);
+                    return resp.text();
+                })
+                .then(html => {
+                    // Insert HTML
+                    placeholder.innerHTML = html;
+                    placeholder.removeAttribute('aria-hidden');
+
+                    // Fix relative asset paths inside the injected partial so they resolve relative to the partial file
+                    // This prevents icons/images in header.html (e.g. "partials/iconheader/...") from resolving relative
+                    // to the calling page (Product-detail folder) which causes broken images.
+                    try {
+                        const partialBase = partialPath.replace(/[^\/]+$/, ''); // e.g. "../partials/"
+
+                        // Adjust src and href attributes that are relative (not absolute/data/# or starting with / or protocol)
+                        placeholder.querySelectorAll('[src], [href]').forEach(el => {
+                            // Remove any stylesheet link inside the partial (we load css separately below)
+                            if (el.tagName.toLowerCase() === 'link' && el.getAttribute('rel') === 'stylesheet') {
+                                el.remove();
+                                return;
+                            }
+
+                            const attr = el.hasAttribute('src') ? 'src' : 'href';
+                            const val = el.getAttribute(attr);
+                            if (!val) return;
+                            // skip absolute URLs, protocol-relative, root-relative, data URIs and anchors
+                            if (/^(https?:|\/\/|\/|data:|#)/i.test(val)) return;
+
+                            // If the partial's markup already used "partials/..." (intended to be relative to root partials folder),
+                            // normalize by removing the leading "partials/" then prefix with partialBase so both top-level pages
+                            // and pages in subfolders will resolve correctly.
+                            let newVal;
+                            if (val.startsWith('partials/')) {
+                                newVal = partialBase + val.replace(/^partials\//, '');
+                            } else {
+                                newVal = partialBase + val;
+                            }
+
+                            el.setAttribute(attr, newVal);
+                        });
+                    } catch (e) {
+                        console.warn('Failed to rewrite partial asset paths', e);
+                    }
+
+                    // Load CSS if present (non-blocking)
+                    fetch(cssPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const link = document.createElement('link');
+                                link.rel = 'stylesheet';
+                                link.href = cssPath;
+                                document.head.appendChild(link);
+                            }
+                        })
+                        .catch(() => { /* ignore missing css */ });
+
+                    // Load JS if present (append after HTML so it can attach handlers)
+                    fetch(jsPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const s = document.createElement('script');
+                                s.src = jsPath;
+                                s.defer = true;
+                                document.body.appendChild(s);
+                            }
+                        })
+                        .catch(() => { /* ignore missing js */ });
+                })
+                .catch(err => {
+                    console.warn('Failed to load header partial:', err);
+                    // Optional: fallback UI
+                    // placeholder.innerHTML = '<!-- header load failed -->';
+                });
+        })();
+    </script>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="wrap">
+            <div class="adidas-container">
+                <div class="adidas">
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                </div>
+                <div class="text">adidas</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video -->
+    <div id="wrap" style="position: relative; width: 100%; height: 120vh; overflow: hidden;">
+        <iframe src="https://player.vimeo.com/video/469819587?background=1&autoplay=1&muted=1&loop=1"
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+                style="position: absolute; top: -50px; left: 0; width: 100%; height: 100%; object-fit: cover;">
+        </iframe>
+    </div>
+
+    <!-- ... rest of file unchanged ... -->
+    <!-- Script -->
+    <script src="../Scripts/Product-detail-Yeezy-Boost.js"></script>
+    <!-- footer placeholder -->
+    <div id="footer-placeholder" aria-hidden="true"></div>
+
+    <script>
+        (function loadFooter() {
+            const placeholder = document.getElementById('footer-placeholder');
+            if (!placeholder) return;
+
+            const partialPath = '../partials/footer.html';
+            const cssPath = '../partials/footer.css';
+            const jsPath = '../partials/footer.js'; // nếu có file JS cho footer
+
+            fetch(partialPath)
+                .then(resp => {
+                    if (!resp.ok) throw new Error('Footer partial not found: ' + resp.status);
+                    return resp.text();
+                })
+                .then(html => {
+                    // Insert HTML
+                    placeholder.innerHTML = html;
+                    placeholder.removeAttribute('aria-hidden');
+
+                    // Load CSS nếu tồn tại
+                    fetch(cssPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const link = document.createElement('link');
+                                link.rel = 'stylesheet';
+                                link.href = cssPath;
+                                document.head.appendChild(link);
+                            }
+                        });
+
+                    // Load JS nếu tồn tại
+                    fetch(jsPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const s = document.createElement('script');
+                                s.src = jsPath;
+                                s.defer = true;
+                                document.body.appendChild(s);
+                            }
+                        });
+                })
+                .catch(err => {
+                    console.warn('Failed to load footer partial:', err);
+                });
+        })();
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,537 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'AdihausDIN', Arial, sans-serif;
+    background-color: #fff;
+    color: #000;
+    line-height: 1.5;
+}
+
+main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 50px;
+}
+
+/* LEFT COLUMN - All cart content */
+main > div:nth-child(1),
+main > div:nth-child(2),
+main > div:nth-child(3),
+.cart-item,
+main > div:nth-child(4),
+.suggestion,
+.carousel-nav,
+.carousel-progress,
+.btn-shipping,
+.btn-back {
+    grid-column: 1 / 2;
+}
+
+/* Header "GIỎ HÀNG CỦA BẠN" */
+main > div:nth-child(1) h4 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* Tổng cộng header */
+main > div:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+main > div:nth-child(2) p:last-child {
+    font-weight: 700;
+}
+
+/* Notice box */
+main > div:nth-child(3) {
+    background-color: #eceff1;
+    padding: 20px;
+    margin: 20px 0 30px 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Cart Items */
+.cart-item {
+    display: grid;
+    grid-template-columns: 150px 1fr auto auto;
+    gap: 20px;
+    align-items: start;
+    padding: 30px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.product-info {
+    display: contents;
+}
+
+.product-info .product-name {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+    align-self: start;
+    grid-column: 2;
+}
+
+.product-info img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    background-color: #f5f5f5;
+    grid-column: 1;
+    grid-row: 1 / span 4;
+}
+
+.product-info span {
+    grid-column: 2;
+}
+
+.product-info strong {
+    font-size: 16px;
+    font-weight: 700;
+    display: block;
+}
+
+.product-info p {
+    font-size: 14px;
+    color: #767677;
+    margin: 0;
+    grid-column: 2;
+}
+
+.product-quantity {
+    padding: 10px 20px;
+    border: 1px solid #000;
+    background-color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 80px;
+    height: fit-content;
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.cart-item > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    grid-column: 4;
+    grid-row: 1;
+}
+
+.remove-btn,
+.wishlist-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px 8px;
+    transition: opacity 0.2s ease;
+}
+
+.remove-btn:hover,
+.wishlist-btn:hover {
+    opacity: 0.6;
+}
+
+/* "GỢI Ý CHO BẠN" title */
+main > div:nth-child(4) {
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+main > div:nth-child(4) h4 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Suggestion Section */
+.suggestion {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    padding: 10px 0 20px 0;
+    margin-bottom: 20px;
+}
+
+.suggestion::-webkit-scrollbar {
+    height: 6px;
+}
+
+.suggestion::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.suggestion::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.suggestion-card {
+    min-width: 240px;
+    max-width: 240px;
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    background-color: #fff;
+}
+
+.suggestion-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.suggestion-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background-color: #f5f5f5;
+}
+
+.suggestion-card > div {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+}
+
+.suggestion-card .wishlist-btn {
+    background-color: #fff;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.suggestion-card > p:nth-of-type(1) {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 12px 10px 5px 10px;
+}
+
+.suggestion-card > p:nth-of-type(2) {
+    color: #e32b2b;
+    font-size: 13px;
+    margin: 0 10px 8px 10px;
+}
+
+.suggestion-card h2 {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0 10px 8px 10px;
+    line-height: 1.4;
+    min-height: 55px;
+}
+
+.suggestion-card > p:nth-of-type(3) {
+    font-size: 12px;
+    color: #767677;
+    margin: 0 10px 12px 10px;
+}
+
+/* Carousel Navigation */
+.carousel-nav {
+    background-color: #fff;
+    border: 1px solid #000;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+    transition: all 0.3s ease;
+}
+
+.carousel-nav:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Progress Bar */
+.carousel-progress {
+    width: 100%;
+    height: 2px;
+    background-color: #e5e5e5;
+    margin: 20px 0 30px 0;
+}
+
+.progress-bar {
+    width: 40%;
+    height: 100%;
+    background-color: #000;
+    transition: width 0.3s ease;
+}
+
+/* Shipping & Return Buttons */
+.btn-shipping,
+.btn-back {
+    width: 100%;
+    padding: 16px 20px;
+    margin: 10px 0;
+    background-color: #fff;
+    border: 1px solid #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-shipping:hover,
+.btn-back:hover {
+    background-color: #f5f5f5;
+}
+
+.btn-shipping i,
+.btn-back i {
+    font-size: 20px;
+}
+
+.btn-shipping a,
+.btn-back a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* ORDER SUMMARY - Right Column */
+.oder-summary {
+    grid-column: 2 / 3;
+    grid-row: 1 / span 30;
+    background-color: #f7f7f7;
+    padding: 30px;
+    height: fit-content;
+/*    position: sticky;*/
+    top: 20px;
+}
+
+.order-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.order-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.order-row.total {
+    border-top: 1px solid #000;
+    padding-top: 18px;
+    margin-top: 20px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.tax-note {
+    font-size: 12px;
+    color: #767677;
+    margin-bottom: 20px;
+}
+
+.promo button {
+    width: 100%;
+    padding: 14px;
+    background-color: #fff;
+    border: 1px solid #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.promo button:hover {
+    background-color: #000;
+}
+
+.promo button:hover a {
+    color: #fff;
+}
+
+.promo button:hover i {
+    color: #fff;
+}
+
+.promo a {
+    text-decoration: none;
+    color: #000;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 18px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #333;
+}
+
+/* Payment Methods */
+.payment-methods {
+    border-top: 1px solid #ddd;
+    padding-top: 18px;
+}
+
+.payment-title {
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.payment-methods img {
+    height: 24px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .oder-summary {
+        grid-column: 1;
+        grid-row: auto;
+        position: relative;
+        top: 0;
+        margin-top: 40px;
+    }
+
+    main > div:nth-child(1),
+    main > div:nth-child(2),
+    main > div:nth-child(3),
+    .cart-item,
+    main > div:nth-child(4),
+    .suggestion,
+    .carousel-nav,
+    .carousel-progress,
+    .btn-shipping,
+    .btn-back {
+        grid-column: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 20px 15px;
+        gap: 30px;
+    }
+
+    main > div:nth-child(1) h4 {
+        font-size: 24px;
+    }
+
+    main > div:nth-child(4) h4 {
+        font-size: 22px;
+    }
+
+    .cart-item {
+        grid-template-columns: 100px 1fr;
+        gap: 15px;
+    }
+
+    .product-info img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .product-info .product-name {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .product-info span,
+    .product-info p {
+        grid-column: 2;
+    }
+
+    .product-quantity {
+        grid-column: 2;
+        grid-row: auto;
+        width: fit-content;
+        margin-top: 10px;
+    }
+
+    .cart-item > div:last-child {
+        grid-column: 2;
+        grid-row: auto;
+        flex-direction: row;
+        margin-top: 10px;
+    }
+
+    .suggestion-card {
+        min-width: 200px;
+        max-width: 200px;
+    }
+
+    .btn-shipping,
+    .btn-back {
+        font-size: 11px;
+        padding: 14px 16px;
+    }
+
+    .oder-summary {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-item {
+        grid-template-columns: 80px 1fr;
+    }
+
+    .product-info img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .suggestion-card {
+        min-width: 160px;
+        max-width: 160px;
+    }
+}

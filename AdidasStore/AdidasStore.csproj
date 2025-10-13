@@ -44,6 +44,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -53,6 +56,24 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -67,6 +88,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cart.html" />
     <Content Include="Content\assets\1.jpg" />
     <Content Include="Content\assets\2.jpg" />
     <Content Include="Content\assets\3.jpg" />
@@ -96,11 +118,30 @@
     <Content Include="Content\assets\adidascard\7.png" />
     <Content Include="Content\assets\adidascard\8.png" />
     <Content Include="Content\assets\adidascard\9.png" />
+    <Content Include="Content\assets\adidasCart\Bo_3_DJoi_Tat_Co_Cao_Lot_DJem_Performance_CLIMACOOL_trang_JD9575_01_01_00_standard_11zon.jpg" />
+    <Content Include="Content\assets\adidasCart\Giay_Samba_OG_DJen_B75807_01_standard_11zon.jpg" />
+    <Content Include="Content\assets\adidasCart\IMG1.jpg" />
+    <Content Include="Content\assets\adidasCart\IMG10.jpg" />
+    <Content Include="Content\assets\adidasCart\IMG2.jpg" />
+    <Content Include="Content\assets\adidasCart\IMG3.jpg" />
+    <Content Include="Content\assets\adidasCart\IMG4.jpg" />
+    <Content Include="Content\assets\adidasCart\IMG5.jpg" />
+    <Content Include="Content\assets\adidasCart\IMG6.jpg" />
+    <Content Include="Content\assets\adidasCart\IMG7.jpg" />
+    <Content Include="Content\assets\adidasCart\IMG8.jpg" />
+    <Content Include="Content\assets\adidasCart\IMG9.jpg" />
+    <Content Include="Content\assets\adidasCart\Mastercard-removebg-preview.png" />
+    <Content Include="Content\assets\adidasCart\Money.jpg" />
+    <Content Include="Content\assets\adidasCart\Visa-Logo.png" />
     <Content Include="Content\assets\adidasgif.gif" />
     <Content Include="Content\assets\FW_25_Motorsport.png" />
+    <Content Include="Content\Cart.css" />
+    <Content Include="Content\oder-Success.css" />
+    <Content Include="Content\Oder-tracking.css" />
     <Content Include="Content\Product-detail-Yeezy-Boost.css" />
     <Content Include="Content\Product-man.css" />
     <Content Include="Content\Trangchu.css" />
+    <Content Include="oder-Success.html" />
     <Content Include="partials\adidascard.html" />
     <Content Include="partials\footer.css" />
     <Content Include="partials\footer.html" />
@@ -119,10 +160,13 @@
     <Content Include="partials\iconheader\user_.png" />
     <Content Include="partials\iconheader\video.mp4" />
     <Content Include="Product-detail-Yeezy-Boost.html" />
+    <Content Include="Scripts\Cart.js" />
+    <Content Include="Scripts\Oder-tracking.js" />
     <Content Include="Scripts\Product-detail-Yeezy-Boost.js" />
     <Content Include="Scripts\Trangchu.js" />
     <Content Include="src.csproj.user" />
     <Content Include="Product-man.html" />
+    <Content Include="Oder-tracking.html" />
     <Content Include="Trangchu.html" />
     <Content Include="Web.config" />
   </ItemGroup>

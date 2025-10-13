@@ -1,0 +1,261 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #000;
+}
+
+/* Sub Navigation */
+.sub-nav {
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.sub-nav__list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 15px 0;
+}
+
+.sub-nav__item {
+    display: inline-block;
+}
+
+.sub-nav__link {
+    text-decoration: none;
+    color: #767677;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 0;
+    display: inline-block;
+    transition: color 0.3s;
+}
+
+    .sub-nav__link:hover {
+        color: #000;
+    }
+
+.sub-nav__link--active {
+    color: #000;
+    border-bottom: 2px solid #000;
+}
+
+/* Main Content */
+.order-tracking-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+    .order-tracking-page > h1 {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        letter-spacing: 2px;
+    }
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 30px;
+}
+
+.tab {
+    background: none;
+    border: none;
+    padding: 15px 30px;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+    color: #767677;
+    transition: color 0.3s;
+}
+
+    .tab:hover {
+        color: #000;
+    }
+
+    .tab.active {
+        color: #000;
+        font-weight: 600;
+    }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #000;
+        }
+
+/* Order Filter */
+.order-filter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.order-filter__label {
+    font-size: 14px;
+    color: #000;
+}
+
+.order-filter__select {
+    padding: 10px 40px 10px 15px;
+    font-size: 14px;
+    border: 1px solid #000;
+    background-color: #fff;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+/* Empty Orders */
+.empty-orders {
+    text-align: center;
+    padding: 60px 20px 30px;
+}
+
+    .empty-orders h2 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+    }
+
+    .empty-orders p {
+        font-size: 16px;
+        color: #767677;
+    }
+
+/* Shopping CTA */
+.shopping-cta {
+    text-align: center;
+    margin: 30px 0 50px;
+}
+
+    .shopping-cta button {
+        background-color: #000;
+        color: #fff;
+        border: none;
+        padding: 15px 40px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        letter-spacing: 1px;
+    }
+
+        .shopping-cta button:hover {
+            background-color: #333;
+        }
+
+        .shopping-cta button p {
+            margin: 0;
+        }
+
+/* Order Help */
+.oder-help {
+    text-align: center;
+    padding: 30px 0 50px;
+    border-bottom: 1px solid #ddd;
+}
+
+    .oder-help p {
+        font-size: 14px;
+        color: #000;
+        margin-bottom: 10px;
+    }
+
+    .oder-help a {
+        color: #000;
+        text-decoration: underline;
+        font-size: 14px;
+        font-weight: 600;
+        transition: opacity 0.3s;
+    }
+
+        .oder-help a:hover {
+            opacity: 0.7;
+        }
+
+/* FAQ Section */
+.faq-section {
+    margin-top: 60px;
+}
+
+.faq-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.faq-item {
+    border: 1px solid #ddd;
+    padding: 30px;
+    background-color: #fff;
+    transition: box-shadow 0.3s;
+}
+
+    .faq-item:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+.faq-question {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.faq-answer {
+    font-size: 14px;
+    color: #767677;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sub-nav__list {
+        gap: 20px;
+    }
+
+    .order-tracking-page > h1 {
+        font-size: 24px;
+    }
+
+    .order-filter {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .empty-orders h2 {
+        font-size: 22px;
+    }
+}

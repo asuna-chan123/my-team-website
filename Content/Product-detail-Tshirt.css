@@ -1,0 +1,1692 @@
+﻿@font-face {
+    font-family: "Bogart-Semibold";
+    src: url("https://assets.codepen.io/383755/bogart-semibold.woff2") format("woff2");
+}
+
+:root {
+    --bg: #fcc7f7;
+    --o: #000000;
+    --y: #ffffff;
+    --bento-top-spacer-desktop: 100vh;
+    --bento-top-spacer-tablet: 80vh;
+    --bento-top-spacer-mobile: 60vh;
+    --bento-gap: 1.25rem;
+    --bento-radius: 1.5rem;
+    --g: #08350e;
+    --expo: cubic-bezier(1, 0.885, 0.32, 1);
+    --main: #2b4e80;
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    font-family: 'Poppins', sans-serif;
+    cursor: none;
+    pointer-events: none;
+    /* keep vertical scrollbar reserved to avoid layout jumps when toggling overflow */
+    overflow-y: scroll;
+    transition-delay: 2s;
+}
+
+/* Video background wrapper — responsive: use 120vh on desktop, 100vh on tablet/mobile */
+.video-wrap {
+    position: relative;
+    width: 100%;
+    height: 120vh; /* desktop default - keep immersive feel */
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none; /* allow clicks through */
+}
+
+    /* Make iframe fill the wrapper and use cover behavior */
+    .video-wrap iframe {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 100%;
+        border: 0;
+        /* browsers don't uniformly apply object-fit to iframe content,
+       but this keeps iframe element sized to container */
+        object-fit: cover;
+        pointer-events: none;
+    }
+
+/* Tablet: 100% viewport height */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .video-wrap {
+        height: 100vh;
+    }
+}
+
+/* Mobile: 100% viewport height (and reduce top offsets if any) */
+@media (max-width: 640px) {
+    .video-wrap {
+        width: 200% !important;
+        height: 100% !important;
+    }
+}
+
+/* Fullscreen background video */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1; /* behind loader (loader has z-index: 999) */
+    pointer-events: none; /* allow clicks through video */
+}
+/* Bento features section */
+/* Ensure page content is pushed below the fixed fullscreen video
+   We reserve a viewport-height top spacer so content (like the bento grid)
+   appears below the video. This keeps the video visually 'fixed' and
+   the new section scrolls into view under it. */
+#bento-section {
+    /* push the section down by a configurable spacer so it starts after the video */
+    margin-top: var(--bento-top-spacer-desktop);
+    padding: 4rem 1rem 6rem; /* spacing for the bento content */
+    background: transparent; /* let video be visible behind until scrolled */
+}
+
+/* Bento grid styles (scoped) */
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.grid-features {
+    display: grid;
+    grid-template-columns: 4fr 3fr 3fr;
+    grid-template-rows: auto;
+    gap: var(--bento-gap);
+    align-items: stretch;
+}
+
+.bento-card {
+    border-radius: var(--bento-radius);
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 15rem;
+    padding: 2rem;
+    display: flex;
+    position: relative;
+    background-color: #fff;
+    color: #060633;
+    box-shadow: 0 20px 30px -10px rgb(16 16 39 / 7%);
+    text-wrap: balance;
+}
+
+    .bento-card.cloud {
+        grid-area: 1 / 1 / 3 / 2;
+        padding: 3rem;
+    }
+
+    .bento-card.logo {
+        grid-area: 1 / 2 / 2 / 4;
+        background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
+    }
+
+        .bento-card.logo h2 {
+            color: #38a5a2;
+        }
+
+    .bento-card.inbox {
+        background-image: linear-gradient(-225deg, #ffffff 0%, #dacceb 100%);
+    }
+
+        .bento-card.inbox h3 {
+            color: #8b5cca;
+        }
+
+    .bento-card.device {
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .bento-card.device-2 {
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .bento-card.ai-gen {
+        grid-area: 3 / 2 / 4 / 4;
+    }
+
+        .bento-card.ai-gen h2 {
+            font-size: 4rem;
+            text-wrap: balance;
+        }
+
+.bento-card-description {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.bento-card h2 {
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 1;
+}
+
+.bento-card h3 {
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.bento-card p {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.35;
+}
+
+/* Bento entrance animations */
+.bento-card {
+    will-change: transform, opacity;
+    transform: translateY(18px) scale(0.995);
+    opacity: 0;
+    transition: transform 520ms cubic-bezier(.2,.9,.2,1), opacity 520ms ease;
+}
+
+    /* when animated in, reset to natural state */
+    .bento-card.bento-visible {
+        transform: none;
+        opacity: 1;
+    }
+
+/* hover lift effect (only when user allows motion) */
+@media (prefers-reduced-motion: no-preference) {
+    .bento-card:hover {
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: 0 30px 50px -20px rgba(16,16,39,0.12);
+        transition: transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms ease;
+    }
+}
+
+/* container-level class to stagger children when they become visible */
+.grid-features.bento-animate .bento-card {
+    transition-delay: 0ms;
+}
+
+    .grid-features.bento-animate .bento-card:nth-child(1) {
+        transition-delay: 500ms;
+    }
+
+    .grid-features.bento-animate .bento-card:nth-child(2) {
+        transition-delay: 600ms;
+    }
+
+    .grid-features.bento-animate .bento-card:nth-child(3) {
+        transition-delay: 700ms;
+    }
+
+    .grid-features.bento-animate .bento-card:nth-child(4) {
+        transition-delay: 800ms;
+    }
+
+    .grid-features.bento-animate .bento-card:nth-child(5) {
+        transition-delay: 900ms;
+    }
+
+    .grid-features.bento-animate .bento-card:nth-child(6) {
+        transition-delay: 1000ms;
+    }
+
+/* Demo Styling */
+.credit {
+    margin-top: 5rem;
+    text-align: center;
+}
+
+    .credit a {
+        color: #fff;
+        background-color: #4dd9d6;
+        padding: 0.6rem 1rem;
+        border-radius: 8px;
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    }
+
+/* image helper for bento cards */
+.bento-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 5px solid #E195AB;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+/* Heading hover helper for bento cards */
+.bento-heading {
+    font-family: 'Raleway', sans-serif;
+    transition: color .18s ease, transform .18s ease, letter-spacing .18s ease;
+    color: #111827;
+}
+
+    .bento-heading:hover {
+        color: #000000;
+        transform: translateY(-3px);
+        letter-spacing: 0.5px;
+    }
+
+bento-heading-content:hover {
+    color: #000000;
+    transform: translateY(-3px);
+    letter-spacing: 0.5px;
+}
+
+/* Responsive tweaks: on small screens, don't reserve a full 100vh so users
+   don't have to scroll past a full blank viewport; reduce spacer to 60vh */
+/* Mobile first and then tablet/desktop overrides */
+
+/* Mobile (<=640px): stack cards in a single column, reduce spacers and font sizes */
+@media (max-width: 640px) {
+    :root {
+        --bento-top-spacer-desktop: var(--bento-top-spacer-mobile);
+    }
+
+    #bento-section {
+        margin-top: 80vh;
+        padding: 2rem 1rem 4rem;
+    }
+
+    .grid-features {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-card {
+        min-height: 10rem;
+        padding: 1.25rem;
+    }
+
+        .bento-card h2 {
+            font-size: 1.6rem;
+        }
+
+        .bento-card h3 {
+            font-size: 1.25rem;
+        }
+
+        .bento-card p {
+            font-size: 0.95rem;
+        }
+
+        .bento-card.cloud {
+            grid-area: auto;
+        }
+
+        .bento-card.logo {
+            grid-area: auto;
+        }
+
+        .bento-card.ai-gen {
+            grid-area: auto;
+        }
+}
+
+/* Tablet (641px to 1024px): use two-column layout and slightly smaller spacer */
+@media (min-width: 641px) and (max-width: 1024px) {
+    :root {
+        --bento-top-spacer-desktop: var(--bento-top-spacer-tablet);
+    }
+
+    #bento-section {
+        margin-top: var(--bento-top-spacer-tablet);
+        padding: 3rem 1rem 5rem;
+    }
+
+    .grid-features {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bento-card.cloud {
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+    }
+
+    .bento-card.logo {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .bento-card.ai-gen {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+    }
+
+    .bento-card {
+        min-height: 12rem;
+    }
+
+        .bento-card h2 {
+            font-size: 2rem;
+        }
+}
+
+/* Desktop (>=1025px): keep original 3-column desktop layout (uses root var) */
+@media (min-width: 1025px) {
+    :root {
+        --bento-top-spacer-desktop: 78vh;
+    }
+
+    #bento-section {
+        margin-top: var(--bento-top-spacer-desktop);
+        padding: 4rem 1rem 6rem;
+    }
+
+    .grid-features {
+        grid-template-columns: 4fr 3fr 3fr;
+    }
+
+    .bento-card.h2 {
+        font-size: 3.2rem;
+    }
+}
+/* End Bento features section */
+/* === LOADER === */
+#loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background: var(--o);
+    transition: transform 0.6s var(--expo);
+    transition-delay: 1.25s;
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    color: white;
+}
+
+    #loader:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 75%;
+        top: -75%;
+        background: var(--y);
+        clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    /* animation xoay */
+    #loader .wrap {
+        width: 10px;
+        height: 10px;
+        position: relative;
+        transition: opacity 0.4s ease-in-out;
+    }
+
+/* === ADIDAS LOGO === */
+.adidas-container {
+    position: relative;
+    width: 150px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/* logo adidas */
+.adidas {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 80px;
+    height: 80px;
+    transform: rotate(-35deg);
+    overflow: hidden;
+    z-index: 1;
+}
+
+    .adidas .stripe {
+        width: 20px;
+        background: var(--bg);
+        transform: translateY(100%);
+        transition: transform 0.4s ease;
+        animation: popUp 1.2s ease forwards;
+    }
+
+        .adidas .stripe:nth-child(1) {
+            transition-delay: 0.15s;
+        }
+
+        .adidas .stripe:nth-child(2) {
+            transition-delay: 0.1s;
+        }
+
+        .adidas .stripe:nth-child(3) {
+            transition-delay: 0.05s;
+        }
+
+@keyframes popUp {
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* chữ adidas */
+.text {
+    position: relative;
+    z-index: 2;
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: lowercase;
+    letter-spacing: 2px;
+    color: var(--bg);
+    transform: translate(-10px, 10px); /* 👈 DỊCH SANG TRÁI & LÊN TRÊN */
+    opacity: 0;
+    animation: fadeIn 2s ease forwards 0s;
+    background: var(--o);
+    padding: 0 5px;
+    display: inline-block;
+    line-height: 1;
+}
+
+    /* tạo hiệu ứng che nửa dưới sọc */
+    .text::before {
+        content: "";
+        position: absolute;
+        top: -25px;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        background: var(--o);
+        z-index: -1;
+    }
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translate(-30px, -10px);
+    }
+}
+
+/* Khi load xong */
+body.loaded {
+    pointer-events: all;
+    cursor: auto;
+    /* restore normal scrolling when the page is ready */
+    overflow-y: auto;
+}
+
+    body.loaded #loader {
+        transform: scaleY(0);
+        color: transparent;
+    }
+
+        body.loaded #loader .wrap {
+            opacity: 0;
+        }
+
+/* Nội dung chính */
+#wrap {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s var(--expo), transform 1s var(--expo);
+    transition-delay: 0.8s;
+    padding: 60px;
+    text-align: center;
+}
+
+body.loaded #wrap {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1 {
+    font-family: "Poppins", sans-serif;
+    font-size: 3rem;
+    color: var(--g);
+}
+
+p {
+    font-size: 1.2rem;
+    color: #333;
+    max-width: 600px;
+    margin: 0 auto;
+}
+/* Header slide-down animations */
+@keyframes headerSlideDown {
+    from {
+        transform: translateY(-14px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* slide in from right for bottom-right controls */
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Header-specific animations and small helpers (from header demo) */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 0.7;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 1.5s infinite;
+}
+
+.search-dropdown {
+    transition: all 0.3s ease;
+}
+
+.search-hidden {
+    opacity: 0;
+    transform: translateY(-8px);
+    visibility: hidden;
+}
+
+.search-visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+/* Order panel styles */
+.order-btn {
+    position: fixed;
+    right: 20px;
+    height: 80px;
+    width: 251px;
+    bottom: 20px;
+    z-index: 1;
+    background: rgb(255, 255, 255); /* slightly translucent */
+    color: rgb(0, 0, 0);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(6px) saturate(120%);
+    -webkit-backdrop-filter: blur(6px) saturate(120%);
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Raleway', sans-serif;
+    box-shadow: none;
+    transition: box-shadow .18s ease, transform .12s ease-in-out;
+}
+
+
+    .order-btn:hover {
+        /* remove hover shadow change to keep static shadow */
+        transform: translateY(1px);
+    }
+
+.order-panel {
+    position: fixed;
+    top: 0;
+    right: -50%; /* hidden by default */
+    width: 50%;
+    height: 100vh;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    z-index: 1200;
+    box-shadow: -8px 0 30px rgba(0,0,0,0.15);
+    padding: 28px;
+    transition: right 1.45s cubic-bezier(.2,.9,.2,1);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Hide native scrollbar in the order panel but keep it scrollable */
+.order-panel {
+    /* Firefox */
+    scrollbar-width: none;
+}
+
+    .order-panel::-webkit-scrollbar {
+        display: none;
+        height: 0;
+        width: 0;
+    }
+
+/* For better support in Chromium where scrollbars show on hover, add a small mask technique */
+.order-panel {
+    -webkit-mask-image: linear-gradient(#000, #000);
+    mask-image: linear-gradient(#000, #000);
+}
+
+    .order-panel.open {
+        right: 0;
+    }
+
+/* layered sliding panels for a multi-layer reveal effect */
+.panel-layer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    right: 100%;
+    transition: right 0.5s cubic-bezier(.2,.9,.2,1);
+    pointer-events: none;
+    z-index: 1150;
+    opacity: 0.95;
+}
+
+    .panel-layer.layer-1 {
+        background: linear-gradient(180deg, rgba(43,78,128,0.95), rgba(43,78,128,0.85));
+    }
+
+    .panel-layer.layer-2 {
+        background: linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.6));
+    }
+
+    .panel-layer.layer-3 {
+        background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    }
+
+.panel-panel.open .panel-layer {
+    right: 0;
+}
+
+/* option grid */
+.option-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.option-tile {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+
+    .option-tile:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .option-tile.selected {
+        background: #111827;
+        color: #fff;
+        border-color: #111827;
+    }
+
+.color-tile {
+    padding: 18px 8px;
+    font-weight: 700;
+}
+
+.field-title {
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.order-close {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.order-panel h2 {
+    margin: 8px 0 12px;
+    font-size: 20px;
+}
+
+.order-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+@media (max-width: 767px) {
+    .order-add {
+        margin-top: 12px;
+        background: rgba(255, 255, 255, 0.18);
+        color: rgba(0, 0, 0, 0.95);
+        border: 3px solid rgb(255, 255, 255);
+        backdrop-filter: blur(6px) saturate(120%);
+        -webkit-backdrop-filter: blur(6px) saturate(120%);
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+        font-family: 'Raleway', sans-serif;
+        box-shadow: none;
+        transition: box-shadow .18s ease, transform .12s ease;
+        margin-top: 5%;
+        height: 80px;
+        width: 200px;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 766px) {
+    .order-add {
+        margin-top: 12px;
+        background: rgba(255, 255, 255, 0.18);
+        color: rgba(0, 0, 0, 0.95);
+        border: 3px solid rgb(255, 255, 255);
+        backdrop-filter: blur(6px) saturate(120%);
+        -webkit-backdrop-filter: blur(6px) saturate(120%);
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+        font-family: 'Raleway', sans-serif;
+        box-shadow: none;
+        transition: box-shadow .18s ease, transform .12s ease;
+        margin-top: 9%;
+        height: 80px;
+        width: 200px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 8000px) {
+    .order-add {
+        margin-top: 12px;
+        background: rgba(255, 255, 255, 0.18);
+        color: rgba(0, 0, 0, 0.95);
+        border: 3px solid rgb(255, 255, 255);
+        backdrop-filter: blur(6px) saturate(120%);
+        -webkit-backdrop-filter: blur(6px) saturate(120%);
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+        font-family: 'Raleway', sans-serif;
+        box-shadow: none;
+        transition: box-shadow .18s ease, transform .12s ease;
+        margin-top: 65px;
+        margin-left: 35%;
+        height: 80px;
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .order-panel {
+        width: 100%;
+        right: -100%;
+    }
+
+        .order-panel.open {
+            right: 0;
+        }
+}
+
+/* when order button is moved inside panel: keep same size/shape as original order-btn */
+/* --- Giao diện Mobile (cho màn hình rộng dưới 768px) --- */
+@media (max-width: 767px) {
+    .order-btn.in-panel {
+        /* Chuyển nút xuống dưới cùng cho dễ bấm */
+        top: 617px;
+        bottom: 20px;
+        right: 20px;
+        left: 0px; /* Kéo dài nút ra toàn chiếu rộng cho dễ bấm */
+        margin-left: 50%;
+        margin-top: 50%;
+        /* Giảm kích thước */
+        width: 220px; /* Bỏ width cố định */
+        font-size: 16px;
+        /* Bỏ margin-top % vì nó không còn phù hợp trên mobile */
+        margin-top: 0;
+    }
+}
+
+/* --- Giao diện Tablet (cho màn hình từ 768px đến 1023px) --- */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .order-btn.in-panel {
+        /* Giảm một chút chiều cao và margin top */
+        height: 80px;
+        margin-top: 78%; /* Điều chỉnh lại cho hợp lý với chiều cao màn hình tablet */
+        font-size: 18px;
+        /* Thu hẹp nút lại một chút */
+        width: 251px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 8000px) {
+    .order-btn.in-panel {
+        /* Giảm một chút chiều cao và margin top */
+        height: 80px;
+        margin-top: 78%; /* Điều chỉnh lại cho hợp lý với chiều cao màn hình tablet */
+        font-size: 18px;
+        /* Thu hẹp nút lại một chút */
+        width: 251px;
+    }
+}
+
+/* small name box above the order button */
+.order-name {
+    position: fixed;
+    right: 20px;
+    bottom: 120px; /* above the button */
+    background: rgba(17,24,39,0.12);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    z-index: 5;
+    font-weight: 700;
+    font-family: 'Raleway', sans-serif;
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.18);
+}
+
+/* initial hidden/offscreen state for controls */
+#Nameboost, #orderPriceBox, #orderBtn {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: transform 0.45s cubic-bezier(.2,.9,.2,1), opacity 4.0s ease;
+}
+
+/* when loader finishes, animate controls in with a small stagger */
+/* animate only once: elements without .has-animated */
+body.loaded #Nameboost:not(.has-animated) {
+    animation: slideInFromRight .5s ease forwards 4.25s;
+}
+
+body.loaded #orderPriceBox:not(.has-animated) {
+    animation: slideInFromRight .5s ease forwards 4.45s;
+}
+
+body.loaded #orderBtn:not(.has-animated) {
+    animation: slideInFromRight .5s ease forwards 4.65s;
+}
+
+/* ensure final state for already-animated elements */
+#Nameboost.has-animated,
+#orderPriceBox.has-animated,
+#orderBtn.has-animated {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* price box to the left of the button */
+.order-price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 80px;
+    width: 120px;
+    right: 290px; /* to the left of the 251px button + gap */
+    bottom: 20px;
+    border: #ffffff 3px solid;
+    background: rgba(255, 255, 255, 0.353);
+    color: #000000;
+    padding: 10px 14px;
+    border-radius: 8px;
+    z-index: 5;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    box-shadow: 4px 4px 12px rgba(255, 255, 255, 0.18);
+}
+
+/* hide name/price when panel is open (they might overlap) */
+.order-open .order-name,
+.order-open .order-price {
+    display: none;
+}
+
+/* --- Shrink controls on scroll to avoid covering content --- */
+/* Add smooth transitions if not already present */
+#Nameboost, #orderPriceBox, #orderBtn {
+    transition: transform 240ms cubic-bezier(.2,.9,.2,1), opacity 180ms ease, height 240ms ease, width 240ms ease, font-size 240ms ease;
+    transform-origin: right bottom;
+}
+
+/* When scrolled, reduce size and bring controls inward so they cover less content */
+body.scrolled-controls #Nameboost {
+    transform: translateX(6px) scale(0.68);
+    font-size: 10px; /* smaller title */
+    bottom: 100px; /* slightly higher to reduce overlap with page content when scrolled */
+    opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+    body.scrolled-controls #orderPriceBox {
+        transform: translateX(0) scale(0.78);
+        height: 60px;
+        width: 96px;
+        right: 1000px; /* move closer to the main button */
+        bottom: 13px;
+        font-size: 14px;
+        padding: 8px;
+        ;
+        margin-right: 75px;
+    }
+}
+
+body.scrolled-controls #orderPriceBox {
+    transform: translateX(0) scale(0.78);
+    height: 60px;
+    width: 96px;
+    right: 235px; /* move closer to the main button */
+    bottom: 13px;
+    font-size: 14px;
+    padding: 8px;
+    ;
+}
+
+body.scrolled-controls #orderBtn {
+    transform: translateX(0) scale(0.82);
+    height: 60px;
+    width: 200px;
+    font-size: 16px;
+    bottom: 14px;
+}
+
+/* Make sure the shrink behavior is slightly different on small screens */
+@media (max-width: 767px) {
+    body.scrolled-controls #Nameboost {
+        font-size: 18px;
+        transform: translateX(4px) scale(0.6);
+        bottom: 110px;
+    }
+
+    body.scrolled-controls #orderPriceBox {
+        transform: translateX(0) scale(0.78);
+        height: 56px;
+        width: 92px;
+        right: 170px;
+    }
+
+    body.scrolled-controls #orderBtn {
+        transform: translateX(0) scale(0.82);
+        height: 64px;
+        width: 180px;
+    }
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    color: #000;
+    background: #fff;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    padding: 20px 0;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+    .breadcrumb a {
+        color: #000;
+        text-decoration: none;
+    }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+    .breadcrumb span {
+        color: #767677;
+    }
+
+/* Product Section */
+.product-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+/* Image Gallery */
+.image-gallery {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.main-image {
+    width: 100%;
+    margin-bottom: 20px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+    .main-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+.thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+    /* Added styles for expandable thumbnail grid */
+    .thumbnail-grid.expanded {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+.thumbnail.hidden {
+    display: none;
+}
+
+.thumbnail-grid.expanded .thumbnail.hidden {
+    display: block;
+}
+/* </CHANGE> */
+
+.thumbnail {
+    background: #f5f5f5;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+    .thumbnail:hover,
+    .thumbnail.active {
+        border-color: #000;
+    }
+
+    .thumbnail img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+.store-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 12px;
+}
+
+    .store-link:hover {
+        text-decoration: underline;
+    }
+
+.image-dropdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: 1px solid #000;
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    /* Added transition for smooth icon rotation */
+    transition: all 0.2s;
+}
+
+    .image-dropdown:hover {
+        background: #f5f5f5;
+    }
+
+    .image-dropdown .dropdown-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .image-dropdown.expanded .dropdown-icon {
+        transform: rotate(180deg);
+    }
+/* </CHANGE> */
+
+/* Product Info */
+.product-info {
+    padding-top: 20px;
+}
+
+.product-header {
+    margin-bottom: 20px;
+}
+
+.product-category {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.product-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.stars {
+    display: flex;
+    gap: 2px;
+}
+
+.star {
+    color: #000;
+}
+
+/* Color Selector */
+.color-section {
+    margin-bottom: 24px;
+}
+
+.section-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.color-option {
+    aspect-ratio: 1;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+    .color-option:hover {
+        transform: scale(1.05);
+    }
+
+    .color-option.active {
+        border-color: #000;
+        box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+    }
+
+    .color-option img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.color-name {
+    font-size: 12px;
+    color: #767677;
+}
+
+/* Similar Products */
+.similar-products {
+    margin-bottom: 24px;
+}
+
+.similar-grid {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.similar-item {
+    width: 80px;
+    height: 80px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #e5e5e5;
+}
+
+    .similar-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.view-all-link {
+    font-size: 14px;
+    color: #000;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Size Selector */
+.size-section {
+    margin-bottom: 24px;
+}
+
+.size-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.size-guide {
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.size-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.size-option {
+    padding: 12px;
+    border: 1px solid #000;
+    background: #fff;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+    .size-option:hover {
+        background: #f5f5f5;
+    }
+
+    .size-option.active {
+        background: #000;
+        color: #fff;
+    }
+
+    .size-option.out-of-stock {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+.stock-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 24px;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.btn {
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: #000;
+    color: #fff;
+}
+
+    .btn-primary:hover {
+        background: #333;
+    }
+
+.btn-secondary {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+    .btn-secondary:hover {
+        background: #f5f5f5;
+    }
+
+.btn-icon {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #000;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+    .btn-icon:hover {
+        background: #f5f5f5;
+    }
+
+/* Accordion Sections */
+.accordion {
+    border-top: 1px solid #e5e5e5;
+    margin-bottom: 60px;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+    .accordion-header:hover {
+        opacity: 0.7;
+    }
+
+.accordion-icon {
+    transition: transform 0.3s;
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 1000px;
+    padding-bottom: 20px;
+}
+
+/* Product Carousel Sections */
+.carousel-section {
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+}
+
+.carousel-container {
+    position: relative;
+}
+
+.carousel {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 20px;
+}
+
+    .carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+.product-card {
+    flex: 0 0 calc(25% - 12px);
+    min-width: 250px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.product-card-image {
+    position: relative;
+    background: #f5f5f5;
+    margin-bottom: 12px;
+    overflow: hidden;
+    aspect-ratio: 1;
+}
+
+    .product-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+    }
+
+.product-card:hover .product-card-image img {
+    transform: scale(1.05);
+}
+
+.wishlist-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+    .wishlist-btn:hover {
+        transform: scale(1.1);
+    }
+
+.product-card-info {
+    padding: 0 4px;
+}
+
+.product-card-price {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.product-card-name {
+    font-size: 14px;
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+.product-card-category {
+    font-size: 12px;
+    color: #767677;
+}
+
+.sale-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #d00;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Carousel Navigation */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    border: 1px solid #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.2s;
+}
+
+    .carousel-nav:hover {
+        background: #000;
+        color: #fff;
+    }
+
+    .carousel-nav.prev {
+        left: -24px;
+    }
+
+    .carousel-nav.next {
+        right: -24px;
+    }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .product-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .image-gallery {
+        position: relative;
+        top: 0;
+    }
+
+    .product-card {
+        flex: 0 0 calc(33.333% - 12px);
+        min-width: 200px;
+    }
+
+    .carousel-nav {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .product-title {
+        font-size: 24px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .color-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .size-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .product-card {
+        flex: 0 0 calc(50% - 8px);
+        min-width: 150px;
+    }
+
+    /* Updated thumbnail grid for mobile to show 4 columns */
+    .thumbnail-grid,
+    .thumbnail-grid.expanded {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    /* </CHANGE> */
+}
+
+@media (max-width: 480px) {
+    .breadcrumb {
+        font-size: 11px;
+    }
+
+    .product-title {
+        font-size: 20px;
+    }
+
+    .color-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .size-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

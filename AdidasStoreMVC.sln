@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36429.23 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdidasStoreMVC", "AdidasStoreMVC.csproj", "{B77713C2-8C59-49EA-B2CC-971A94F94EBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B77713C2-8C59-49EA-B2CC-971A94F94EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B77713C2-8C59-49EA-B2CC-971A94F94EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B77713C2-8C59-49EA-B2CC-971A94F94EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B77713C2-8C59-49EA-B2CC-971A94F94EBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CAE7EA4D-9F16-4A60-B2FF-31938D9AA26F}
+	EndGlobalSection
+EndGlobal

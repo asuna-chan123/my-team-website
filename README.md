@@ -49,6 +49,11 @@ Trangchu.html, Product-detail-Yeezy-Boost.html → các trang chính của websi
 git clone https://github.com/asuna-chan123/my-team-website.git
 ```
 
+clone nhánh nhất định
+```
+git clone --branch feature/Cart --single-branch [https://github.com/ePlus-DEV/AdidasStore.git](https://github.com/asuna-chan123/my-team-website)
+```
+
 Sau khi clone xong:
 ```
 cd my-team-website

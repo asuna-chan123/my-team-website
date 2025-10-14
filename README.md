@@ -24,10 +24,8 @@ AdidasStore/
 ├── Order-history           #Lịch sử mua hàng
 ├── login                   #Đăng nhập
 ├── register                #Đăng kí
-└── oder-tracking
-#Vận chuyển
-└── oder-success
-# xác nhận đơn hàng
+├── oder-tracking           #Vận chuyển
+└── oder-success            #Xác nhận đơn hàng
 
 ```
 

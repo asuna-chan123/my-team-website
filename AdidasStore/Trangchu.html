@@ -117,7 +117,7 @@
                 Sẵn sàng tăng tốc cùng bộ sưu tập adidas x Mercedes-<br />AMG PETRONAS F1 Team
             </p>
 
-            <a href="#" class="btn">Mua ngay →</a>
+            <a href="../Product/Product-nam.html" class="btn">Mua ngay →</a>
         </div>
     </div>
 
@@ -295,7 +295,7 @@
                         <div class="card-content">
                             <h3 class="card-title">3.600.000₫</h3>
                             <p class="card-description">Vợt Pickleball Rx carbon ATTK 2025.</p>
-                            <button class="card-button">MUA SẮM NGAY</button>
+                            <button href="../Product-detail/Product-nam.html" class="card-button">MUA SẮM NGAY</button>
                         </div>
                     </div>
 
@@ -500,22 +500,22 @@
             <h1 class="section-title">Adidas x Mercedes-AMG Petronas F1</h1>
 
             <div class="product-grid">
-                <div class="product-card" onclick="navigateTo('clothing')">
+                <div class="product-card" onclick="window.location.href='../Product/Product-man.html'">
                     <img src="/Content/assets/adidascard/31.png" alt="Quần áo Mercedes-AMG Petronas F1">
                     <div class="product-label">Quần áo</div>
                 </div>
 
-                <div class="product-card" onclick="navigateTo('shoes')">
+                <div class="product-card" onclick="window.location.href='../Product/Product.html'">
                     <img src="/Content/assets/adidascard/32.png" alt="Giày Mercedes-AMG Petronas F1">
                     <div class="product-label">Giày</div>
                 </div>
 
-                <div class="product-card" onclick="navigateTo('accessories')">
+                <div class="product-card" onclick="window.location.href='../Product/Product-woman.html'">
                     <img src="/Content/assets/adidascard/33.png" alt="Phụ kiện Mercedes-AMG Petronas F1">
                     <div class="product-label">Phụ kiện</div>
                 </div>
 
-                <div class="product-card" onclick="navigateTo('all-motorsport')">
+                <div class="product-card" onclick="window.location.href='../Trangchu.html'">
                     <img src="/Content/assets/adidascard/34.png" alt="Tất cả sản phẩm Motorsport">
                     <div class="product-label">Tất cả các sản phẩm Motorsport</div>
                 </div>
@@ -628,22 +628,25 @@
             class BannerButton extends HTMLElement {
                 connectedCallback() {
                     this.innerHTML = `
-                                                                                                                              <div class="banner-button">
-                                                                                                                                <h2 class="banner-title"
-                                                                                                                                style=" opacity: 0; width: 125px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000;"
-                                                                                                                                >LIGHT THE BAY</h2>
-                                                                                                                                <p class="banner-subtitle"
-                                                                                                                                style="opacity: 0; margin-bottom: 20px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000; "
-                                                                                                                                >
-                                                                                                                                  Sẵn sàng tăng tốc cùng bộ sưu tập adidas x Mercedes-<br />AMG PETRONAS F1 Team
-                                                                                                                                </p>
-                                                                                                                                <a href="#" class="btn">Mua ngay →</a>
-                                                                                                                              </div>
-                                                                                                                            `;
+                        <div class="banner-button">
+                            <h2 class="banner-title"
+                                style="opacity: 0; width: 125px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000;">
+                                LIGHT THE BAY
+                            </h2>
+                            <p class="banner-subtitle"
+                                style="opacity: 0; margin-bottom: 20px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000;">
+                                Sẵn sàng tăng tốc cùng bộ sưu tập adidas x Mercedes-<br />AMG PETRONAS F1 Team
+                            </p>
+                            <a href="../Product/Product-nam.html" class="btn">
+                                Mua ngay →
+                            </a>
+                        </div>
+                    `;
                 }
             }
             customElements.define('banner-button', BannerButton);
         </script>
+
 
         <!-- ✅ Script clone template + gắn logic carousel -->
         <script>
@@ -665,13 +668,14 @@
                         const card = document.createElement("div");
                         card.className = "card";
                         card.innerHTML = `
-                                                    <img src="${p.img}" class="card-image" style="height: ${p.height || '380px'}; object-fit: cover;" />
-                                                    <div class="card-content">
-                                                      <h3 class="card-title">${p.price}</h3>
-                                                      <p class="card-description">${p.desc}</p>
-                                                      <button class="card-button">Mua ngay</button>
-                                                    </div>
-                                                  `;
+                            <img src="${p.img}" class="card-image" style="height: ${p.height || '380px'}; object-fit: cover;" />
+                            <div class="card-content">
+                                <h3 class="card-title">${p.price}</h3>
+                                <p class="card-description">${p.desc}</p>
+                                <a href="../Product/Product-man.html" class="card-button">Mua ngay</a>
+
+                            </div>
+                            `;
                         wrapper.appendChild(card);
                     });
 

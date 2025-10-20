@@ -166,41 +166,41 @@
 
     <!--4 ảnh-->
     <div class="categories-container" style="margin-top:5%;">
-        <div class="category-card" onclick="navigateToCategory('sneakers')">
+        <a href="../Product/Product.html" class="category-card">
             <div class="category-content">
                 <h2 class="category-title">Sneakers</h2>
             </div>
             <div class="category-image">
                 <img src="https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/3a6306500587450f888c31097a44ee71_9366/giay-adizero-aruku.jpg" alt="Sneakers">
             </div>
-        </div>
+        </a>
 
-        <div class="category-card" onclick="navigateToCategory('t-shirts')">
+        <a href="../Product/Product-nu.html" class="category-card">
             <div class="category-content">
                 <h2 class="category-title">T-Shirts</h2>
             </div>
             <div class="category-image">
                 <img src="https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/d6c6cd212fc64f5fb58403b9acdf0151_9366/ao-thun-graphic-bac-mau-adidas-originals.jpg" alt="T-Shirts">
             </div>
-        </div>
+        </a>
 
-        <div class="category-card" onclick="navigateToCategory('jerseys')">
+        <a href="../Product/Product-nu.html" class="category-card">
             <div class="category-content">
                 <h2 class="category-title">Jerseys</h2>
             </div>
             <div class="category-image">
                 <img src="https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/6ee6ef8dfbe343f089fbe2b788bb1c3d_9366/quan-denim-dang-rong-adidas-originals.jpg" alt="Jerseys">
             </div>
-        </div>
+        </a>
 
-        <div class="category-card" onclick="navigateToCategory('pants')">
+        <a href="../Product/Product-nu.html" class="category-card">
             <div class="category-content">
                 <h2 class="category-title">Pants</h2>
             </div>
             <div class="category-image">
                 <img src="https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/1463d54f27be4237acc559c19356c7e2_9366/chan-vay-premium-essentials.jpg" alt="Pants">
             </div>
-        </div>
+        </a>
     </div>
 
     <!-- adidas card -->
@@ -377,7 +377,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Trionda</h3>
                             <p class="card-description">Quả bóng thi đấu chính thức của FIFA World Cup 26™ đã xuất hiện.</p>
-                            <button class="card-button">MUA SẮM NGAY</button>
+                            <button class="card-button" onclick="window.location.href='../Product/Product-nu.html'">MUA SẮM NGAY</button>
                         </div>
                     </div>
 
@@ -386,7 +386,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Anthony Edwards 2</h3>
                             <p class="card-description">Kỹ thuật hóa cho lối chơi của Ant. Thiết kế để khai mở tiềm năng của bạn.</p>
-                            <button class="card-button">Mua ngay</button>
+                            <button class="card-button" onclick="window.location.href='../Product/Product-nu.html'">Mua ngay</button>
                         </div>
                     </div>
 
@@ -395,7 +395,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Lightblaze</h3>
                             <p class="card-description">Nhanh như ánh sáng — giờ đây với những gam màu mới.</p>
-                            <button class="card-button">Mua ngay</button>
+                            <button class="card-button" onclick="window.location.href='../Product/Product-nu.html'">Mua ngay</button>
                         </div>
                     </div>
 
@@ -404,7 +404,7 @@
                         <div class="card-content">
                             <h3 class="card-title">LIGHT THE BAY</h3>
                             <p class="card-description">Gear up with the adidas x Mercedes-AMG PETRONAS F1 Team collection.</p>
-                            <button class="card-button coming-soon">Sắp ra mắt</button>
+                            <button class="card-button" onclick="window.location.href='../Product/Product-nu.html'">Mua ngay</button>
                         </div>
                     </div>
 
@@ -413,7 +413,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Y-3 FW25</h3>
                             <p class="card-description">Chụp bởi Daido Moriyama.</p>
-                            <button class="card-button">Mua ngay</button>
+                            <button class="card-button" onclick="window.location.href='../Product/Product-nu.html'">Mua ngay</button>
                         </div>
                     </div>
 
@@ -422,7 +422,7 @@
                         <div class="card-content">
                             <h3 class="card-title">1.800.000₫</h3>
                             <p class="card-description">Vợt Pickleball Match Light 2025</p>
-                            <button class="card-button">Mua ngay</button>
+                            <button class="card-button" onclick="window.location.href='../Product/Product-nu.html'">Mua ngay</button>
                         </div>
                     </div>
                 </div>
@@ -754,15 +754,16 @@
                         const card = document.createElement("div");
                         card.className = "card";
                         card.innerHTML = `
-                                                                                            <img src="${p.img}" class="card-image" style="height: ${p.height || '380px'}; object-fit: cover;" />
-                                                                                            <div class="card-content">
-                                                                                              <h3 class="card-title">${p.price}</h3>
-                                                                                              <p class="card-description">${p.desc}</p>
-                                                                                              <button class="card-button">Mua ngay</button>
-                                                                                            </div>
-                                                                                          `;
+                            <img src="${p.img}" class="card-image" style="height: ${p.height || '380px'}; object-fit: cover;" />
+                            <div class="card-content">
+                                <h3 class="card-title">${p.price}</h3>
+                                <p class="card-description">${p.desc}</p>
+                                <button class="card-button" onclick="window.location.href='../Product/Product-nu.html'">Mua ngay</button>
+                            </div>
+                        `;
                         wrapper.appendChild(card);
                     });
+
 
 
                     // Gắn vào DOM

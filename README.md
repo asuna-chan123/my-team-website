@@ -1,3 +1,7 @@
+##🌐 Đường dẫn đến trang web(Beta)
+```
+https://my-team-website-rouge.vercel.app/Trangchu.html
+```
 ##🏪 AdidasStore Website
 ---
 📁 Cấu trúc thư mục dự án

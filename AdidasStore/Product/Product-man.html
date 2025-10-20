@@ -165,41 +165,41 @@
 
     <!--4 ảnh-->
     <div class="categories-container" style="margin-top:5%;">
-        <div class="category-card" onclick="navigateToCategory('sneakers')">
+        <a  href="../Product/Product.html" class="category-card" onclick="navigateToCategory('sneakers')">
             <div class="category-content">
                 <h2 class="category-title">Sneakers</h2>
             </div>
             <div class="category-image">
                 <img src="../partials/iconheader/giay-samba-og.png" alt="Sneakers">
             </div>
-        </div>
+        </a>
 
-        <div class="category-card" onclick="navigateToCategory('t-shirts')">
+        <a  href="../Product/Product.html" class="category-card" onclick="navigateToCategory('t-shirts')">
             <div class="category-content">
                 <h2 class="category-title">T-Shirts</h2>
             </div>
             <div class="category-image">
                 <img src="../partials/iconheader/ao-thun-liverpool-fc-terrace-icons.png" alt="T-Shirts">
             </div>
-        </div>
+        </a>
 
-        <div class="category-card" onclick="navigateToCategory('jerseys')">
+        <a  href="../Product/Product.html" class="category-card" onclick="navigateToCategory('jerseys')">
             <div class="category-content">
                 <h2 class="category-title">Jerseys</h2>
             </div>
             <div class="category-image">
                 <img src="../partials/iconheader/ao-dau-liverpool-fc-terrace-icons.png" alt="Jerseys">
             </div>
-        </div>
+        </a>
 
-        <div class="category-card" onclick="navigateToCategory('pants')">
+        <a  href="../Product/Product.html" class="category-card" onclick="navigateToCategory('pants')">
             <div class="category-content">
                 <h2 class="category-title">Pants</h2>
             </div>
             <div class="category-image">
                 <img src="../partials/iconheader/quan-dang-chuan-hoa-tiet-monogram.png" alt="Pants">
             </div>
-        </div>
+        </a>
     </div>
 
     <!-- adidas card -->
@@ -376,7 +376,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Trionda</h3>
                             <p class="card-description">Quả bóng thi đấu chính thức của FIFA World Cup 26™ đã xuất hiện.</p>
-                            <button class="card-button">MUA SẮM NGAY</button>
+                            <button class="card-button" onclick="window.location.href='../Product/Product-nam.html'">MUA SẮM NGAY</button>
                         </div>
                     </div>
 
@@ -385,7 +385,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Anthony Edwards 2</h3>
                             <p class="card-description">Kỹ thuật hóa cho lối chơi của Ant. Thiết kế để khai mở tiềm năng của bạn.</p>
-                            <button class="card-button">Mua ngay</button>
+                            <button class="card-button" onclick="window.location.href='../Product/Product-nam.html'">MUA NGAY</button>
                         </div>
                     </div>
 
@@ -394,7 +394,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Lightblaze</h3>
                             <p class="card-description">Nhanh như ánh sáng — giờ đây với những gam màu mới.</p>
-                            <button class="card-button">Mua ngay</button>
+                            <button class="card-button" onclick="window.location.href='../Product/Product-nam.html'">MUA NGAY</button>
                         </div>
                     </div>
 
@@ -403,7 +403,7 @@
                         <div class="card-content">
                             <h3 class="card-title">LIGHT THE BAY</h3>
                             <p class="card-description">Gear up with the adidas x Mercedes-AMG PETRONAS F1 Team collection.</p>
-                            <button class="card-button coming-soon">Sắp ra mắt</button>
+                            <button class="card-button" onclick="window.location.href='../Product/Product-nam.html'">MUA NGAY</button>
                         </div>
                     </div>
 
@@ -412,7 +412,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Y-3 FW25</h3>
                             <p class="card-description">Chụp bởi Daido Moriyama.</p>
-                            <button class="card-button">Mua ngay</button>
+                            <button class="card-button" onclick="window.location.href='../Product/Product-nam.html'">MUA NGAY</button>
                         </div>
                     </div>
 
@@ -421,7 +421,7 @@
                         <div class="card-content">
                             <h3 class="card-title">1.800.000₫</h3>
                             <p class="card-description">Vợt Pickleball Match Light 2025</p>
-                            <button class="card-button">Mua ngay</button>
+                            <button class="card-button" onclick="window.location.href='../Product/Product-nam.html'">MUA NGAY</button>
                         </div>
                     </div>
                 </div>
@@ -755,13 +755,13 @@
                         const card = document.createElement("div");
                         card.className = "card";
                         card.innerHTML = `
-                                                                                            <img src="${p.img}" class="card-image" style="height: ${p.height || '380px'}; object-fit: cover;" />
-                                                                                            <div class="card-content">
-                                                                                              <h3 class="card-title">${p.price}</h3>
-                                                                                              <p class="card-description">${p.desc}</p>
-                                                                                              <button class="card-button">Mua ngay</button>
-                                                                                            </div>
-                                                                                          `;
+                            <img src="${p.img}" class="card-image" style="height: ${p.height || '380px'}; object-fit: cover;" />
+                            <div class="card-content">
+                                <h3 class="card-title">${p.price}</h3>
+                                <p class="card-description">${p.desc}</p>
+                                <button class="card-button" onclick="window.location.href='../Product/Product-nam.html'">Mua ngay</button>
+                            </div>
+                        `;
                         wrapper.appendChild(card);
                     });
 

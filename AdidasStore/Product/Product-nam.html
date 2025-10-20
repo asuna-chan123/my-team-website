@@ -409,7 +409,8 @@
                 name: 'ÁO THUN GRAPHIC BẠC MÀU ADIDAS ORIGINALS',
                 category: 'Originals',
                 colors: '13 colours',
-                badge: 'Trending'
+                badge: 'Trending',
+                link: '../Product-detail/Product-detail-1-Tshirt-.html'
             },
             {
                 image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/8a9de4a1ddb04b6a98932f5e7d461c7d_9366/ao-thun-adidas-z.n.e..jpg',
@@ -418,7 +419,8 @@
                 name: 'Áo Thun adidas Z.N.E.',
                 category: 'Nam Chạy',
                 colors: '6 colours',
-                badge: 'Mới'
+                badge: 'Mới',
+                link: '../Product-detail/Product-detail-2-Tshirt-.html'
             },
             {
                 image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/3861a7a60911425e97fba8dc3bc45e8f_9366/ao-dau-jacquard-adidas-adicolor.jpg',
@@ -427,7 +429,8 @@
                 name: 'GFX HANOI W TEE - WHITE',
                 category: 'Nam Sportswearr',
                 colors: '4 colours',
-                badge: 'Mới'
+                badge: 'Mới',
+                link: '../Product-detail/Product-detail-3-Tshirt-.html'
             },
             {
                 image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/a3a1cefe4748405facca159e387c24d6_9366/ao-polo-core-heather.jpg',
@@ -436,7 +439,8 @@
                 name: 'Áo Thun Own The Run',
                 category: 'Nam Chạy',
                 colors: '6 colours',
-                badge: 'Mới'
+                badge: 'Mới',
+                link: '../Product-detail/Product-detail-4-Tshirt-.html'
             },
             {
                 image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/700a5810bda44696bba2b0a9533eb275_9366/gfx-saigon-1-tee---black.jpg',
@@ -445,7 +449,8 @@
                 name: 'Áo Thun Bóng Rổ Không Tay adidas (Unisex)',
                 category: 'Bóng Rổ',
                 colors: '2 colours',
-                badge: 'Mới'
+                badge: 'Mới',
+                link: '../Product-detail/Product-detail-5-Tshirt-.html'
             },
             {
                 image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/d762543aef54449d869949f5c309e7d8_9366/a%CC%81o-thun-ta%CC%A3p-luye%CC%A3n-designed-for-training.jpg',
@@ -454,7 +459,8 @@
                 name: 'Áo Thun Cotton 3 Sọc Essentials',
                 category: 'Originals',
                 colors: '4 colours',
-                badge: 'Mới'
+                badge: 'Mới',
+                link: '../Product-detail/Product-detail-6-Tshirt-.html'
             },
             {
                 image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/cf4f3758b0b54765bb444c9e5f4f5f77_9366/ao-thun-own-the-run.jpg',
@@ -463,7 +469,8 @@
                 name: 'Áo Thun Own The Run',
                 category: 'Nữ Chạy',
                 colors: '2 colours',
-                badge: 'Mới'
+                badge: 'Mới',
+                link: '../Product-detail/Product-detail-7-Tshirt-.html'
             },
             {
                 image: 'https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/378df82547a54941b8c883018bfddd0b_9366/ao-dau-jacquard-adidas-adicolor.jpg',
@@ -472,7 +479,8 @@
                 name: 'Áo Thun Dài Tay Runners (Unisex)',
                 category: ' Chạy',
                 colors: '2 colours',
-                badge: ''
+                badge: '',
+                link: '../Product-detail/Product-detail-8-Tshirt-.html'
             },
         ];
 
@@ -480,22 +488,24 @@
         const productGrid = document.getElementById('productGrid');
 
         products.forEach(product => {
-            const card = document.createElement('div');
+            const card = document.createElement('a');
             card.className = 'product-card';
+            card.href = product.link || '#';   // 👈 nếu có link thì đi, không có thì '#'
 
             card.innerHTML = `
-                      <div class="product-image">
-                        <img src="${product.image}" alt="${product.name}" class="main">
-                        <img src="${product.hoverImage}" alt="${product.name} hover" class="hover">
-                      </div>
-                      <div class="product-info">
-                        <div class="product-price">${product.price}</div>
-                        <div class="product-name">${product.name}</div>
-                        <div class="product-category">${product.category}</div>
-                        <div class="product-colors">${product.colors}</div>
-                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
-                      </div>
-                    `;
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" class="main">
+                    <img src="${product.hoverImage}" alt="${product.name} hover" class="hover">
+                </div>
+                <div class="product-info">
+                    <div class="product-price">${product.price}</div>
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-category">${product.category}</div>
+                    <div class="product-colors">${product.colors}</div>
+                    ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                </div>
+            `;
+
             productGrid.appendChild(card);
         });
     </script>

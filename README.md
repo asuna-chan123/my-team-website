@@ -29,8 +29,7 @@ AdidasStore/
 ├── Order-history           #Lịch sử mua hàng
 ├── login                   #Đăng nhập
 ├── register                #Đăng kí
-├── oder-tracking           #Vận chuyển
-└── oder-success            #Xác nhận đơn hàng
+
 WebApplication6
 ├──Content
 │   ├── css                 #file.css
@@ -45,6 +44,10 @@ WebApplication6
 │   └──  js                 #file.js
 │
 └──Views
+    ├── Oder
+         ├──Odertracking #Giỏ hàng
+         ├──Oderconfirm #Xác nhận đơn hàng
+         ├──Odertracking #Giao hàng
     ├── categorise          #categorise
     ├── customers           #customers
     ├── Home                #Home 

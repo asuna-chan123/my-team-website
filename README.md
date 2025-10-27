@@ -44,16 +44,16 @@ WebApplication6
 ├──Scripts
 │   └──  js                 #file.js
 │
-├──Views
-│   ├── categorise          #categorise
-│   ├── customers           #customers
-│   ├── Home                #Home 
-│   ├── orderproes          #orderproes 
-│   ├── product             #product
-│   └── shared              #file.js
-│         ├── footer        #file footer
-│         ├── header        #file header
-│         └── iconheader    #file icon
+└──Views
+    ├── categorise          #categorise
+    ├── customers           #customers
+    ├── Home                #Home 
+    ├── orderproes          #orderproes 
+    ├── product             #product
+    └── shared              #file.js
+         ├── footer        #file footer
+         ├── header        #file header
+         └── iconheader    #file icon
 ```
 
 ##📌 Giải thích nhanh:

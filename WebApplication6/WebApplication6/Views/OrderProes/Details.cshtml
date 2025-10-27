@@ -1,0 +1,57 @@
+﻿@model WebApplication6.Models.OrderPro
+
+@{
+    ViewBag.Title = "Đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="font-weight:bold; margin-bottom:20px;">ĐƠN HÀNG</h2>
+
+<div style="max-width: 700px; padding: 15px;">
+    <table class="table table-borderless">
+        <tr>
+            <td style="width: 150px; font-weight: bold;">Ngày Đặt hàng :</td>
+            <td>@Html.DisplayFor(model => model.DateOrder)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Địa chỉ Giao hàng :</td>
+            <td>@Html.DisplayFor(model => model.AddressDeliverry)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Khách Hàng :</td>
+            <td>@Html.DisplayFor(model => model.Customer.NameCus)</td>
+        </tr>
+    </table>
+</div>
+
+<!-- ✅ Chi tiết Đơn Hàng -->
+@if (Model.OrderDetails != null && Model.OrderDetails.Any())
+{
+    <h3 style="font-weight:bold;">Chi tiết Đơn Hàng</h3>
+    <table class="table table-bordered" style="max-width:700px;">
+        <thead style="background-color:#f5f5f5;">
+            <tr>
+                <th>Sản Phẩm</th>
+                <th>Số Lượng</th>
+                <th>Đơn Giá</th>
+                <th>Thành Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderDetails)
+            {
+                <tr>
+                    <td>@item.Product.NamePro</td>
+                    <td>@item.Quantity</td>
+                    <td>@String.Format("{0:N0}", item.UnitPrice)</td>
+                    <td>@String.Format("{0:N0}", item.Quantity * item.UnitPrice)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<p>
+    @Html.ActionLink("Cập Nhật", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

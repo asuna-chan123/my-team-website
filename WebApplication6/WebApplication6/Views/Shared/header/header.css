@@ -1,0 +1,312 @@
+﻿/* CSS đã được làm sạch - Chỉ giữ lại những gì cần thiết cho HTML hiện tại */
+
+/* =================================================================
+   THIẾT LẬP CƠ BẢN - Basic Setup
+   ================================================================= */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Search box compact -> expand behavior */
+header .search-box {
+    width: 160px !important;
+    align-items: center !important;
+    gap: 8px !important;
+    overflow: hidden;
+    transition: width 0.8s ease;
+    flex: 0 0 auto !important; /* không bị kéo giãn */
+}
+
+/* Keep the button a fixed width so icon doesn't shift */
+
+.search-btn {
+    position: absolute !important;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent;
+    margin: 0 !important;
+}
+
+/* show a persistent label next to the button when collapsed */
+.search-btn {
+    position: relative;
+}
+
+    .search-btn::after {
+        content: "Search";
+        position: absolute;
+        right: 100%;
+        margin-right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.9rem;
+        color: #6b7280;
+        white-space: nowrap;
+        opacity: 1;
+        transition: opacity 250ms ease;
+    }
+
+/* hide the label when the box is expanded (user is typing) */
+.search-box:focus-within .search-btn::after {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Input hidden when collapsed (avoid placeholder shift) */
+
+header .search-input {
+  width: 50 !important;
+  padding: 0 !important;
+  border: none !important;
+  opacity: 0 !important;
+  transition: width 0.8s ease, opacity 180ms ease;
+}
+
+/* expand on focus - reveal input */
+header .search-box:focus-within {
+    width: 340px !important;
+}
+
+    header .search-box:focus-within .search-input {
+        width:300px ;
+        margin-right:400px;
+        padding: 4px 6px !important;
+        opacity: 1 !important;
+    }
+
+/* =================================================================
+   HEADER ANIMATIONS - Hiệu ứng header
+   ================================================================= */
+
+/* Responsive: hide desktop nav on mobile and center logo */
+@media (max-width: 1024px) {
+    nav.hidden.lg\:flex {
+        display: none !important;
+    }
+
+    .logo-wrapper {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+        .logo-wrapper .logo-img {
+            width: 36px;
+        }
+}
+
+/* Mobile menu panel */
+.mobile-menu {
+    margin-top: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 60;
+    transform: translateX(-150%);
+    transition: transform 1000ms ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding-bottom: 50%;
+    border: 5px solid #e5e7eb; /* gray-200 */
+}
+
+    .mobile-menu.open {
+        transform: translateX(0);
+    }
+
+    .mobile-menu nav {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .mobile-menu a, .mobile-menu button {
+        text-align: left;
+        padding: 10px 12px;
+    }
+
+/* close button inside mobile menu */
+.mobile-menu-close {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Animation trượt xuống từ trên */
+@keyframes headerSlideDown {
+    from {
+        transform: translateY(-14px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Animation trượt vào từ phải cho controls */
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Trạng thái ẩn ban đầu cho các phần tử header */
+header > div:first-of-type,
+header > div:nth-of-type(2) .flex.items-center.justify-between,
+header nav button,
+header .flex.items-center.space-x-4 > * {
+    opacity: 0;
+    transform: translateY(-12px);
+}
+
+/* Kích hoạt animation chỉ sau khi loader kết thúc */
+body.loaded header > div:first-of-type {
+    animation: headerSlideDown .48s ease forwards;
+    animation-delay: 0s;
+}
+
+body.loaded header > div:nth-of-type(2) .flex.items-center.justify-between {
+    animation: headerSlideDown .48s ease forwards;
+    animation-delay: .12s;
+}
+
+body.loaded header nav button {
+    animation: headerSlideDown .42s ease forwards;
+}
+
+    /* Delay khác nhau cho từng nút nav */
+    body.loaded header nav button:nth-child(1) {
+        animation-delay: 2.0s;
+    }
+
+    body.loaded header nav button:nth-child(2) {
+        animation-delay: 2.25s;
+    }
+
+    body.loaded header nav button:nth-child(3) {
+        animation-delay: 2.50s;
+    }
+
+    body.loaded header nav button:nth-child(4) {
+        animation-delay: 2.75s;
+    }
+
+    body.loaded header nav button:nth-child(5) {
+        animation-delay: 3.0s;
+    }
+
+    body.loaded header nav button:nth-child(6) {
+        animation-delay: 3.25s;
+    }
+
+    body.loaded header nav button:nth-child(7) {
+        animation-delay: 3.5s;
+    }
+
+body.loaded header .flex.items-center.space-x-4 > * {
+    animation: headerSlideDown .42s ease forwards;
+}
+
+    /* Delay cho các items bên phải header */
+    body.loaded header .flex.items-center.space-x-4 > *:nth-child(1) {
+        animation-delay: 3.75s;
+    }
+
+    body.loaded header .flex.items-center.space-x-4 > *:nth-child(2) {
+        animation-delay: 3.75s;
+    }
+
+    body.loaded header .flex.items-center.space-x-4 > *:nth-child(3) {
+        animation-delay: 3.75s;
+    }
+
+    body.loaded header .flex.items-center.space-x-4 > *:nth-child(4) {
+        animation-delay: 3.75s;
+    }
+
+/* =================================================================
+   SEARCH DROPDOWN - Dropdown tìm kiếm
+   ================================================================= */
+.search-dropdown {
+    transition: all 0.3s ease;
+}
+
+.search-hidden {
+    opacity: 0;
+    transform: translateY(-8px);
+    visibility: hidden;
+}
+
+.search-visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* search box: hidden by default, shown on large screens */
+.search-box {
+    /* hidden by default so it doesn't override Tailwind .hidden */
+    display: none !important; 
+
+}
+
+/* show ONLY on large screens with higher specificity */
+@media (min-width: 1024px) {
+    .hidden.lg\:flex.search-box {
+        display: inline-flex !important;
+    }
+}
+
+/* 📱 Ẩn icon tìm kiếm và form ở màn hình nhỏ */
+@media (max-width: 1024px) {
+    .search-box,
+    #searchToggle {
+        display: none !important;
+    }
+}
+/* 📱 Ẩn toàn bộ thanh search (cả input và icon) khi màn hình < 1024px */
+@media (max-width: 1024px) {
+    .search-box,
+    #searchToggle {
+        display: none !important;
+    }
+}
+/* 📱 Căn logo ra giữa trên mobile */
+@media (max-width: 1024px) {
+    .logo-wrapper {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+
+/* show a fixed search icon when input is focused (appears left of the submit button) */
+.search-box {
+    position: relative; /* ensure pseudo-element positions against container */
+}
+
+

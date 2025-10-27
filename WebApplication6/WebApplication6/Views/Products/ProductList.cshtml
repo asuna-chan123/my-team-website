@@ -1,0 +1,1053 @@
+﻿
+@using PagedList.Mvc;
+@model PagedList.IPagedList<WebApplication6.Models.Product>
+@{
+    ViewBag.Title = "Mua hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}    
+<!-- Trang chủ -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adidas </title>
+
+    <!-- Font chữ -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!--Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!--CSS -->
+    <link rel="stylesheet" href="/Content/css/Trangchu.css">
+</head>
+<body>
+
+    <!-- ✅ TEMPLATE CHO CAROUSEL -->
+    <template id="adidas-card-template">
+        <div class="container">
+            <h1 class="section-title"></h1>
+            <div class="carousel-container">
+                <button class="nav-button prev">‹</button>
+                <button class="nav-button next">›</button>
+                <div class="carousel-wrapper"></div>
+            </div>
+        </div>
+    </template>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="wrap">
+            <div class="adidas-container" style="left:-10%;">
+                <div class="adidas">
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                </div>
+                <div class="text">adidas</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ảnh đầu trang -->
+    <section class="hero-section banner-topp">
+        <div class="banner-containerr banner-imgg">
+            <div class="hero-content">
+                <div class="content-wrapper">
+                    <h1 class="main-title" style="font-size: 15px; margin-right: 300px; border: 2px solid #000; background: #fff; color: #000; font-weight: bold;">
+                        LIGHT THE BAY
+                    </h1>
+
+                    <p class="subtitle" style="font-size: 15px; border: 2px solid #000;background: #fff;color: #000;font-weight: bold;">
+                        Sẵn sàng tăng tốc cùng bộ sưu tập adidas x Mercedes
+                    </p>
+
+                    <button class="cta-button" onclick="handleClick('@Url.Action("Index", "Products")')">
+                        <span >Mua ngay →</span>
+
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- adidas card -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .card {
+            min-width: 340px;
+            margin-right: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .card-button {
+            background: transparent;
+            border: 2px solid #000;
+            padding: 12px 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+            .card-button:hover {
+                background: #000;
+                color: white;
+            }
+
+            .card-button.coming-soon {
+                border-color: #999;
+                color: #999;
+            }
+
+                .card-button.coming-soon:hover {
+                    background: #999;
+                    color: white;
+                }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: 2px solid #ddd;
+            width: 50px;
+            height: 50px;
+            border-radius: 0%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            z-index: 9999; /* ensure nav buttons sit above most content */
+            pointer-events: auto;
+        }
+
+            .nav-button:hover {
+                background: #000;
+                color: white;
+                border-color: #000;
+            }
+
+            .nav-button.prev {
+                left: 30px;
+            }
+
+            .nav-button.next {
+                right: 30px;
+            }
+
+            .nav-button:disabled {
+                opacity: 0.3;
+                cursor: not-allowed;
+            }
+
+                .nav-button:disabled:hover {
+                    background: white;
+                    color: #333;
+                    border-color: #ddd;
+                }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.3s ease;
+            gap: 20px;
+        }
+
+        .banner-topp {
+            position: relative;
+        }
+
+        @@media (max-width: 768px) {
+            .card {
+                min-width: 280px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @@media (max-width: 2000px) {
+            .banner-top {
+                margin-top: -10%;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            .banner-top {
+                margin-top: -30%;
+            }
+        }
+
+        @@media (max-width: 200000px) {
+            .banner-topp {
+                padding-top: 5%;
+            }
+        }
+
+        @@media (max-width: 2000px) {
+            .banner-topp {
+                padding-top: 10%;
+            }
+        }
+
+        @@media (max-width: 1025px) {
+            .banner-topp {
+                padding-top: 15%;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            .banner-topp {
+                padding-top: 20%;
+            }
+        }
+
+        @@media (max-width: 1025px) {
+            .banner-top {
+                margin-top: -80%;
+            }
+        }
+
+        @@media (max-width: 2000px) {
+            .banner-middle {
+                margin-top: -30%;
+                margin-bottom: 60vh;
+            }
+        }
+
+        @@media (max-width: 1025px) {
+            .banner-middle {
+                margin-top: -25%;
+                margin-bottom: 30vh;
+            }
+        }
+
+        @@media (max-width: 780px) {
+            .banner-middle {
+                margin-top: -50%;
+                margin-bottom: 30vh;
+            }
+        }
+
+        .banner-button {
+            width: fit-content; /* 1. Thêm width để nó co lại */
+            margin: 0 auto; /* 2. Giờ margin auto sẽ căn giữa */
+            position: relative; /* 3. Mở khóa di chuyển */
+            left: -30%; /* 4. Thêm lệnh di chuyển sang trái */
+            text-align: center; /* (Bonus) Căn giữa 3 cái P bên trong */
+        }
+
+        @@media (max-width: 1025px) {
+            .banner-button {
+                left: -20%; /* 4. Thêm lệnh di chuyển sang trái */
+            }
+        }
+
+        @@media (max-width: 780px) {
+            .banner-button {
+                left: 0%; /* 4. Thêm lệnh di chuyển sang trái */
+            }
+        }
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height:200%;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1680px;
+            height: 100%;
+            background-image: url('https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_1920,w_1920/global_jude_bellingham_pack_football_fw25_launch_hp_catlp_glp_banner_hero_2_d_a8b4927fce.jpg');
+            background-size: cover;
+            background-position: center right;
+            background-repeat: no-repeat;
+            opacity: 0.95;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 40%, transparent 70%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .content-wrapper {
+            max-width: 400px;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        @@keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .adidas-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            background: white;
+            padding: 8px 12px;
+            width: fit-content;
+            border-radius: 2px;
+        }
+
+            .adidas-logo svg {
+                width: 20px;
+                height: 20px;
+            }
+
+        .adidas-logo-text {
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #000;
+        }
+
+        .main-title {
+            font-size: clamp(32px, 8vw, 72px);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: clamp(14px, 2vw, 18px);
+            color: #e0e0e0;
+            margin-bottom: 32px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: #fff;
+            color: #000;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #000;
+            transition: 0.3s;
+        }
+
+            .cta-button:hover {
+                background: #000;
+                color: #fff;
+            }
+
+            .cta-button:active {
+                transform: translateX(2px);
+            }
+
+        .banner-button .btn {
+            background: #fff;
+            color: #000;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #000;
+            transition: 0.3s;
+        }
+
+            .banner-button .btn:hover {
+                background: #000;
+                color: #fff;
+            }
+
+        .arrow {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover .arrow {
+            transform: translateX(4px);
+        }
+
+
+        /* Responsive Design */
+        @@media (max-width: 768px) {
+            .hero-section {
+                height: 80vh;
+                min-height: 500px;
+            }
+
+            .hero-content {
+                padding: 30px 20px;
+                align-items: flex-end;
+                padding-bottom: 60px;
+            }
+
+            .content-wrapper {
+                max-width: 100%;
+                margin-top: -400px;
+            }
+
+            .main-title {
+                font-size: 36px;
+                margin-top: -300px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+        }
+
+        @@media (max-width: 480px) {
+            .hero-section {
+                height: 70vh;
+                min-height: 400px;
+            }
+
+            .hero-content {
+                padding: 20px;
+                padding-bottom: 50px;
+            }
+
+            .main-title {
+                font-size: 28px;
+                margin-bottom: 12px;
+                margin-top: -500px;
+            }
+
+            .subtitle {
+                font-size: 13px;
+                margin-bottom: 24px;
+            }
+
+            .cta-button {
+                padding: 12px 20px;
+                font-size: 12px;
+            }
+        }
+
+
+.product-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+            .product-card-link:focus {
+                outline: none;
+            }
+
+            .product-card-link:focus-visible .card {
+                box-shadow: 0 0 0 3px rgba(0, 90, 255, 0.5);
+            }
+            .product-card-link:hover .card {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                transform: translateY(-2px);
+                color: black;
+            }
+
+            .product-card-link .card-button {
+                cursor: pointer;
+            }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="section-title">T-shirt</h1>
+
+            <div class="carousel-container">
+                <button class="nav-button prev" id="prevBtn">‹</button>
+                <button class="nav-button next" id="nextBtn">›</button>
+
+                <div class="carousel-wrapper" id="carousel">
+                    <a href="@Url.Action("Details", "Products", new { id = 1 }, Request.Url.Scheme)" class="product-card-link">
+                        <div class="card" style="height:520px;">
+                            <img src="https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/d977ea69b36e4ed587e939f82a5eec6c_9366/ao-thun-own-the-run.jpg" alt="Vot Pickleball" class="card-image" style="width: 340px; height: 350px;">
+                            <div class="card-content">
+                                <h3 class="card-title">800.000₫</h3>
+                                <p class="card-description">Áo Thun Own The Run</p>
+                                <span class="card-button">MUA SẮM NGAY</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="@Url.Action("Details", "Products", new { id = 2 }, Request.Url.Scheme)" class="product-card-link">
+                        <div class="card" style="height:520px;">
+                            <img src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/963789d9441f411b839198a4a729ab20_9366/Ao_Thun_Own_The_Run_trang_IK7442_21_model.jpg" alt="Áo Thun Own The Run màu trắng" class="card-image" style="width: 340px; height: 350px;">
+                            <div class="card-content">
+                                <h3 class="card-title">800.000₫</h3>
+                                <p class="card-description">Áo Thun Own The Run</p>
+                                <span class="card-button">MUA SẮM NGAY</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="@Url.Action("Details", "Products", new { id = 3 }, Request.Url.Scheme)" class="product-card-link">
+                        <div class="card" style="height:520px;">
+                            <img src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/74cec7d15fea431c88f08f265bdf9c2a_9366/Ao_Thun_Own_The_Run_DJen_IN2961_01_laydown.jpg" alt="Áo Thun Own The Run màu đen" class="card-image" style="width: 340px; height: 350px;">
+                            <div class="card-content">
+                                <h3 class="card-title">800.000₫</h3>
+                                <p class="card-description">Áo Thun Own The Run</p>
+                                <span class="card-button">MUA SẮM NGAY</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="@Url.Action("Details", "Products", new { id = 4 }, Request.Url.Scheme)" class="product-card-link">
+                        <div class="card" style="height:520px;">
+                            <img src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/dbce314c941440bf96145769138132c8_9366/Ao_Thun_Own_The_Run_Mau_xanh_da_troi_IN8302_21_model.jpg" alt="Áo Thun Own The Run màu xanh trời" class="card-image" style="width: 340px; height: 350px;">
+                            <div class="card-content">
+                                <h3 class="card-title">800.000₫</h3>
+                                <p class="card-description">Áo Thun Own The Run</p>
+                                <span class="card-button">MUA SẮM NGAY</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="@Url.Action("Details", "Products", new { id = 5 }, Request.Url.Scheme)" class="product-card-link">
+                        <div class="card" style="height:520px;">
+                            <img src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/5118e5db5f804772a10f82c8316dd91c_9366/Ao_Thun_Own_The_Run_Xam_IP2041_01_laydown.jpg" alt="Áo Thun Own The Run màu xám" class="card-image" style="width: 340px; height: 350px;">
+                            <div class="card-content">
+                                <h3 class="card-title">800.000₫</h3>
+                                <p class="card-description">Áo Thun Own The Run</p>
+                                <span class="card-button">MUA SẮM NGAY</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="@Url.Action("Details", "Products", new { id = 6 }, Request.Url.Scheme)" class="product-card-link">
+                        <div class="card" style="height:520px;">
+                            <img src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/f0b06548384f4bb28f505d8fa0029f8b_9366/Ao_Thun_Own_The_Run_Mau_tim_IV5494_21_model.jpg" alt="Áo Thun Own The Run màu tím" class="card-image" style="width: 340px; height: 350px;">
+                            <div class="card-content">
+                                <h3 class="card-title">800.000₫</h3>
+                                <p class="card-description">Áo Thun Own The Run</p>
+                                <span class="card-button">MUA SẮM NGAY</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            class Carousel {
+                constructor() {
+                    this.carousel = document.getElementById('carousel');
+                    this.prevBtn = document.getElementById('prevBtn');
+                    this.nextBtn = document.getElementById('nextBtn');
+                    this.cards = document.querySelectorAll('.card');
+                    this.currentIndex = 0;
+                    this.cardWidth = 360; // card width + margin
+                    this.visibleCards = this.getVisibleCards();
+                    this.maxIndex = Math.max(0, this.cards.length - this.visibleCards);
+
+                    this.init();
+                }
+
+                getVisibleCards() {
+                    const containerWidth = document.querySelector('.carousel-container').offsetWidth;
+                    return Math.floor(containerWidth / this.cardWidth);
+                }
+
+                init() {
+                    this.prevBtn.addEventListener('click', () => this.prev());
+                    this.nextBtn.addEventListener('click', () => this.next());
+
+                    // Handle window resize
+                    window.addEventListener('resize', () => {
+                        this.visibleCards = this.getVisibleCards();
+                        this.maxIndex = Math.max(0, this.cards.length - this.visibleCards);
+                        this.updateCarousel();
+                    });
+
+                    // Touch/swipe support for mobile
+                    let startX = 0;
+                    let isDragging = false;
+
+                    this.carousel.addEventListener('touchstart', (e) => {
+                        startX = e.touches[0].clientX;
+                        isDragging = true;
+                    });
+
+                    this.carousel.addEventListener('touchmove', (e) => {
+                        if (!isDragging) return;
+                        e.preventDefault();
+                    });
+
+                    this.carousel.addEventListener('touchend', (e) => {
+                        if (!isDragging) return;
+                        isDragging = false;
+
+                        const endX = e.changedTouches[0].clientX;
+                        const diff = startX - endX;
+
+                        if (Math.abs(diff) > 50) {
+                            if (diff > 0) {
+                                this.next();
+                            } else {
+                                this.prev();
+                            }
+                        }
+                    });
+
+                    this.updateButtons();
+                }
+
+                prev() {
+                    if (this.currentIndex > 0) {
+                        this.currentIndex--;
+                        this.updateCarousel();
+                    }
+                }
+
+                next() {
+                    if (this.currentIndex < this.maxIndex) {
+                        this.currentIndex++;
+                        this.updateCarousel();
+                    }
+                }
+
+                updateCarousel() {
+                    const translateX = -this.currentIndex * this.cardWidth;
+                    this.carousel.style.transform = `translateX(${translateX}px)`;
+                    this.updateButtons();
+                }
+
+                updateButtons() {
+                    this.prevBtn.disabled = this.currentIndex === 0;
+                    this.nextBtn.disabled = this.currentIndex >= this.maxIndex;
+                }
+            }
+
+            // Initialize carousel when DOM is loaded
+            document.addEventListener('DOMContentLoaded', () => {
+                new Carousel();
+            });
+
+            // Add smooth scrolling and button interactions
+            document.querySelectorAll('.card-button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    // Add click animation
+                    button.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        button.style.transform = 'scale(1)';
+                    }, 150);
+
+                    // Simulate navigation (you can replace with actual navigation logic)
+                    console.log('Navigating to product page...');
+                });
+            });
+        </script>
+        <!-- end adidas card -->
+        <!-- video giữa trang -->
+        <section class="hero-section">
+            <div class="banner-containerrr banner-imgg">
+                <div class="hero-content">
+                    <div class="content-wrapper">
+                        <h1 class="main-title" style="font-size: 15px; margin-right: 70%; border: 2px solid #000; background: #fff; color: #000; font-weight: bold;">
+                            LIGHT THE BAY
+                        </h1>
+
+                        <p class="subtitle" style="font-size: 15px; border: 2px solid #000;background: #fff;color: #000;font-weight: bold;">
+                            Sẵn sàng tăng tốc cùng bộ sưu tập adidas x Mercedes
+                        </p>
+
+                        <button class="cta-button" onclick="handleClick('@Url.Action("Index", "Products")')">
+                            <span>Mua ngay →</span>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Carousel 1 -->
+
+        <section id="carousel-1"
+                 data-title="ICONIC KITS. TIMELESS LEGACY."
+                 data-products='[
+
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/global_aclubs_football_fw25_LFC_Third_Onsite_TC_d_894fb15879.jpg","price":"Liverpool FC 25/26 Third kit","desc":"Những huyền thoại tái hợp trong sắc xanh","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/global_aclubs_3rd_manu_football_ss25_launch_hp_navigation_card_teaser_d_2723d47882.jpg","price":"ManUtd 25/26 Third Kit","desc":"Một biểu tượng bóng đá được cải biên","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/TC_juventus_321ebaad14.jpg","price":"Juventus 25/26 Third Kit","desc":"Nâng ly chúc mừng Bianconeri","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/Real_Madrid_3_RD_kit_e1adf19826.png","price":"Real Madrid 25/26 Third Kit","desc":"Màu xanh biểu tượng. Madrid trường tồn.","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/global_aclubs_third_arsenal_football_ss25_launch_Onsite_TC_d_a67c2c3a5e.jpgg","price":"Áo Đấu Thứ Ba Arsenal 25/26","desc":"Dư âm Highbury","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/global_aclubs_third_fcb_football_ss25_launch_Onsite_TC_d_1ecdb94763.jpg","price":"FC Bayern 25/26 Third Kit","desc":"Sinh ra từ những chiến thắng","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/Juventus_Away_e3c0c1624f.png","price":"Juventus 25/26 Away Kit","desc":"Historic stripes, stitched with pride.","height":"450px"}
+         ]'></section>
+
+        <!-- Carousel 2 -->
+        <section id="carousel-2"
+                 data-title="WHAT'S HOT"
+                 data-products='[
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/global_adizero_goukana_fw25_launch_catlp_navigation_card_teaser_d_91ab5fb71d.jpg","price":"CLOT Taekwondo by Caroline Hú","desc":"Thanh thoát nhưng kiên định.","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/TC_1050x1400_Noah_YGT_Oct_cfe2189391.jpg","price":"Lightblaze","desc":"Nhanh như ánh sáng — giờ đây với những gam màu mới.","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/TC_song_for_the_mute_bfcadc07c6.png","price":"ADIZERO ARUKU","desc":"Built for the pace of now.","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/global_caroline_hu_x_edison_chen_originals_fw25_launch_row_hp_navigation_card_teaser_d_3864b2f290.jpg","price":"Coral Blaze Pack","desc":"F50, Predator và Copa với phối màu mới đầy nổi bật.","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/global_brain_dead_barricade_drop_4_originals_fw25_launch_hp_card_teaser_d_a3a05a9772.jpg","price":"ADIDAS Z.N.E.","desc":"Designed for play, pause and in between.","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/global_sporty_rich_drop_9_run_club_originals_fw25_launch_hp_card_teaser_d_785f0c6cc3.jpg","price":"Glory for athletes","desc":"9 gold medals. 12 gold medals. 11 bronze medals. Tokyo 2025 with Adizero.","height":"450px"},
+           {"img":"https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_800,w_800/global_adizero_aruku_originals_fw25_launch_hp_navigation_card_teaser_asset_d_9dd9dbe76f.jpg","price":"Sporty & Rich","desc":"Hội ngộ sau giờ chạy","height":"450px"}
+         ]'></section>
+
+        <!-- Mục lục -->
+        <section class="petronas-section">
+            <h1 class="section-title">Adidas x Mercedes-AMG Petronas F1</h1>
+
+            <div class="product-grid">
+                <div class="product-card" onclick="window.location.href='../Products/Index'">
+                    <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/global_mercedes_motorsport_ss25_launch_catlp_navigation_category_clothing_d_b73075d472.jpg" alt="Quần áo Mercedes-AMG Petronas F1">
+                    <div class="product-label">Quần áo</div>
+                </div>
+
+                <div class="product-card" onclick="window.location.href='.../Products/Index'">
+                    <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/global_mercedes_motorsport_ss25_launch_catlp_navigation_category_footwear_d_28267e531d.jpg" alt="Giày Mercedes-AMG Petronas F1">
+                    <div class="product-label">Giày</div>
+                </div>
+
+                <div class="product-card" onclick="window.location.href='../Products/Index'">
+                    <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/global_mercedes_motorsport_ss25_launch_catlp_navigation_category_accessories_d_4b82e8d5c6.jpg" alt="Phụ kiện Mercedes-AMG Petronas F1">
+                    <div class="product-label">Phụ kiện</div>
+                </div>
+
+                <div class="product-card" onclick="window.location.href='../Products/Index">
+                    <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/global_mercedes_motorsport_ss25_launch_catlp_navigation_category_all_motorsport_d_ac41c7cd6c.jpg" alt="Tất cả sản phẩm Motorsport">
+                    <div class="product-label">Tất cả các sản phẩm Motorsport</div>
+                </div>
+            </div>
+
+            <nav class="category-navigation">
+                <div class="category-column">
+                    <h3 style=" margin-left:12%;">Giày</h3>
+                    <ul>
+                        <li><a href="~/Products/Index">giày chạy bộ</a></li>
+                        <li><a href="~/Products/Index"">giày đá bóng</a></li>
+                        <li><a href="~/Products/Index">giày bóng rổ</a></li>
+                        <li><a href="~/Products/Index">giày tập gym</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-column">
+                    <h3 style=" margin-left:12%;">Quần</h3>
+                    <ul>
+                        <li><a href="~/Products/Index">quần chạy bộ</a></li>
+                        <li><a href="~/Products/Index">quần bóng đá</a></li>
+                        <li><a href="~/Products/Index">quần short bóng rổ</a></li>
+                        <li><a href="~/Products/Index">quần dùi tập gym</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-column">
+                    <h3 style=" margin-left:12%;">Áo</h3>
+                    <ul>
+                        <li><a href="~/Products/Index">áo singlet chạy bộ</a></li>
+                        <li><a href="~/Products/Index">áo đấu bóng đá</a></li>
+                        <li><a href="~/Products/Index">áo jersey bóng rổ</a></li>
+                        <li><a href="~/Products/Index">áo tập gym</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-column">
+                    <h3 style=" margin-left:12%;">Phụ kiện</h3>
+                    <ul>
+                        <li><a href="~/Products/Index">tất chạy bộ</a></li>
+                        <li><a href="~/Products/Index">găng tay thủ môn</a></li>
+                        <li><a href="~/Products/Index">mũ lưỡi trai</a></li>
+                        <li><a href="~/Products/Index">áo ngực thể thao</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+        <script>
+            function navigateTo(category) {
+                console.log('[v0] Navigating to category:', category);
+                // Add navigation logic here
+                alert(`Điều hướng đến: ${category}`);
+            }
+        </script>
+
+        <!-- Script -->
+        <script src="Scripts/Trangchu.js"></script>
+
+        <!-- footer  -->
+        <div id="footer-placeholder" aria-hidden="true"></div>
+
+        <script>
+            (function loadFooter() {
+                const placeholder = document.getElementById('footer-placeholder');
+                if (!placeholder) return;
+
+                const partialPath = 'partials/footer.html';
+                const cssPath = 'partials/footer.css';
+                const jsPath = 'partials/footer.js'; // nếu có file JS cho footer
+
+                fetch(partialPath)
+                    .then(resp => {
+                        if (!resp.ok) throw new Error('Footer partial not found: ' + resp.status);
+                        return resp.text();
+                    })
+                    .then(html => {
+                        // Insert HTML
+                        placeholder.innerHTML = html;
+                        placeholder.removeAttribute('aria-hidden');
+
+                        // Load CSS nếu tồn tại
+                        fetch(cssPath, { method: 'HEAD' })
+                            .then(r => {
+                                if (r.ok) {
+                                    const link = document.createElement('link');
+                                    link.rel = 'stylesheet';
+                                    link.href = cssPath;
+                                    document.head.appendChild(link);
+                                }
+                            });
+
+                        // Load JS nếu tồn tại
+                        fetch(jsPath, { method: 'HEAD' })
+                            .then(r => {
+                                if (r.ok) {
+                                    const s = document.createElement('script');
+                                    s.src = jsPath;
+                                    s.defer = true;
+                                    document.body.appendChild(s);
+                                }
+                            });
+                    })
+                    .catch(err => {
+                        console.warn('Failed to load footer partial:', err);
+                    });
+            })();
+        </script>
+
+        <script>
+            class BannerButton extends HTMLElement {
+                connectedCallback() {
+                    this.innerHTML = `
+                                <div class="banner-button"
+                                    ">
+                                    <p class="banner-title"
+                                       style="opacity: 0; margin-right: 300px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000;">
+                                        LIGHT THE BAY
+                                    </p>
+                                    <p class="banner-subtitle"
+                                       style="opacity: 0; margin-bottom: 20px; font-size: 15px; background: #fff; color: #000; font-weight: bold; border: 2px solid #000;">
+                                        Sẵn sàng tăng tốc cùng bộ sưu tập adidas x Mercedes-<br />AMG PETRONAS F1 Team
+                                    </p>
+                                    <p href="../Product/Product-nam.html" class="btn" style="margin-right: 300px;">
+                                        Mua ngay →
+                                    </p>
+                                </div>
+
+                                                            `;
+                }
+            }
+            customElements.define('banner-button', BannerButton);
+        </script>
+
+
+        <!-- ✅ Script clone template + gắn logic carousel -->
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const template = document.getElementById("adidas-card-template");
+
+                document.querySelectorAll("section[id^='carousel-']").forEach((section, index) => {
+                    const clone = template.content.cloneNode(true);
+
+                    // Gắn tiêu đề
+                    clone.querySelector(".section-title").textContent = section.dataset.title;
+
+                    // Parse data sản phẩm
+                    const products = JSON.parse(section.dataset.products);
+                    const wrapper = clone.querySelector(".carousel-wrapper");
+
+                    // Tạo card động
+                    products.forEach(p => {
+                        // 1. Tạo thẻ <a> bọc ngoài
+                        const cardLink = document.createElement("a");
+                        cardLink.className = "product-card-link";
+
+                        // 2. Đặt link (tạm thời vẫn dùng link cũ)
+                        //    (Xem cách tối ưu tốt hơn ở bên dưới)
+                        cardLink.href = "../Products/Index";
+
+                        // 3. Tạo HTML bên trong thẻ <a> (chứa <div class="card">)
+                        cardLink.innerHTML = `
+                            <div class="card" style="height:650px;">
+                                <img src="${p.img}" class="card-image" style="height: ${p.height || '380px'}; object-fit: cover;" />
+                                <div class="card-content">
+                                    <h3 class="card-title">${p.price}</h3>
+                                    <p class="card-description">${p.desc}</p>
+            
+                                    <span class="card-button">Mua ngay</span>
+                                </div>
+                            </div>
+                        `;
+
+                        // 5. Thêm thẻ <a> (đã chứa card) vào carousel
+                        wrapper.appendChild(cardLink);
+                    });
+
+
+                    // Gắn vào DOM
+                    section.appendChild(clone);
+
+                    // 🎯 Gắn logic carousel RIÊNG CHO MỖI SECTION
+                    const carousel = section.querySelector(".carousel-wrapper");
+                    const prevBtn = section.querySelector(".nav-button.prev");
+                    const nextBtn = section.querySelector(".nav-button.next");
+                    const cards = section.querySelectorAll(".card");
+                    let currentIndex = 0;
+                    const cardWidth = 360;
+                    const visibleCards = Math.floor(section.offsetWidth / cardWidth);
+                    const maxIndex = Math.max(0, cards.length - visibleCards);
+
+                    function updateCarousel() {
+                        carousel.style.transform = `translateX(${-currentIndex * cardWidth}px)`;
+                        prevBtn.disabled = currentIndex === 0;
+                        nextBtn.disabled = currentIndex >= maxIndex;
+                    }
+
+                    prevBtn.addEventListener("click", () => {
+                        if (currentIndex > 0) {
+                            currentIndex--;
+                            updateCarousel();
+                        }
+                    });
+
+                    nextBtn.addEventListener("click", () => {
+                        if (currentIndex < maxIndex) {
+                            currentIndex++;
+                            updateCarousel();
+                        }
+                    });
+
+                    updateCarousel();
+                });
+            });
+            function handleClick(url) {
+                // Ví dụ: Chuyển người dùng đến trang đó
+                window.location.href = url;
+            }
+        </script>
+
+    </body>
+</html>
+

@@ -1,0 +1,99 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .cart-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+            .cart-item img {
+                max-width: 100px;
+            }
+
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+
+        .summary {
+            background: #f8f9fa;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .checkout-btn {
+            background: #000;
+            color: #fff;
+            width: 100%;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>XIN CHÀO</h2>
+        <h3>GIỎ HÀNG CỦA BẠN</h3>
+        <p>TỔNG CỘNG (1 sản phẩm) 970.000đ</p>
+        <p>Các mặt hàng trong giỏ hàng của bạn được đặt trước — hãy kiểm tra ngay để đặt hàng.</p>
+
+        <div class="cart-item">
+            <img src="~/images/messi-shirt.jpg" alt="Áo Thun In Hình Messi" class="float-start me-3">
+            <div>
+                <h5>Áo Thun In Hình Messi</h5>
+                <p>Kích cỡ: S</p>
+                <p>900.000đ <span class="text-muted">x 1</span></p>
+            </div>
+            <button class="btn btn-danger btn-sm remove-btn">X</button>
+        </div>
+
+        <h3>GỢI Ý CHO BẠN</h3>
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <img src="~/images/kid-top.jpg" alt="Áo Tracktop Disney Minnie Mouse" class="img-fluid">
+                <p>Áo Tracktop Disney Minnie Mouse</p>
+                <p>1.250.000đ <span class="text-muted">Giảm: -20%</span></p>
+            </div>
+            <div class="col-md-3 mb-3">
+                <img src="~/images/sandal.jpg" alt="Sandal di nục trè em Sportswear" class="img-fluid">
+                <p>Sandal di nục trè em Sportswear</p>
+                <p>880.000đ <span class="text-muted">Giảm: -20%</span></p>
+            </div>
+            <div class="col-md-3 mb-3">
+                <img src="~/images/polo.jpg" alt="Áo Polo Piêu Club Mu Stripes And Pines" class="img-fluid">
+                <p>Áo Polo Piêu Club Mu Stripes And Pines</p>
+                <p>1.200.000đ <span class="text-muted">Giảm: -20%</span></p>
+            </div>
+            <div class="col-md-3 mb-3">
+                <img src="~/images/cap.jpg" alt="Mũ Performance" class="img-fluid">
+                <p>Mũ Performance</p>
+                <p>650.000đ <span class="text-muted">Giảm: -20%</span></p>
+            </div>
+        </div>
+
+        <div class="summary">
+            <h4>TỔM TẮT ĐƠN HÀNG</h4>
+            <p>1 sản phẩm: 900.000đ</p>
+            <p>Giảm hàng: 70.000đ</p>
+            <p>Tổng cộng: 970.000đ (Đã bao gồm thuế 71.852đ)</p>
+            <label><input type="checkbox"> Sử dụng mã khuyễn mãi</label>
+        </div>
+
+        <a href="#" class="btn checkout-btn">THANH TOÁN <span>&rarr;</span></a>
+        <p>Phương thức thanh toán bằng thẻ tín dụng Visa/Mastercard</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

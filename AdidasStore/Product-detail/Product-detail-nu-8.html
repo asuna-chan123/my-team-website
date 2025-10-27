@@ -1,0 +1,682 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adidas </title>
+
+    <!-- Font chữ -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- header css must come after Tailwind so its rules override Tailwind utilities -->
+    <link rel="stylesheet" href="../partials/header.css" />
+
+    <!-- Your page CSS -->
+    <link rel="stylesheet" href="../Content/Product-detail-Tshirt.css">
+
+    <style>
+        :root {
+            --bg: #ffffff;
+            --o: #000000;
+            --y: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg);
+        }
+        .bento-card.logo {
+            grid-area: 1 / 2 / 2 / 4;
+            background-image: linear-gradient(-225deg, #fffeff 0%, #FF6969 100%);
+        }
+
+            .bento-card.logo h2 {
+                color: #ab4343;
+            }
+
+        .bento-card.inbox {
+            background-image: linear-gradient(-225deg, #ffffff 0%, #FF6969 100%);
+        }
+
+            .bento-card.inbox h3 {
+                color: #ab4343;
+            }
+    </style>
+
+</head>
+<body>
+
+    <!-- header placeholder: will be replaced by /partials/header.html -->
+    <div id="header-placeholder" aria-hidden="true"></div>
+
+    <script>
+        (function loadHeader() {
+            const placeholder = document.getElementById('header-placeholder');
+            if (!placeholder) return;
+
+            const partialPath = '../partials/header.html';
+            const cssPath = '../partials/header.css';
+            const jsPath = '../partials/header.js';
+
+            fetch(partialPath)
+                .then(resp => {
+                    if (!resp.ok) throw new Error('Header partial not found: ' + resp.status);
+                    return resp.text();
+                })
+                .then(html => {
+                    // Insert HTML
+                    placeholder.innerHTML = html;
+                    placeholder.removeAttribute('aria-hidden');
+
+                    // Fix relative asset paths inside the injected partial so they resolve relative to the partial file
+                    // This prevents icons/images in header.html (e.g. "partials/iconheader/...") from resolving relative
+                    // to the calling page (Product-detail folder) which causes broken images.
+                    try {
+                        const partialBase = partialPath.replace(/[^\/]+$/, ''); // e.g. "../partials/"
+
+                        // Adjust src and href attributes that are relative (not absolute/data/# or starting with / or protocol)
+                        placeholder.querySelectorAll('[src], [href]').forEach(el => {
+                            // Remove any stylesheet link inside the partial (we load css separately below)
+                            if (el.tagName.toLowerCase() === 'link' && el.getAttribute('rel') === 'stylesheet') {
+                                el.remove();
+                                return;
+                            }
+
+                            const attr = el.hasAttribute('src') ? 'src' : 'href';
+                            const val = el.getAttribute(attr);
+                            if (!val) return;
+                            // skip absolute URLs, protocol-relative, root-relative, data URIs and anchors
+                            if (/^(https?:|\/\/|\/|data:|#)/i.test(val)) return;
+
+                            // If the partial's markup already used "partials/..." (intended to be relative to root partials folder),
+                            // normalize by removing the leading "partials/" then prefix with partialBase so both top-level pages
+                            // and pages in subfolders will resolve correctly.
+                            let newVal;
+                            if (val.startsWith('partials/')) {
+                                newVal = partialBase + val.replace(/^partials\//, '');
+                            } else {
+                                newVal = partialBase + val;
+                            }
+
+                            el.setAttribute(attr, newVal);
+                        });
+                    } catch (e) {
+                        console.warn('Failed to rewrite partial asset paths', e);
+                    }
+
+                    // Load CSS if present (non-blocking)
+                    fetch(cssPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const link = document.createElement('link');
+                                link.rel = 'stylesheet';
+                                link.href = cssPath;
+                                document.head.appendChild(link);
+                            }
+                        })
+                        .catch(() => { /* ignore missing css */ });
+
+                    // Load JS if present (append after HTML so it can attach handlers)
+                    fetch(jsPath, { method: 'HEAD' })
+                        .then(r => {
+                            if (r.ok) {
+                                const s = document.createElement('script');
+                                s.src = jsPath;
+                                s.defer = true;
+                                document.body.appendChild(s);
+                            }
+                        })
+                        .catch(() => { /* ignore missing js */ });
+                })
+                .catch(err => {
+                    console.warn('Failed to load header partial:', err);
+                    // Optional: fallback UI
+                    // placeholder.innerHTML = '<!-- header load failed -->';
+                });
+        })();
+    </script>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="wrap">
+            <div class="adidas-container">
+                <div class="adidas">
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                </div>
+                <div class="text">adidas</div>
+            </div>
+        </div>
+    </div>
+
+    <body>
+        <div class="container">
+            <nav class="breadcrumb" style="margin-top:100px;">
+                <a href="#">Trang chủ</a>
+                <span>/</span>
+                <a href="#">Nữ</a>
+                <span>/</span>
+                <a href="#">Quần áo</a>
+                <span>/</span>
+                <span>Áo Thun Dài Tay Runners (Unisex)</span>
+            </nav>
+
+            <!--1-->
+            <div class="product-section">
+                <div class="image-gallery">
+                    <div class="main-image">
+                        <img id="mainImage" src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/d2f499e603f5460facc91a5663dacbda_9366/Ao_Thun_Dai_Tay_Runners_Unisex_Ngoc_lam_JN6373_HM1.jpg?height=600&width=600" alt="Áo Thun Own The Run">
+                    </div>
+
+                    <div class="thumbnail-grid" id="thumbnailGrid">
+                        <div class="thumbnail active" onclick="changeImage(this, '/placeholder.svg?height=600&width=600')">
+                            <img src=https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/78d4bf6f18774a0097d5887670839bdb_9366/Ao_Thun_Dai_Tay_Runners_Unisex_Ngoc_lam_JN6373_HM3_hover.jpg?height=200&width=200" alt="View 1">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage(this, '/placeholder.svg?height=600&width=600')">
+                            <img src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/e6dab189898747d6a2943f9767e8b3aa_9366/Ao_Thun_Dai_Tay_Runners_Unisex_Ngoc_lam_JN6373_HM4.jpg?height=200&width=200" alt="View 2">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage(this, '/placeholder.svg?height=600&width=600')">
+                            <img src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/ef80d9265a7942d8af94254ea6cc8f76_9366/Ao_Thun_Dai_Tay_Runners_Unisex_Ngoc_lam_JN6373_HM5.jpg?height=200&width=200" alt="View 3">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage(this, '/placeholder.svg?height=600&width=600')">
+                            <img src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/4fb21ad96d0b48478035664cb951aa24_9366/Ao_Thun_Dai_Tay_Runners_Unisex_Ngoc_lam_JN6373_HM6.jpg?height=200&width=200" alt="View 4">
+                        </div>
+
+
+                        <div class="thumbnail hidden" onclick="changeImage(this, '/placeholder.svg?height=600&width=600')">
+                            <img src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/dc966a5b7feb491c851d16c4fe999b1a_9366/Ao_Thun_Dai_Tay_Runners_Unisex_Ngoc_lam_JN6373_HM7.jpg?height=200&width=200" alt="View 5">
+                        </div>
+                    </div>
+
+                    <a href="#" class="store-link">
+                        <span>📍</span>
+                        <span>Mua ở trang ở gần đây</span>
+                    </a>
+
+                    <button class="image-dropdown" id="imageDropdown" onclick="toggleImageGallery()">
+                        Hiện Thêm
+                        <span class="dropdown-icon">▼</span>
+                    </button>
+                </div>
+
+                <!---11-->
+                <div class="product-info">
+                    <div class="product-header">
+                        <div class="product-category">Nữ • Chạy</div>
+                        <h1 class="product-title">Áo Thun Dài Tay Runners (Unisex)</h1>
+                        <div class="product-price">1.300.000₫</div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <span>347</span>
+                        </div>
+                    </div>
+
+
+                    <div class="size-section">
+                        <div class="size-header">
+                            <div class="section-label">Kích cỡ</div>
+                            <a class="size-guide">Hướng dẫn chọn kích cỡ</a>
+                        </div>
+                        <div class="size-grid">
+                            <button class="size-option">XXS</button>
+                            <button class="size-option">XS</button>
+                            <button class="size-option">S</button>
+                            <button class="size-option">M</button>
+                            <button class="size-option active">L</button>
+                            <button class="size-option">XL</button>
+                            <button class="size-option">XXL</button>
+                            <button class="size-option">XXXL</button>
+                        </div>
+                        <div class="stock-info">
+                            <span>ℹ️</span>
+                            <span>Đang hết hàng. </span>
+                        </div>
+                    </div>
+
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary">
+                            <span>🛒</span>
+                            THÊM VÀO GIỎ HÀNG
+                        </button>
+                        <button class="btn btn-secondary">
+                            TÌM MẪU TƯƠNG TỰ
+                            <span>→</span>
+                        </button>
+                    </div>
+
+                    <button class="btn-icon">
+                        <span>♡</span>
+                    </button>
+                </div>
+            </div>
+
+            Accordion Sections
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Đánh giá (1257)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            <li>This performance shirt is widely praised for its excellent breathability, moisture-wicking, and non-restrictive comfort, even during intense workouts.</li>
+                            <li>The lightweight, quick-drying fabric keeps the wearer cool and dry.</li>
+                            <li>Many customers report this as their go-to workout shirt, citing its superior comfort and functionality.</li>
+                            <li>While a few noted minor fit issues, the overall sentiment is very positive, with the product delivering on quality and value.</li>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Mô tả</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            Áo chạy bộ với các chi tiết phản quang.
+                            Tỏa sáng trên đường chạy cùng chiếc áo thun này. Khi bạn chinh phục từng dặm đường, công nghệ AEROREADY hút ẩm nhanh chóng, giữ cho bạn khô ráo và tập trung vào mục tiêu.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Thông tin chi tiết</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Chất liệu: 100% Polyester tái chế</li>
+                            <li>Công nghệ AEROREADY</li>
+                            <li>Thiết kế Regular fit</li>
+                            <li>Logo Adidas phản quang</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Chăm sóc</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            Wash with like colors
+                        </p>
+                        <p>
+                            Use mild detergent only
+                        </p>
+                        <p>
+                            Wash inside out
+                        </p>
+                        <p>
+                            Do not use fabric softener
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="carousel-section">
+
+                <div class="carousel-section">
+                    <h2 class="section-title">NHỮNG NGƯỜI KHÁC CŨNG ĐÃ MUA</h2>
+                    <div class="carousel-container">
+                        <button class="carousel-nav prev" onclick="scrollCarousel('bought', -1)">‹</button>
+                        <div class="carousel" id="boughtCarousel">
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/293b91c92dcd48e89ac8411e1a8dbba2_9366/Giay_Samba_JP_nau_JR0962_00_plp_standard.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">3.000.000₫</div>
+                                    <div class="product-card-name">Giày Samba JP</div>
+                                    <div class="product-card-category">Originals</div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/258561265aeb41cb82b9d2afc7c220f2_9366/Giay_Adizero_Adios_Pro_4_trang_JP6397_HM1.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">4.900.000₫</div>
+                                    <div class="product-card-name">Giày Adizero Adios Pro 4</div>
+                                    <div class="product-card-category">Performance</div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/351662c4d3af42d4baac179286d6e6da_9366/Quan_Short_Chay_Bo_Xe_Gau_Adizero_Essentials_DJen_IM8585_HM1.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">800.000₫</div>
+                                    <div class="product-card-name">Quần Short Chạy Bộ 2M Cầu Adizero</div>
+                                    <div class="product-card-category">Performance</div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/e17f7039e7e94511b38be751bf921501_9366/Quan_Short_2_Trong_1_CLIMACOOL_Own_the_Run_DJen_JM5400_000_plp_model.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">1.600.000₫</div>
+                                    <div class="product-card-name">Quần Short Trang Lý ULTRABOOST</div>
+                                    <div class="product-card-category">Own the Run</div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/96d873b3322b42a3afe56931da8f56be_9366/Ao_DJau_San_Khach_Liverpool_FC_Mua_Giai_25-26_trang_JV6487_000_plp_model.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">2.200.000₫</div>
+                                    <div class="product-card-name">Áo Đấu Sân Khách Liverpool FC Mùa Giải 25/26</div>
+                                    <div class="product-card-category">Originals</div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/73f271fa2fb24c4cbd2ce0063da51a5a_9366/Giay_Ultraboost_5_DJen_ID8812_HM1.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">4.900.000₫</div>
+                                    <div class="product-card-name">Giày Ultraboost 5</div>
+                                    <div class="product-card-category">Originals</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-nav next" onclick="scrollCarousel('bought', 1)">›</button>
+                    </div>
+                </div>
+
+                <div class="carousel-section">
+                    <h2 class="section-title">BẠN CÓ THỂ SẼ THÍCH</h2>
+                    <div class="carousel-container">
+                        <button class="carousel-nav prev" onclick="scrollCarousel('like', -1)">‹</button>
+                        <div class="carousel" id="likeCarousel">
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/ee95c727a4e640b98db895de64884e50_9366/Ao_Thun_Run_It_DJen_IL7235_HM1.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">800.000₫</div>
+                                    <div class="product-card-name">Áo Thun Run It</div>
+                                    <div class="product-card-category">Performance</div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/c36eb50a77494f46827a309dc20984d4_9366/Ao_Singlet_Chay_Bo_Adizero_Essentials_DJen_IM8586_HM1.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">700.000₫</div>
+                                    <div class="product-card-name">Áo Singlet Chạy Bộ Adizero</div>
+                                    <div class="product-card-category">Essentials</div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/0ef4f63e9e8d4108b3cffd5a89e560b4_9366/Ao_Thun_Runners_Unisex_mau_xanh_la_JN6372_HM1.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">1.000.000₫</div>
+                                    <div class="product-card-name">Áo Thun Runners (Unisex)</div>
+                                    <div class="product-card-category">Performance</div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <div class="sale-badge">-2.500.000₫</div>
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/62f5eed4ed3643a68eb7fa24f8ece723_9366/Ao_Thun_Adi365_Running_Essentials_Brand_Love_Xam_JM5739_000_plp_model.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">2.500.000₫</div>
+                                    <div class="product-card-name">Áo Khoác Chạy Bộ Own the</div>
+                                    <div class="product-card-category">Performance</div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/ee95c727a4e640b98db895de64884e50_9366/Ao_Thun_Run_It_DJen_IL7235_HM1.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">800.000₫</div>
+                                    <div class="product-card-name">Áo Thun Run It</div>
+                                    <div class="product-card-category">Performance</div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/c36eb50a77494f46827a309dc20984d4_9366/Ao_Singlet_Chay_Bo_Adizero_Essentials_DJen_IM8586_HM1.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">700.000₫</div>
+                                    <div class="product-card-name">Áo Singlet Chạy Bộ Adizero</div>
+                                    <div class="product-card-category">Essentials</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-nav next" onclick="scrollCarousel('like', 1)">›</button>
+                    </div>
+                </div>
+
+                <div class="carousel-section">
+                    <h2 class="section-title">HOÀN THIỆN PHONG CÁCH</h2>
+                    <div class="carousel-container">
+                        <button class="carousel-nav prev" onclick="scrollCarousel('style', -1)">‹</button>
+                        <div class="carousel" id="styleCarousel">
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <div class="sale-badge">-2.500.000₫</div>
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/6d404106ab854280bda6e7ae5bf2d4a0_9366/Ao_Khoac_Gap_Gon_3_Soc_Own_the_Run_trang_JD7760_000_plp_model.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">2.500.000₫</div>
+                                    <div class="product-card-name">Áo Khoác Chạy Bộ Own the</div>
+                                    <div class="product-card-category">Performance</div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/6739ddc25daa4df3875e8497ca3f01bd_9366/Quan_Short_Own_The_Run_Mau_xanh_da_troi_JX2247_000_plp_model.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">900.000₫</div>
+                                    <div class="product-card-name">Quần Short Own The Run</div>
+                                    <div class="product-card-category">Performance</div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/b15328d08acf4432a803ad64028bf66b_9366/Giay_Chay_Bo_Runfalcon_5_trang_IH7757_HM1.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">3.200.000₫</div>
+                                    <div class="product-card-name">Giày Chạy Bộ Revolution 5</div>
+                                    <div class="product-card-category">Performance</div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-card-image">
+                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/50991a31639648e5829c560b927e1087_9366/Tui_Chay_Bo_Nhieu_Ngan_DJen_IT2043_00_plp_standard.jpg?height=300&width=300" alt="Product">
+                                    <button class="wishlist-btn">♡</button>
+                                </div>
+                                <div class="product-card-info">
+                                    <div class="product-card-price">600.000₫</div>
+                                    <div class="product-card-name">Túi Chạy Bộ Ngoài Ngực</div>
+                                    <div class="product-card-category">Accessories</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-nav next" onclick="scrollCarousel('style', 1)">›</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Script -->
+            <script src="../Scripts/Product-detail-Yeezy-Boost.js"></script>
+            <!-- footer placeholder -->
+            <div id="footer-placeholder" aria-hidden="true"></div>
+
+            <script>
+                (function loadFooter() {
+                    const placeholder = document.getElementById('footer-placeholder');
+                    if (!placeholder) return;
+
+                    const partialPath = '../partials/footer.html';
+                    const cssPath = '../partials/footer.css';
+                    const jsPath = '../partials/footer.js'; // nếu có file JS cho footer
+
+                    fetch(partialPath)
+                        .then(resp => {
+                            if (!resp.ok) throw new Error('Footer partial not found: ' + resp.status);
+                            return resp.text();
+                        })
+                        .then(html => {
+                            // Insert HTML
+                            placeholder.innerHTML = html;
+                            placeholder.removeAttribute('aria-hidden');
+
+                            // Load CSS nếu tồn tại
+                            fetch(cssPath, { method: 'HEAD' })
+                                .then(r => {
+                                    if (r.ok) {
+                                        const link = document.createElement('link');
+                                        link.rel = 'stylesheet';
+                                        link.href = cssPath;
+                                        document.head.appendChild(link);
+                                    }
+                                });
+
+                            // Load JS nếu tồn tại
+                            fetch(jsPath, { method: 'HEAD' })
+                                .then(r => {
+                                    if (r.ok) {
+                                        const s = document.createElement('script');
+                                        s.src = jsPath;
+                                        s.defer = true;
+                                        document.body.appendChild(s);
+                                    }
+                                });
+                        })
+                        .catch(err => {
+                            console.warn('Failed to load footer partial:', err);
+                        });
+                })();
+            </script>
+            <script>
+                // Image Gallery
+                function changeImage(thumbnail, imageSrc) {
+                    document.getElementById('mainImage').src = imageSrc;
+
+                    // Update active thumbnail
+                    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                    thumbnail.classList.add('active');
+                }
+
+                function toggleImageGallery() {
+                    const thumbnailGrid = document.getElementById('thumbnailGrid');
+                    const dropdownBtn = document.getElementById('imageDropdown');
+
+                    thumbnailGrid.classList.toggle('expanded');
+                    dropdownBtn.classList.toggle('expanded');
+                }
+                // </CHANGE>
+
+                // Accordion
+                function toggleAccordion(header) {
+                    const item = header.parentElement;
+                    const isActive = item.classList.contains('active');
+
+                    // Close all accordion items
+                    document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                }
+
+                // Size Selection
+                document.querySelectorAll('.size-option').forEach(option => {
+                    option.addEventListener('click', function () {
+                        if (!this.classList.contains('out-of-stock')) {
+                            document.querySelectorAll('.size-option').forEach(o => o.classList.remove('active'));
+                            this.classList.add('active');
+                        }
+                    });
+                });
+
+                // Color Selection
+                document.querySelectorAll('.color-option').forEach(option => {
+                    option.addEventListener('click', function () {
+                        document.querySelectorAll('.color-option').forEach(o => o.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
+
+                // Carousel Scroll
+                function scrollCarousel(carouselId, direction) {
+                    const carousel = document.getElementById(carouselId + 'Carousel');
+                    const scrollAmount = carousel.offsetWidth * 0.8;
+                    carousel.scrollBy({
+                        left: direction * scrollAmount,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Wishlist Toggle
+                document.querySelectorAll('.wishlist-btn').forEach(btn => {
+                    btn.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        this.innerHTML = this.innerHTML === '♡' ? '♥' : '♡';
+                    });
+                });
+            </script>
+
+</body>
+</html>

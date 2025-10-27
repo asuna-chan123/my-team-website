@@ -1,0 +1,1135 @@
+﻿@font-face {
+    font-family: "Bogart-Semibold";
+    src: url("https://assets.codepen.io/383755/bogart-semibold.woff2") format("woff2");
+}
+
+.banner-container {
+    margin-top: 5%;
+}
+
+.banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 📱 Cho mobile (màn hình < 768px) */
+@media (max-width: 768px) {
+    .banner-img {
+        padding-top: 10%;
+        width: 100%; /* vẫn full chiều ngang */
+        height: 720px; /* đặt chiều cao cố định cho mobile */
+        object-fit: cover; /* cắt ảnh vừa khung mà không méo */
+    }
+}
+
+/* 📱 Cho tablet (769px -> 1080px) */
+@media (min-width: 769px) and (max-width: 1080px) {
+    .banner-img {
+        padding-top: 5%;
+        width: 100%; /* vẫn full chiều ngang */
+        height: 700px; /* đặt chiều cao cố định cho tablet */
+        object-fit: cover; /* cắt ảnh vừa khung mà không méo */
+    }
+}
+
+@media (min-width: 1080px) and (max-width: 1600px) {
+    .banner-img {
+        padding-top: 2%;
+        width: 100%; /* vẫn full chiều ngang */
+        height: 700px; /* đặt chiều cao cố định cho tablet */
+        object-fit: cover; /* cắt ảnh vừa khung mà không méo */
+    }
+}
+
+.banner-button {
+    position: absolute;
+    top: 90%;
+    left: 20px; /* cách trái 20px */
+    z-index: 10; /* đảm bảo nằm trên ảnh */
+}
+
+    .banner-button .btn {
+        background: #fff;
+        color: #000;
+        padding: 12px 24px;
+        text-decoration: none;
+        font-weight: bold;
+        border: 2px solid #000;
+        transition: 0.3s;
+    }
+
+        .banner-button .btn:hover {
+            background: #000;
+            color: #fff;
+        }
+
+@media (max-width: 768px) {
+    .banner-button {
+        top: 75%;
+        left: 25px;
+    }
+
+        .banner-button .btn {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+}
+
+@media (min-width: 760px) and (max-width: 1080px) {
+    .banner-button {
+        top: 75%;
+        left: 25px;
+    }
+
+        .banner-button .btn {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+}
+
+@media (min-width: 1080px) and (max-width: 1600px) {
+    .banner-button {
+        top: 75%;
+        left: 25px;
+    }
+
+        .banner-button .btn {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.banner-title {
+    animation: slideIn 1s ease-out forwards;
+    animation-delay: 7.7s;
+}
+
+.banner-subtitle {
+    animation: slideIn 1s ease-out forwards;
+    animation-delay: 7.9s;
+}
+
+.btn {
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: slideIn 1s ease-out forwards;
+    animation-delay: 8.1s;
+}
+
+
+
+:root {
+    --bg: #ffffff;
+    --o: #000000;
+    --y: #ffffff;
+    --bento-top-spacer-desktop: 100vh;
+    --bento-top-spacer-tablet: 80vh;
+    --bento-top-spacer-mobile: 60vh;
+    --bento-gap: 1.25rem;
+    --bento-radius: 1.5rem;
+    --g: #08350e;
+    --expo: cubic-bezier(1, 0.885, 0.32, 1);
+    --main: #2b4e80;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    font-family: 'Poppins', sans-serif;
+    cursor: none;
+    pointer-events: none;
+    /* keep vertical scrollbar reserved to avoid layout jumps when toggling overflow */
+    overflow-y: scroll;
+    transition-delay: 2s;
+}
+
+
+
+/* container-level class to stagger children when they become visible */
+.grid-features.bento-animate .bento-card {
+    transition-delay: 0ms;
+}
+
+    .grid-features.bento-animate .bento-card:nth-child(1) {
+        transition-delay: 500ms;
+    }
+
+    .grid-features.bento-animate .bento-card:nth-child(2) {
+        transition-delay: 600ms;
+    }
+
+    .grid-features.bento-animate .bento-card:nth-child(3) {
+        transition-delay: 700ms;
+    }
+
+    .grid-features.bento-animate .bento-card:nth-child(4) {
+        transition-delay: 800ms;
+    }
+
+    .grid-features.bento-animate .bento-card:nth-child(5) {
+        transition-delay: 900ms;
+    }
+
+    .grid-features.bento-animate .bento-card:nth-child(6) {
+        transition-delay: 1000ms;
+    }
+
+/* Demo Styling */
+.credit {
+    margin-top: 5rem;
+    text-align: center;
+}
+
+    .credit a {
+        color: #fff;
+        background-color: #4dd9d6;
+        padding: 0.6rem 1rem;
+        border-radius: 8px;
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    }
+
+/* image helper for bento cards */
+.bento-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 5px solid #E195AB;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+/* Heading hover helper for bento cards */
+.bento-heading {
+    font-family: 'Raleway', sans-serif;
+    transition: color .18s ease, transform .18s ease, letter-spacing .18s ease;
+    color: #111827;
+}
+
+    .bento-heading:hover {
+        color: #000000;
+        transform: translateY(-3px);
+        letter-spacing: 0.5px;
+    }
+
+bento-heading-content:hover {
+    color: #000000;
+    transform: translateY(-3px);
+    letter-spacing: 0.5px;
+}
+
+/* Responsive tweaks: on small screens, don't reserve a full 100vh so users
+   don't have to scroll past a full blank viewport; reduce spacer to 60vh */
+/* Mobile first and then tablet/desktop overrides */
+
+/* Mobile (<=640px): stack cards in a single column, reduce spacers and font sizes */
+@media (max-width: 640px) {
+    :root {
+        --bento-top-spacer-desktop: var(--bento-top-spacer-mobile);
+    }
+
+    #bento-section {
+        margin-top: 80vh;
+        padding: 2rem 1rem 4rem;
+    }
+
+    .grid-features {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-card {
+        min-height: 10rem;
+        padding: 1.25rem;
+    }
+
+        .bento-card h2 {
+            font-size: 1.6rem;
+        }
+
+        .bento-card h3 {
+            font-size: 1.25rem;
+        }
+
+        .bento-card p {
+            font-size: 0.95rem;
+        }
+
+        .bento-card.cloud {
+            grid-area: auto;
+        }
+
+        .bento-card.logo {
+            grid-area: auto;
+        }
+
+        .bento-card.ai-gen {
+            grid-area: auto;
+        }
+}
+
+/* Tablet (641px to 1024px): use two-column layout and slightly smaller spacer */
+@media (min-width: 641px) and (max-width: 1024px) {
+    :root {
+        --bento-top-spacer-desktop: var(--bento-top-spacer-tablet);
+    }
+
+    #bento-section {
+        margin-top: var(--bento-top-spacer-tablet);
+        padding: 3rem 1rem 5rem;
+    }
+
+    .grid-features {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bento-card.cloud {
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+    }
+
+    .bento-card.logo {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .bento-card.ai-gen {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+    }
+
+    .bento-card {
+        min-height: 12rem;
+    }
+
+        .bento-card h2 {
+            font-size: 2rem;
+        }
+}
+
+/* Desktop (>=1025px): keep original 3-column desktop layout (uses root var) */
+@media (min-width: 1025px) {
+    :root {
+        --bento-top-spacer-desktop: 78vh;
+    }
+
+    #bento-section {
+        margin-top: var(--bento-top-spacer-desktop);
+        padding: 4rem 1rem 6rem;
+    }
+
+    .grid-features {
+        grid-template-columns: 4fr 3fr 3fr;
+    }
+
+    .bento-card.h2 {
+        font-size: 3.2rem;
+    }
+}
+/* End Bento features section */
+/* === LOADER === */
+#loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background: var(--o);
+    transition: transform 0.6s var(--expo);
+    transition-delay: 1.25s;
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    color: white;
+}
+
+    #loader:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 75%;
+        top: -75%;
+        background: var(--y);
+        clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    /* animation xoay */
+    #loader .wrap {
+        width: 10px;
+        height: 10px;
+        position: relative;
+        transition: opacity 0.4s ease-in-out;
+    }
+
+/* === ADIDAS LOGO === */
+.adidas-container {
+    position: relative;
+    width: 150px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/* logo adidas */
+.adidas {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 80px;
+    height: 80px;
+    transform: rotate(-35deg);
+    overflow: hidden;
+    z-index: 1;
+}
+
+    .adidas .stripe {
+        width: 20px;
+        background: var(--bg);
+        transform: translateY(100%);
+        transition: transform 0.4s ease;
+        animation: popUp 1.2s ease forwards;
+    }
+
+        .adidas .stripe:nth-child(1) {
+            transition-delay: 0.15s;
+        }
+
+        .adidas .stripe:nth-child(2) {
+            transition-delay: 0.1s;
+        }
+
+        .adidas .stripe:nth-child(3) {
+            transition-delay: 0.05s;
+        }
+
+@keyframes popUp {
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* chữ adidas */
+.text {
+    position: relative;
+    z-index: 2;
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: lowercase;
+    letter-spacing: 2px;
+    color: var(--bg);
+    transform: translate(-10px, 10px); /* 👈 DỊCH SANG TRÁI & LÊN TRÊN */
+    opacity: 0;
+    animation: fadeIn 2s ease forwards 0s;
+    background: var(--o);
+    padding: 0 5px;
+    display: inline-block;
+    line-height: 1;
+}
+
+    /* tạo hiệu ứng che nửa dưới sọc */
+    .text::before {
+        content: "";
+        position: absolute;
+        top: -25px;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        background: var(--o);
+        z-index: -1;
+    }
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translate(-30px, -10px);
+    }
+}
+
+/* Khi load xong */
+body.loaded {
+    pointer-events: all;
+    cursor: auto;
+    /* restore normal scrolling when the page is ready */
+    overflow-y: auto;
+}
+
+    body.loaded #loader {
+        transform: scaleY(0);
+        color: transparent;
+    }
+
+        body.loaded #loader .wrap {
+            opacity: 0;
+        }
+
+/* Nội dung chính */
+#wrap {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s var(--expo), transform 1s var(--expo);
+    transition-delay: 0.8s;
+    padding: 60px;
+    text-align: center;
+}
+
+body.loaded #wrap {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1 {
+    font-family: "Poppins", sans-serif;
+    font-size: 3rem;
+    color: var(--g);
+}
+
+p {
+    font-size: 1.2rem;
+    color: #333;
+    max-width: 600px;
+    margin: 0 auto;
+}
+/* Header slide-down animations */
+@keyframes headerSlideDown {
+    from {
+        transform: translateY(-14px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* slide in from right for bottom-right controls */
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Header-specific animations and small helpers (from header demo) */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 0.7;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 1.5s infinite;
+}
+
+.search-dropdown {
+    transition: all 0.3s ease;
+}
+
+.search-hidden {
+    opacity: 0;
+    transform: translateY(-8px);
+    visibility: hidden;
+}
+
+.search-visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+/* Order panel styles */
+.order-btn {
+    position: fixed;
+    right: 20px;
+    height: 80px;
+    width: 251px;
+    bottom: 20px;
+    z-index: 1;
+    background: rgb(255, 255, 255); /* slightly translucent */
+    color: rgb(0, 0, 0);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(6px) saturate(120%);
+    -webkit-backdrop-filter: blur(6px) saturate(120%);
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Raleway', sans-serif;
+    box-shadow: none;
+    transition: box-shadow .18s ease, transform .12s ease-in-out;
+}
+
+
+    .order-btn:hover {
+        /* remove hover shadow change to keep static shadow */
+        transform: translateY(1px);
+    }
+
+.order-panel {
+    position: fixed;
+    top: 0;
+    right: -50%; /* hidden by default */
+    width: 50%;
+    height: 100vh;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    z-index: 1200;
+    box-shadow: -8px 0 30px rgba(0,0,0,0.15);
+    padding: 28px;
+    transition: right 1.45s cubic-bezier(.2,.9,.2,1);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Hide native scrollbar in the order panel but keep it scrollable */
+.order-panel {
+    /* Firefox */
+    scrollbar-width: none;
+}
+
+    .order-panel::-webkit-scrollbar {
+        display: none;
+        height: 0;
+        width: 0;
+    }
+
+/* For better support in Chromium where scrollbars show on hover, add a small mask technique */
+.order-panel {
+    -webkit-mask-image: linear-gradient(#000, #000);
+    mask-image: linear-gradient(#000, #000);
+}
+
+    .order-panel.open {
+        right: 0;
+    }
+
+/* layered sliding panels for a multi-layer reveal effect */
+.panel-layer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    right: 100%;
+    transition: right 0.5s cubic-bezier(.2,.9,.2,1);
+    pointer-events: none;
+    z-index: 1150;
+    opacity: 0.95;
+}
+
+    .panel-layer.layer-1 {
+        background: linear-gradient(180deg, rgba(43,78,128,0.95), rgba(43,78,128,0.85));
+    }
+
+    .panel-layer.layer-2 {
+        background: linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.6));
+    }
+
+    .panel-layer.layer-3 {
+        background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    }
+
+.panel-panel.open .panel-layer {
+    right: 0;
+}
+
+/* option grid */
+.option-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.option-tile {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+
+    .option-tile:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .option-tile.selected {
+        background: #111827;
+        color: #fff;
+        border-color: #111827;
+    }
+
+.color-tile {
+    padding: 18px 8px;
+    font-weight: 700;
+}
+
+.field-title {
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.order-close {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.order-panel h2 {
+    margin: 8px 0 12px;
+    font-size: 20px;
+}
+
+.order-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+@media (max-width: 767px) {
+    .order-add {
+        margin-top: 12px;
+        background: rgba(255, 255, 255, 0.18);
+        color: rgba(0, 0, 0, 0.95);
+        border: 3px solid rgb(255, 255, 255);
+        backdrop-filter: blur(6px) saturate(120%);
+        -webkit-backdrop-filter: blur(6px) saturate(120%);
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+        font-family: 'Raleway', sans-serif;
+        box-shadow: none;
+        transition: box-shadow .18s ease, transform .12s ease;
+        margin-top: 5%;
+        height: 80px;
+        width: 200px;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 766px) {
+    .order-add {
+        margin-top: 12px;
+        background: rgba(255, 255, 255, 0.18);
+        color: rgba(0, 0, 0, 0.95);
+        border: 3px solid rgb(255, 255, 255);
+        backdrop-filter: blur(6px) saturate(120%);
+        -webkit-backdrop-filter: blur(6px) saturate(120%);
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+        font-family: 'Raleway', sans-serif;
+        box-shadow: none;
+        transition: box-shadow .18s ease, transform .12s ease;
+        margin-top: 9%;
+        height: 80px;
+        width: 200px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .order-add {
+        margin-top: 12px;
+        background: rgba(255, 255, 255, 0.18);
+        color: rgba(0, 0, 0, 0.95);
+        border: 3px solid rgb(255, 255, 255);
+        backdrop-filter: blur(6px) saturate(120%);
+        -webkit-backdrop-filter: blur(6px) saturate(120%);
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+        font-family: 'Raleway', sans-serif;
+        box-shadow: none;
+        transition: box-shadow .18s ease, transform .12s ease;
+        margin-top: 65px;
+        margin-left: 35%;
+        height: 80px;
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .order-panel {
+        width: 100%;
+        right: -100%;
+    }
+
+        .order-panel.open {
+            right: 0;
+        }
+}
+
+/* when order button is moved inside panel: keep same size/shape as original order-btn */
+/* --- Giao diện Mobile (cho màn hình rộng dưới 768px) --- */
+@media (max-width: 767px) {
+    .order-btn.in-panel {
+        /* Chuyển nút xuống dưới cùng cho dễ bấm */
+        top: 617px;
+        bottom: 20px;
+        right: 20px;
+        left: 0px; /* Kéo dài nút ra toàn chiếu rộng cho dễ bấm */
+        margin-left: 50%;
+        margin-top: 50%;
+        /* Giảm kích thước */
+        width: 220px; /* Bỏ width cố định */
+        font-size: 16px;
+        /* Bỏ margin-top % vì nó không còn phù hợp trên mobile */
+        margin-top: 0;
+    }
+}
+
+/* --- Giao diện Tablet (cho màn hình từ 768px đến 1023px) --- */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .order-btn.in-panel {
+        /* Giảm một chút chiều cao và margin top */
+        height: 80px;
+        margin-top: 78%; /* Điều chỉnh lại cho hợp lý với chiều cao màn hình tablet */
+        font-size: 18px;
+        /* Thu hẹp nút lại một chút */
+        width: 251px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 8000px) {
+    .order-btn.in-panel {
+        /* Giảm một chút chiều cao và margin top */
+        height: 80px;
+        margin-top: 78%; /* Điều chỉnh lại cho hợp lý với chiều cao màn hình tablet */
+        font-size: 18px;
+        /* Thu hẹp nút lại một chút */
+        width: 251px;
+    }
+}
+
+/* small name box above the order button */
+.order-name {
+    position: fixed;
+    right: 20px;
+    bottom: 120px; /* above the button */
+    background: rgba(17,24,39,0.12);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    z-index: 5;
+    font-weight: 700;
+    font-family: 'Raleway', sans-serif;
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.18);
+}
+
+
+/* initial hidden/offscreen state for controls */
+#Nameboost, #orderPriceBox, #orderBtn {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: transform 0.45s cubic-bezier(.2,.9,.2,1), opacity 4.0s ease;
+}
+
+/* when loader finishes, animate controls in with a small stagger */
+/* animate only once: elements without .has-animated */
+body.loaded #Nameboost:not(.has-animated) {
+    animation: slideInFromRight .5s ease forwards 4.25s;
+}
+
+body.loaded #orderPriceBox:not(.has-animated) {
+    animation: slideInFromRight .5s ease forwards 4.45s;
+}
+
+body.loaded #orderBtn:not(.has-animated) {
+    animation: slideInFromRight .5s ease forwards 4.65s;
+}
+
+/* ensure final state for already-animated elements */
+#Nameboost.has-animated,
+#orderPriceBox.has-animated,
+#orderBtn.has-animated {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* price box to the left of the button */
+.order-price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 80px;
+    width: 120px;
+    right: 290px; /* to the left of the 251px button + gap */
+    bottom: 20px;
+    border: #ffffff 3px solid;
+    background: rgba(255, 255, 255, 0.353);
+    color: #000000;
+    padding: 10px 14px;
+    border-radius: 8px;
+    z-index: 5;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    box-shadow: 4px 4px 12px rgba(255, 255, 255, 0.18);
+}
+
+/* hide name/price when panel is open (they might overlap) */
+.order-open .order-name,
+.order-open .order-price {
+    display: none;
+}
+
+/* --- Shrink controls on scroll to avoid covering content --- */
+/* Add smooth transitions if not already present */
+#Nameboost, #orderPriceBox, #orderBtn {
+    transition: transform 240ms cubic-bezier(.2,.9,.2,1), opacity 180ms ease, height 240ms ease, width 240ms ease, font-size 240ms ease;
+    transform-origin: right bottom;
+}
+
+/* When scrolled, reduce size and bring controls inward so they cover less content */
+body.scrolled-controls #Nameboost {
+    transform: translateX(6px) scale(0.68);
+    font-size: 10px; /* smaller title */
+    bottom: 100px; /* slightly higher to reduce overlap with page content when scrolled */
+    opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+    body.scrolled-controls #orderPriceBox {
+        transform: translateX(0) scale(0.78);
+        height: 60px;
+        width: 96px;
+        right: 1000px; /* move closer to the main button */
+        bottom: 13px;
+        font-size: 14px;
+        padding: 8px;
+        ;
+        margin-right: 75px;
+    }
+}
+
+body.scrolled-controls #orderPriceBox {
+    transform: translateX(0) scale(0.78);
+    height: 60px;
+    width: 96px;
+    right: 235px; /* move closer to the main button */
+    bottom: 13px;
+    font-size: 14px;
+    padding: 8px;
+    ;
+}
+
+body.scrolled-controls #orderBtn {
+    transform: translateX(0) scale(0.82);
+    height: 60px;
+    width: 200px;
+    font-size: 16px;
+    bottom: 14px;
+}
+
+/* Make sure the shrink behavior is slightly different on small screens */
+@media (max-width: 767px) {
+    body.scrolled-controls #Nameboost {
+        font-size: 18px;
+        transform: translateX(4px) scale(0.6);
+        bottom: 110px;
+    }
+
+    body.scrolled-controls #orderPriceBox {
+        transform: translateX(0) scale(0.78);
+        height: 56px;
+        width: 92px;
+        right: 170px;
+    }
+
+    body.scrolled-controls #orderBtn {
+        transform: translateX(0) scale(0.82);
+        height: 64px;
+        width: 180px;
+    }
+}
+
+#carousel-1 .card-image {
+    height: 350px;
+    width: 340px;
+}
+
+#carousel-2 .card-image {
+    height: 350px;
+}
+
+.petronas-section {
+    padding: 60px 20px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 80px;
+}
+
+.product-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+}
+
+    .product-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .product-card:hover img {
+        transform: scale(1.05);
+    }
+
+.product-label {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.product-card:hover .product-label {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.category-navigation {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.category-column h3 {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+}
+
+.category-column ul {
+    list-style: none;
+}
+
+.category-column li {
+    margin-bottom: 12px;
+}
+
+.category-column a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+    .category-column a:hover {
+        color: #767677;
+        text-decoration: underline;
+    }
+
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .category-navigation {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .petronas-section {
+        padding: 40px 15px;
+    }
+
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 60px;
+    }
+
+    .category-navigation {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .product-label {
+        bottom: 15px;
+        left: 15px;
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}

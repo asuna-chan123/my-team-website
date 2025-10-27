@@ -1,0 +1,117 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Thanh Toán";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .summary {
+            background: #f8f9fa;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .cart-item img {
+            max-width: 100px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>XIN CHÀO</h2>
+        <h3>THANH TOÁN</h3>
+        <p>(1 sản phẩm) 970.000đ</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <h4>LIÊN HỆ</h4>
+                <p>thuythi1505@gmail.com</p>
+
+                <h4>ĐẶT HÀNG</h4>
+                <form asp-action="Checkout" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Tên *</label>
+                        <input type="text" class="form-control" value="Hồ Thị Thủy" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tên công ty (nếu có)</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Số điện thoại di động *</label>
+                        <input type="text" class="form-control" value="033 33 33 333" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Địa chỉ (Số nhà, tên đường, Quận/Huyện, Tỉnh/Thành phố) *</label>
+                        <input type="text" class="form-control" value="123 Đường ABC, Quận 1, TP. Hồ Chí Minh" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phương thức vận chuyển *</label>
+                        <select class="form-select" required>
+                            <option value="standard">Miễn phí vận chuyển</option>
+                            <option value="express">Nhanh (có phí)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phương thức thanh toán *</label>
+                        <select class="form-select" required>
+                            <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+                            <option value="card">Thẻ tín dụng/Visa</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Quốc gia: Việt Nam</label>
+                        <input type="text" class="form-control" value="Việt Nam" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Số Định danh/Thẻ căn cước công dân (nếu có) *</label>
+                        <input type="text" class="form-control" value="091345678" required>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" id="sameAddress" checked>
+                        <label class="form-check-label" for="sameAddress">Lưu địa chỉ này làm địa chỉ thanh toán và giao hàng</label>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ghi chú đơn hàng (nếu có)</label>
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Số tiền mặt nhận khi giao hàng</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-dark w-100">TIẾP THEO <span>&rarr;</span></button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <h4>GIỎ HÀNG CỦA BẠN</h4>
+                <div class="summary">
+                    <div class="cart-item d-flex">
+                        <img src="~/images/messi-shirt.jpg" alt="Áo Thun In Hình Messi" class="me-3">
+                        <div>
+                            <h5>Áo Thun In Hình Messi</h5>
+                            <p>Kích cỡ: S | 1 sản phẩm</p>
+                            <p>Colour: Black</p>
+                            <p>900.000đ</p>
+                        </div>
+                    </div>
+                    <p>Giảm hàng: 70.000đ</p>
+                    <p>Tổng cộng: 970.000đ (Đã bao gồm thuế 71.852đ)</p>
+                    <label><input type="checkbox"> Sử dụng mã khuyễn mãi</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

@@ -31,7 +31,29 @@ AdidasStore/
 ├── register                #Đăng kí
 ├── oder-tracking           #Vận chuyển
 └── oder-success            #Xác nhận đơn hàng
-
+WebApplication6
+├──Content
+│   ├── css                 #file.css
+│   ├── images              #ảnh, video nền
+│   └── partials            #cấu trúc có thể tái sử dụng
+│
+├──Controllers              #file.js
+│
+├──Models                   #file.js
+│
+├──Scripts
+│   └──  js                 #file.js
+│
+├──Views
+│   ├── categorise          #categorise
+│   ├── customers           #customers
+│   ├── Home                #Home 
+│   ├── orderproes          #orderproes 
+│   ├── product             #product
+│   └── shared              #file.js
+│         ├── footer        #file footer
+│         ├── header        #file header
+│         └── iconheader    #file icon
 ```
 
 ##📌 Giải thích nhanh:

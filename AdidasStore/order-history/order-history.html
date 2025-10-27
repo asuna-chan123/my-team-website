@@ -1,0 +1,253 @@
+﻿<style>
+    /* ======================= ORDER HISTORY PAGE ======================= */
+    .order-history-container {
+        padding: 60px 120px;
+        background-color: #fff;
+        min-height: 90vh;
+    }
+
+    /* Header */
+    .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+        .order-header h2 {
+            font-size: 26px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+    .order-filters {
+        display: flex;
+        gap: 10px;
+    }
+
+    .filter-btn {
+        padding: 8px 18px;
+        border: 1px solid #ccc;
+        background: #fff;
+        font-size: 14px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+        .filter-btn:hover {
+            border-color: #000;
+        }
+
+        .filter-btn.active {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+    /* Order list */
+    .order-list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .order-card {
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+        padding: 20px 24px;
+        transition: box-shadow 0.2s ease;
+    }
+
+        .order-card:hover {
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+    /* Top section */
+    .order-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+        font-size: 14px;
+    }
+
+    .order-status {
+        padding: 4px 10px;
+        border-radius: 3px;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+
+        .order-status.delivered {
+            background-color: #e8f8ec;
+            color: #1d7a32;
+        }
+
+        .order-status.shipping {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .order-status.cancelled {
+            background-color: #fdeaea;
+            color: #c00;
+        }
+
+    /* Body section */
+    .order-body {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+    .order-img {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+    }
+
+    .order-info {
+        flex: 1;
+    }
+
+        .order-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+    .order-date {
+        color: #666;
+        font-size: 13px;
+    }
+
+    .order-price {
+        font-size: 14px;
+        margin-top: 6px;
+    }
+
+    .view-detail {
+        font-size: 14px;
+        color: #000;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .view-detail:hover {
+            text-decoration: underline;
+        }
+
+    /* Empty order */
+    .order-empty {
+        text-align: center;
+        padding: 80px 0;
+    }
+
+        .order-empty img {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+
+        .order-empty h3 {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 12px;
+        }
+
+    .shop-now {
+        display: inline-block;
+        padding: 10px 22px;
+        background-color: #000;
+        color: #fff;
+        font-size: 14px;
+        text-decoration: none;
+        border-radius: 3px;
+        transition: background-color 0.2s ease;
+    }
+
+        .shop-now:hover {
+            background-color: #222;
+        }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .order-history-container {
+            padding: 30px 20px;
+        }
+
+        .order-body {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .view-detail {
+            margin-top: 10px;
+        }
+    }
+
+</style>
+<main class="order-history-container">
+    <section class="order-header">
+        <h2>LỊCH SỬ MUA HÀNG</h2>
+        <div class="order-filters">
+            <button class="filter-btn active">Tất cả</button>
+            <button class="filter-btn">Đã giao</button>
+            <button class="filter-btn">Đang giao</button>
+            <button class="filter-btn">Đã hủy</button>
+        </div>
+    </section>
+
+    <!-- Nếu có đơn hàng -->
+    <section class="order-list">
+
+        <div class="order-card">
+            <div class="order-top">
+                <p><strong>Mã đơn hàng:</strong> #AD123456VN</p>
+                <span class="order-status delivered">Đã giao</span>
+            </div>
+
+            <div class="order-body">
+                <img src="../Content/assets/shoesadidas.png" alt="Sản phẩm" class="order-img />
+                <div class="order-info">
+                    <h3>Giày Adidas Streettalk</h3>
+                    <p class="order-date">Ngày đặt: 20/10/2025</p>
+                    <p class="order-price">Tổng: <strong>1.270.000₫</strong></p>
+                </div>
+                <a href="#" class="view-detail">Xem chi tiết →</a>
+            </div>
+        </div>
+
+        <div class="order-card">
+            <div class="order-top">
+                <p><strong>Mã đơn hàng:</strong> #AD123789VN</p>
+                <span class="order-status shipping">Đang giao</span>
+            </div>
+
+            <div class="order-body">
+                <img src="../Content/assets/ultraboostlight.jpg" alt="Sản phẩm" class="order-img">
+                <div class="order-info">
+                    <h3>Giày Ultraboost Light</h3>
+                    <p class="order-date">Ngày đặt: 22/10/2025</p>
+                    <p class="order-price">Tổng: <strong>3.200.000₫</strong></p>
+                </div>
+                <a href="#" class="view-detail">Xem chi tiết →</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Nếu chưa có đơn hàng -->
+    <!--
+    <section class="order-empty">
+      <img src="../Content/assets/empty-cart.svg" alt="Empty Cart">
+      <h3>Bạn chưa có đơn hàng nào</h3>
+      <a href="../Home/index.html" class="shop-now">MUA SẮM NGAY</a>
+    </section>
+    -->
+</main>

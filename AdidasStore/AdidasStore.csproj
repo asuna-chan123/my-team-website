@@ -67,10 +67,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\checkout.css" />
+    <Content Include="checkout\checkout.html" />
+    <Content Include="checkout\checkout.js" />
     <Content Include="Content\assets\1.jpg" />
     <Content Include="Content\assets\2.jpg" />
     <Content Include="Content\assets\3.jpg" />
     <Content Include="Content\assets\Adidas.mp4" />
+    <Content Include="Content\assets\adidas.svg" />
     <Content Include="Content\assets\adidascard\1.png" />
     <Content Include="Content\assets\adidascard\10.png" />
     <Content Include="Content\assets\adidascard\11.png" />
@@ -99,12 +103,23 @@
     <Content Include="Content\assets\adidascard\41.png" />
     <Content Include="Content\assets\adidascard\43.jpg" />
     <Content Include="Content\assets\adidasgif.gif" />
+    <Content Include="Content\assets\adidaslogo.svg" />
+    <Content Include="Content\assets\apple.svg" />
+    <Content Include="Content\assets\facebook.svg" />
     <Content Include="Content\assets\FW_25_Motorsport.png" />
+    <Content Include="Content\assets\google.svg" />
+    <Content Include="Content\assets\login.css" />
+    <Content Include="Content\assets\shoesadidas.png" />
+    <Content Include="Content\assets\ultraboostlight.jpg" />
     <Content Include="Content\Product-detail-Tshirt.css" />
     <Content Include="Content\Product-detail-Yeezy-Boost.css" />
     <Content Include="Content\Product-man.css" />
     <Content Include="Content\Product.css" />
     <Content Include="Content\Trangchu.css" />
+    <Content Include="login\login.html" />
+    <Content Include="login\login.js" />
+    <Content Include="order-history\order-history.html" />
+    <Content Include="order-history\order-history.js" />
     <Content Include="partials\adidascard.html" />
     <Content Include="partials\footer.css" />
     <Content Include="partials\footer.html" />

@@ -1,0 +1,293 @@
+﻿/* ================== RESET ================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background-color: #fff;
+    color: #111;
+    line-height: 1.5;
+}
+
+/* ================== LAYOUT ================== */
+/* ================== LAYOUT CHUNG ================== */
+.checkout-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 60px 120px;
+    gap: 80px;
+}
+
+/* ------------------ CỘT TRÁI ------------------ */
+.checkout-left {
+    flex: 2;
+    max-width: 750px;
+}
+
+    .checkout-left h2 {
+        font-size: 26px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        letter-spacing: 0.3px;
+    }
+
+    .checkout-left p {
+        color: #444;
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    .checkout-left section {
+        margin-bottom: 40px;
+    }
+
+        .checkout-left section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+/* Inputs & Selects */
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #c6c6c6;
+    border-radius: 2px;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: #fff;
+}
+
+    input:hover,
+    select:hover {
+        border-color: #888;
+    }
+
+    input:focus,
+    select:focus {
+        border-color: #000;
+        box-shadow: 0 0 0 1px #000;
+        outline: none;
+    }
+
+.name-group,
+.grid-3 {
+    display: flex;
+    gap: 14px;
+}
+
+    .name-group input,
+    .grid-3 select {
+        flex: 1;
+    }
+
+/* ===================== CUSTOM CHECKBOX (CHUẨN ADIDAS) ===================== */
+
+/* Container label của mỗi checkbox */
+.checkbox {
+    display: flex;
+    align-items: flex-start; /* Căn phần text đầu dòng với ô tick */
+    gap: 8px; /* Khoảng cách giữa ô tick và nội dung */
+    margin-bottom: 12px; /* Khoảng cách giữa các dòng checkbox */
+    font-size: 13.5px;
+    color: #222;
+    line-height: 1.5;
+}
+
+    /* Nếu có nhiều checkbox liên tiếp */
+    .checkbox + .checkbox {
+        margin-top: 6px;
+    }
+
+    /* Liên kết trong nội dung checkbox */
+    .checkbox a {
+        color: #0073e6;
+        text-decoration: none;
+    }
+
+        .checkbox a:hover {
+            text-decoration: underline;
+        }
+
+    /* ===================== HỘP CHECKBOX ===================== */
+    .checkbox input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 1.5px solid #000;
+        border-radius: 2px;
+        cursor: pointer;
+        position: relative;
+        flex-shrink: 0;
+        background-color: #fff;
+        vertical-align: middle;
+        transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+        /* Hover */
+        .checkbox input[type="checkbox"]:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Khi được chọn */
+        .checkbox input[type="checkbox"]:checked {
+            background-color: #000;
+            border-color: #000;
+        }
+
+            /* Dấu tick trắng giữa ô */
+            .checkbox input[type="checkbox"]:checked::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 5px;
+                height: 10px;
+                border: solid #fff;
+                border-width: 0 2px 2px 0;
+                transform: translate(-50%, -60%) rotate(45deg);
+            }
+
+        /* Khi checkbox bị disable (tuỳ chọn thêm nếu cần) */
+        .checkbox input[type="checkbox"]:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+
+/* ---------- BUTTON ---------- */
+.btn-submit {
+    background-color: #000;
+    color: #fff;
+    padding: 14px 22px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+    transition: all 0.2s ease;
+}
+
+    .btn-submit:hover {
+        opacity: 0.85;
+    }
+
+/* ---------- RIGHT SIDE (ORDER SUMMARY) ---------- */
+.checkout-right {
+    flex: 1;
+    border-left: 1px solid #e5e5e5;
+    padding-left: 50px;
+    position: sticky;
+    top: 40px;
+}
+
+.order-summary h3 {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.order-summary .edit-link {
+    font-size: 13px;
+    color: #111;
+    text-decoration: underline;
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.order-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+    .order-item img {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border: 1px solid #eee;
+        border-radius: 2px;
+    }
+
+    .order-item p {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .order-item small {
+        color: #555;
+        font-size: 12.5px;
+    }
+
+/* Tổng tiền */
+.order-total {
+    border-top: 1px solid #ddd;
+    margin-top: 15px;
+    padding-top: 10px;
+    font-size: 14px;
+}
+
+    .order-total p {
+        display: flex;
+        justify-content: space-between;
+        margin: 6px 0;
+    }
+
+        .order-total p span {
+            font-weight: 500;
+        }
+
+    .order-total .grand-total {
+        font-size: 16px;
+        font-weight: 700;
+        margin-top: 10px;
+    }
+
+/* Dòng mô tả nhỏ */
+.order-summary small {
+    color: #777;
+    font-size: 12px;
+}
+
+/* Khuyến mãi */
+.discount-section {
+    margin-top: 15px;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #111;
+    cursor: pointer;
+}
+
+    .discount-section:hover {
+        text-decoration: underline;
+    }
+
+/* ================== RESPONSIVE ================== */
+@media (max-width: 992px) {
+    .checkout-container {
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 30px;
+    }
+
+    .checkout-right {
+        border-left: none;
+        border-top: 1px solid #eee;
+        padding-left: 0;
+        padding-top: 30px;
+    }
+}

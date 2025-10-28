@@ -44,10 +44,6 @@ WebApplication6
 │   └──  js                 #file.js
 │
 └──Views
-    ├── Oder
-         ├──Odertracking #Giỏ hàng
-         ├──Oderconfirm #Xác nhận đơn hàng
-         ├──Odertracking #Giao hàng
     ├── categorise          #categorise
     ├── customers           #customers
     ├── Home                #Home 

@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Oder Tracking</title>
+    <title>Cửa hàng Adidas trực tuyến|adidas VN</title>
     <link href="~/Content/Header.css" rel="stylesheet"  type="text/css"/>
     <link href="~/Content/Odertracking.css" rel="stylesheet" type="text/css" />
 </head>
@@ -29,7 +29,7 @@
         <!-- Tab -->
         <nav class="tabs" role="tablist" aria-label="Shop tabs">
             <button class="tab active" role="tab" aria-selected="true">Online</button>
-            <button class="tab" role="tab" aria-selected="false">In-store</button>
+            @*<button class="tab" role="tab" aria-selected="false">In-store</button>*@
         </nav>
 
         <div class="order-filter">
@@ -85,8 +85,17 @@
             <h2 class="faq-heading">CÂU HỎI THƯỜNG GẶP</h2>
             <div class="faq-grid">
                 <!-- Câu hỏi 1 -->
+                @*<div class="faq-item">
+                    <button>
+                        <h3 class="faq-question">LÀM CÁCH NÀO TÔI CÓ THỂ TRẢ HÀNG?</h3>
+                        <p class="faq-answer">Trả Lại Hàng & Hoàn Tiền</p>
+                    </button>
+        <a href="~/Views/Oder/AdiclubTermsAndService.cshtml">~/Views/Oder/AdiclubTermsAndService.cshtml</a>
+                </div>*@
                 <div class="faq-item">
-                    <h3 class="faq-question">LÀM CÁCH NÀO TÔI CÓ THỂ TRẢ HÀNG?</h3>
+                    <h3 class="faq-question">
+                        <a href="~/Oder/AdiclubTermsAndService">LÀM CÁCH NÀO TÔI CÓ THỂ TRẢ HÀNG?</a>
+                    </h3>
                     <p class="faq-answer">Trả Lại Hàng & Hoàn Tiền</p>
                 </div>
 
@@ -97,6 +106,7 @@
                 </div>
 
                 <!-- Câu hỏi 3 -->
+
                 <div class="faq-item">
                     <h3 class="faq-question">Tại sao đơn hàng trực tuyến của tôi bị hủy?</h3>
                     <p class="faq-answer">Đang đặt hàng</p>
@@ -124,7 +134,7 @@
             </div>
 
             <div class="footer-bottom">
-                <a href="#">Cài Đặt Cookie</a>
+                <a href="~/Oder/AdiclubTermsAndService">Cài Đặt Cookie</a>
                 <span>|</span>
                 <a href="#">Chính sách Bảo mật</a>
                 <span>|</span>
@@ -132,6 +142,7 @@
                 <span>|</span>
                 <a href="#">Thông tin công ty</a>
             </div>
+            @*<a href="~/Views/Oder/AdiclubTermsAndService.cshtml">~/Views/Oder/AdiclubTermsAndService.cshtml</a>*@
 
             <div class="footer-copyright">
                 © 2025·adidas Vietnam Company Limited

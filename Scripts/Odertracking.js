@@ -1,51 +1,45 @@
-﻿// Tab Switching Functionality
+﻿// chức năng chuyển đổi tab
 document.addEventListener('DOMContentLoaded', function () {
     const tabs = document.querySelectorAll('.tab');
 
     tabs.forEach(tab => {
         tab.addEventListener('click', function () {
-            // Remove active class from all tabs
+            // xóa class active khỏi tất cả tab
             tabs.forEach(t => {
                 t.classList.remove('active');
                 t.setAttribute('aria-selected', 'false');
             });
-
-            // Add active class to clicked tab
+            // thêm class active vào tab được click
             this.classList.add('active');
             this.setAttribute('aria-selected', 'true');
-
-            // Optional: Add your logic here for different tab content
+            // tùy chọn: thêm logic cho nội dung tab khác nhau
             const tabText = this.textContent.trim();
-            console.log('Tab clicked:', tabText);
-
-            // Example: You can show/hide different content based on tab
-            if (tabText === 'Online') {
-                // Handle online orders
-                console.log('Showing online orders');
-            } else if (tabText === 'In-store') {
-                // Handle in-store orders
-                console.log('Showing in-store orders');
-            }
+            console.log('tab được click:', tabText);
+            // ví dụ: có thể hiển thị/ẩn nội dung khác nhau dựa trên tab
+            //if (tabText === 'Online') {
+            //    // xử lý đơn hàng online
+            //    console.log('hiển thị đơn hàng online');
+            //} else if (tabText === 'In-store') {
+            //    // xử lý đơn hàng tại cửa hàng
+            //    console.log('hiển thị đơn hàng tại cửa hàng');
+            //}
         });
     });
 });
 
-// Sub Navigation Active State
-document.addEventListener('DOMContentLoaded', function () {
-    const subNavLinks = document.querySelectorAll('.sub-nav__link');
-
-    subNavLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            // Uncomment below if you want to prevent default link behavior
-            // e.preventDefault();
-
-            // Remove active class from all links
-            subNavLinks.forEach(l => {
-                l.classList.remove('sub-nav__link--active');
-            });
-
-            // Add active class to clicked link
-            this.classList.add('sub-nav__link--active');
-        });
-    });
-});
+// trạng thái active của menu điều hướng phụ
+//document.addEventListener('DOMContentLoaded', function () {
+//    const subNavLinks = document.querySelectorAll('.sub-nav__link');
+//    subNavLinks.forEach(link => {
+//        link.addEventListener('click', function (e) {
+//            // bỏ comment nếu muốn ngăn hành động mặc định của link
+//            // e.preventDefault();
+//            // xóa class active khỏi tất cả link
+//            subNavLinks.forEach(l => {
+//                l.classList.remove('sub-nav__link--active');
+//            });
+//            // thêm class active vào link được click
+//            this.classList.add('sub-nav__link--active');
+//        });
+//    });
+//});

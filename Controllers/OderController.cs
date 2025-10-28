@@ -29,5 +29,12 @@ namespace AdidasStoreMVC.Controllers
         {
             return View();
         }
-    }
+       public ActionResult AdiclubTermsAndService()
+        {
+            return View();
+        }
+        public ActionResult pv1()
+        {
+            return View();
+        }
 }

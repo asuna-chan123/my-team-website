@@ -174,11 +174,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+<<<<<<< Updated upstream
+=======
     <Content Include="Content\Header.css" />
-    <Content Include="Content\image Oder\61622ec8899cffaa687a8342a84ea525.jpg" />
     <Content Include="Content\Oderconfirm.css" />
     <Content Include="Content\Odertracking.css" />
     <Content Include="Content\Oder.css" />
+>>>>>>> Stashed changes
     <Content Include="Content\Product-detail-Tshirt.css" />
     <Content Include="Content\Product-detail-Yeezy-Boost.css" />
     <Content Include="Content\Product-man.css" />
@@ -245,12 +247,18 @@
     <Content Include="Views\Account\LoginSignup.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
+<<<<<<< Updated upstream
+=======
     <Content Include="Views\Oder\Oder.cshtml" />
     <Content Include="Views\Oder\Odertracking.cshtml" />
     <Content Include="Views\Oder\Oderconfirm.cshtml" />
+    <Content Include="Views\Oder\AdiclubTermsAndService.cshtml" />
+    <Content Include="Views\Oder\vp1.cshtml" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\image Oder\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

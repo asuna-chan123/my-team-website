@@ -26,5 +26,6 @@ namespace AdidasStoreMVC.Controllers
 
             return View();
         }
+        
     }
 }

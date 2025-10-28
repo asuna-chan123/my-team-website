@@ -1,52 +1,25 @@
-﻿// Continue Shopping Button
+﻿// nút tiếp tục mua sắm
 function continueShopping() {
-    console.log('Chuyển tới trang chủ');
-    // Uncomment để redirect thật
-    // window.location.href = '/';
-    alert('Chuyển tới trang chủ');
+    console.log('chuyển tới trang chủ');
+    window.location.href = '/';
 }
 
-// Track Order Button
+// nút theo dõi đơn hàng
 function trackOrder() {
-    console.log('Chuyển tới trang theo dõi đơn hàng');
-    // Uncomment để redirect thật
-    // window.location.href = '/Oder/Oder';
-    alert('Chuyển tới trang theo dõi đơn hàng: #ADI-2025-001234');
+    console.log('chuyển tới trang theo dõi đơn hàng');
+    window.location.href = '/Oder/Odertracking';
 }
 
-// Print Order Confirmation
-function printOrder() {
-    window.print();
-    console.log('In đơn hàng');
-}
-
-// Share Order Confirmation
-function shareOrder() {
-    const orderNumber = '#ADI-2025-001234';
-    const message = `Đơn hàng của tôi ${orderNumber} đã được xác nhận tại Adidas!`;
-
-    if (navigator.share) {
-        navigator.share({
-            title: 'Xác nhận đơn hàng Adidas',
-            text: message
-        }).catch(err => console.log('Share failed:', err));
-    } else {
-        alert('Sao chép: ' + message);
-    }
-}
-
-// Initialize on page load
+// khởi tạo khi trang tải xong
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('Order confirmation page loaded');
-
-    // Optional: Add animation to success icon
+    console.log('trang xác nhận đơn hàng đã tải');
     const successIcon = document.querySelector('.success-icon');
     if (successIcon) {
         successIcon.style.animation = 'fadeIn 0.5s ease-in';
     }
 });
 
-// Optional: Add CSS animation
+// tùy chọn: thêm animation css
 const style = document.createElement('style');
 style.textContent = `
     @keyframes fadeIn {

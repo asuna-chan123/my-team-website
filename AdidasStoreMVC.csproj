@@ -118,6 +118,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -173,10 +174,34 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Header.css" />
+    <Content Include="Content\image Oder\61622ec8899cffaa687a8342a84ea525.jpg" />
+    <Content Include="Content\Oderconfirm.css" />
+    <Content Include="Content\Odertracking.css" />
+    <Content Include="Content\Oder.css" />
     <Content Include="Content\Product-detail-Tshirt.css" />
     <Content Include="Content\Product-detail-Yeezy-Boost.css" />
     <Content Include="Content\Product-man.css" />
     <Content Include="Content\Product.css" />
+    <Content Include="Content\Resources\Bo_ba_tat_dem_Performance.jpg" />
+    <Content Include="Content\Resources\Bộ Quần Áo Thun Seasonal Essentials Fun Trẻ Em.jpg" />
+    <Content Include="Content\Resources\Dep_Adimule_Be_JR3587_01_00_standard_11zon.jpg" />
+    <Content Include="Content\Resources\Giay_Samba_OG_DJen_B75807_01_standard_11zon.jpg" />
+    <Content Include="Content\Resources\Set_Ao_Thun_Quan_Short__11zon.jpg" />
+    <Content Include="Content\Resources\Áo-Polo-Piqué-Club-Trẻ-Em.jpg" />
+    <Content Include="Content\Resources\Đồ thể thao trẻ em Cahirar.jpg" />
+    <Content Include="Content\Resources\Giay bóng đá tuf_Predator.jpg" />
+    <Content Include="Content\Resources\Giày Samba OG.jpg" />
+    <Content Include="Content\Resources\Sandal đi nước trẻ em adidas Pixar Disney.jpg" />
+    <Content Include="Content\Resources\Dép adilette.jpg" />
+    <Content Include="Content\Resources\Áo polo Caribar.jpg" />
+    <Content Include="Content\Resources\Giay Golf Đinh Lien S2G 24.jpg" />
+    <Content Include="Content\Resources\Mũ Superstar II Comfort Closure Trẻ Em.jpg" />
+    <Content Include="Content\Resources\IMG8.jpg" />
+    <Content Include="Content\Resources\Giay Gazelle.jpg" />
+    <Content Include="Content\Resources\Mastercard-removebg-preview.png" />
+    <Content Include="Content\Resources\Money.jpg" />
+    <Content Include="Content\Resources\Visa-Logo.png" />
     <Content Include="Content\Trangchu.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -189,6 +214,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\image\Adidas_New_2022_600x600.webp" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\Header.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.js" />
@@ -199,6 +225,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Oder.js" />
+    <Content Include="Scripts\Oderconfirm.js" />
+    <Content Include="Scripts\Odertracking.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -216,6 +245,9 @@
     <Content Include="Views\Account\LoginSignup.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\Oder\Oder.cshtml" />
+    <Content Include="Views\Oder\Odertracking.cshtml" />
+    <Content Include="Views\Oder\Oderconfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

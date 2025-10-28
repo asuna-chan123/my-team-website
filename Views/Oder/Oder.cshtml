@@ -1,0 +1,310 @@
+﻿@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="utf-8" />
+    <title>Cửa hàng Adidas trực tuyến | Adidas VN</title>
+    <link href="~/Content/Header.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Oder.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <header>
+        <section>
+            <nav class="sub-nav" role="navigation" aria-label="Sub navigation">
+                <ul class="sub-nav__list">
+                    <li><a href="#" class="sub-nav__link">TRANG CHỦ</a></li>
+                    <li><a href="#" class="sub-nav__link sub-nav__link--active">GIỎ HÀNG</a></li>
+                    <li><a href="~/Oder/Odertracking" class="sub-nav__link">ĐƠN HÀNG</a></li>
+                    
+                </ul>
+              
+            </nav>
+        </section>
+
+
+    </header>
+    <main>
+        <div>
+            <h4>GIỎ HÀNG CỦA BẠN</h4>
+        </div>
+        <div>
+            <p>Tổng Cộng(4 sản phẩm) </p>
+            <p>10.250.000₫</p>
+        </div>
+        <div>
+            <p>Các mặt hàng trong giỏ hàng của bạn không được bảo lưu — hãy kiểm tra ngay để đặt hàng.</p>
+        </div>
+
+        <!-- Sản phẩm 1 -->
+        <div class="cart-item" data-product-id="1" data-product-price="3000000">
+            <div class="product-info">
+                <h4 class="product-name">Giày Samba OG</h4>
+                <img src="~/Content/Resources/Giày Samba OG.jpg" />
+                <span><strong>3.200.000₫</strong></span>
+                <p>Màu sắc: BLACK / LIME</p>
+                <p>Kích cỡ: NS</p>
+            </div>
+            <select name="quantity" class="product-quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <div>
+                <button class="remove-btn"><i class="fa-solid fa-x"></i></button>
+                <button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 2 -->
+        <div class="cart-item" data-product-id="2" data-product-price="3000000">
+            <div class="product-info">
+                <h4 class="product-name">Bộ 3 Đôi Tất Cổ Cao Lót Đệm Performance CLIMACOOL</h4>
+                <img src="~/Content/Resources/Bo_ba_tat_dem_Performance.jpg" />
+                <span><strong>1.500.000₫</strong></span>
+                <p>Màu sắc: BLACK / LIME</p>
+                <p>Kích cỡ: NS</p>
+            </div>
+            <select name="quantity" class="product-quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <div>
+                <button class="remove-btn"><i class="fa-solid fa-x"></i></button>
+                <button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 3 -->
+        <div class="cart-item" data-product-id="3" data-product-price="3000000">
+            <div class="product-info">
+                <h4 class="product-name">Giày đá bóng Tuf Predator</h4>
+                <img src="~/Content/Resources/Giay bóng đá tuf_Predator.jpg" />
+                <span><strong>3.000.000₫</strong></span>
+                <p>Màu sắc: BLACK / LIME</p>
+                <p>Kích cỡ: NS</p>
+            </div>
+            <select name="quantity" class="product-quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <div>
+                <button class="remove-btn"><i class="fa-solid fa-x"></i></button>
+                <button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 4 -->
+        <div class="cart-item" data-product-id="4" data-product-price="3000000">
+            <div class="product-info">
+                <h4 class="product-name">Áo polo nam Caribar</h4>
+                <img src="~/Content/Resources/Áo polo Caribar.jpg" />
+                <span><strong>3.000.000₫</strong></span>
+                <p>Màu sắc: BLACK / LIME</p>
+                <p>Kích cỡ: NS</p>
+            </div>
+            <select name="quantity" class="product-quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <div>
+                <button class="remove-btn"><i class="fa-solid fa-x"></i></button>
+                <button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+
+        <!-- GỢI Ý CHO BẠN -->
+        <div>
+            <h4>GỢI Ý CHO BẠN</h4>
+        </div>
+
+        <section class="suggestion">
+            <div class="suggestion-card">
+
+                <img src="~/Content/Resources/Đồ thể thao trẻ em Cahirar.jpg" />
+                <p>1.000.000đ</p>
+                <p>Giảm giá -20%</p>
+                <h2>Đồ thể thao trẻ em CAHIRAR</h2>
+                <p>Sportwear</p>
+                <div><button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button></div>
+            </div>
+            <div class="suggestion-card">
+                <img src="~/Content/Resources/Sandal đi nước trẻ em adidas Pixar Disney.jpg" />
+                <p>880.000đ</p>
+                <p>Giảm giá -20%</p>
+                <h2>Sandal đi nước trẻ em adidas Pixar Disney</h2>
+                <p>Sportwear</p>
+                <div><button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button></div>
+            </div>
+            <div class="suggestion-card">
+                <img src="~/Content/Resources/Áo-Polo-Piqué-Club-Trẻ-Em.jpg" />
+                <p>1.200.000</p>
+                <p>Giảm giá -20%</p>
+                <h2>Áo Polo Piqué Club Trẻ Em</h2>
+                <p>Performance</p>
+                <div><button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button></div>
+            </div>
+            <div class="suggestion-card">
+                <img src="~/Content/Resources/Dép adilette.jpg" />
+                <p>455.000đ</p>
+                <p>Giảm giá -20%</p>
+                <h2>Dép adilette</h2>
+                <p>Sportwear</p>
+                <div><button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button></div>
+            </div>
+            <div class="suggestion-card">
+                <img src="~/Content/Resources/Giay Golf Đinh Lien S2G 24.jpg" />
+                <p>1.540.000₫</p>
+                <p>Giảm giá -20%</p>
+                <h2>Giay Golf Đinh Lien S2G 24 </h2>
+                <p>Sportwear</p>
+                <div><button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button></div>
+            </div>
+            <div class="suggestion-card">
+                <img src="~/Content/Resources/Bộ Quần Áo Thun Seasonal Essentials Fun Trẻ Em.jpg" />
+                <p>765.000₫</p>
+                <p>Giảm giá -20%</p>
+                <h2>Bộ Quần Áo Thun Seasonal Essentials Fun Trẻ Em</h2>
+                <p>Sportwear</p>
+                <div><button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button></div>
+            </div>
+            <div class="suggestion-card">
+                <img src="~/Content/Resources/Mũ Superstar II Comfort Closure Trẻ Em.jpg" />
+                <p>1.700.000₫</p>
+                <p>Giảm giá -20%</p>
+                <h2>Mũ Superstar II Comfort Closure Trẻ Em</h2>
+                <p>Sportwear</p>
+                <div><button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button></div>
+            </div>
+            <div class="suggestion-card">
+                <img src="~/Content/Resources/Set_Ao_Thun_Quan_Short__11zon.jpg" />
+                <p>1.125.000₫</p>
+                <p>Giảm giá -20%</p>
+                <h2>Set Áo Thun Quần Short</h2>
+                <p>Sportwear</p>
+                <div><button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button></div>
+            </div>
+            <div class="suggestion-card">
+                <img src="~/Content/Resources/Dep_Adimule_Be_JR3587_01_00_standard_11zon.jpg" />
+                <p>1.000.000₫</p>
+                <p>Giảm giá -20%</p>
+                <h2>Dép Adimule</h2>
+                <p>Sportwear</p>
+                <div><button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button></div>
+            </div>
+            <div class="suggestion-card">
+                <img src="~/Content/Resources/Giay Gazelle.jpg" />
+                <p>1.750.000₫</p>
+                <p>Giảm giá -20%</p>
+                <h2>Giày Gazelle</h2>
+                <p>Originals</p>
+                <div><button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button></div>
+            </div>
+        </section>
+
+        <!-- Navigation Button -->
+        <!--<button class="carousel-nav next">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>-->
+
+        <!-- Progress indicator -->
+        @*<div class="carousel-progress">
+            <div class="progress-bar"></div>
+        </div>*@
+
+        <!-- Shipping Buttons -->
+        <button class="btn-shipping">
+            <i class="fa-solid fa-truck-fast"></i>
+            <a href="#">GIAO HÀNG MIỄN PHÍ CHO THÀNH VIÊN CỦA ADICLUB</a>
+        </button>
+        <button class="btn-back">
+            <i class="fa-solid fa-truck-ramp-box"></i>
+            <a href="#">TRẢ HÀNG DỄ DÀNG</a>
+        </button>
+
+        <!-- ORDER SUMMARY -->
+        <section class="oder-summary">
+            <h2 class="order-title">TÓM TẮT ĐƠN HÀNG</h2>
+
+            <div class="order-row">
+                <span class="item-label">4 các sản phẩm</span>
+                <span class="item-price">10.250.000₫</span>
+            </div>
+
+            <div class="order-row">
+                <span class="shipping-label">Giao hàng</span>
+                <span class="shipping-price">Miễn phí</span>
+            </div>
+
+            <div class="order-row total">
+                <span class="total-label">Tổng</span>
+                <span class="total-price">10.250.000₫</span>
+            </div>
+
+            <p class="tax-note">(Đã bao gồm thuế 759.259₫)</p>
+
+            <div class="promo">
+                <button>
+                    <i class="fa-solid fa-money-bill"></i>
+                    <a href="#">SỬ DỤNG MÃ KHUYẾN MÃI</a>
+                </button>
+            </div>
+
+            <button class="checkout-btn">THANH TOÁN</button>
+
+            <div class="payment-methods">
+                <p class="payment-title">PHƯƠNG THỨC THANH TOÁN ĐƯỢC CHẤP NHẬN</p>
+                
+                <img src="~/Content/Resources/Mastercard-removebg-preview.png" />
+                <img src="~/Content/Resources/Visa-Logo.png" />
+                <img src="~/Content/Resources/Money.jpg" />
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-top">               
+                <div class="footer-top-right">
+                    <p>
+                        Questions? +84 28 44581037|
+                        Thứ Hai đến Thứ Bảy (ngoại trừ Chủ Nhật, ngày Giáng Sinh và ngày Tết Dương Lịch): Từ 9 giờ sáng đến 9 giờ tối.
+                    </p>
+                   
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <a href="#">Cài Đặt Cookie</a>
+                <span>|</span>
+                <a href="#">Chính sách Bảo mật</a>
+                <span>|</span>
+                <a href="#">Các Điều Khoản và Điều Kiện</a>
+                <span>|</span>
+                <a href="#">Thông tin công ty</a>
+            </div>
+
+            <div class="footer-copyright">
+                © 2025·adidas Vietnam Company Limited
+            </div>
+        </div>
+    </footer>
+    <script src="~/Scripts/Header.js"></script>
+    <script src="~/Scripts/Oder.js"></script>
+</body>
+</html>

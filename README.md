@@ -1,5 +1,9 @@
 ##🌐 Đường dẫn đến trang web(Beta)
+
+---
 https://my-team-website-rouge.vercel.app/Trangchu.html
+---
+
 ##🏪 AdidasStore Website
 📁 Cấu trúc thư mục dự án
 
@@ -59,6 +63,7 @@ checkout     -> Customer/edit.cshtml
 order history -> Customer/Deatail.cshtml
 
 ---
+
 ##📌 Giải thích nhanh:
 Content/assets/ → chứa CSS cho từng trang
 

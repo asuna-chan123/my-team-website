@@ -65,6 +65,7 @@ order history -> Customer/Deatail.cshtml
 
 
 ##📌 Giải thích nhanh:
+---
 Content/assets/ → chứa CSS cho từng trang
 
 Content/partials/ → header, footer và các phần giao diện tái sử dụng
@@ -74,6 +75,7 @@ Scripts/ → chứa các file JavaScript
 Trangchu.html, Product-detail-Yeezy-Boost.html → các trang chính của website
 
 ##👩‍💻 Hướng dẫn thành viên clone & phát triển dự án
+---
 *Phải chạy bằng ASP.NET được dùng các thư viện Angular,...
 
 1️⃣ Clone dự án về máy
@@ -122,7 +124,7 @@ Chọn “Compare & pull request”
 Gửi PR để nhóm review code và merge vào main
 
 🛠️ Nếu gặp lỗi khi push (ví dụ: “fetch first”)
-
+---
 Chạy lệnh sau để cập nhật code mới nhất trước khi push:
 ```
 git pull origin main --allow-unrelated-histories

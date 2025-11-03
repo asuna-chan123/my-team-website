@@ -235,8 +235,14 @@
     <Content Include="Content\css\assets\adidascard\9.png" />
     <Content Include="Content\css\assets\adidasgif.gif" />
     <Content Include="Content\css\assets\FW_25_Motorsport.png" />
+    <Content Include="Content\css\assets\images\applelogo.jpg" />
+    <Content Include="Content\css\assets\images\Facebook.png" />
+    <Content Include="Content\css\assets\images\Google__G__logo.svg.png" />
+    <Content Include="Content\css\assets\images\shoesadidas.png" />
+    <Content Include="Content\css\assets\images\ultraboostlight.jpg" />
     <Content Include="Content\css\checkout.css" />
     <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\order-history-modern.css" />
     <Content Include="Content\css\Product-detail-Tshirt.css" />
     <Content Include="Content\css\Product-detail-Yeezy-Boost.css" />
     <Content Include="Content\css\Product-man.css" />
@@ -304,6 +310,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\css\assets\images\fblogo.webp" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\header.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />

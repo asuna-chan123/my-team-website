@@ -17,7 +17,8 @@ namespace WebApplication6.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+            var customers = db.Customers.ToList();  // Lấy toàn bộ dữ liệu từ bảng
+            return View(customers);
         }
 
         // GET: Customers/Details/5

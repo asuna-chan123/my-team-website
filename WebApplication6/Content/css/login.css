@@ -55,9 +55,6 @@
     margin-top: 2px;
 }
 
-
-
-
 .login-header h2 {
     font-size: 22px;
     margin-bottom: 10px;
@@ -68,21 +65,29 @@
     color: #555;
 }
 
+/* Sắp xếp các nút theo chiều dọc và tạo khoảng cách */
 .social-login {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Chuyển sang chiều dọc */
+    gap: 15px; /* Khoảng cách giữa các nút */
     margin: 20px 0;
 }
 
+/* Chỉnh lại nút để hiển thị logo và chữ */
 .social-btn {
-    width: 30%;
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
     height: 45px;
     border: 1px solid #ccc;
     background-color: #fff;
     cursor: pointer;
     border-radius: 4px;
+    display: flex; /* Dùng flexbox để căn chỉnh nội dung bên trong */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    gap: 10px; /* Khoảng cách giữa logo và chữ */
+    font-weight: bold;
+    font-size: 14px;
 }
-
     .social-btn img {
         height: 24px;
         width: 24px;
@@ -136,6 +141,7 @@ label {
         opacity: 0.8;
     }
 /* Ẩn checkbox mặc định */
+
 input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
@@ -149,19 +155,19 @@ input[type="checkbox"] {
     position: relative;
     margin-right: 6px;
 }
-
     /* Khi hover */
+
     input[type="checkbox"]:hover {
         background-color: #f2f2f2;
     }
-
     /* Khi được chọn */
+
     input[type="checkbox"]:checked {
         background-color: #000;
         border-color: #000;
     }
-
         /* Dấu check trắng bên trong */
+
         input[type="checkbox"]:checked::after {
             content: "";
             position: absolute;

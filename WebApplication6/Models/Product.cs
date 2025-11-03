@@ -18,9 +18,8 @@ namespace WebApplication6.Models
         public Product()
         {
             this.OrderDetails = new HashSet<OrderDetail>();
-
         }
-
+    
         public int ProductID { get; set; }
         public string NamePro { get; set; }
         public string DecriptionPro { get; set; }

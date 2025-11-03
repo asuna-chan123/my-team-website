@@ -10,6 +10,8 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     @Styles.Render("~/Content/css")
+    @RenderSection("Styles", required: false)
+
 </head>
 <body>
     @Html.Partial("_Header")
@@ -22,5 +24,6 @@
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

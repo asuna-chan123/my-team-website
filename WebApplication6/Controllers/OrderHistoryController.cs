@@ -9,7 +9,7 @@ namespace WebApplication6.Controllers
     public class OrderHistoryController : Controller
     {
         // GET: OrderHistory
-        public ActionResult Index()
+        public ActionResult OrderHistory()
         {
             return View();
         }

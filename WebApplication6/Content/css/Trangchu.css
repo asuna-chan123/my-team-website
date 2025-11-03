@@ -5,7 +5,6 @@
 
 .banner-container {
     margin-top: -5%;
-
 }
 
 .banner-img {
@@ -13,6 +12,7 @@
     height: auto;
     display: block;
 }
+
 .banner-containerr {
     background-image: url("https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_1920,w_1920/global_fw25_thug_club_originals_fw25_launch_hp_banner_hero_d_74432e1f4c.jpg");
     display: block;
@@ -23,6 +23,7 @@
     background-position: center;
     position: relative;
 }
+
 .banner-containerrr {
     background-image: url("https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_1920,w_1920/global_jude_bellingham_pack_football_fw25_launch_hp_catlp_glp_banner_hero_2_d_a8b4927fce.jpg");
     display: block;
@@ -40,7 +41,7 @@
     .banner-imgg {
         padding-top: 10%;
         width: 100%; /* full ngang */
-        height: 720px; 
+        height: 720px;
         object-fit: cover; /* cắt ảnh vừa khung mà không méo */
     }
 }
@@ -58,7 +59,6 @@
 @media (min-width: 1080px) and (max-width: 1600px) {
     .banner-imgg {
         padding-top: 2%;
-
     }
 }
 
@@ -162,6 +162,7 @@ body {
     justify-content: center;
     align-items: flex-end;
 }
+
 .adidas {
     position: absolute;
     bottom: 30px;
@@ -583,8 +584,8 @@ p {
 /*hết mục lục*/
 
 .banner-container.full-bleed {
-    position: relative; 
-    width: 100vw; 
+    position: relative;
+    width: 100vw;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
@@ -592,13 +593,13 @@ p {
     overflow: hidden;
 }
 
-.banner-container.full-bleed .banner-img {
-    width: 100vw;
-    height: 100vh; 
-    min-height: 100vh;
-    display: block;
-    object-fit: cover; 
-}
+    .banner-container.full-bleed .banner-img {
+        width: 100vw;
+        height: 100vh;
+        min-height: 100vh;
+        display: block;
+        object-fit: cover;
+    }
 
 
 header, .site-header {
@@ -629,6 +630,5 @@ html, body {
 
 .hero-banner-container {
     position: relative;
-    width: 100%; 
-
+    width: 100%;
 }

@@ -58,9 +58,10 @@ WebApplication6
 Order.cshtml -> OrderProes/Index.cshtml
 Oderconfirm  -> OrderProes/Deatail.cshtml
 Odertracking -> OrderProes/Edit.cshtml
-login         -> Customer/Index.cshtml
-checkout     -> Customer/edit.cshtml
-order history -> Customer/Deatail.cshtml
+login         -> View/Account/Login.cshtml
+checkout     -> View/Checkout/Checkout.cshtml
+order history -> View/OrderHistory/OrderHistory.cshtml
+
 ```
 
 

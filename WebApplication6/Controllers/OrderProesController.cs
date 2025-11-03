@@ -15,10 +15,11 @@ namespace WebApplication6.Controllers
         private DBSportStoreEntities db = new DBSportStoreEntities();
 
         // GET: OrderProes
-        public ActionResult Index()
+        public ActionResult Order()
         {
-            var orderProes = db.OrderProes.Include(o => o.Customer);
-            return View(orderProes.ToList());
+            //var orderProes = db.OrderProes.Include(o => o.Customer);
+            //return View(orderProes.ToList());
+            return View();
         }
 
         // GET: OrderProes/Details/5
@@ -37,9 +38,14 @@ namespace WebApplication6.Controllers
         }
 
         // GET: OrderProes/Create
-        public ActionResult Create()
+        public ActionResult OrderConfirm()
         {
-            ViewBag.IDCus = new SelectList(db.Customers, "IDCus", "NameCus");
+            //ViewBag.IDCus = new SelectList(db.Customers, "IDCus", "NameCus");
+            return View();
+        }
+        public ActionResult OrderTracking()
+        {
+            //ViewBag.IDCus = new SelectList(db.Customers, "IDCus", "NameCus");
             return View();
         }
 

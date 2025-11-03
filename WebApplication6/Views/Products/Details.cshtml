@@ -24,17 +24,17 @@
     <!--CSS -->
     <link rel="stylesheet" href="@Url.Content("~/Content/css/Product-detail-Tshirt.css")" />
     <style>
-@@media (max-width: 768px) {
-    footer,
-    #footer,
-    .footer {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        height: 0 !important;
-        overflow: hidden !important;
-    }
-}
+        @@media (max-width: 768px) {
+            footer,
+            #footer,
+            .footer {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                height: 0 !important;
+                overflow: hidden !important;
+            }
+        }
     </style>
 
 </head>
@@ -744,7 +744,7 @@
             const variant = colorVariants[colorIndex];
             if (!variant) return;
 
-            // ảnh 
+            // ảnh
             const mainImage = document.getElementById('mainImage');
             mainImage.style.opacity = '0.5';
             setTimeout(() => {
@@ -795,9 +795,9 @@
                 } else {
                     // k có ảnh thì ẩn
                     thumbnail.style.display = 'none';
-                    thumbnail.classList.remove('hidden'); 
+                    thumbnail.classList.remove('hidden');
                     thumbnail.classList.remove('active');
-                    thumbnail.onclick = null; 
+                    thumbnail.onclick = null;
                 }
             });
 
@@ -928,8 +928,8 @@
 
     <script>
         let currentQty = 1;
-        let unitPrice = 0;            
-        let originalUnitPrice = 0;    
+        let unitPrice = 0;
+        let originalUnitPrice = 0;
 
         function formatVND(n) { return (n || 0).toLocaleString('vi-VN') + '₫'; }
         function parseVND(t) { return parseInt(String(t || '').replace(/\D/g, '')) || 0; }
@@ -966,7 +966,7 @@
             unitPrice = parseVND(priceText);
 
             const priceEl = document.querySelector('.product-price');
-            const dataOriginal = priceEl?.getAttribute('data-original-price'); 
+            const dataOriginal = priceEl?.getAttribute('data-original-price');
             const originalFromAttr = dataOriginal ? parseInt(dataOriginal, 10) : 0;
             const originalFromEl = parseVND(document.querySelector('.product-price-original')?.textContent || '0');
             originalUnitPrice = Math.max(originalFromAttr, originalFromEl, 0) || unitPrice;
@@ -1003,21 +1003,24 @@
             openCartPopup(selectedColor, selectedSize, imageSrc);
         });
 
+        //pop up
         function confirmAddToCart() {
             const productName = document.getElementById('popupName').textContent.trim();
             const qty = document.getElementById('popupQty').textContent;
             const color = document.getElementById('popupColor').textContent;
             const size = document.getElementById('popupSize').textContent;
 
-            alert(
-                `Đã xác nhận đặt hàng!\n\n` +
-                `Tên sản phẩm: ${productName}\n` +
-                `Số lượng: ${qty}\n` +
-                `Màu: ${color}\n` +
-                `Kích cỡ: ${size}`
-            );
+            //alert(
+            //    `Đã xác nhận đặt hàng!\n\n` +
+            //    `Tên sản phẩm: ${productName}\n` +
+            //    `Số lượng: ${qty}\n` +
+            //    `Màu: ${color}\n` +
+            //    `Kích cỡ: ${size}`
+            //);
 
-            closeCartPopup();
+            //closeCartPopup();
+
+            window.location.href = '/OrderProes/Order'
         }
 
     </script>

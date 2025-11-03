@@ -1,4 +1,4 @@
-﻿    <title>@ViewBag.Title - Adidas Store</title>
+    <title>@ViewBag.Title - Adidas Store</title>
 
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
@@ -89,7 +89,7 @@
                 <!-- icons bên phải -->
                 <div class="flex items-center space-x-4">
                     <!-- Search -->
-                    <div class="relative">
+                    <div class="relative" >
                         <form class="hidden lg:flex items-center bg-gray-100 rounded-lg px-2 py-1 search-box relative" role="search">
                             <button type="submit" class="search-btn absolute right-2">
                                 <img src="~/Content/partials/iconheader/search_.png" alt="Search" loading="lazy" class="w-5 h-5" />
@@ -111,17 +111,20 @@
                     </div>
 
                     <!-- User -->
-                    <button class="relative p-2 hover:bg-gray-100 rounded transition-colors">
+                    <button onclick="location.href='@Url.Action("Index","Customers")'"
+                            class="relative p-2 hover:bg-gray-100 rounded transition-colors">
                         <img src="~/Content/partials/iconheader/user_.png" alt="User" loading="lazy" class="w-5 h-auto" />
                     </button>
 
                     <!-- yêu thích -->
-                    <button class="p-2 hover:bg-gray-100 rounded transition-colors group">
+                    <button onclick="location.href='@Url.Action("Index","Customers")'"
+                            class="p-2 hover:bg-gray-100 rounded transition-colors group">
                         <img src="~/Content/partials/iconheader/heart_.png" alt=" Wishlist" loading="lazy" class="w-5 h-auto" />
                     </button>
 
                     <!-- giỏ hàng -->
-                    <button class="relative p-2 hover:bg-gray-100 rounded transition-colors">
+                    <button onclick="location.href='@Url.Action("Order","OrderProes")'"
+                            class="relative p-2 hover:bg-gray-100 rounded transition-colors">
                         <img src="~/Content/partials/iconheader/shop_.png" alt="Shopping bag" loading="lazy" class="w-5 h-auto" />
                         <span class="absolute -top-1 -right-1 w-5 h-5 bg-black text-white text-xs rounded-full flex items-center justify-center font-medium">0</span>
                     </button>

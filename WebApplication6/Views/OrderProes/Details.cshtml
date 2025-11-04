@@ -1,57 +1,106 @@
-﻿@model WebApplication6.Models.OrderPro
+﻿
 
 @{
     ViewBag.Title = "Đơn hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 style="font-weight:bold; margin-bottom:20px;">ĐƠN HÀNG</h2>
 
-<div style="max-width: 700px; padding: 15px;">
-    <table class="table table-borderless">
-        <tr>
-            <td style="width: 150px; font-weight: bold;">Ngày Đặt hàng :</td>
-            <td>@Html.DisplayFor(model => model.DateOrder)</td>
-        </tr>
-        <tr>
-            <td style="font-weight: bold;">Địa chỉ Giao hàng :</td>
-            <td>@Html.DisplayFor(model => model.AddressDeliverry)</td>
-        </tr>
-        <tr>
-            <td style="font-weight: bold;">Khách Hàng :</td>
-            <td>@Html.DisplayFor(model => model.Customer.NameCus)</td>
-        </tr>
-    </table>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Xác Nhận Đơn Hàng - Adidas</title>
+    @*<link href="~/Content/Header.css" rel="stylesheet" type="text/css" />*@
+    
+    <link href="~/Content/OrderProes/OrderConfirm.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <!-- Header -->
+    <div class="confirmation-header">
+        <h1>XÁC NHẬN ĐƠN HÀNG</h1>
+        <p>Cảm ơn bạn đã đặt hàng tại Adidas</p>
+    </div>
 
-<!-- ✅ Chi tiết Đơn Hàng -->
-@if (Model.OrderDetails != null && Model.OrderDetails.Any())
-{
-    <h3 style="font-weight:bold;">Chi tiết Đơn Hàng</h3>
-    <table class="table table-bordered" style="max-width:700px;">
-        <thead style="background-color:#f5f5f5;">
-            <tr>
-                <th>Sản Phẩm</th>
-                <th>Số Lượng</th>
-                <th>Đơn Giá</th>
-                <th>Thành Tiền</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.OrderDetails)
-            {
-                <tr>
-                    <td>@item.Product.NamePro</td>
-                    <td>@item.Quantity</td>
-                    <td>@String.Format("{0:N0}", item.UnitPrice)</td>
-                    <td>@String.Format("{0:N0}", item.Quantity * item.UnitPrice)</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+    <!-- Main Content -->
+    <div class="confirmation-container">
+        <!-- Success Message -->
+        <div class="success-badge">
+            <h2>Đơn hàng của bạn đã được xác nhận!</h2>
+            <p>Chúng tôi sẽ gửi chi tiết đơn hàng đến email của bạn trong vài phút</p>
+        </div>
 
-<p>
-    @Html.ActionLink("Cập Nhật", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        <!-- Order Info -->
+        <div class="order-info">
+            <h3>THÔNG TIN ĐƠN HÀNG</h3>
+            <div class="info-row">
+                <span class="info-label">Mã đơn hàng:</span>
+                <span class="info-value">#ADI-2025-001234</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Ngày đặt:</span>
+                <span class="info-value">27/10/2025</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Trạng thái:</span>
+                <span class="info-value" style="color: #4CAF50; font-weight: bold;">Đang xử lý</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Phương thức thanh toán:</span>
+                <span class="info-value">Thẻ Visa</span>
+            </div>
+        </div>
+
+        <!-- Order Items -->
+        <div class="order-items">
+            <h3>CHI TIẾT SẢN PHẨM</h3>
+
+            <div class="item">
+                <div class="item-details">
+                    <div class="item-name">Giày Samba OG</div>
+                    <div class="item-spec">Màu: Black / Lime | Kích cỡ: 42 | Số lượng: 1</div>
+                </div>
+                <div class="item-price">3.000.000₫</div>
+            </div>      
+            <div class="order-total">
+                <span>Tổng cộng:</span>
+                <span>3.000.000₫</span>
+            </div>
+        </div>
+
+        <!-- Delivery Info -->
+        <div class="delivery-info">
+            <h3>THÔNG TIN GIAO HÀNG</h3>
+            <div class="delivery-row">
+                <strong>Người nhận:</strong> Nguyễn Văn A
+            </div>
+            <div class="delivery-row">
+                <strong>Địa chỉ:</strong> 82/3 Đường Nguyễn Trí Phương, Quận 1, TP.HCM
+            </div>
+            <div class="delivery-row">
+                <strong>Số điện thoại:</strong> 0912345678
+            </div>
+            <div class="delivery-row">
+                <strong>Dự kiến giao:</strong> 30/10/2025 - 02/11/2025
+            </div>
+            <div class="delivery-row">
+                <strong>Phí giao hàng:</strong> Miễn phí
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="confirmation-actions">
+            @*<button class="btn btn-primary"  >TIẾP TỤC MUA SẮM</button>
+                <button  class="btn btn-secondary">THEO DÕI ĐƠN HÀNG</button>*@
+           <a href="~/Products/ProductList"><button class="btn btn-primary" onclick="continueShopping()">TIẾP TỤC MUA SẮM</button></a>
+           <a href="~/OrderProes/OrderTracking"<button class="btn btn-secondary" onclick="trackOrder()">THEO DÕI ĐƠN HÀNG</button></a>
+            
+        </div>
+        
+    </div>
+
+    
+
+    <script src="~/Scripts/OrderProes/Orderconfirm.js"></script>
+</body>
+</html>

@@ -1,121 +1,125 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\AtSchool\\LTTW\\DoAnLTTW\\",
+  "WorkspaceRootPath": "D:\\AtSchool\\LTTW\\DoAnnn\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\orderhistory\\orderhistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\orderhistory\\orderhistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|d:\\atschool\\lttw\\doanlttw\\webapplication6\\views\\checkout\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\checkout\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\checkout\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|d:\\atschool\\lttw\\doanlttw\\webapplication6\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|d:\\atschool\\lttw\\doannn\\webapplication6\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\products\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\orderhistory\\orderhistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\orderhistory\\orderhistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\products\\home\\trangchu.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\products\\home\\trangchu.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\products\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\products\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\scripts\\js\\login.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\scripts\\js\\login.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\scripts\\js\\login.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\customers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\customers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\customers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\categories\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\categories\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\categories\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\categories\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\categories\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\categories\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\customers\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\customers\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\customers\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\categories\\categorypartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\categories\\categorypartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\categories\\categorypartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\orderproes\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\orderproes\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\orderproes\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\categories\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\categories\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\categories\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\products\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\products\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\products\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\products\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\products\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\products\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\customers\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\customers\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\customers\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\customers\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\customers\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\customers\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\products\\productlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\products\\productlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\products\\productlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\controllers\\orderproescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\controllers\\orderproescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\controllers\\orderproescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\content\\css\\trangchu.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\content\\css\\trangchu.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\content\\css\\trangchu.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnLTTW\\webapplication6\\views\\shared\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|D:\\AtSchool\\LTTW\\DoAnnn\\webapplication6\\views\\shared\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9DF5CFAB-44A7-4AC8-B7DB-F69442D973D5}|WebApplication6\\DBSportStore.csproj|solutionrelative:webapplication6\\views\\shared\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -142,50 +146,61 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "WebApplication6\\Views\\Account\\Login.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Account\\Login.cshtml",
-              "RelativeToolTip": "WebApplication6\\Views\\Account\\Login.cshtml",
+              "DocumentIndex": 3,
+              "Title": "Trangchu.html",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Products\\Home\\Trangchu.html",
+              "RelativeDocumentMoniker": "WebApplication6\\Views\\Products\\Home\\Trangchu.html",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Products\\Home\\Trangchu.html",
+              "RelativeToolTip": "WebApplication6\\Views\\Products\\Home\\Trangchu.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-11-03T19:41:07.497Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "WebApplication6\\Views\\Account\\Login.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "WebApplication6\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-03T19:03:09.829Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Checkout.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Checkout\\Checkout.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Checkout\\Checkout.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Checkout\\Checkout.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Checkout\\Checkout.cshtml",
-              "RelativeToolTip": "WebApplication6\\Views\\Checkout\\Checkout.cshtml",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAGEAAAAAAAAAAAAAAA==",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Checkout\\Checkout.cshtml*",
+              "RelativeToolTip": "WebApplication6\\Views\\Checkout\\Checkout.cshtml*",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFQAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-03T09:27:44.557Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "OrderHistory.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\OrderHistory\\OrderHistory.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\OrderHistory\\OrderHistory.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\OrderHistory\\OrderHistory.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\OrderHistory\\OrderHistory.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\OrderHistory\\OrderHistory.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\OrderHistory\\OrderHistory.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAABmAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwCsAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-03T09:33:24.411Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T09:33:24.411Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Products\\Home\\Index.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Products\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Products\\Home\\Index.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Products\\Home\\Index.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Products\\Home\\Index.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Products\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -193,11 +208,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Shared\\_Layout.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -205,11 +220,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Categories\\Details.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Categories\\Details.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Categories\\Details.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Categories\\Details.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Categories\\Details.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Categories\\Details.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -217,11 +232,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Edit.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Categories\\Edit.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Categories\\Edit.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Categories\\Edit.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Categories\\Edit.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Categories\\Edit.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Categories\\Edit.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -229,11 +244,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Customers\\Index.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Customers\\Index.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Customers\\Index.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Customers\\Index.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Customers\\Index.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Customers\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -241,11 +256,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "CustomersController.cs",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Controllers\\CustomersController.cs",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Controllers\\CustomersController.cs",
               "RelativeDocumentMoniker": "WebApplication6\\Controllers\\CustomersController.cs",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Controllers\\CustomersController.cs",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Controllers\\CustomersController.cs",
               "RelativeToolTip": "WebApplication6\\Controllers\\CustomersController.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAqwBMAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -253,11 +268,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "AccountController.cs",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Controllers\\AccountController.cs",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "WebApplication6\\Controllers\\AccountController.cs",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Controllers\\AccountController.cs",
               "RelativeToolTip": "WebApplication6\\Controllers\\AccountController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -265,11 +280,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "login.js",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Scripts\\js\\login.js",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Scripts\\js\\login.js",
               "RelativeDocumentMoniker": "WebApplication6\\Scripts\\js\\login.js",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Scripts\\js\\login.js",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Scripts\\js\\login.js",
               "RelativeToolTip": "WebApplication6\\Scripts\\js\\login.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
@@ -277,11 +292,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "CategoriesController.cs",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Controllers\\CategoriesController.cs",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Controllers\\CategoriesController.cs",
               "RelativeDocumentMoniker": "WebApplication6\\Controllers\\CategoriesController.cs",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Controllers\\CategoriesController.cs",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Controllers\\CategoriesController.cs",
               "RelativeToolTip": "WebApplication6\\Controllers\\CategoriesController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -289,11 +304,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Customers\\Create.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Customers\\Create.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Customers\\Create.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Customers\\Create.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Customers\\Create.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Customers\\Create.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -301,11 +316,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "CategoryPartial.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Categories\\CategoryPartial.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Categories\\CategoryPartial.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Categories\\CategoryPartial.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Categories\\CategoryPartial.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Categories\\CategoryPartial.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Categories\\CategoryPartial.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -313,11 +328,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\OrderProes\\Create.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\OrderProes\\Create.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\OrderProes\\Create.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\OrderProes\\Create.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\OrderProes\\Create.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\OrderProes\\Create.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -325,11 +340,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Categories\\Create.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Categories\\Create.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Categories\\Create.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Categories\\Create.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Categories\\Create.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Categories\\Create.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -337,11 +352,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "Delete.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Products\\Delete.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Products\\Delete.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Products\\Delete.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Products\\Delete.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Products\\Delete.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Products\\Delete.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -349,11 +364,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Products\\Details.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Products\\Details.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Products\\Details.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Products\\Details.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Products\\Details.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Products\\Details.cshtml",
               "ViewState": "AgIAADgCAAAAAAAAAAAAAHQDAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -361,11 +376,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "About.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Home\\About.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Home\\About.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Home\\About.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Home\\About.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Home\\About.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Home\\About.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -373,11 +388,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Controllers\\HomeController.cs",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "WebApplication6\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Controllers\\HomeController.cs",
               "RelativeToolTip": "WebApplication6\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -385,11 +400,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "Edit.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Customers\\Edit.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Customers\\Edit.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Customers\\Edit.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Customers\\Edit.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Customers\\Edit.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Customers\\Edit.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -397,22 +412,22 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "Model1.edmx [Diagram1]",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Models\\Model1.edmx",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Models\\Model1.edmx",
               "RelativeDocumentMoniker": "WebApplication6\\Models\\Model1.edmx",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Models\\Model1.edmx [Diagram1]",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Models\\Model1.edmx [Diagram1]",
               "RelativeToolTip": "WebApplication6\\Models\\Model1.edmx [Diagram1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
               "WhenOpened": "2025-11-03T02:02:08.427Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Customers\\Details.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Customers\\Details.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Customers\\Details.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Customers\\Details.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Customers\\Details.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Customers\\Details.cshtml",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -420,11 +435,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "Trangchu.css",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Content\\css\\Trangchu.css",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Content\\css\\Trangchu.css",
               "RelativeDocumentMoniker": "WebApplication6\\Content\\css\\Trangchu.css",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Content\\css\\Trangchu.css",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Content\\css\\Trangchu.css",
               "RelativeToolTip": "WebApplication6\\Content\\css\\Trangchu.css",
               "ViewState": "AgIAAFsCAAAAAAAAAAAswHoCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
@@ -432,11 +447,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "ProductList.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Products\\ProductList.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Products\\ProductList.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Products\\ProductList.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Products\\ProductList.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Products\\ProductList.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Products\\ProductList.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -444,11 +459,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "OrderProesController.cs",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Controllers\\OrderProesController.cs",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Controllers\\OrderProesController.cs",
               "RelativeDocumentMoniker": "WebApplication6\\Controllers\\OrderProesController.cs",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Controllers\\OrderProesController.cs",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Controllers\\OrderProesController.cs",
               "RelativeToolTip": "WebApplication6\\Controllers\\OrderProesController.cs",
               "ViewState": "AgIAAEkAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -456,11 +471,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "_Header.cshtml",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Shared\\_Header.cshtml",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Shared\\_Header.cshtml",
               "RelativeDocumentMoniker": "WebApplication6\\Views\\Shared\\_Header.cshtml",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Views\\Shared\\_Header.cshtml",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Views\\Shared\\_Header.cshtml",
               "RelativeToolTip": "WebApplication6\\Views\\Shared\\_Header.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAJYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -468,11 +483,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "Global.asax.cs",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Global.asax.cs",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Global.asax.cs",
               "RelativeDocumentMoniker": "WebApplication6\\Global.asax.cs",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\Global.asax.cs",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\Global.asax.cs",
               "RelativeToolTip": "WebApplication6\\Global.asax.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -480,11 +495,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "packages.config",
-              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\packages.config",
+              "DocumentMoniker": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\packages.config",
               "RelativeDocumentMoniker": "WebApplication6\\packages.config",
-              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnLTTW\\WebApplication6\\packages.config",
+              "ToolTip": "D:\\AtSchool\\LTTW\\DoAnnn\\WebApplication6\\packages.config",
               "RelativeToolTip": "WebApplication6\\packages.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",

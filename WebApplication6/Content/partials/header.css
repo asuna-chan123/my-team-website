@@ -1,4 +1,4 @@
-/* CSS ?„ ???c l‡m s?ch - Ch? gi? l?i nh?ng gÏ c?n thi?t cho HTML hi?n t?i */
+Ôªø/* CSS ?√£ ???c l√†m s?ch - Ch? gi? l?i nh?ng g√¨ c?n thi?t cho HTML hi?n t?i */
 
 /* =================================================================
    THI?T L?P C? B?N - Basic Setup
@@ -16,7 +16,7 @@ header .search-box {
     gap: 8px !important;
     overflow: hidden;
     transition: width 0.8s ease;
-    flex: 0 0 auto !important; /* khÙng b? kÈo gi„n */
+    flex: 0 0 auto !important; /* kh√¥ng b? k√©o gi√£n */
 }
 
 /* Keep the button a fixed width so icon doesn't shift */
@@ -147,7 +147,7 @@ header .search-box:focus-within {
     cursor: pointer;
 }
 
-/* Animation tr??t xu?ng t? trÍn */
+/* Animation tr??t xu?ng t? tr√™n */
 @keyframes headerSlideDown {
     from {
         transform: translateY(-14px);
@@ -160,7 +160,7 @@ header .search-box:focus-within {
     }
 }
 
-/* Animation tr??t v‡o t? ph?i cho controls */
+/* Animation tr??t v√†o t? ph?i cho controls */
 @keyframes slideInFromRight {
     from {
         transform: translateX(30px);
@@ -173,7 +173,7 @@ header .search-box:focus-within {
     }
 }
 
-/* Tr?ng th·i ?n ban ??u cho c·c ph?n t? header */
+/* Tr?ng th√°i ?n ban ??u cho c√°c ph?n t? header */
 header > div:first-of-type,
 header > div:nth-of-type(2) .flex.items-center.justify-between,
 header nav button,
@@ -182,7 +182,7 @@ header .flex.items-center.space-x-4 > * {
     transform: translateY(-12px);
 }
 
-/* KÌch ho?t animation ch? sau khi loader k?t th˙c */
+/* K√≠ch ho?t animation ch? sau khi loader k?t th√∫c */
 body.loaded header > div:first-of-type {
     animation: headerSlideDown .48s ease forwards;
     animation-delay: 0s;
@@ -197,7 +197,7 @@ body.loaded header nav button {
     animation: headerSlideDown .42s ease forwards;
 }
 
-    /* Delay kh·c nhau cho t?ng n˙t nav */
+    /* Delay kh√°c nhau cho t?ng n√∫t nav */
     body.loaded header nav button:nth-child(1) {
         animation-delay: 2.0s;
     }
@@ -230,7 +230,7 @@ body.loaded header .flex.items-center.space-x-4 > * {
     animation: headerSlideDown .42s ease forwards;
 }
 
-    /* Delay cho c·c items bÍn ph?i header */
+    /* Delay cho c√°c items b√™n ph?i header */
     body.loaded header .flex.items-center.space-x-4 > *:nth-child(1) {
         animation-delay: 3.75s;
     }
@@ -248,7 +248,7 @@ body.loaded header .flex.items-center.space-x-4 > * {
     }
 
 /* =================================================================
-   SEARCH DROPDOWN - Dropdown tÏm ki?m
+   SEARCH DROPDOWN - Dropdown t√¨m ki?m
    ================================================================= */
 .search-dropdown {
     transition: all 0.3s ease;
@@ -280,21 +280,21 @@ body.loaded header .flex.items-center.space-x-4 > * {
     }
 }
 
-/* ?? ?n icon tÏm ki?m v‡ form ? m‡n hÏnh nh? */
+/* ?? ?n icon t√¨m ki?m v√† form ? m√†n h√¨nh nh? */
 @media (max-width: 1024px) {
     .search-box,
     #searchToggle {
         display: none !important;
     }
 }
-/* ?? ?n to‡n b? thanh search (c? input v‡ icon) khi m‡n hÏnh < 1024px */
+/* ?? ?n to√†n b? thanh search (c? input v√† icon) khi m√†n h√¨nh < 1024px */
 @media (max-width: 1024px) {
     .search-box,
     #searchToggle {
         display: none !important;
     }
 }
-/* ?? C?n logo ra gi?a trÍn mobile */
+/* ?? C?n logo ra gi?a tr√™n mobile */
 @media (max-width: 1024px) {
     .logo-wrapper {
         position: absolute;
@@ -308,5 +308,13 @@ body.loaded header .flex.items-center.space-x-4 > * {
 .search-box {
     position: relative; /* ensure pseudo-element positions against container */
 }
-
+header,
+header * {
+    animation: none !important;
+    transition: none !important;
+    /* √©p tr·∫°ng th√°i hi·ªÉn th·ªã "cu·ªëi c√πng" */
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
 

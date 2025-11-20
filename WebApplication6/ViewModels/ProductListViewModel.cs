@@ -14,6 +14,9 @@ namespace WebApplication6.ViewModels
         public string PriceSort { get; set; }
         // thêm nếu muốn list category để render <select>
         public IEnumerable<Category> AllCategories { get; set; }
+
+        public CarouselViewModel Carousel1 { get; set; }
+        public CarouselViewModel Carousel2 { get; set; }
         //public IEnumerable<WebApplication6.Models.Category> AllCategories { get; set; }
     }
 }

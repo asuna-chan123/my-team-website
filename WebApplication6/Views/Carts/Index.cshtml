@@ -1,0 +1,137 @@
+﻿@model WebApplication6.ViewModels.CartViewModels.Carts
+@{
+    ViewBag.Title = "Cửa hàng Adidas trực tuyến | Adidas VN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+           @*Khối tổng quan giỏ hàng*@
+            <div class="cart-overview text-center mt-4">
+                <div class="title-cart">
+                    <h4>GIỎ HÀNG CỦA BẠN</h4>
+                </div>
+
+                @if (Model !=null|| Model.Items!= null || Model.Items.Any())
+                {
+                    var totalQuantity = Model.Items.Sum(x => x.Quantity);
+
+                    <div class="total-products">
+                        <p>Tổng Cộng (@Model.Items.Count()) sản phẩm</p>
+                        <p>@Model.TotalValue().ToString("N0")₫</p>
+                    </div>
+                    <div class="row-text">
+                        <p>Các mặt hàng trong giỏ hàng của bạn không được bảo lưu — hãy kiểm tra ngay để đặt hàng.</p>
+                    </div>
+                }
+            </div>
+
+            @if (Model==null||Model.Items==null||!Model.Items.Any())
+            {
+                <p>Bạn chưa có sản phẩm nào trong giỏ.</p>
+                @Html.ActionLink("Tiếp tục mua sắm", "ProductList", "Products", null, new { @class = "btn btn-dark button-back" })
+            }
+            else
+            {
+                @foreach (var item in Model.Items)
+                {
+                   
+                    <div class="cart-item row mb-3 pb-3">
+                        <div class="col-md-3 cart-image">
+                        
+                            <img src="@item.ImagePro" alt="@item.NamePro" title="@item.NamePro" class="img-fluid" style="max-height:150px;" />
+                        </div>
+
+                        <div class="col-md-7 cart-details">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h6>@item.NamePro</h6>
+                                    <p>Màu sắc: Mặc định</p>
+                                    <p>Kích cỡ: Mặc định</p>
+                                    <p>Đơn giá: @item.UnitPrice.ToString("N0")₫</p>
+                                    <p><strong>Thành tiền: @item.TotalPrice.ToString("N0")₫</strong></p>
+                                </div>
+
+                                <div class="col-md-4">
+                                    @using (Html.BeginForm("UpdateQuantity", "Cart", FormMethod.Post))
+                                    {
+                                  
+                                        <input type="hidden" name="id" value="@item.ProductID" />
+
+                                        <label>Số lượng:</label>
+                                        <select name="quantity"
+                                                class="form-control"
+                                                onchange="this.form.submit()"
+                                                style="width: 80px;">
+                                            @for (int i = 1; i <= 10; i++)
+                                            {
+                                                <option value="@i" @(i == item.Quantity ? "selected" : "")>@i</option>
+                                            }
+                                        </select>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 cart-button text-center">
+                            <a href="@Url.Action("RemoveFromCart", "Cart", new { id = item.ProductID })"
+                               class="btn btn-sm btn-outline-danger"
+                               onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');">
+                                <i class="fa-solid fa-x"></i> Xóa
+                            </a>
+                        </div>
+
+                    </div>
+
+                }
+            }
+        </div>
+
+        <div class="col-md-4 cart-summary">
+            @* SỬA: Thêm dấu đóng > cho cart-title *@
+            <div class="cart-title">
+                <h2>TÓM TẮT ĐƠN HÀNG</h2>
+            </div>
+
+            <div class="cart-total">
+                Tạm tính: <span class="item-price">@Model.TotalValue().ToString("N0")₫</span>
+            </div>
+
+            <div class="cart-total">
+                <span class="shipping-label">Giao hàng:</span>
+                <span class="shipping-price">Miễn phí</span>
+            </div>
+
+            <hr />
+
+            <div class="cart-row total">
+                <span class="total-label"><strong>Tổng:</strong></span>
+                <span class="total-price"><strong>@Model.TotalValue().ToString("N0")₫</strong></span>
+            </div>
+
+            <p>Đã bao gồm thuế (VAT)</p>
+
+            <div class="mb-2">
+                @Html.ActionLink("SỬ DỤNG MÃ KHUYẾN MÃI", "PromoCode", "Cart", null, new { @class = "btn btn-dark cart-button w-75" })
+            </div>
+
+            @if (Model.Items.Any())
+            {
+                <div class="mb-3">
+                    @Html.ActionLink("THANH TOÁN", "Checkout", "Checkout", null, new { @class = "btn btn-dark cart-button w-75" })
+                </div>
+            }
+
+            <div class="payment-methods mt-4">
+                <p class="payment-title"><strong>PHƯƠNG THỨC THANH TOÁN ĐƯỢC CHẤP NHẬN</strong></p>
+                <div class="d-flex justify-content-around">
+                    <img src="~/Content/Resources/Mastercard-removebg-preview.png" alt="Mastercard" style="height: 30px;" />
+                    <img src="~/Content/Resources/Visa-Logo.png" alt="Visa" style="height: 30px;" />
+                    <img src="~/Content/Resources/Money.jpg" alt="Cash" style="height: 30px;" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

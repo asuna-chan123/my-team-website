@@ -1,162 +1,141 @@
-    <title>@ViewBag.Title - Adidas Store</title>
+<title>@ViewBag.Title - Adidas Store</title>
 
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 
-    <!-- Style của MVC -->
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+<!-- Style của MVC -->
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="~/Content/partials/header.css" />
+<!-- CSS -->
+<link rel="stylesheet" href="~/Content/partials/header.css" />
 
 
 
-    <!-- Header -->
-    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
-        <div class="border-b border-gray-200/20 bg-white/10 backdrop-blur-sm">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-end items-center h-8 text-xs space-x-3">
-                    <button class="text-gray-700 hover:text-black transition-colors capitalize">help</button>
-                    <span class="text-gray-300">|</span>
-                    <button class="text-gray-700 hover:text-black transition-colors capitalize">order tracker</button>
-                    <span class="text-gray-300">|</span>
-                    <button class="text-gray-700 hover:text-black transition-colors capitalize">become a member</button>
-                </div>
+<!-- Header -->
+<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="border-b border-gray-200/20 bg-white/10 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-end items-center h-8 text-xs space-x-3">
+                <button class="text-gray-700 hover:text-black transition-colors capitalize">help</button>
+                <span class="text-gray-300">|</span>
+                <button class="text-gray-700 hover:text-black transition-colors capitalize">order tracker</button>
+                <span class="text-gray-300">|</span>
+                <button class="text-gray-700 hover:text-black transition-colors capitalize">become a member</button>
             </div>
         </div>
-
-        <!--header chính -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
-            <div class="flex items-center justify-between h-16">
-                <button id="mobileMenuToggle" class="p-2 mr-2 lg:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-                    <span class="block w-5 h-0.5 bg-black mb-1"></span>
-                    <span class="block w-5 h-0.5 bg-black mb-1"></span>
-                    <span class="block w-5 h-0.5 bg-black"></span>
-                </button>
-
-                <!-- Logo -->
-                <a href="~/Products/ProductList" class="flex-shrink-0 group cursor-pointer logo-wrapper">
-                    <div class="flex items-center justify-center transform transition-transform duration-200 group-hover:scale-105">
-                        <img src="~/Content/partials/iconheader/adidas-black-logo.png"
-                             alt="Adidas logo"
-                             loading="lazy"
-                             class="w-20 h-auto logo-img" />
-                    </div>
-                </a>
-
-                <!-- thanh điều hướng -->
-                <nav class="hidden lg:flex items-center space-x-8">
-                    <button onclick="location.href='@Url.Action("Index","Products")'"
-                            class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
-                        SHOES
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-                    </button>
-                    <button onclick="location.href='@Url.Action("Index","Products")'"
-                            class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
-                        MEN
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-                    </button>
-                    <button onclick="location.href='@Url.Action("Index","Products")'"
-                            class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
-                        WOMEN
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-                    </button>
-                    <button onclick="location.href='@Url.Action("Index","Products")'"
-                            class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
-                        KIDS
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-                    </button>
-                    <button onclick="location.href='@Url.Action("Index","Products")'"
-                            class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
-                        SPORTS
-                        <span 
-                              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-                    </button>
-                    <button onclick="location.href='@Url.Action("Index","Products")'"
-                            class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
-                        BRANDS
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-                    </button>
-                    <button onclick="location.href='@Url.Action("Index","Products")'"
-                            class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
-                        OUTLET
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-                    </button>
-                </nav>
-
-                <!-- icons bên phải -->
-                <div class="flex items-center space-x-4">
-                    <!-- Search -->
-                    <div class="relative" >
-                        <form class="hidden lg:flex items-center bg-gray-100 rounded-lg px-2 py-1 search-box relative" role="search">
-                            <button type="submit" class="search-btn absolute right-2">
-                                <img src="~/Content/partials/iconheader/search_.png" alt="Search" loading="lazy" class="w-5 h-5" />
-                            </button>
-                            <input name="q" type="text" placeholder="Search" class="search-input bg-transparent w-full text-sm text-gray-700 placeholder-gray-500 focus:outline-none pl-2 pr-10" />
-                        </form>
-
-                        <!-- Mobile  -->
-                        <button id="searchToggle" class="p-2 hover:bg-gray-100 rounded transition-colors lg:hidden">
-                            <img src="~/Content/partials/iconheader/search_.png" alt="Search" loading="lazy" class="w-5 h-5" />
-                        </button>
-
-                        <!--search -->
-                        <div id="searchDropdown" class="search-dropdown absolute top-full right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border search-hidden">
-                            <div class="p-4">
-                                <input type="text" placeholder="Search products..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- User -->
-                    <button onclick="location.href='@Url.Action("Login","Account")'"
-                            class="relative p-2 hover:bg-gray-100 rounded transition-colors">
-                        <img src="~/Content/partials/iconheader/user_.png" alt="User" loading="lazy" class="w-5 h-auto" />
-                    </button>
-
-                    <!-- yêu thích -->
-                    <button onclick="location.href='@Url.Action("Login","Account")'"
-                            class="p-2 hover:bg-gray-100 rounded transition-colors group">
-                        <img src="~/Content/partials/iconheader/heart_.png" alt=" Wishlist" loading="lazy" class="w-5 h-auto" />
-                    </button>
-
-                    <!-- giỏ hàng -->
-                    <button onclick="location.href='@Url.Action("Order","OrderProes")'"
-                            class="relative p-2 hover:bg-gray-100 rounded transition-colors">
-                        <img src="~/Content/partials/iconheader/shop_.png" alt="Shopping bag" loading="lazy" class="w-5 h-auto" />
-                        <span class="absolute -top-1 -right-1 w-5 h-5 bg-black text-white text-xs rounded-full flex items-center justify-center font-medium">0</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-
-    <!-- Mobile menu panel -->
-    <div id="mobileMenu" class="mobile-menu lg:hidden" aria-hidden="true">
-        <button id="mobileMenuClose" aria-label="Close menu" class="mobile-menu-close">✕</button>
-        <nav>
-            <a href="#">SHOES</a>
-            <a href="#">MEN</a>
-            <a href="#">WOMEN</a>
-            <a href="#">KIDS</a>
-            <a href="#">SPORTS</a>
-            <a href="#">BRANDS</a>
-            <a href="#">OUTLET</a>
-        </nav>
     </div>
 
-    <!-- Script -->
-    <script src="~/Scripts/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--header chính -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
+        <div class="flex items-center justify-between h-16">
+            <button id="mobileMenuToggle" class="p-2 mr-2 lg:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                <span class="block w-5 h-0.5 bg-black mb-1"></span>
+                <span class="block w-5 h-0.5 bg-black mb-1"></span>
+                <span class="block w-5 h-0.5 bg-black"></span>
+            </button>
 
-    <script>
-        lucide.createIcons(); // kích hoạt icon Lucide
-    </script>
+            <!-- Logo -->
+            <a href="~/Products/ProductList" class="flex-shrink-0 group cursor-pointer logo-wrapper">
+                <div class="flex items-center justify-center transform transition-transform duration-200 group-hover:scale-105">
+                    <img src="~/Content/partials/iconheader/adidas-black-logo.png"
+                         alt="Adidas logo"
+                         loading="lazy"
+                         class="w-20 h-auto logo-img" />
+                </div>
+            </a>
 
-    <script src="~/Scripts/header.js"></script>
+            <!-- thanh điều hướng -->
+            <nav class="hidden lg:flex items-center space-x-8">
+                <button onclick="location.href='@Url.Action("Index", "Products",
+                        new { gender = "", category = 1, priceSort = "" })'"
+                        class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                    SHOES
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
+                <button onclick="location.href='@Url.Action("Index", "Products",
+                        new { gender = "", category = 2, priceSort = "" })'"
+                        class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                    T-SHIRT
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
+                <button onclick="location.href='@Url.Action("Index", "Products",
+                        new { gender = "", category = 3, priceSort = "" })'"
+                        class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                    SHORT
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
+                <button onclick="location.href = '@Url.Action("Index","Products",
+                        new { gender = "male", category = "", priceSort = "" })'"
+                        class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                    MEN
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
+                <button onclick="location.href = '@Url.Action("Index","Products",
+                        new { gender = "female", category="" , priceSort="" })'"
+                        class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                    WOMEN
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
+                <button onclick="location.href = '@Url.Action("Index","Products",
+                        new { gender = "UNISEX", category = "", priceSort = "" })'"
+                        class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                    UNISEX
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
+            </nav>
+
+            <!-- icons bên phải -->
+            <div class="flex items-center space-x-4">
+
+                <!-- User -->
+                <button onclick="location.href='@Url.Action("Login","Account")'"
+                        class="relative p-2 hover:bg-gray-100 rounded transition-colors">
+                    <img src="~/Content/partials/iconheader/user_.png" alt="User" loading="lazy" class="w-5 h-auto" />
+                </button>
+
+                <!-- yêu thích -->
+                <button onclick="location.href='@Url.Action("Login","Account")'"
+                        class="p-2 hover:bg-gray-100 rounded transition-colors group">
+                    <img src="~/Content/partials/iconheader/heart_.png" alt=" Wishlist" loading="lazy" class="w-5 h-auto" />
+                </button>
+
+                <!-- giỏ hàng -->
+                <button onclick="location.href='@Url.Action("Order","OrderProes")'"
+                        class="relative p-2 hover:bg-gray-100 rounded transition-colors">
+                    <img src="~/Content/partials/iconheader/shop_.png" alt="Shopping bag" loading="lazy" class="w-5 h-auto" />
+                    <span class="absolute -top-1 -right-1 w-5 h-5 bg-black text-white text-xs rounded-full flex items-center justify-center font-medium">0</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!-- Mobile menu panel -->
+<div id="mobileMenu" class="mobile-menu lg:hidden" aria-hidden="true">
+    <button id="mobileMenuClose" aria-label="Close menu" class="mobile-menu-close">✕</button>
+    <nav>
+        <a href="#">SHOES</a>
+        <a href="#">MEN</a>
+        <a href="#">WOMEN</a>
+        <a href="#">KIDS</a>
+        <a href="#">SPORTS</a>
+        <a href="#">BRANDS</a>
+        <a href="#">OUTLET</a>
+    </nav>
+</div>
+
+<!-- Script -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    lucide.createIcons(); // kích hoạt icon Lucide
+</script>
+
+<script src="~/Scripts/header.js"></script>
 
 
 

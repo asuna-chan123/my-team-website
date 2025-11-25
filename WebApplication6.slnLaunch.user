@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "WebApplication6\\DBSportStore.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "..\\..\\New folder (3)\\AdiStore\\AdiStore\\AdiStore.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

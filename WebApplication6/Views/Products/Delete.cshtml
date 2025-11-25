@@ -1,0 +1,58 @@
+﻿@model WebApplication6.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="font-weight: bold; margin-bottom: 20px;">XÓA SẢN PHẨM</h2>
+
+<h4 style="color: #d9534f;">Bạn có chắc là xóa Sản Phẩm này?</h4>
+<hr />
+
+<div style="max-width: 600px; padding: 15px;">
+    <table class="table table-borderless" style="width: 100%;">
+        <tr>
+            <td style="width: 150px; font-weight: bold;">Tên Sản Phẩm :</td>
+            <td>@Html.DisplayFor(model => model.NamePro)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Mô tả :</td>
+            <td>@Html.DisplayFor(model => model.DecriptionPro)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Đơn giá :</td>
+            <td>@Html.DisplayFor(model => model.Price)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Hình :</td>
+            <td>
+                @if (!string.IsNullOrEmpty(Model.ImagePro))
+                {
+                    <p>@Html.DisplayFor(model => model.ImagePro)</p>
+                    <img src="~/Content/images/@Model.ImagePro"
+                         alt="@Model.NamePro"
+                         style="max-width:300px; border:1px solid #ddd; padding:5px; margin-top:5px;" />
+                }
+                else
+                {
+                    <span>Không có ảnh</span>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Loại Sản Phẩm :</td>
+            <td>@Html.DisplayFor(model => model.Category.NameCate)</td>
+        </tr>
+    </table>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color" style="margin-top:20px;">
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+    </div>
+}

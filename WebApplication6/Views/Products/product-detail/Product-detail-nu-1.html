@@ -1,0 +1,157 @@
+﻿@model WebApplication6.ViewModels.ProductDetailViewModel
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@Model.NamePro</title>
+
+    <!-- Font chữ -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="../partials/header.css" />
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/Product-detail.css")" />
+</head>
+<body>
+
+<!-- ================== HEADER ================== -->
+<div id="header-placeholder" aria-hidden="true"></div>
+
+<!-- ================== BACKGROUND VIDEO ================== -->
+@if (!string.IsNullOrEmpty(Model.BannerVideoUrl))
+{
+    <div id="wrap" class="video-wrap">
+        <iframe src="@Model.BannerVideoUrl"
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen>
+        </iframe>
+    </div>
+}
+
+<!-- ================== PRODUCT SECTION ================== -->
+<section class="product-section" style="margin-top:-7%">
+    <div class="container">
+
+        <!-- Hình ảnh sản phẩm -->
+        <div class="image-gallery">
+            <div class="main-image">
+                <img id="mainImage" src="@Model.FeatureImageUrl" alt="@Model.NamePro">
+            </div>
+
+            <div class="thumbnail-grid" id="thumbnailGrid">
+                <div class="thumbnail active" onclick="changeImage(this, '@Model.FeatureImageUrl')">
+                    <img src="@Model.FeatureImageUrl" alt="View 1">
+                </div>
+                <!-- bạn có thể thêm nhiều thumbnail khác hoặc lấy từ DB -->
+            </div>
+
+            <a href="#" class="store-link">
+                <span>📍</span>
+                <span>Mua ở trang ở gần đây</span>
+            </a>
+
+            <button class="image-dropdown" id="imageDropdown" onclick="toggleImageGallery()">
+                Hiện Thêm
+                <span class="dropdown-icon">▼</span>
+            </button>
+        </div>
+
+        <!-- ================== THÔNG TIN SẢN PHẨM ================== -->
+        <div class="product-info">
+            <div class="product-header">
+                <div class="product-category">@Model.CategoryName</div>
+                <h1 class="product-title">@Model.NamePro</h1>
+                <div class="product-price">@String.Format("{0:N0} ₫", Model.Price)</div>
+            </div>
+
+            <p class="product-description">@Model.DecriptionPro</p>
+
+            <div class="size-section">
+                <div class="size-header">
+                    <div class="section-label">Kích cỡ</div>
+                    <a class="size-guide">Hướng dẫn chọn kích cỡ</a>
+                </div>
+                <div class="size-grid">
+                    <button class="size-option">S</button>
+                    <button class="size-option active">M</button>
+                    <button class="size-option">L</button>
+                    <button class="size-option">XL</button>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary">
+                    🛒 Thêm vào giỏ hàng
+                </button>
+                <button class="btn btn-secondary">
+                    Tìm mẫu tương tự →
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================== CAROUSEL GỢI Ý MUA ================== -->
+<section class="carousel-section">
+    <h2 class="section-title">BẠN CÓ THỂ SẼ THÍCH</h2>
+    <div class="carousel-container">
+        <button class="carousel-nav prev" onclick="scrollCarousel('like', -1)">‹</button>
+        <div class="carousel" id="likeCarousel">
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/ee95c727a4e640b98db895de64884e50_9366/Ao_Thun_Run_It_DJen_IL7235_HM1.jpg" alt="Product">
+                    <button class="wishlist-btn">♡</button>
+                </div>
+                <div class="product-card-info">
+                    <div class="product-card-price">800.000₫</div>
+                    <div class="product-card-name">Áo Thun Run It</div>
+                    <div class="product-card-category">Performance</div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-nav next" onclick="scrollCarousel('like', 1)">›</button>
+    </div>
+</section>
+
+<!-- ================== FOOTER ================== -->
+<div id="footer-placeholder" aria-hidden="true"></div>
+
+<!-- ================== SCRIPTS ================== -->
+<script src="@Url.Content("~/Scripts/js/Product-detail.js")"></script>
+<script>
+    // Gộp script UI của file 2
+    function changeImage(thumbnail, imageSrc) {
+        document.getElementById('mainImage').src = imageSrc;
+        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+        thumbnail.classList.add('active');
+    }
+
+    function toggleImageGallery() {
+        const grid = document.getElementById('thumbnailGrid');
+        grid.classList.toggle('expanded');
+    }
+
+    function scrollCarousel(carouselId, direction) {
+        const carousel = document.getElementById(carouselId + 'Carousel');
+        const scrollAmount = carousel.offsetWidth * 0.8;
+        carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>

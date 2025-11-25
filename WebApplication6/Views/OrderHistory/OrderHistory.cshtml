@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Lịch sử mua hàng | Adidas Store";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/order-history-modern.css")" />
+}
+
+<div class="order-history-wrapper">
+    <section class="order-header">
+        <div class="header-left">
+            <h2>Lịch sử đơn hàng</h2>
+            <p>Theo dõi trạng thái các đơn hàng của bạn tại đây.</p>
+        </div>
+        <div class="header-right">
+            <select class="filter-select">
+                <option>Tất cả đơn hàng</option>
+                <option>Đang giao</option>
+                <option>Đã giao</option>
+                <option>Đã hủy</option>
+            </select>
+        </div>
+    </section>
+
+    <section class="order-list">
+        <!-- Đơn hàng 1 -->
+        <div class="order-card">
+            <div class="order-top">
+                <div>
+                    <h4>#AD123456VN</h4>
+                    <p class="order-date">Đặt ngày 20/10/2025</p>
+                </div>
+                <span class="status delivered">Đã giao</span>
+            </div>
+
+            <div class="order-body">
+                <img src="~/Content/css/assets/images/shoesadidas.png" alt="Giày Adidas Streettalk" />
+                <div class="order-info">
+                    <h3>Giày Adidas Streettalk</h3>
+                    <p>Kích cỡ: 6 UK / Màu: Core Black</p>
+                    <p><strong>1.270.000₫</strong></p>
+                </div>
+                <a href="../Checkout/Checkout.cshtml" class="detail-btn">Xem chi tiết</a>
+>
+            </div>
+        </div>
+
+        <!-- Đơn hàng 2 -->
+        <div class="order-card">
+            <div class="order-top">
+                <div>
+                    <h4>#AD123789VN</h4>
+                    <p class="order-date">Đặt ngày 22/10/2025</p>
+                </div>
+                <span class="status shipping">Đang giao</span>
+            </div>
+
+            <div class="order-body">
+                <img src="~/Content/css/assets/images/ultraboostlight.jpg" alt="Giày Ultraboost Light" />
+                <div class="order-info">
+                    <h3>Giày Ultraboost Light</h3>
+                    <p>Kích cỡ: 7 UK / Màu: Cloud White</p>
+                    <p><strong>3.200.000₫</strong></p>
+                </div>
+                <a href="../Checkout/Checkout.cshtml" class="detail-btn">Xem chi tiết</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/includePartials.js" defer></script>
+}
+

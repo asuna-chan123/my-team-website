@@ -1,0 +1,377 @@
+﻿body {
+    margin: 0;
+    background: #fff;
+    font-family: Arial, sans-serif;
+}
+
+/* WRAPPER 2 CỘT */
+.login-page-wrapper {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    gap: 50px;
+    justify-content: center;
+}
+
+/* LEFT INFO */
+.left-info {
+    flex: 1.1;
+}
+
+.left-img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
+
+.left-info h1 {
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.benefits {
+    padding: 0;
+    list-style: none;
+    margin: 0 0 20px;
+}
+
+    .benefits li {
+        margin-bottom: 6px;
+        font-size: 15px;
+    }
+
+        .benefits li::before {
+            content: "✓ ";
+            font-weight: bold;
+        }
+
+.desc {
+    color: #555;
+    line-height: 1.5;
+}
+
+/* LOGIN BOX */
+.login-box {
+    width: 420px;
+    flex: 0.9;
+}
+
+/* HEADER */
+.login-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.brand-logo {
+    width: 40px;
+}
+
+.brand-text {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.login-header h2 {
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    color: #444;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* SOCIAL BUTTONS */
+.social-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.social-small {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    background: #f5f5f5;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .social-small img {
+        width: 22px;
+        height: 22px;
+    }
+
+/* FORM */
+form input[type="email"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+/* CHECKBOXES */
+.check {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+    .check input {
+        margin-right: 6px;
+    }
+
+    .check a {
+        color: #0073e6;
+    }
+
+.remember {
+    margin-top: 10px;
+}
+
+/* SUBMIT BUTTON */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: black;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 4px;
+}
+
+    .submit-btn:hover {
+        background: #333;
+    }
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+    .login-page-wrapper {
+        flex-direction: column;
+        max-width: 92%;
+    }
+
+    .login-box {
+        width: 100%;
+    }
+}
+/* Tách trang login khỏi mọi layout xung quanh */
+.login-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding-top: 40px !important;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+/* Kiểm tra nếu layout có flex */
+header, nav, .main-container, .content-wrapper {
+    flex: 0 0 auto !important;
+}
+/* Ngăn layout tác động vào trang login */
+.login-page-wrapper * {
+    flex: none !important;
+    max-width: 100% !important;
+}
+/* ===========================
+   📱 MOBILE – TABLET (<= 900px)
+   =========================== */
+@media (max-width: 900px) {
+
+    .login-page-wrapper {
+        flex-direction: column;
+        max-width: 95%;
+        gap: 30px;
+        padding: 0 10px;
+    }
+
+    /* Left info lên trên, form xuống dưới */
+    .left-info {
+        order: 1;
+    }
+
+    .login-box {
+        width: 100%;
+        order: 2;
+    }
+
+    /* Hình banner */
+    .left-img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .left-info h1 {
+        font-size: 24px;
+        line-height: 1.3;
+        text-align: center;
+    }
+
+    .benefits li {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .desc {
+        font-size: 14px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    /* Social buttons mobile */
+    .social-row {
+        gap: 12px;
+    }
+
+    .social-small {
+        padding: 10px;
+    }
+
+        .social-small img {
+            width: 20px;
+            height: 20px;
+        }
+
+    /* Input email */
+    form input[type="email"] {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* Checkbox text */
+    .check {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    /* Button mobile */
+    .submit-btn {
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    /* Căn giữa toàn bộ trang */
+    .login-page-wrapper,
+    .login-page {
+        text-align: left !important;
+    }
+}
+
+
+/* ===================================
+   📱 MOBILE NHỎ (<= 600px)
+   =================================== */
+@media (max-width: 600px) {
+
+    .left-info h1 {
+        font-size: 20px;
+    }
+
+    .benefits li {
+        font-size: 13px;
+    }
+
+    .login-header h2 {
+        font-size: 20px;
+    }
+
+    .login-header p {
+        font-size: 13px;
+    }
+
+    .check {
+        font-size: 12px;
+    }
+
+    .submit-btn {
+        font-size: 14px;
+    }
+}
+/* ================================
+   📘 TABLET – MID SCREEN (768–1100px)
+   ================================ */
+@media (max-width: 1100px) and (min-width: 768px) {
+
+    .login-page-wrapper {
+        flex-direction: column;
+        align-items: center;
+        max-width: 90%;
+        padding: 0 15px;
+        gap: 40px;
+    }
+
+    /* Left info full width */
+    .left-info {
+        width: 100%;
+        flex: none;
+        text-align: center;
+    }
+
+    .left-img {
+        width: 100%;
+        max-height: 450px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .left-info h1 {
+        font-size: 28px;
+    }
+
+    .benefits li {
+        font-size: 15px;
+    }
+
+    .desc {
+        max-width: 90%;
+        margin: 0 auto;
+        font-size: 15px;
+    }
+
+    /* Form full width dưới */
+    .login-box {
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .social-row {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .social-small {
+        width: 70px;
+        height: 45px;
+        padding: 10px;
+    }
+
+    form input[type="email"] {
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .check {
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        font-size: 16px;
+        padding: 14px;
+    }
+}
+
+

@@ -1,0 +1,11 @@
+﻿/* Global font reset — overrides any @font-face / font-family declarations */
+@charset "utf-8";
+
+/* Use system UI stack and force normal weight/style so imported fonts stop applying */
+html, body, :root, * {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}

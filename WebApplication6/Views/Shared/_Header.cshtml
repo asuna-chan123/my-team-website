@@ -1,0 +1,146 @@
+﻿<title>@ViewBag.Title - Adidas Store</title>
+
+<!-- Font -->
+
+
+<!-- Style của MVC -->
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+<!-- CSS -->
+<link rel="stylesheet" href="~/Content/partials/header.css" />
+<link rel="stylesheet" href="~/Content/css/fonts-reset.css">
+
+
+<!-- Header -->
+<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="border-b border-gray-200/20 bg-white/10 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-end items-center h-8 text-xs space-x-3">
+                <button class="text-gray-700 hover:text-black transition-colors capitalize">help</button>
+                <span class="text-gray-300">|</span>
+                <button class="text-gray-700 hover:text-black transition-colors capitalize">order tracker</button>
+                <span class="text-gray-300">|</span>
+                <button class="text-gray-700 hover:text-black transition-colors capitalize">become a member</button>
+            </div>
+        </div>
+    </div>
+
+    <!--header chính -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
+        <div class="flex items-center justify-between h-16">
+            <button id="mobileMenuToggle" class="p-2 mr-2 lg:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                <span class="block w-5 h-0.5 bg-black mb-1"></span>
+                <span class="block w-5 h-0.5 bg-black mb-1"></span>
+                <span class="block w-5 h-0.5 bg-black"></span>
+            </button>
+
+            <!-- Logo -->
+            <a href="~/Products/ProductList" class="flex-shrink-0 group cursor-pointer logo-wrapper">
+                <div class="flex items-center justify-center transform transition-transform duration-200 group-hover:scale-105">
+                    <img src="~/Content/partials/iconheader/adidas-black-logo.png"
+                         alt="Adidas logo"
+                         loading="lazy"
+                         class="w-20 h-auto logo-img" />
+                </div>
+            </a>
+
+            <!-- thanh điều hướng -->
+            <nav class="hidden lg:flex items-center space-x-8">
+                <button onclick="location.href='@Url.Action("Index", "Products",
+                        new { gender = "", category = 1, priceSort = "" })'"
+                        class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                    SHOES
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
+                <button onclick="location.href='@Url.Action("Index", "Products",
+                        new { gender = "", category = 2, priceSort = "" })'"
+                        class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                    T-SHIRT
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
+                <button onclick="location.href='@Url.Action("Index", "Products",
+                        new { gender = "", category = 3, priceSort = "" })'"
+                        class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                    SHORT
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
+                <button onclick="location.href = '@Url.Action("Index","Products",
+                        new { gender = "male", category = "", priceSort = "" })'"
+                        class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                    MEN
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
+                <button onclick="location.href = '@Url.Action("Index","Products",
+                        new { gender = "female", category="" , priceSort="" })'"
+                        class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                    WOMEN
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
+                <button onclick="location.href = '@Url.Action("Index","Products",
+                        new { gender = "UNISEX", category = "", priceSort = "" })'"
+                        class="relative text-sm font-medium text-gray-900 hover:text-black transition-colors group">
+                    UNISEX
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
+            </nav>
+
+            <!-- icons bên phải -->
+            <div class="flex items-center space-x-4">
+
+                <!-- User -->
+                <button onclick="location.href='@Url.Action("Login","Account")'"
+                        class="relative p-2 hover:bg-gray-100 rounded transition-colors">
+                    <img src="~/Content/partials/iconheader/user_.png" alt="User" loading="lazy" class="w-5 h-auto" />
+                </button>
+
+                <!-- yêu thích -->
+                <!--<button onclick="location.href='@Url.Action("Login","Account")'"
+                        class="p-2 hover:bg-gray-100 rounded transition-colors group">
+                    <img src="~/Content/partials/iconheader/heart_.png" alt=" Wishlist" loading="lazy" class="w-5 h-auto" />
+                </button>-->
+
+                <!-- giỏ hàng -->
+                <button onclick="location.href='@Url.Action("Index","Cart")'"
+                        class="relative p-2 hover:bg-gray-100 rounded transition-colors">
+                    <img src="~/Content/partials/iconheader/shop_.png" alt="Shopping bag" loading="lazy" class="w-5 h-auto" />
+                </button>
+
+                <button onclick="location.href='@Url.Action("Index","OrderTracking")'"
+                        class="relative p-2 hover:bg-gray-100 rounded transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="#000000" d="M9 6v5h.06l2.48 2.47l1.41-1.41L11 10.11V6z" />
+                    <path fill="#000000" d="M10 1a9 9 0 0 0-7.85 13.35L.5 16H6v-5.5l-2.38 2.38A7 7 0 1 1 10 17v2a9 9 0 0 0 0-18z" /></svg>
+
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!-- Mobile menu panel -->
+<div id="mobileMenu" class="mobile-menu lg:hidden" aria-hidden="true">
+    <button id="mobileMenuClose" aria-label="Close menu" class="mobile-menu-close">✕</button>
+    <nav>
+        <a href="#">SHOES</a>
+        <a href="#">MEN</a>
+        <a href="#">WOMEN</a>
+        <a href="#">KIDS</a>
+        <a href="#">SPORTS</a>
+        <a href="#">BRANDS</a>
+        <a href="#">OUTLET</a>
+    </nav>
+</div>
+
+<!-- Script -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    lucide.createIcons(); // kích hoạt icon Lucide
+</script>
+
+<script src="~/Scripts/header.js"></script>
+
+
+

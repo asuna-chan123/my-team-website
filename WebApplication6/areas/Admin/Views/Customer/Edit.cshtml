@@ -1,0 +1,22 @@
+﻿<!--@model WebApplication6.Models.Customer
+
+@{
+    ViewBag.Title = "Sửa khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Sửa khách hàng</h2>
+<p class="text-sm text-gray-500 mb-6">Chỉnh sửa thông tin khách hàng.</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.CustomerID)
+    @Html.ValidationSummary(false, "", new { @class = "text-red-500 mb-3" })
+
+    <div class="bg-white rounded-lg shadow-sm p-6 max-w-lg">
+        <!-- same fields như Create -->-->
+        <!--@* copy y chang các block NameCus, Email, Phone, Address như Create *@
+        ...
+    </div>
+}-->

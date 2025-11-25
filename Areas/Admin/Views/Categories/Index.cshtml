@@ -1,0 +1,41 @@
+﻿@model IEnumerable<_24DH112473_MyStore.Models.Category>
+
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+    }
+
+    <h2 class="bg-light">DANH SÁCH DANH MỤC SẢN PHẨM</h2>
+
+
+    <table class="table bg-light col-lg-8 col-md-6 col-sm-3">
+        <tr>
+            <th class="bg-light col-lg-5 col-md-4 col-sm-2">
+                @*@Html.DisplayNameFor(model => model.CategoryName)*@
+                TÊN DANH MỤC
+            </th>
+            <th class="bg-light col-lg-3 col-md-2 col-sm-1"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.ActionLink("Cập Nhật", "Edit", new { id = item.CategoryID }, new { @class = "btn btn-dark " })
+                    @*@Html.ActionLink("Chi tiết", "Details", new { id = item.CategoryID }, new { @class = "btn btn-dark " })*@
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.CategoryID }, new { @class = "btn btn-dark " })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-dark" })
+    </p>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

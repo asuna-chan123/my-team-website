@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Thanh toán | Adidas Store";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/css/checkout.css" rel="stylesheet" />
+}
+
+<main class="checkout-container">
+    <div class="checkout-left">
+        <h2>THANH TOÁN</h2>
+        <p>(1 sản phẩm) <strong>1.270.000đ</strong></p>
+
+        <section class="contact">
+            <h3>LIÊN HỆ</h3>
+            <p>abcde@gmail.com</p>
+        </section>
+
+        <section class="address">
+            <h3>ĐỊA CHỈ</h3>
+            <label>Địa chỉ giao hàng</label>
+            <div class="name-group">
+                <input type="text" placeholder="Tên *" />
+                <input type="text" placeholder="Họ *" />
+            </div>
+
+            <input type="text" placeholder="Số nhà/Tên đường *" />
+            <input type="text" placeholder="Tên tòa nhà/Số tầng..." />
+
+            <div class="grid-3">
+                <select><option>Thành phố/Tỉnh</option></select>
+                <select><option>Quận</option></select>
+                <select><option>Phường</option></select>
+            </div>
+
+            <input type="text" placeholder="Mã bưu chính *" />
+            <input type="text" placeholder="Số điện thoại *" />
+
+            <!-- Checkbox phần địa chỉ -->
+            <label class="checkbox">
+                <input type="checkbox" checked />
+                Lưu địa chỉ cho đơn hàng sau này
+            </label>
+
+            <label class="checkbox">
+                <input type="checkbox" checked />
+                Hóa đơn thanh toán/ hóa đơn thuế của tôi và thông tin giao hàng của tôi là giống nhau.
+            </label>
+
+            <!-- Thông tin hóa đơn -->
+            <select>
+                <option>Cá nhân</option>
+                <option>Công ty</option>
+            </select>
+
+            <p class="invoice-note">
+                Nếu bạn yêu cầu hóa đơn thuế, vui lòng đảm bảo thông tin bạn cung cấp (Họ tên, Địa chỉ Thanh toán và Mã số Thuế) là chính xác và trung thực.
+                Hóa đơn thuế đã cấp không được thay đổi trong bất kỳ trường hợp nào.
+            </p>
+
+            <input type="text" placeholder="Số chứng minh nhân dân" />
+
+            <!-- Điều khoản -->
+            <label class="checkbox">
+                <input type="checkbox" /> Có, tôi trên 16 tuổi *
+            </label>
+
+            <label class="checkbox">
+                <input type="checkbox" />
+                Tôi theo đây đồng ý việc chia sẻ, sử dụng, thu thập thông tin cá nhân của tôi cho các bên thứ ba được quy định tại
+                <a href="#">Chính sách bảo mật của adidas</a>.
+            </label>
+
+            <label class="checkbox">
+                <input type="checkbox" />
+                Tôi đã đọc, hiểu và chấp thuận
+                <a href="#">Chính sách Bảo mật</a> và
+                <a href="#">Các Điều khoản và Điều kiện</a>. *
+            </label>
+
+            <!-- Nút tiếp tục -->
+            <button type="button" class="btn-submit" onclick="window.location.href='@Url.Action("OrderHistory", "OrderHistory")'">
+                TIẾP TỤC →
+            </button>
+        </section>
+    </div>
+
+    <div class="checkout-right">
+        <div class="order-summary">
+            <h3>ĐƠN HÀNG CỦA BẠN</h3>
+            <div class="order-item">
+                <img src="~/Content/css/assets/images/shoesadidas.png" alt="Giày Streettalk"/>
+                <div>
+                    <p><strong>Giày Streettalk</strong></p>
+                    <p>1.200.000đ</p>
+                    <small>Kích cỡ: 6 UK / Màu: Core Black</small>
+                </div>
+            </div>
+
+            <div class="order-total">
+                <p>Tạm tính: <span>1.200.000đ</span></p>
+                <p>Phí giao hàng: <span>70.000đ</span></p>
+                <p class="grand-total">Tổng: <strong>1.270.000đ</strong></p>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <script src="~/Scripts/includePartials.js" defer></script>
+    <script src="~/Scripts/checkout.js"></script>
+}

@@ -1,0 +1,80 @@
+﻿@*@model IEnumerable<WebApplication6.Models.Customer>
+
+@{
+    ViewBag.Title = "Quản lý khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Customers</h2>
+<p class="text-sm text-gray-500 mb-6">Danh sách khách hàng.</p>
+
+<div class="bg-white rounded-lg shadow-sm flex flex-col">
+    <div class="p-6 border-b border-gray-100 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+        <h3 class="text-lg font-bold text-[#042954]">All Customers</h3>
+
+        <div class="flex gap-2">
+            @Html.ActionLink(
+                "Thêm khách hàng",
+                "Create",
+                null,
+                new { @class = "bg-[#FFA500] text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-orange-600 transition-colors uppercase" }
+            )
+        </div>
+    </div>
+
+    <div class="overflow-x-auto p-6">
+        <table class="w-full text-left border-collapse">
+            <thead class="bg-gray-50 text-gray-700 font-bold text-sm">
+                <tr>
+                    <th class="p-3 rounded-tl"><input type="checkbox" /></th>
+                    <th class="p-3">ID</th>
+                    <th class="p-3">Tên khách</th>
+                    <th class="p-3">Email</th>
+                    <th class="p-3">SĐT</th>
+                    <th class="p-3 rounded-tr text-right">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody class="text-sm">
+                @foreach (var item in Model)
+                {
+                    var rowClass = item.IsDeleted ? "line-through text-gray-400" : "";
+
+                    <tr class="hover:bg-gray-50 border-b border-gray-100 @rowClass">
+                        <td class="p-3"><input type="checkbox" /></td>
+                        <td class="p-3 text-blue-600 font-medium">#@item.CustomerID</td>
+                        <td class="p-3">@item.NameCus</td>
+                        <td class="p-3">@item.Email</td>
+                        <td class="p-3">@item.Phone</td>
+                        <td class="p-3 text-right">
+                            <div class="inline-flex items-center gap-2 text-xs">
+                                @if (!item.IsDeleted)
+                                {
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.CustomerID },
+                                        new { @class = "px-2 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100" })
+                                    @Html.ActionLink("Chi tiết", "Details", new { id = item.CustomerID },
+                                        new { @class = "px-2 py-1 rounded bg-gray-50 text-gray-700 hover:bg-gray-100" })
+                                }
+                                else
+                                {
+                                    <span class="px-2 py-1 rounded bg-gray-100 text-gray-400 cursor-not-allowed">Sửa</span>
+                                    <span class="px-2 py-1 rounded bg-gray-100 text-gray-400 cursor-not-allowed">Chi tiết</span>
+                                }
+
+                                @Html.ActionLink("Xóa", "Delete", new { id = item.CustomerID },
+                                    new { @class = "px-2 py-1 rounded bg-red-50 text-red-600 hover:bg-red-100" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="p-6 flex justify-end gap-2 border-t border-gray-100">
+        <button type="button"
+                onclick="document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' })"
+                class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded transition-colors duration-200">
+            Kéo lên đầu
+        </button>
+    </div>
+</div>*@

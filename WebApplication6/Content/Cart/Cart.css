@@ -1,0 +1,144 @@
+﻿.cart-page-container {
+    margin-top: 150px;
+}
+
+.cart-item {
+    border: 2px solid #000000;
+    background-color: #f8f9fa;
+    /*            box-shadow: 0 4px 12px #00000026;*/
+}
+
+.button {
+    border-radius: 0px !important;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.total-sumary {
+    padding: 20px;
+    margin: 0 auto;
+    width: 100%;
+    background-color: #fff;
+    position: sticky;
+    top: 120px;
+    z-index: 10;
+}
+
+.cart-title h6 {
+    font-family: 'AdineuePRO', 'Helvetica Neue', Arial, sans-serif; /* Fallback to standard */
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.cart-row.total {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-label, .total-price {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.promo-code-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 25px 0;
+    cursor: pointer;
+}
+
+.promo-code-text {
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #000;
+}
+
+.btn-checkout {
+    background-color: #000;
+    color: #fff !important;
+    width: 100%;
+    padding: 18px 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    letter-spacing: 2px;
+    position: relative;
+    text-decoration: none;
+}
+
+    .btn-checkout:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+.payment-methods {
+    text-align: left;
+    margin-top: 30px;
+}
+
+.payment-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.payment-icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+    .payment-icons img {
+        height: 25px;
+        object-fit: contain;
+    }
+
+.overflow-auto {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}
+
+    .overflow-auto::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .overflow-auto::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .overflow-auto::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+        .overflow-auto::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+.gap-3 {
+    gap: 1rem !important;
+}

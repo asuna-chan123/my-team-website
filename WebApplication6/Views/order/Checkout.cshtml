@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Thanh toán | Adidas Store";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/css/checkout.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm("Checkout", "Order", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <main class="checkout-container">
+        <div class="checkout-left">
+            <h2>THANH TOÁN</h2>
+
+            <section class="address">
+                <h3>ĐỊA CHỈ</h3>
+
+                <input type="text" name="FullName" placeholder="Họ và Tên *" required />
+                <input type="text" name="Address" placeholder="Số nhà / Tên đường *" required />
+                <input type="tel" name="Phone" placeholder="Số điện thoại *" required />
+
+                <button type="submit" class="btn-submit">
+                    TIẾP TỤC →
+                </button>
+            </section>
+        </div>
+
+        <div class="checkout-right">
+            <div class="order-summary">
+                <h3>ĐƠN HÀNG CỦA BẠN</h3>
+
+                @{
+                    var cart = Session["Cart"] as WebApplication6.ViewModels.CartViewModels.Cart;
+                    if (cart != null)
+                    {
+                        foreach (var item in cart.Items)
+                        {
+                            <div class="order-item">
+                                <img src="@item.ImagePro" />
+                                <div>
+                                    <p><strong>@item.NamePro</strong></p>
+                                    <p>@item.UnitPrice.ToString("N0")đ</p>
+                                    <small>Số lượng: @item.Quantity</small>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="order-total">
+                            <p class="grand-total">
+                                Tổng: <strong>@cart.TotalValue().ToString("N0")đ</strong>
+                            </p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </main>
+}

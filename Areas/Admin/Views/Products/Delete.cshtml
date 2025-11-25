@@ -1,0 +1,27 @@
+﻿@model _24DH112473_MyStore.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<h2>XÓA SẢN PHẨM</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+@Html.Partial("PVProductInfo", Model)
+@using (Html.BeginForm("Delete", "Products", FormMethod.Post, new { area = "Admin" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ProductID)
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-9">
+            <input type="submit" value="Xóa" class="btn btn-dark" />
+            @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-dark " })
+        </div>
+    </div>
+}

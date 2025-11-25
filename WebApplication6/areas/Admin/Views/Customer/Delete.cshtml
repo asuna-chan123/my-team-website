@@ -1,0 +1,42 @@
+﻿@*@model WebApplication6.Models.Customer
+
+@{
+    ViewBag.Title = "Xóa khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-red-600 mb-2">Xóa khách hàng</h2>
+<p class="text-sm text-gray-500 mb-6">
+    Bạn có chắc chắn muốn xóa (đánh dấu đã xóa) khách hàng này không?
+</p>
+
+<div class="bg-white rounded-lg shadow-sm p-6 max-w-xl mb-4">
+    <dl class="divide-y divide-gray-100">
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Mã KH</dt>
+            <dd class="w-2/3 text-sm text-gray-900">#@Model.CustomerID</dd>
+        </div>
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Tên khách</dt>
+            <dd class="w-2/3 text-sm text-gray-900">@Model.NameCus</dd>
+        </div>
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Email</dt>
+            <dd class="w-2/3 text-sm text-gray-900">@Model.Email</dd>
+        </div>
+    </dl>
+</div>
+
+@using (Html.BeginForm("Delete", "Customer", FormMethod.Post, new { area = "Admin" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.CustomerID)
+
+    <div class="flex gap-2">
+        <input type="submit"
+               value="Xác nhận xóa"
+               class="bg-red-500 text-white px-4 py-2 rounded text-sm font-medium hover:bg-red-600 cursor-pointer" />
+        @Html.ActionLink("Quay lại", "Index", null,
+            new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+    </div>
+}*@

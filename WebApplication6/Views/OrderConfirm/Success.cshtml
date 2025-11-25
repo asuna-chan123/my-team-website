@@ -1,0 +1,89 @@
+@model WebApplication6.Models.OrderPro
+@{
+    ViewBag.Title = "Đặt hàng thành công";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    // Calculate total
+    double totalAmount = 0;
+    if (Model.OrderDetails != null)
+    {
+        totalAmount = Model.OrderDetails.Sum(d => (d.Quantity ?? 0) * (d.UnitPrice ?? 0));
+    }
+}
+
+<div class="container mx-auto px-4 py-16" style="margin-top: 80px;">
+    <div class="max-w-3xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-black text-white mb-6">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h1 class="text-4xl font-bold uppercase mb-4 tracking-tight">ORDER CONFIRMED</h1>
+            <p class="text-gray-600 text-lg">Thank you for your purchase. Your order #@Model.ID has been confirmed.</p>
+        </div>
+
+        <!-- Order Details Box -->
+        <div class="bg-white rounded-lg border border-gray-200 p-8 mb-8 shadow-sm">
+            <h3 class="text-sm font-bold uppercase tracking-wider mb-6">ORDER DETAILS</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <p class="text-xs text-gray-500 uppercase font-bold mb-1">ORDER NUMBER</p>
+                    <p class="text-xl font-bold">@Model.ID</p>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500 uppercase font-bold mb-1">ORDER DATE</p>
+                    <p class="text-xl font-bold">@Model.DateOrder.Value.ToString("MMM dd, yyyy")</p>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500 uppercase font-bold mb-1">ESTIMATED DELIVERY</p>
+                    <p class="text-xl font-bold">
+                        @Model.DateOrder.Value.AddDays(3).ToString("MMM dd") - @Model.DateOrder.Value.AddDays(5).ToString("MMM dd, yyyy")
+                    </p>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500 uppercase font-bold mb-1">TOTAL AMOUNT</p>
+                    <p class="text-xl font-bold">@String.Format("{0:N0}₫", totalAmount)</p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-8">
+                <h4 class="text-xs text-gray-500 uppercase font-bold mb-6">ITEMS ORDERED</h4>
+                
+                <div class="space-y-6">
+                    @foreach (var detail in Model.OrderDetails)
+                    {
+                        <div class="flex items-start space-x-4">
+                            <div class="w-20 h-20 bg-gray-100 rounded flex-shrink-0 overflow-hidden">
+                                @if (detail.Product != null)
+                                {
+                                    <img src="@Url.Content("~/Content/images/" + (detail.Product.ImagePro ?? "no-image.png"))" 
+                                         alt="@detail.Product.NamePro" 
+                                         class="w-full h-full object-cover" />
+                                }
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-bold text-sm uppercase">@(detail.Product != null ? detail.Product.NamePro : "Product")</h5>
+                                <div class="text-gray-500 text-sm mt-1">
+                                    <!-- Note: Color/Size not available in DB -->
+                                    <p>Qty: @detail.Quantity</p>
+                                </div>
+                                <div class="font-bold text-sm mt-2">
+                                    @String.Format("{0:N0}₫", detail.UnitPrice)
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <a href="@Url.Action("Index", "Products")" class="inline-block bg-black text-white font-bold py-4 px-8 rounded hover:bg-gray-800 transition duration-200 uppercase tracking-wider text-sm">
+                Continue Shopping
+            </a>
+        </div>
+    </div>
+</div>

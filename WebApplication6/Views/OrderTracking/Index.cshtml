@@ -1,0 +1,99 @@
+﻿@model IEnumerable<WebApplication6.ViewModels.ShippingOrderViewModel>
+@{
+    ViewBag.Title = "Theo dõi đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .btn-adidas {
+        background-color: #000;
+        color: #fff !important;
+        padding: 10px 20px; /* Smaller padding for list view */
+        text-transform: uppercase;
+        font-weight: 700;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        letter-spacing: 1px;
+        position: relative;
+        text-decoration: none;
+        transition: all 0.3s;
+        font-size: 14px;
+    }
+    .btn-adidas:hover {
+        color: #fff;
+        opacity: 0.8;
+        text-decoration: none;
+    }
+</style>
+
+<div class="container" style="margin-top: 100px; margin-bottom: 50px;">
+    <h2 class="text-center mb-4">TRẠNG THÁI ĐƠN HÀNG</h2>
+
+    @if (Model.Any())
+    {
+        <div class="text-end mb-3">
+             <a href="@Url.Action("ClearSession", "OrderTracking")" class="btn btn-sm btn-outline-secondary" onclick="return confirm('Bạn có chắc muốn xóa lịch sử mua hàng tạm thời?');">
+                Xóa thông tin tạm
+            </a>
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center">
+            Bạn chưa có đơn hàng nào. <a href="@Url.Action("Index", "Products")" class="alert-link">Mua sắm ngay</a>
+        </div>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <div class="card mb-3 "style="border:1px solid #000;border-radius:0px;">
+                <div class="card-body">
+                    <div class="row align-items-center">
+
+                        <!-- Cột 1: Ảnh sản phẩm (Đại diện) -->
+                        <div class="col-md-2 text-center">
+                            @if (item.Items != null && item.Items.Any())
+                            {
+                                var firstItem = item.Items.First();
+                                <img src="@Url.Content("~/Content/images/" + firstItem.ProductImage)" alt="Product" class="img-fluid rounded" style="width: 80px; height: 80px; object-fit: cover; border: 1px solid #eee; " />
+                            }
+                            else
+                            {
+                                <img src="@Url.Content("~/Content/images/no-image.png")" alt="No Image" class="img-fluid rounded" style="width: 80px; height: 80px; object-fit: cover; border: 1px solid #eee;" />
+                            }
+                        </div>
+
+                        <!-- Cột 2: Thông tin đơn hàng & Trạng thái -->
+                        <div class="col-md-4">
+                            <h5 class="mb-1">Đơn hàng #@item.OrderID</h5>
+                            <p class="text-muted mb-1" style="font-size: 0.9rem;">
+                                Ngày đặt: @(item.OrderDate.HasValue ? item.OrderDate.Value.ToString("dd/MM/yyyy HH:mm") : "N/A")
+                            </p>
+
+                        </div>
+                        @*trạng thái đơn hàng*@
+                        <div class="col-md-2">
+                            <span class="badge bg-warning text-dark">Đang xử lý</span>
+
+                        </div>
+
+                        <!-- Cột 3: Tổng tiền & Nút chi tiết -->
+                        <div class="col-md-4 text-end">
+                            <div>
+                                <b style="color:red;font-size:18px;"> @item.TotalAmount.ToString("N0")₫</b>
+                            </div>
+                            
+                            <a href="@Url.Action("Details", "OrderTracking", new { id = item.OrderID })" class="btn-adidas">
+                                Xem chi tiết
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

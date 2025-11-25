@@ -1,0 +1,237 @@
+﻿@{
+    var imagesByColor = ViewBag.ImagesByColor as Dictionary<string, List<string>> ?? new Dictionary<string, List<string>>();
+    var defaultColor = (ViewBag.DefaultColor as string) ?? imagesByColor.Keys.FirstOrDefault() ?? "default";
+}
+@{
+    string genderDisplay =
+        Model.Gender == "Nam" ? "Nam" :
+        Model.Gender == "Nữ" ? "Nữ" :
+        Model.Gender == "Unisex" ? "Unisex" :
+        "Khác";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <!--Chi tiết sản phẩm-->
+    <!--CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/Product-detail-Tshirt.css")" />
+    <link rel="stylesheet" href="~/Content/css/fonts-reset.css">
+</head>
+
+<div class="container" style="margin-top:5%;">
+    <nav class="breadcrumb">
+        <a href="@Url.Action("Index","Home")">Trang chủ</a>
+        <span class="sep">/</span>
+
+        <a href="@Url.Action("Index","Products", new { gender = Model.Gender })">
+            @genderDisplay
+        </a>
+        <span class="sep">/</span>
+
+        <a href="@Url.Action("Index","Products", new { category = Model.CategoryName })">
+            @Model.CategoryName
+        </a>
+        <span class="sep">/</span>
+
+        <span>@Model.NamePro</span>
+    </nav>
+
+
+
+    <div class="product-section">
+        <div class="image-gallery">
+            <div class="main-image">
+                <img id="mainImage" src="@(ViewBag.PrimaryImage ?? Url.Content("~/Content/images/no-image.png"))" alt="@Model?.NamePro" />
+            </div>
+
+            <!-- CAROUSEL -->
+            <div class="thumb-carousel relative mt-3" style="display:flex; align-items:center; gap:8px;">
+                <button id="thumbPrev" class="thumb-nav"
+                        aria-label="Prev">
+                    ‹
+                </button>
+                <!-- Ảnh -->
+                <div id="thumbContainer" class="thumb-track" style="flex:1; overflow:hidden; display:flex; gap:8px;">
+                    @foreach (var img in (imagesByColor.ContainsKey(defaultColor) ? imagesByColor[defaultColor] : new List<string>()))
+                    {
+                        <img class="thumb" src="@img" data-src="@img"
+                             style="width:125px; height:125px; object-fit:cover; cursor:pointer; padding:3px;" />
+                    }
+                </div>
+
+                <button id="thumbNext" class="thumb-nav"
+                        aria-label="Prev">
+                    ›
+                </button>
+            </div>
+        </div>
+
+        <div class="product-info">
+            <div class="product-header">
+                <div class="product-category">@Model.CategoryName</div>
+                <h1 class="product-title">@Model.NamePro</h1>
+                <div class="product-price"
+                     id="productPrice"
+                     data-price="@(Model.Price ?? 0)">
+                    @((Model.Price ?? 0).ToString("N0"))₫
+                </div>
+                <div class="rating">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    @*<span>1257</span>*@
+                </div>
+            </div>
+
+            <div class="color-section">
+                <div class="section-label">Màu sắc</div>
+                <div id="colorOptions" style="display:flex; gap:8px; flex-wrap:wrap;">
+                    @foreach (var kv in imagesByColor)
+                    {
+                        var color = kv.Key;
+                        var thumb = kv.Value.FirstOrDefault() ?? "/Content/images/placeholder-60.png";
+                        // Hiển thị ô màu (thumbnail nhỏ)
+                        <div class="color-option" data-color="@color" style="cursor:pointer; text-align:center;">
+                            <img src="@Url.Content(thumb)" alt="@color" title="@color"
+                                 style="width:75px;height:75px;object-fit:cover;padding:4px;" />
+                            <div style="font-size:12px">@color</div>
+                        </div>
+                    }
+                </div>
+                <div class="color-name">Processed Ink / White</div>
+            </div>
+
+            <div class="size-section">
+                <div class="size-header">
+                    <div class="section-label">Kích cỡ</div>
+                </div>
+                <div class="size-grid">
+                    <button class="size-option">XXS</button>
+                    <button class="size-option">XS</button>
+                    <button class="size-option">S</button>
+                    <button class="size-option">M</button>
+                    <button class="size-option active">L</button>
+                    <button class="size-option">XL</button>
+                    <button class="size-option">XXL</button>
+                    <button class="size-option">XXXL</button>
+                </div>
+                <div class="stock-info">
+                    <span>ℹ️</span>
+                    <span>Đang còn hàng. </span>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-primary " style="height:60px;">
+                    <span>🛒</span>
+                    THÊM VÀO GIỎ HÀNG
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <!-- POPUP GIỎ HÀNG -->
+    <div id="cartPopup" class="fixed inset-0 hidden items-center justify-center bg-black/50 z-[9999]">
+        @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { id = "orderForm" }))// sửa
+        {
+            <!-- CÁC INPUT ẨN GỬI SANG TRANG ĐẶT HÀNG -->
+            <input type="hidden" name="ProductID" value="@Model.ProductID" />
+            <input type="hidden" name="Color" id="hfColor" />
+            <input type="hidden" name="Size" id="hfSize" />
+            <input type="hidden" name="Quantity" id="hfQty" value="1" />
+
+            <div class="mx-4 bg-white w-full max-w-5xl rounded-lg shadow-2xl relative">
+                <!-- tắt x -->
+                <button type="button" class="absolute -right-3 -top-3 bg-white border rounded-md w-10 h-10 flex items-center justify-center text-2xl"
+                        aria-label="Đóng" onclick="closeCartPopup()">
+                    ✕
+                </button>
+
+                <div class="p-6">
+                    <div class="grid grid-cols-12 gap-6">
+                        <!-- trái -->
+                        <div class="col-span-12 md:col-span-6 flex gap-6">
+                            <img id="popupImage" src="" alt="Product"
+                                 class="w-40 h-40 object-cover rounded-md bg-gray-100 border" />
+                            <div class="min-w-0">
+                                <h3 id="popupName" class="text-lg font-bold uppercase leading-tight">
+                                </h3>
+                                <div id="popupUnitPrice" class="font-semibold mt-1"> </div>
+
+                                <ul class="mt-3 text-sm leading-6 space-y-1 list-none p-0 m-0">
+                                    <li><span class="text-gray-500">Colour:</span> <span id="popupColor"></span></li>
+                                    <li><span class="text-gray-500">Kích cỡ:</span> <span id="popupSize"></span></li>
+                                    <li class="flex flex-wrap items-center gap-3 mt-3">
+                                        <span class="text-gray-500 text-sm">Số lượng:</span>
+                                        <div class="flex items-center border rounded-md overflow-hidden">
+                                            <button type="button" onclick="changeQty(-1)" class="px-2 py-1 text-lg hover:bg-gray-200 sm:px-3 sm:py-1">−</button>
+                                            <span id="popupQty" class="px-2 min-w-[32px] text-center font-medium">1</span>
+                                            <button type="button" onclick="changeQty(1)" class="px-2 py-1 text-lg hover:bg-gray-200">+</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="hidden md:block col-span-12 md:col-span-1">
+                            <div class="w-px h-full bg-gray-200 mx-auto"></div>
+                        </div>
+
+                        <!-- bên phải -->
+                        <div class="col-span-12 md:col-span-5">
+                            <h4 class="font-bold mb-2">GIỎ HÀNG CỦA BẠN</h4>
+
+                            <div class="space-y-1 text-sm">
+                                <div class="flex justify-between">
+                                    <span id="popupItemCount">1 mặt hàng</span><span></span>
+                                </div>
+
+                                <div id="rowOriginal" class="flex justify-between py-1 hidden">
+                                    <span>Giá gốc:</span>
+                                    <span id="popupOriginal" class="line-through text-gray-500">0₫</span>
+                                </div>
+
+                                <div class="flex justify-between py-1">
+                                    <span>Tổng Giá Trị Sản Phẩm:</span><span id="popupSubtotal">0₫</span>
+                                </div>
+                                <div class="flex justify-between py-1">
+                                    <span>Tổng Phí Giao Hàng:</span><span class="font-medium">Miễn phí</span>
+                                </div>
+                            </div>
+
+                            <div class="border-t mt-2 pt-3 flex justify-between items-baseline">
+                                <span class="font-extrabold text-base md:text-lg">Tổng cộng:</span>
+                                <span id="popupGrandTotal" class="font-extrabold text-base md:text-lg">0₫</span>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">(Đã bao gồm thuế)</div>
+
+                            <!-- nút này sẽ gọi JS để set hidden rồi submit form -->
+                            <button type="button" onclick="confirmAddToCart()"
+                                    class="mt-3 w-full border border-gray-900 py-3 rounded-md font-semibold tracking-wide">
+                                THÊM VÀO GIỎ HÀNG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!--Java Script-->
+    <script>
+  window.imagesByColor = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.ImagesByColor ?? new Dictionary<string, List<string>>()));
+  window.defaultColor = "@(ViewBag.DefaultColor ?? "default")";
+    </script>
+
+    <!-- Load jQuery nếu cần (nếu bạn không dùng jQuery thì bỏ) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Load file JS riêng (defer để chạy sau khi DOM sẵn sàng) -->
+    <script src="@Url.Content("~/Scripts/js/Details.js")" defer></script>
+
+

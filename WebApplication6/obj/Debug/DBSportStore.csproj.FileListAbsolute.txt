@@ -1,0 +1,490 @@
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\WebApplication6.dll.config
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\WebApplication6.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\WebApplication6.pdb
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\csc.exe
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\csc.exe.config
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\csc.rsp
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\csi.exe
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\csi.exe.config
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\csi.rsp
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\vbc.exe
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\vbc.exe.config
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\vbc.rsp
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\VBCSCompiler.exe
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\Antlr3.Runtime.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\EntityFramework.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\EntityFramework.SqlServer.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\Newtonsoft.Json.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\PagedList.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\PagedList.Mvc.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.Helpers.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.Mvc.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.Optimization.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.Razor.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.WebPages.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.WebPages.Razor.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\WebGrease.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\X.PagedList.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\EntityFramework.xml
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\EntityFramework.SqlServer.xml
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\PagedList.xml
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\PagedList.Mvc.xml
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.Helpers.xml
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.Mvc.xml
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.Optimization.xml
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.Razor.xml
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.WebPages.xml
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\System.Web.WebPages.Razor.xml
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\Newtonsoft.Json.xml
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\Antlr3.Runtime.pdb
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\obj\Debug\DBSportStore.csproj.AssemblyReference.cache
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\obj\Debug\DBSportStore.csproj.CoreCompileInputs.cache
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\obj\Debug\DBSportS.F189B097.Up2Date
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\obj\Debug\WebApplication6.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\obj\Debug\WebApplication6.pdb
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\System.Buffers.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\System.Memory.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\System.Numerics.Vectors.dll
+C:\Users\Khanh\source\repos\New folder (2)\WebApplication6\WebApplication6\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\WebApplication6.dll.config
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\WebApplication6.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\WebApplication6.pdb
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\csc.exe
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\csc.exe.config
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\csc.rsp
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\csi.exe
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\csi.exe.config
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\csi.rsp
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\System.Buffers.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\System.Memory.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\System.Numerics.Vectors.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\vbc.exe
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\vbc.exe.config
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\vbc.rsp
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\VBCSCompiler.exe
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\Antlr3.Runtime.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\EntityFramework.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\EntityFramework.SqlServer.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\Newtonsoft.Json.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\PagedList.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\PagedList.Mvc.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.Helpers.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.Mvc.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.Optimization.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.Razor.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.WebPages.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.WebPages.Razor.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\WebGrease.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\X.PagedList.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\EntityFramework.xml
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\EntityFramework.SqlServer.xml
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\PagedList.xml
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\PagedList.Mvc.xml
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.Helpers.xml
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.Mvc.xml
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.Optimization.xml
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.Razor.xml
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.WebPages.xml
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\System.Web.WebPages.Razor.xml
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\Newtonsoft.Json.xml
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\bin\Antlr3.Runtime.pdb
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\obj\Debug\DBSportStore.csproj.AssemblyReference.cache
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\obj\Debug\DBSportStore.csproj.CoreCompileInputs.cache
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\obj\Debug\DBSportS.F189B097.Up2Date
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\obj\Debug\WebApplication6.dll
+C:\Users\Khanh\source\repos\New folder (4)\WebApplication6\obj\Debug\WebApplication6.pdb
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\WebApplication6.dll.config
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\WebApplication6.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\WebApplication6.pdb
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\csc.exe
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\csc.exe.config
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\csc.rsp
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\csi.exe
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\csi.exe.config
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\csi.rsp
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\Microsoft.Managed.Core.targets
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\System.Buffers.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\System.Collections.Immutable.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\System.Memory.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\System.Numerics.Vectors.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\System.Reflection.Metadata.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\vbc.exe
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\vbc.exe.config
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\vbc.rsp
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\VBCSCompiler.exe
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\roslyn\VBCSCompiler.exe.config
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\Antlr3.Runtime.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\EntityFramework.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\EntityFramework.SqlServer.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\Microsoft.Web.Infrastructure.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\Newtonsoft.Json.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\PagedList.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\PagedList.Mvc.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.Helpers.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.Mvc.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.Optimization.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.Razor.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.WebPages.Deployment.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.WebPages.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.WebPages.Razor.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\WebGrease.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\X.PagedList.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\EntityFramework.xml
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\EntityFramework.SqlServer.xml
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\PagedList.xml
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\PagedList.Mvc.xml
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.Helpers.xml
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.Mvc.xml
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.Optimization.xml
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.Razor.xml
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.WebPages.xml
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.WebPages.Deployment.xml
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\System.Web.WebPages.Razor.xml
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\Newtonsoft.Json.xml
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\bin\Antlr3.Runtime.pdb
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\obj\Debug\DBSportStore.csproj.AssemblyReference.cache
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\obj\Debug\DBSportStore.csproj.CoreCompileInputs.cache
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\obj\Debug\DBSportS.F189B097.Up2Date
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\obj\Debug\WebApplication6.dll
+D:\AtSchool\LTTW\DoAnLTTW\WebApplication6\obj\Debug\WebApplication6.pdb
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\WebApplication6.dll.config
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\WebApplication6.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\WebApplication6.pdb
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\csc.exe
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\csc.exe.config
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\csc.rsp
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\csi.exe
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\csi.exe.config
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\csi.rsp
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\Microsoft.Managed.Core.targets
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\System.Buffers.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\System.Collections.Immutable.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\System.Memory.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\System.Numerics.Vectors.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\System.Reflection.Metadata.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\vbc.exe
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\vbc.exe.config
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\vbc.rsp
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\VBCSCompiler.exe
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\roslyn\VBCSCompiler.exe.config
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\Antlr3.Runtime.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\EntityFramework.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\EntityFramework.SqlServer.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\Microsoft.Web.Infrastructure.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\Newtonsoft.Json.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\PagedList.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\PagedList.Mvc.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.Helpers.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.Mvc.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.Optimization.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.Razor.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.WebPages.Deployment.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.WebPages.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.WebPages.Razor.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\WebGrease.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\X.PagedList.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\EntityFramework.xml
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\EntityFramework.SqlServer.xml
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\PagedList.xml
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\PagedList.Mvc.xml
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.Helpers.xml
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.Mvc.xml
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.Optimization.xml
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.Razor.xml
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.WebPages.xml
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.WebPages.Deployment.xml
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\System.Web.WebPages.Razor.xml
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\Newtonsoft.Json.xml
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\bin\Antlr3.Runtime.pdb
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\obj\Debug\DBSportStore.csproj.AssemblyReference.cache
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\obj\Debug\DBSportStore.csproj.CoreCompileInputs.cache
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\obj\Debug\DBSportS.F189B097.Up2Date
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\obj\Debug\WebApplication6.dll
+D:\AtSchool\LTTW\DoAnnn\WebApplication6\obj\Debug\WebApplication6.pdb
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\obj\Debug\DBSportStore.csproj.AssemblyReference.cache
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\obj\Debug\DBSportStore.csproj.CoreCompileInputs.cache
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\obj\Debug\WebApplication6.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\obj\Debug\WebApplication6.pdb
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\WebApplication6.dll.config
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\WebApplication6.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\WebApplication6.pdb
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\csc.exe
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\csc.exe.config
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\csc.rsp
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\csi.exe
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\csi.exe.config
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\csi.rsp
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\System.Buffers.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\System.Memory.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\System.Numerics.Vectors.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\vbc.exe
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\vbc.exe.config
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\vbc.rsp
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\VBCSCompiler.exe
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\Antlr3.Runtime.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\EntityFramework.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\EntityFramework.SqlServer.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\Newtonsoft.Json.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\PagedList.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\PagedList.Mvc.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.Helpers.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.Mvc.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.Optimization.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.Razor.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.WebPages.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.WebPages.Razor.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\WebGrease.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\X.PagedList.dll
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\EntityFramework.xml
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\EntityFramework.SqlServer.xml
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\PagedList.xml
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\PagedList.Mvc.xml
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.Helpers.xml
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.Mvc.xml
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.Optimization.xml
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.Razor.xml
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.WebPages.xml
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\System.Web.WebPages.Razor.xml
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\Newtonsoft.Json.xml
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\bin\Antlr3.Runtime.pdb
+C:\Users\Khanh\source\repos\New folder (16)\WebApplication6\obj\Debug\DBSportS.F189B097.Up2Date
+D:\New folder (2)\New folder (16)\WebApplication6\bin\WebApplication6.dll.config
+D:\New folder (2)\New folder (16)\WebApplication6\bin\WebApplication6.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\WebApplication6.pdb
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\csc.exe
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\csc.exe.config
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\csc.rsp
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\csi.exe
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\csi.exe.config
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\csi.rsp
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\Microsoft.Managed.Core.targets
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\System.Buffers.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\System.Collections.Immutable.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\System.Memory.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\System.Numerics.Vectors.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\System.Reflection.Metadata.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\vbc.exe
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\vbc.exe.config
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\vbc.rsp
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\VBCSCompiler.exe
+D:\New folder (2)\New folder (16)\WebApplication6\bin\roslyn\VBCSCompiler.exe.config
+D:\New folder (2)\New folder (16)\WebApplication6\bin\Antlr3.Runtime.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\EntityFramework.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\EntityFramework.SqlServer.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\Microsoft.Web.Infrastructure.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\Newtonsoft.Json.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\PagedList.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\PagedList.Mvc.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.Helpers.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.Mvc.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.Optimization.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.Razor.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.WebPages.Deployment.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.WebPages.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.WebPages.Razor.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\WebGrease.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\X.PagedList.dll
+D:\New folder (2)\New folder (16)\WebApplication6\bin\EntityFramework.xml
+D:\New folder (2)\New folder (16)\WebApplication6\bin\EntityFramework.SqlServer.xml
+D:\New folder (2)\New folder (16)\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\New folder (2)\New folder (16)\WebApplication6\bin\PagedList.xml
+D:\New folder (2)\New folder (16)\WebApplication6\bin\PagedList.Mvc.xml
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.Helpers.xml
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.Mvc.xml
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.Optimization.xml
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.Razor.xml
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.WebPages.xml
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.WebPages.Deployment.xml
+D:\New folder (2)\New folder (16)\WebApplication6\bin\System.Web.WebPages.Razor.xml
+D:\New folder (2)\New folder (16)\WebApplication6\bin\Newtonsoft.Json.xml
+D:\New folder (2)\New folder (16)\WebApplication6\bin\Antlr3.Runtime.pdb
+D:\New folder (2)\New folder (16)\WebApplication6\obj\Debug\DBSportStore.csproj.AssemblyReference.cache
+D:\New folder (2)\New folder (16)\WebApplication6\obj\Debug\DBSportStore.csproj.CoreCompileInputs.cache
+D:\New folder (2)\New folder (16)\WebApplication6\obj\Debug\DBSportS.F189B097.Up2Date
+D:\New folder (2)\New folder (16)\WebApplication6\obj\Debug\WebApplication6.dll
+D:\New folder (2)\New folder (16)\WebApplication6\obj\Debug\WebApplication6.pdb
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\WebApplication6.dll.config
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\WebApplication6.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\WebApplication6.pdb
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\csc.exe
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\csc.exe.config
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\csc.rsp
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\csi.exe
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\csi.exe.config
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\csi.rsp
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\System.Buffers.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\System.Memory.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\System.Numerics.Vectors.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\vbc.exe
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\vbc.exe.config
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\vbc.rsp
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\VBCSCompiler.exe
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\Antlr3.Runtime.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\EntityFramework.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\EntityFramework.SqlServer.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\Newtonsoft.Json.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\PagedList.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\PagedList.Mvc.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.Helpers.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.Mvc.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.Optimization.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.Razor.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.WebPages.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.WebPages.Razor.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\WebGrease.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\X.PagedList.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\EntityFramework.xml
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\EntityFramework.SqlServer.xml
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\PagedList.xml
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\PagedList.Mvc.xml
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.Helpers.xml
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.Mvc.xml
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.Optimization.xml
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.Razor.xml
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.WebPages.xml
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\System.Web.WebPages.Razor.xml
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\Newtonsoft.Json.xml
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\bin\Antlr3.Runtime.pdb
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\obj\Debug\DBSportStore.csproj.AssemblyReference.cache
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\obj\Debug\DBSportStore.csproj.CoreCompileInputs.cache
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\obj\Debug\DBSportS.F189B097.Up2Date
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\obj\Debug\WebApplication6.dll
+C:\Users\Khanh\Downloads\New folder (16)\WebApplication6\obj\Debug\WebApplication6.pdb

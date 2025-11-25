@@ -1,0 +1,83 @@
+﻿@model WebApplication6.Models.Product
+
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    string imgSrc = Model.ImagePro;
+
+    if (!string.IsNullOrEmpty(imgSrc) &&
+        !imgSrc.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+    {
+        // Trường hợp lưu chỉ là tên file -> dùng ảnh local
+        imgSrc = Url.Content("~/Content/images/" + imgSrc);
+    }
+}
+
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Chi tiết sản phẩm</h2>
+<p class="text-sm text-gray-500 mb-6">Thông tin chi tiết của sản phẩm.</p>
+
+<div class="bg-white rounded-lg shadow-sm p-6 max-w-2xl">
+    <dl class="divide-y divide-gray-100">
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Mã sản phẩm</dt>
+            <dd class="w-2/3 text-sm text-gray-900">#@Model.ProductID</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Tên sản phẩm</dt>
+            <dd class="w-2/3 text-sm text-gray-900">@Model.NamePro</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Danh mục</dt>
+            <dd class="w-2/3 text-sm text-gray-900">
+                @(Model.Category != null ? Model.Category.NameCate : "-")
+            </dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Giá</dt>
+            <dd class="w-2/3 text-sm text-gray-900">
+                @(Model.Price.HasValue ? Model.Price.Value.ToString("N0") + " ₫" : "-")
+            </dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Giới tính</dt>
+            <dd class="w-2/3 text-sm text-gray-900">@Model.Gender</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Mô tả</dt>
+            <dd class="w-2/3 text-sm text-gray-900 whitespace-pre-line">
+                @Model.DecriptionPro
+            </dd>
+        </div>
+
+        <div class="py-3 flex items-start">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Hình ảnh</dt>
+            <dd class="w-2/3 text-sm text-gray-900">
+                @if (!string.IsNullOrEmpty(imgSrc))
+                {
+                    <img src="@imgSrc"
+                         alt="@Model.NamePro"
+                         style="max-width:250px;border:1px solid #ccc;" />
+                }
+                else
+                {
+                    <span>Không có ảnh</span>
+                }
+            </dd>
+        </div>
+    </dl>
+
+    <div class="mt-6 flex gap-2">
+        @Html.ActionLink("Sửa", "Edit", new { id = Model.ProductID },
+            new { @class = "px-4 py-2 rounded bg-blue-50 text-blue-600 text-sm hover:bg-blue-100" })
+        @Html.ActionLink("Quay lại", "Index", null,
+            new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+    </div>
+</div>

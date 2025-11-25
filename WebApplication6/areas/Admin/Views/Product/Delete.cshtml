@@ -1,0 +1,69 @@
+﻿@model WebApplication6.Models.Product
+
+@{
+    ViewBag.Title = "Xóa sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-red-600 mb-2">Xóa sản phẩm</h2>
+<p class="text-sm text-gray-500 mb-6">
+    Bạn có chắc chắn muốn xóa (đánh dấu đã xóa) sản phẩm này không?
+</p>
+
+<div class="bg-white rounded-lg shadow-sm p-6 max-w-2xl mb-4">
+    <dl class="divide-y divide-gray-100">
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Mã sản phẩm</dt>
+            <dd class="w-2/3 text-sm text-gray-900">#@Model.ProductID</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Tên sản phẩm</dt>
+            <dd class="w-2/3 text-sm text-gray-900">@Model.NamePro</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Danh mục</dt>
+            <dd class="w-2/3 text-sm text-gray-900">
+                @(Model.Category != null ? Model.Category.NameCate : "-")
+            </dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Giá</dt>
+            <dd class="w-2/3 text-sm text-gray-900">
+                @(Model.Price.HasValue ? Model.Price.Value.ToString("N0") + " ₫" : "-")
+            </dd>
+        </div>
+
+        <div class="py-3 flex items-start">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Hình ảnh</dt>
+            <dd class="w-2/3 text-sm text-gray-900">
+                @if (!string.IsNullOrEmpty(Model.ImagePro))
+                {
+                    <img src="@Model.ImagePro"
+                         alt="@Model.NamePro"
+                         class="max-h-40 border border-gray-200 rounded" />
+                }
+                else
+                {
+                    <span>Không có ảnh</span>
+                }
+            </dd>
+        </div>
+    </dl>
+</div>
+
+@using (Html.BeginForm("Delete", "Product", FormMethod.Post, new { area = "Admin" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ProductID)
+
+    <div class="flex gap-2">
+        <input type="submit"
+               value="Xác nhận xóa"
+               class="bg-red-500 text-white px-4 py-2 rounded text-sm font-medium hover:bg-red-600 cursor-pointer" />
+        @Html.ActionLink("Quay lại", "Index", null,
+            new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+    </div>
+}

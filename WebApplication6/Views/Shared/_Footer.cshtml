@@ -1,0 +1,108 @@
+﻿<title>@ViewBag.Title - Adidas Store</title>
+
+<!-- Font -->
+
+
+<!-- CSS-->
+<link rel="stylesheet" href="~/Content/partials/footer.css" />
+
+
+<!-- thanh hội viên -->
+<div class="promo-banner">
+    <div class="promo-content" >
+        <span class="promo-text">TRỞ THÀNH HỘI VIÊN & HƯỞNG ƯU ĐÃI 10%</span>
+        <button class="promo-btn" onclick="location.href='@Url.Action("Login","Account")'">ĐĂNG KÝ MIỄN PHÍ →</button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <!--SẢN PHẨM -->
+        <div class="footer-column footer-section">
+            <h3>SẢN PHẨM</h3>
+            <ul>
+                <li><a href="~/Products/Index">Giày</a></li>
+                <li><a href="~/Products/Index">Quần áo</a></li>
+                <li><a href="~/Products/Index">Phụ kiện</a></li>
+                <li><a href="~/Products/Index">Hàng Mới Về</a></li>
+            </ul>
+        </div>
+
+        <!--THỂ THAO -->
+        <div class="footer-column footer-section">
+            <h3>THỂ THAO</h3>
+            <ul>
+                <li><a href="~/Products/Index">Chạy</a></li>
+                <li><a href="~/Products/Index">Gym & Training</a></li>
+                <li><a href="~/Products/Index">Bóng đá</a></li>
+                <li><a href="~/Products/Index">Bóng Rổ</a></li>
+            </ul>
+        </div>
+
+        <!--BỘ SƯU TẬP -->
+        <div class="footer-column footer-section">
+            <h3>BỘ SƯU TẬP</h3>
+            <ul>
+                <li><a href="~/Products/Index">Ultra Boost</a></li>
+                <li><a href="~/Products/Index">Pureboost</a></li>
+                <li><a href="~/Products/Index">Predator</a></li>
+                <li><a href="~/Products/Index">Superstar</a></li>
+            </ul>
+        </div>
+
+        <!-- THÔNG TIN VỀ CÔNG TY -->
+        <div class="footer-column footer-extra">
+            <h3>THÔNG TIN VỀ CÔNG TY</h3>
+            <ul>
+                <li><a href="~/Products/Index">Giới Thiệu</a></li>
+                <li><a href="~/Products/Index">Cơ Hội Nghề Nghiệp</a></li>
+                <li><a href="~/Products/Index">Tin tức</a></li>
+            </ul>
+        </div>
+
+        <!-- HỖ TRỢ -->
+        <div class="footer-column footer-extra">
+            <h3>HỖ TRỢ</h3>
+            <ul>
+                <li><a href="~/Products/Index">Trợ giúp</a></li>
+                <li><a href="~/Products/Index">Giao hàng</a></li>
+                <li><a href="~/Products/Index">Trả hàng</a></li>
+            </ul>
+        </div>
+
+        <!-- THEO DÕI -->
+        <div class="footer-column footer-extra">
+            <h3>THEO DÕI</h3>
+            <div class="social-icons">
+                <a href="~/Products/Index" class="social-icon">FB</a>
+                <a href="~/Products/Index" class="social-icon">IG</a>
+                <a href="~/Products/Index" class="social-icon">TT</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-bottom-wrapper">
+            <div class="footer-links" style="justify-content: center;">
+                <a href="~/Products/Index">Cài Đặt Cookie</a>
+                <a href="~/Products/Index">Chính sách Bảo mật</a>
+                <a href="~/Products/Index">Điều Khoản</a>
+                <span>© 2020 adidas Việt Nam</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const sections = document.querySelectorAll(".footer-section .footer-title");
+        sections.forEach(title => {
+            title.addEventListener("click", () => {
+                const parent = title.parentElement;
+                parent.classList.toggle("active");
+            });
+        });
+    });
+</script>
+

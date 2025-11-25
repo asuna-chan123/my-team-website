@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Admin - Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@*Admin/Home/Index*@
+<link rel="stylesheet" href="/Content/admin.css" />
+
+<h1>Trang quản trị</h1>
+
+<ul>
+    <li>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-between">
+                <div class="text-right">
+                    @Html.ActionLink("Quản lý sản phẩm", "Index", "Product", new { area = "Admin" }, null)
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-between">
+                <div class="text-right">
+                    @Html.ActionLink("Quản lý danh mục", "Index", "Category", new { area = "Admin" }, null)
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>

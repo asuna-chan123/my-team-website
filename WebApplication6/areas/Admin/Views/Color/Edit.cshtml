@@ -1,0 +1,58 @@
+﻿@model WebApplication6.Models.Color
+
+@{
+    ViewBag.Title = "Sửa màu";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Sửa màu</h2>
+<p class="text-sm text-gray-500 mb-6">Cập nhật thông tin màu sắc.</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ColorID)
+    @Html.ValidationSummary(false, "", new { @class = "text-red-500 mb-3 text-sm" })
+
+    <div class="bg-white rounded-lg shadow-sm p-6 max-w-xl">
+        <div class="space-y-4">
+            <div>
+                @Html.LabelFor(m => m.ColorName,
+                    new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.TextBoxFor(m => m.ColorName,
+                    new { @class = "w-full border rounded px-3 py-2 text-sm" })
+                @Html.ValidationMessageFor(m => m.ColorName,
+                    "", new { @class = "text-xs text-red-500" })
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.ColorCode,
+                    "Mã màu (HEX, ví dụ: #FF0000)",
+                    new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.TextBoxFor(m => m.ColorCode,
+                    new { @class = "w-full border rounded px-3 py-2 text-sm" })
+                @Html.ValidationMessageFor(m => m.ColorCode,
+                    "", new { @class = "text-xs text-red-500" })
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.ColorCode))
+            {
+                <div class="flex items-center gap-2">
+                    <span class="text-sm text-gray-500">Preview:</span>
+                    <div style="width:32px;height:32px;border-radius:9999px;
+                                border:1px solid #ddd;
+                                background-color:@Model.ColorCode;">
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="mt-6 flex gap-2">
+            <input type="submit"
+                   value="Lưu"
+                   class="bg-[#FFA500] text-white px-4 py-2 rounded text-sm font-medium hover:bg-orange-600 cursor-pointer" />
+            @Html.ActionLink("Quay lại", "Index", null,
+                new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+        </div>
+    </div>
+}

@@ -1,126 +1,89 @@
-﻿@model WebApplication6.Models.Product
+﻿@model WebApplication6.Models.OrderPro
 
 @{
-    ViewBag.Title = "Sửa sản phẩm";
+    ViewBag.Title = "Sửa đơn hàng";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-}
-@{
-    string imgSrc = Model.ImagePro;
 
-    if (!string.IsNullOrEmpty(imgSrc) &&
-        !imgSrc.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+    Func<int?, string> statusText = s =>
     {
-        // Trường hợp lưu chỉ là tên file -> dùng ảnh local
-        imgSrc = Url.Content("~/Content/images/" + imgSrc);
-    }
+        switch (s ?? 0)
+        {
+            case 0: return "Chờ duyệt";
+            case 1: return "Đang chuẩn bị";
+            case 2: return "Đang giao";
+            case 3: return "Hoàn thành";
+            case 4: return "Đã hủy";
+            default: return "Không rõ";
+        }
+    };
 }
-<h2 class="text-2xl font-bold text-[#042954] mb-2">Sửa sản phẩm</h2>
-<p class="text-sm text-gray-500 mb-6">Chỉnh sửa thông tin sản phẩm.</p>
 
-@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { area = "Admin" }))
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Sửa đơn hàng</h2>
+<p class="text-sm text-gray-500 mb-6">Cập nhật địa chỉ giao và trạng thái đơn hàng.</p>
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.ProductID)
+    @Html.HiddenFor(m => m.ID)
 
-    @Html.ValidationSummary(false, "", new { @class = "text-red-500 mb-3" })
+    <div class="bg-white rounded-lg shadow-sm p-6 max-w-3xl">
+        <div class="mb-4 text-sm text-gray-600">
+            Mã đơn: <span class="font-semibold">#@Model.ID</span> ·
+            Ngày đặt:
+            @(Model.DateOrder.HasValue ? Model.DateOrder.Value.ToString("dd/MM/yyyy HH:mm") : "")
+            <br />
+            Khách hàng:
+            @(Model.Customer != null ? Model.Customer.NameCus : "N/A")
+            @if (Model.Customer != null)
+            {
+                <span>(@Model.Customer.PhoneCus)</span>
+            }
+        </div>
 
-    <div class="bg-white rounded-lg shadow-sm p-6 max-w-2xl">
-        <!-- Tên sản phẩm -->
         <div class="mb-4">
-            @Html.LabelFor(m => m.NamePro, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.TextBoxFor(m => m.NamePro,
+            @Html.LabelFor(m => m.AddressDeliverry, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+            @Html.TextAreaFor(m => m.AddressDeliverry, 3, 0,
                 new
                 {
                     @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
                              "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
                 })
-            @Html.ValidationMessageFor(m => m.NamePro, "", new { @class = "text-red-500 text-xs" })
+            @Html.ValidationMessageFor(m => m.AddressDeliverry, "", new { @class = "text-red-500 text-xs" })
         </div>
 
-        <!-- Mô tả -->
         <div class="mb-4">
-            @Html.LabelFor(m => m.DecriptionPro, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.TextAreaFor(m => m.DecriptionPro,
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
-                    rows = 4
-                })
-            @Html.ValidationMessageFor(m => m.DecriptionPro, "", new { @class = "text-red-500 text-xs" })
-        </div>
-
-        <!-- Danh mục -->
-        <div class="mb-4">
-            @Html.Label("Danh mục", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.DropDownList("CateID",
-                (SelectList)ViewBag.CateID,
-                "-- Chọn danh mục --",
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
-                })
-            @Html.ValidationMessageFor(m => m.CateID, "", new { @class = "text-red-500 text-xs" })
-        </div>
-
-        <!-- Giá -->
-        <div class="mb-4">
-            @Html.LabelFor(m => m.Price, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.TextBoxFor(m => m.Price,
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
-                    type = "number",
-                    step = "1000"
-                })
-            @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-red-500 text-xs" })
-        </div>
-
-        <!-- Giới tính -->
-        <div class="mb-4">
-            @Html.LabelFor(m => m.Gender, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.DropDownListFor(m => m.Gender,
+            <label class="block text-sm font-medium text-gray-700 mb-1">Trạng thái</label>
+            @Html.DropDownListFor(m => m.Status,
                 new SelectList(new[]
                 {
-                    new { Value = "Nam", Text = "Nam" },
-                    new { Value = "Nữ", Text = "Nữ" },
-                    new { Value = "Unisex", Text = "Unisex" }
-                }, "Value", "Text", Model.Gender),
-                "-- Chọn giới tính --",
+                    new { Value = 0, Text = "Chờ duyệt" },
+                    new { Value = 1, Text = "Đang chuẩn bị" },
+                    new { Value = 2, Text = "Đang giao" },
+                    new { Value = 3, Text = "Hoàn thành" },
+                    new { Value = 4, Text = "Đã hủy" }
+                }, "Value", "Text", Model.Status),
                 new
                 {
                     @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
                              "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
                 })
-            @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-red-500 text-xs" })
         </div>
 
-        <!-- Link ảnh -->
-        <div class="mb-6">
-            @Html.LabelFor(m => m.ImagePro, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.TextBoxFor(m => m.ImagePro,
+        <div class="mb-4">
+            @Html.LabelFor(m => m.TotalPrice, "Tổng tiền",
+                new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+
+            @Html.TextBoxFor(m => m.TotalPrice,
+                "{0:N0}",   // format có dấu phẩy
                 new
                 {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
-                    placeholder = "Nhập URL ảnh (http...)"
+                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm bg-gray-100",
+                    @readonly = "readonly"
                 })
-            @Html.ValidationMessageFor(m => m.ImagePro, "", new { @class = "text-red-500 text-xs" })
-            @if (!string.IsNullOrEmpty(imgSrc))
-            {
-                <img src="@imgSrc"
-                     alt="@Model.NamePro"
-                     style="max-width:250px;border:1px solid #ccc;" />
-            }
-            else
-            {
-                <span>Không có ảnh</span>
-            }
         </div>
 
-        <div class="flex gap-2">
+
+        <div class="flex gap-2 mt-6">
             <input type="submit"
                    value="Lưu"
                    class="bg-[#FFA500] text-white px-4 py-2 rounded text-sm font-medium hover:bg-orange-600 transition-colors cursor-pointer" />

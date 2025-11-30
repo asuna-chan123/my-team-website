@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WebApplication6.Models.AdminUser>
+
+@{
+    ViewBag.Title = "Quản lý tài khoản Admin";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold mb-4">Danh sách tài khoản Admin</h2>
+
+<p>
+    @Html.ActionLink("Thêm tài khoản mới", "Create", null,
+        new { @class = "inline-block bg-green-600 text-white px-3 py-1 rounded" })
+</p>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên đăng nhập</th>
+            <th>Vai trò</th>
+            <th>Mật khẩu</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.UserName</td>
+                <td>@item.RoleUser</td>
+                <td>@item.PasswordUser</td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

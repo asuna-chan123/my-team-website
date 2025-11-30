@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebApplication6.Models.Carousel>
+
+@{
+    ViewBag.Title = "Quản lý Carousel";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Carousel</h2>
+<p class="text-sm text-gray-500 mb-6">
+    Danh sách các nhóm slide (carousel-1, carousel-2, ...).
+</p>
+
+<div class="bg-white rounded-lg shadow-sm flex flex-col">
+    <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+        <h3 class="text-lg font-semibold text-[#042954]">Danh sách carousel</h3>
+
+        @* nếu sau này có Create thì thêm nút ở đây *@
+        @* @Html.ActionLink("Thêm carousel", "Create", null,
+            new { @class = "bg-[#FFA500] text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-orange-600" }) *@
+    </div>
+
+    <div class="overflow-x-auto p-6">
+        <table class="w-full text-left border-collapse text-sm">
+            <thead class="bg-gray-50 text-gray-700 font-semibold">
+                <tr>
+                    <th class="p-3 rounded-tl">ID</th>
+                    <th class="p-3">Code</th>
+                    <th class="p-3">Tên hiển thị</th>
+                    <th class="p-3">Số slide</th>
+                    <th class="p-3">Trạng thái</th>
+                    <th class="p-3 rounded-tr text-right">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var isInactive = !(item.IsActive ?? false);
+                    var rowClass = isInactive ? "text-gray-400" : "";
+
+                    <tr class="border-b border-gray-100 hover:bg-gray-50 @rowClass">
+                        <td class="p-3 font-medium text-blue-600">#@item.CarouselID</td>
+                        <td class="p-3">@item.Code</td>
+                        <td class="p-3">@item.Name</td>
+                        <td class="p-3">
+                            @(item.CarouselItems != null ? item.CarouselItems.Count : 0)
+                        </td>
+                        <td class="p-3">
+                            @(isInactive ? "Tắt" : "Đang dùng")
+                        </td>
+                        <td class="p-3 text-right">
+                            <div class="inline-flex gap-2">
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.CarouselID },
+                                    new { @class = "px-2 py-1 rounded bg-gray-50 text-gray-700 hover:bg-gray-100 text-xs" })
+
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.CarouselID },
+                                    new { @class = "px-2 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 text-xs" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

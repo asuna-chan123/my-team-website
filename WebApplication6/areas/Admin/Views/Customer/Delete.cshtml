@@ -1,42 +1,77 @@
-﻿@*@model WebApplication6.Models.Customer
+﻿@model WebApplication6.Models.Customer
 
 @{
-    ViewBag.Title = "Xóa khách hàng";
+    ViewBag.Title = "Khóa / Mở khóa khách hàng";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2 class="text-2xl font-bold text-red-600 mb-2">Xóa khách hàng</h2>
+<h2 class="text-2xl font-bold text-red-600 mb-2">
+    @(Model.IsLocked ? "Mở khóa khách hàng" : "Khóa khách hàng")
+</h2>
 <p class="text-sm text-gray-500 mb-6">
-    Bạn có chắc chắn muốn xóa (đánh dấu đã xóa) khách hàng này không?
+    @(Model.IsLocked
+        ? "Bạn có chắc chắn muốn mở khóa tài khoản khách hàng này không?"
+        : "Bạn có chắc chắn muốn khóa tài khoản khách hàng này không?")
 </p>
 
-<div class="bg-white rounded-lg shadow-sm p-6 max-w-xl mb-4">
+<div class="bg-white rounded-lg shadow-sm p-6 max-w-3xl">
     <dl class="divide-y divide-gray-100">
         <div class="py-3 flex">
-            <dt class="w-1/3 text-sm font-medium text-gray-500">Mã KH</dt>
-            <dd class="w-2/3 text-sm text-gray-900">#@Model.CustomerID</dd>
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Mã khách hàng</dt>
+            <dd class="w-2/3 text-sm text-gray-900">#@Model.IDCus</dd>
         </div>
+
         <div class="py-3 flex">
-            <dt class="w-1/3 text-sm font-medium text-gray-500">Tên khách</dt>
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Họ tên</dt>
             <dd class="w-2/3 text-sm text-gray-900">@Model.NameCus</dd>
         </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Số điện thoại</dt>
+            <dd class="w-2/3 text-sm text-gray-900">@Model.PhoneCus</dd>
+        </div>
+
         <div class="py-3 flex">
             <dt class="w-1/3 text-sm font-medium text-gray-500">Email</dt>
-            <dd class="w-2/3 text-sm text-gray-900">@Model.Email</dd>
+            <dd class="w-2/3 text-sm text-gray-900">@Model.EmailCus</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Tài khoản</dt>
+            <dd class="w-2/3 text-sm text-gray-900">@Model.UserName</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Giới tính</dt>
+            <dd class="w-2/3 text-sm text-gray-900">@Model.Gender</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Ngày sinh</dt>
+            <dd class="w-2/3 text-sm text-gray-900">
+                @(Model.Birthday.HasValue ? Model.Birthday.Value.ToString("dd/MM/yyyy") : "")
+            </dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Trạng thái</dt>
+            <dd class="w-2/3 text-sm text-gray-900">
+                @(Model.IsLocked ? "Đã khóa" : "Đang hoạt động")
+            </dd>
         </div>
     </dl>
 </div>
 
-@using (Html.BeginForm("Delete", "Customer", FormMethod.Post, new { area = "Admin" }))
+@using (Html.BeginForm("DeleteConfirmed", "Customer", FormMethod.Post, new { area = "Admin" }))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.CustomerID)
+    @Html.Hidden("id", Model.IDCus)
 
-    <div class="flex gap-2">
+    <div class="mt-6 flex gap-2">
         <input type="submit"
-               value="Xác nhận xóa"
+               value="Xác nhận"
                class="bg-red-500 text-white px-4 py-2 rounded text-sm font-medium hover:bg-red-600 cursor-pointer" />
         @Html.ActionLink("Quay lại", "Index", null,
             new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
     </div>
-}*@
+}

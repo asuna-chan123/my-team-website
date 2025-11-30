@@ -1,126 +1,241 @@
-﻿@model WebApplication6.Models.Product
+﻿@model WebApplication6.ViewModels.ProductFormViewModel
+@using System.Web.Mvc
 
 @{
     ViewBag.Title = "Sửa sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-@{
-    string imgSrc = Model.ImagePro;
 
-    if (!string.IsNullOrEmpty(imgSrc) &&
-        !imgSrc.StartsWith("http", StringComparison.OrdinalIgnoreCase))
-    {
-        // Trường hợp lưu chỉ là tên file -> dùng ảnh local
-        imgSrc = Url.Content("~/Content/images/" + imgSrc);
-    }
-}
 <h2 class="text-2xl font-bold text-[#042954] mb-2">Sửa sản phẩm</h2>
-<p class="text-sm text-gray-500 mb-6">Chỉnh sửa thông tin sản phẩm.</p>
+<p class="text-sm text-gray-500 mb-6">Cập nhật thông tin và biến thể sản phẩm.</p>
 
-@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { area = "Admin" }))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.ProductID)
+    @Html.HiddenFor(m => m.Product.ProductID)
 
-    @Html.ValidationSummary(false, "", new { @class = "text-red-500 mb-3" })
+    <div class="bg-white rounded-lg shadow-sm p-6 max-w-4xl">
+        <!-- Thông tin chung -->
+        <h3 class="text-lg font-semibold mb-4">Thông tin sản phẩm</h3>
 
-    <div class="bg-white rounded-lg shadow-sm p-6 max-w-2xl">
-        <!-- Tên sản phẩm -->
-        <div class="mb-4">
-            @Html.LabelFor(m => m.NamePro, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.TextBoxFor(m => m.NamePro,
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
-                })
-            @Html.ValidationMessageFor(m => m.NamePro, "", new { @class = "text-red-500 text-xs" })
+        @* === FORM SẢN PHẨM (dồn từ _ProductForm.cshtml) === *@
+        @Html.ValidationSummary(false, "", new { @class = "text-red-500 mb-3" })
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <!-- Tên sản phẩm -->
+            <div>
+                @Html.LabelFor(m => m.Product.NamePro, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.TextBoxFor(
+                    m => m.Product.NamePro,
+                    new
+                    {
+                        @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
+                                 "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
+                    })
+                @Html.ValidationMessageFor(m => m.Product.NamePro, "", new { @class = "text-red-500 text-xs" })
+            </div>
+
+            <!-- Giới tính -->
+            <div>
+                @Html.LabelFor(m => m.Product.Gender, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.DropDownListFor(
+                    m => m.Product.Gender,
+                    new SelectList(new[]
+                    {
+                        new { Value = "Nam", Text = "Nam" },
+                        new { Value = "Nữ", Text = "Nữ" },
+                        new { Value = "Unisex", Text = "Unisex" }
+                    }, "Value", "Text", Model?.Product?.Gender),
+                    "-- Chọn giới tính --",
+                    new
+                    {
+                        @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
+                                 "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
+                    })
+                @Html.ValidationMessageFor(m => m.Product.Gender, "", new { @class = "text-red-500 text-xs" })
+            </div>
+
+            <!-- Danh mục -->
+            <div>
+                @Html.Label("Danh mục", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.DropDownListFor(
+                    m => m.Product.CateID,
+                    (SelectList)ViewBag.CategoryList,
+                    "-- Chọn danh mục --",
+                    new
+                    {
+                        @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
+                                 "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
+                    })
+                @Html.ValidationMessageFor(m => m.Product.CateID, "", new { @class = "text-red-500 text-xs" })
+            </div>
+
+            <!-- Mô tả -->
+            <div class="md:col-span-2">
+                @Html.LabelFor(m => m.Product.DecriptionPro, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.TextAreaFor(
+                    m => m.Product.DecriptionPro,
+                    4,
+                    0,
+                    new
+                    {
+                        @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
+                                 "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500] resize-y"
+                    })
+                @Html.ValidationMessageFor(m => m.Product.DecriptionPro, "", new { @class = "text-red-500 text-xs" })
+            </div>
         </div>
 
-        <!-- Mô tả -->
-        <div class="mb-4">
-            @Html.LabelFor(m => m.DecriptionPro, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.TextAreaFor(m => m.DecriptionPro,
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
-                    rows = 4
-                })
-            @Html.ValidationMessageFor(m => m.DecriptionPro, "", new { @class = "text-red-500 text-xs" })
-        </div>
+        <hr class="my-6" />
 
-        <!-- Danh mục -->
-        <div class="mb-4">
-            @Html.Label("Danh mục", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.DropDownList("CateID",
-                (SelectList)ViewBag.CateID,
-                "-- Chọn danh mục --",
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
-                })
-            @Html.ValidationMessageFor(m => m.CateID, "", new { @class = "text-red-500 text-xs" })
-        </div>
+        <!-- Biến thể -->
+        <h3 class="text-lg font-semibold mb-4">Biến thể (màu / size / tồn kho / ảnh)</h3>
 
-        <!-- Giá -->
-        <div class="mb-4">
-            @Html.LabelFor(m => m.Price, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.TextBoxFor(m => m.Price,
-                new
+        <table class="min-w-full text-sm border">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="border px-2 py-1">Màu</th>
+                    <th class="border px-2 py-1">Giá</th>
+                    <th class="border px-2 py-1">Size / Tồn kho</th>
+                    <th class="border px-2 py-1">Ảnh (URL)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Variants.Count; i++)
                 {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
-                    type = "number",
-                    step = "1000"
-                })
-            @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-red-500 text-xs" })
-        </div>
+                    bool hasData =
+                        (Model.Variants[i].ColorID ?? 0) > 0 ||
+                        (Model.Variants[i].Price ?? 0) > 0 ||
+                        (Model.Variants[i].SizeStocks != null &&
+                         Model.Variants[i].SizeStocks.Any(ss => (ss.SizeID ?? 0) > 0));
 
-        <!-- Giới tính -->
-        <div class="mb-4">
-            @Html.LabelFor(m => m.Gender, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.DropDownListFor(m => m.Gender,
-                new SelectList(new[]
-                {
-                    new { Value = "Nam", Text = "Nam" },
-                    new { Value = "Nữ", Text = "Nữ" },
-                    new { Value = "Unisex", Text = "Unisex" }
-                }, "Value", "Text", Model.Gender),
-                "-- Chọn giới tính --",
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
-                })
-            @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-red-500 text-xs" })
-        </div>
+                    var rowClass = hasData || i == 0 ? "" : "hidden";
 
-        <!-- Link ảnh -->
-        <div class="mb-6">
-            @Html.LabelFor(m => m.ImagePro, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.TextBoxFor(m => m.ImagePro,
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
-                    placeholder = "Nhập URL ảnh (http...)"
-                })
-            @Html.ValidationMessageFor(m => m.ImagePro, "", new { @class = "text-red-500 text-xs" })
-            @if (!string.IsNullOrEmpty(imgSrc))
-            {
-                <img src="@imgSrc"
-                     alt="@Model.NamePro"
-                     style="max-width:250px;border:1px solid #ccc;" />
-            }
-            else
-            {
-                <span>Không có ảnh</span>
-            }
-        </div>
+                    <tr class="variant-row @rowClass">
+                        @Html.HiddenFor(m => m.Variants[i].ProductID)
 
-        <div class="flex gap-2">
+                        <!-- Màu -->
+                        <td class="border px-2 py-1">
+                            @Html.DropDownListFor(
+                                m => m.Variants[i].ColorID,
+                                new SelectList(Model.ColorList, "Value", "Text", Model.Variants[i].ColorID),
+                                "--Màu--",
+                                new { @class = "border rounded px-2 py-1 w-full text-xs color-select" }
+                            )
+                        </td>
+
+                        <!-- Giá -->
+                        <td class="border px-2 py-1">
+                            @Html.TextBoxFor(
+                                m => m.Variants[i].Price,
+                                new { @class = "border rounded px-2 py-1 w-full text-xs" }
+                            )
+                        </td>
+
+                        <!-- Size / Tồn kho -->
+                        <td class="border px-2 py-1 align-top">
+                            <div class="size-stock-group space-y-1" data-row="@i">
+                                @{
+                                    if (Model.Variants[i].SizeStocks == null ||
+                                        !Model.Variants[i].SizeStocks.Any())
+                                    {
+                                        Model.Variants[i].SizeStocks =
+                                            new List<WebApplication6.ViewModels.VariantSizeStockViewModel>
+                                            {
+                                                new WebApplication6.ViewModels.VariantSizeStockViewModel()
+                            };
+                                    }
+                                }
+
+                                @for (int j = 0; j < Model.Variants[i].SizeStocks.Count; j++)
+                                {
+                                    <div class="size-stock-row flex gap-1">
+                                        @Html.DropDownListFor(
+                                            m => m.Variants[i].SizeStocks[j].SizeID,
+                                            new SelectList(Model.SizeList, "Value", "Text", Model.Variants[i].SizeStocks[j].SizeID),
+                                            "--Size--",
+                                            new { @class = "border rounded px-2 py-1 text-xs w-24" }
+                                        )
+                                        @Html.TextBoxFor(
+                                            m => m.Variants[i].SizeStocks[j].StockQty,
+                                            new
+                                            {
+                                                @class = "border rounded px-2 py-1 text-xs w-20",
+                                                type = "number",
+                                                min = "0"
+                                            }
+                                        )
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="mt-1 space-x-1">
+                                <button type="button"
+                                        class="add-size-btn px-2 py-1 border rounded text-xs hover:bg-gray-100"
+                                        data-row="@i">
+                                    +
+                                </button>
+                                <button type="button"
+                                        class="remove-size-btn px-2 py-1 border rounded text-xs hover:bg-gray-100"
+                                        data-row="@i">
+                                    -
+                                </button>
+                            </div>
+                        </td>
+
+                        <!-- Ảnh -->
+                        <td class="border px-2 py-1 max-w-[180px] align-top">
+                            <div class="image-url-group space-y-1" data-row="@i">
+                                @{
+                                    if (Model.Variants[i].ImageUrls == null ||
+                                        !Model.Variants[i].ImageUrls.Any())
+                                    {
+                                        Model.Variants[i].ImageUrls = new List<string> { "" };
+                                    }
+                                }
+
+                                @for (int j = 0; j < Model.Variants[i].ImageUrls.Count; j++)
+                                {
+                                    @Html.TextBoxFor(
+                                        m => m.Variants[i].ImageUrls[j],
+                                        new
+                                        {
+                                            @class = "border rounded px-2 py-1 w-full text-xs image-url-input",
+                                            placeholder = "https://..."
+                                        }
+                                    )
+                                }
+                            </div>
+
+                            <div class="mt-1 space-x-1">
+                                <button type="button"
+                                        class="add-image-btn px-2 py-1 border rounded text-xs hover:bg-gray-100"
+                                        data-row="@i">
+                                    +
+                                </button>
+                                <button type="button"
+                                        class="remove-image-btn px-2 py-1 border rounded text-xs hover:bg-gray-100"
+                                        data-row="@i">
+                                    -
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <button type="button"
+                id="addVariantRow"
+                class="mt-3 px-3 py-1 rounded bg-gray-200 text-xs hover:bg-gray-300">
+            + Thêm màu
+        </button>
+        <p class="mt-1 text-xs text-gray-500">
+            Dòng nào để trống (không màu, không size, không tồn, không ảnh) sẽ không được lưu.
+        </p>
+
+        <div class="flex gap-2 mt-6">
             <input type="submit"
                    value="Lưu"
                    class="bg-[#FFA500] text-white px-4 py-2 rounded text-sm font-medium hover:bg-orange-600 transition-colors cursor-pointer" />
@@ -129,3 +244,100 @@
         </div>
     </div>
 }
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var btnAddVariant = document.getElementById("addVariantRow");
+
+        if (btnAddVariant) {
+            btnAddVariant.addEventListener("click", function () {
+                var hiddenRows = document.querySelectorAll("tr.variant-row.hidden");
+                if (hiddenRows.length === 0) return;
+
+                var row = hiddenRows[0];
+                row.classList.remove("hidden");
+
+                if (hiddenRows.length === 1) {
+                    btnAddVariant.disabled = true;
+                    btnAddVariant.classList.add("opacity-50", "cursor-not-allowed");
+                }
+            });
+        }
+
+        // ẢNH: + / -
+        document.querySelectorAll(".add-image-btn").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                var rowIndex = this.getAttribute("data-row");
+                var container = document.querySelector('.image-url-group[data-row="' + rowIndex + '"]');
+                if (!container) return;
+
+                var inputs = container.querySelectorAll("input.image-url-input");
+                var nextIndex = inputs.length;
+
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "Variants[" + rowIndex + "].ImageUrls[" + nextIndex + "]";
+                input.placeholder = "https://...";
+                input.className = "border rounded px-2 py-1 w-full text-xs image-url-input mt-1";
+
+                container.appendChild(input);
+            });
+        });
+
+        document.querySelectorAll(".remove-image-btn").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                var rowIndex = this.getAttribute("data-row");
+                var container = document.querySelector('.image-url-group[data-row="' + rowIndex + '"]');
+                if (!container) return;
+
+                var inputs = container.querySelectorAll("input.image-url-input");
+                if (inputs.length > 1) {
+                    container.removeChild(inputs[inputs.length - 1]);
+                }
+            });
+        });
+
+        // SIZE / STOCK: + / -
+        document.querySelectorAll(".add-size-btn").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                var rowIndex = this.getAttribute("data-row");
+                var container = document.querySelector('.size-stock-group[data-row="' + rowIndex + '"]');
+                if (!container) return;
+
+                var rows = container.querySelectorAll(".size-stock-row");
+                if (rows.length === 0) return;
+
+                var prototype = rows[0].cloneNode(true);
+                var nextIndex = rows.length;
+
+                var select = prototype.querySelector("select");
+                var input = prototype.querySelector("input");
+
+                if (select) {
+                    select.selectedIndex = 0;
+                    select.name = "Variants[" + rowIndex + "].SizeStocks[" + nextIndex + "].SizeID";
+                }
+                if (input) {
+                    input.value = "0";
+                    input.name = "Variants[" + rowIndex + "].SizeStocks[" + nextIndex + "].StockQty";
+                }
+
+                prototype.classList.add("mt-1");
+                container.appendChild(prototype);
+            });
+        });
+
+        document.querySelectorAll(".remove-size-btn").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                var rowIndex = this.getAttribute("data-row");
+                var container = document.querySelector('.size-stock-group[data-row="' + rowIndex + '"]');
+                if (!container) return;
+
+                var rows = container.querySelectorAll(".size-stock-row");
+                if (rows.length > 1) {
+                    container.removeChild(rows[rows.length - 1]);
+                }
+            });
+        });
+    });
+</script>

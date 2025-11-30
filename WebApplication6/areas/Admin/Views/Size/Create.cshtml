@@ -1,0 +1,36 @@
+﻿@model WebApplication6.Models.Size
+
+@{
+    ViewBag.Title = "Thêm size";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Thêm size mới</h2>
+<p class="text-sm text-gray-500 mb-6">Tạo size để gán cho sản phẩm.</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "text-red-500 mb-3 text-sm" })
+
+    <div class="bg-white rounded-lg shadow-sm p-6 max-w-xl">
+        <div class="space-y-4">
+            <div>
+                @Html.LabelFor(m => m.SizeName,
+                    new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.TextBoxFor(m => m.SizeName,
+                    new { @class = "w-full border rounded px-3 py-2 text-sm" })
+                @Html.ValidationMessageFor(m => m.SizeName,
+                    "", new { @class = "text-xs text-red-500" })
+            </div>
+        </div>
+
+        <div class="mt-6 flex gap-2">
+            <input type="submit"
+                   value="Lưu"
+                   class="bg-[#FFA500] text-white px-4 py-2 rounded text-sm font-medium hover:bg-orange-600 cursor-pointer" />
+            @Html.ActionLink("Quay lại", "Index", null,
+                new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+        </div>
+    </div>
+}

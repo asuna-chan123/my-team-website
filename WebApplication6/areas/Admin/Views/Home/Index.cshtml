@@ -1,25 +1,232 @@
-﻿@{
+﻿@using Newtonsoft.Json
+@{
     ViewBag.Title = "Admin - Dashboard";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-@*Admin/Home/Index*@
 <link rel="stylesheet" href="/Content/admin.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<h1>Trang quản trị</h1>
+<h1 class="text-2xl font-bold mb-4">Trang quản trị</h1>
 
-<ul>
-    <li>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-between">
-                <div class="text-right">
-                    @Html.ActionLink("Quản lý sản phẩm", "Index", "Product", new { area = "Admin" }, null)
-                </div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-between">
-                <div class="text-right">
-                    @Html.ActionLink("Quản lý danh mục", "Index", "Category", new { area = "Admin" }, null)
-                </div>
-            </div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-between">
+        <div class="text-right">
+            @Html.ActionLink("Quản lý sản phẩm", "Index", "Product", new { area = "Admin" }, null)
         </div>
-    </li>
-</ul>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-between">
+        <div class="text-right">
+            @Html.ActionLink("Quản lý danh mục", "Index", "Category", new { area = "Admin" }, null)
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-between">
+        <div class="text-right">
+            @Html.ActionLink("Quản lý khách hàng", "Index", "Customer", new { area = "Admin" }, null)
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-between">
+        <div class="text-right">
+            @Html.ActionLink("Quản lý đơn hàng", "Index", "Order", new { area = "Admin" }, null)
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Biểu đồ đơn hàng theo ngày -->
+    <div class="bg-white p-4 rounded-lg shadow-sm">
+        <h2 class="text-lg font-semibold mb-2">Số đơn hàng theo ngày</h2>
+        <canvas id="ordersChart" style="max-height:380px;"></canvas>
+    </div>
+
+    <!-- Biểu đồ trạng thái -->
+    <div class="bg-white p-4 rounded-lg shadow-sm">
+        <h2 class="text-lg font-semibold mb-2">Tỉ lệ trạng thái đơn hàng</h2>
+        <canvas id="statusChart" style="max-height:380px;"></canvas>
+        <div id="statusActions" class="mt-4"></div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // ===== LẤY DATA TỪ SERVER (ViewBag) =====
+        const orderLabels  = @Html.Raw(JsonConvert.SerializeObject(ViewBag.OrderLabels ?? new List<string>()));
+        const orderCounts  = @Html.Raw(JsonConvert.SerializeObject(ViewBag.OrderCounts ?? new List<int>()));
+        const statusLabels = @Html.Raw(JsonConvert.SerializeObject(ViewBag.StatusLabels ?? new List<string>()));
+        const statusCounts = @Html.Raw(JsonConvert.SerializeObject(ViewBag.StatusCounts ?? new List<int>()));
+
+        // Bạn có thể mở F12 xem thử:
+        console.log("orderLabels", orderLabels);
+        console.log("orderCounts", orderCounts);
+        console.log("statusLabels", statusLabels);
+        console.log("statusCounts", statusCounts);
+
+        // =======================
+        // 1. BIỂU ĐỒ CỘT (STEP LINE) – SỐ ĐƠN THEO NGÀY
+        // =======================
+        const ordersData = {
+            labels: orderLabels,
+            datasets: [{
+                label: 'Số đơn',
+                data: orderCounts,
+                borderColor: '#2563EB',
+                backgroundColor: 'rgba(37,99,235,0.15)',
+                borderWidth: 2,
+                stepped: true,
+                tension: 0,
+                fill: true
+            }]
+        };
+
+        const ordersConfig = {
+            type: 'line',
+            data: ordersData,
+            options: {
+                responsive: true,
+                interaction: {
+                    intersect: false,
+                    axis: 'x'
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: (ctx) => 'Step ' + ctx.chart.data.datasets[0].stepped + ' Interpolation'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        precision: 0   // chỉ số nguyên
+                    }
+                }
+            }
+        };
+
+        const ordersChart = new Chart(
+            document.getElementById('ordersChart').getContext('2d'),
+            ordersConfig
+        );
+
+        // Nếu muốn đổi kiểu stepped bằng JS:
+        const stepActions = [
+            {
+                name: 'Step: false',
+                handler: (chart) => {
+                    chart.data.datasets.forEach(ds => ds.stepped = false);
+                    chart.update();
+                }
+            },
+            {
+                name: 'Step: true',
+                handler: (chart) => {
+                    chart.data.datasets.forEach(ds => ds.stepped = true);
+                    chart.update();
+                }
+            }
+        ];
+        // (nếu muốn có nút đổi step thì có thể render thêm nút giống đoạn trước mình gửi)
+
+        // =======================
+        // 2. BIỂU ĐỒ TRÒN – % TRẠNG THÁI ĐƠN
+        // =======================
+
+        function colorize(opaque, hover, ctx) {
+            const v = ctx.parsed; // giá trị
+            const c = v < 1 ? '#D60000'
+                : v < 3 ? '#F59E0B'
+                : v < 5 ? '#2563EB'
+                : '#10B981';
+
+            const opacity = hover
+                ? 0.9
+                : 0.7;
+
+            if (opaque) return c;
+
+            // convert hex -> rgba
+            const m = c.replace('#', '');
+            const r = parseInt(m.substring(0, 2), 16);
+            const g = parseInt(m.substring(2, 4), 16);
+            const b = parseInt(m.substring(4, 6), 16);
+            return `rgba(${r},${g},${b},${opacity})`;
+        }
+
+        function hoverColorize(ctx) {
+            return colorize(false, true, ctx);
+        }
+
+        const statusData = {
+            labels: statusLabels,
+            datasets: [{
+                data: statusCounts
+            }]
+        };
+
+        const statusConfig = {
+            type: 'pie',
+            data: statusData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    },
+                    tooltip: {
+                        enabled: true,
+                        callbacks: {
+                            label: function (ctx) {
+                                const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                                const value = ctx.parsed;
+                                const percent = total ? (value * 100 / total).toFixed(1) : 0;
+                                return `${ctx.label}: ${value} đơn (${percent}%)`;
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    arc: {
+                        backgroundColor: colorize.bind(null, false, false),
+                        hoverBackgroundColor: hoverColorize
+                    }
+                }
+            }
+        };
+
+        const statusChart = new Chart(
+            document.getElementById('statusChart').getContext('2d'),
+            statusConfig
+        );
+
+        // Nút thao tác cho biểu đồ tròn
+        const statusActions = [
+            {
+                name: 'Randomize',
+                handler(chart) {
+                    chart.data.datasets.forEach(ds => {
+                        ds.data = ds.data.map(() => Math.round(Math.random() * 10));
+                    });
+                    chart.update();
+                }
+            },
+            {
+                name: 'Toggle Doughnut View',
+                handler(chart) {
+                    chart.options.cutout = chart.options.cutout ? 0 : '50%';
+                    chart.update();
+                }
+            }
+        ];
+
+        //const actionsContainer = document.getElementById("statusActions");
+        //statusActions.forEach(act => {
+        //    const btn = document.createElement("button");
+        //    btn.textContent = act.name;
+        //    btn.className = "px-3 py-1 mr-2 border border-gray-300 rounded text-sm";
+        //    btn.addEventListener("click", () => act.handler(statusChart));
+        //    actionsContainer.appendChild(btn);
+        //});
+    });
+</script>

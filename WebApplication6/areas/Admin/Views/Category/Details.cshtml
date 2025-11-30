@@ -27,11 +27,18 @@
             </dd>
         </div>
     </dl>
+</div>
 
-    <div class="mt-6 flex gap-2">
-        @Html.ActionLink("Sửa", "Edit", new { id = Model.IDCate },
-            new { @class = "px-4 py-2 rounded bg-blue-50 text-blue-600 text-sm hover:bg-blue-100" })
-        @Html.ActionLink("Quay lại", "Index", null,
-            new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
-    </div>
+<div class="mt-6 flex gap-2">
+    @Html.ActionLink(
+        "Sửa",
+        "Edit",
+        new { id = Model.IDCate },
+        new { @class = "px-4 py-2 rounded bg-blue-50 text-blue-600 text-sm hover:bg-blue-100" })
+
+    @Html.ActionLink(
+        "Quay lại",
+        "Index",
+        null,
+        new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
 </div>

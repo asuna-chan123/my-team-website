@@ -14,6 +14,27 @@
         <h3 class="text-lg font-bold text-[#042954]">All Categories</h3>
 
         <div class="flex gap-2">
+            @using (Html.BeginForm("Index", "Category", FormMethod.Get, new { @class = "flex gap-2" }))
+            {
+                <input type="text"
+                       name="search"
+                       value="@ViewBag.Search"
+                       placeholder="Tìm theo tên danh mục..."
+                       class="border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#042954] focus:border-transparent w-48" />
+
+                <button type="submit"
+                        class="px-3 py-1.5 bg-[#042954] text-white rounded text-sm font-medium hover:bg-[#031d3a] transition-colors">
+                    Tìm kiếm
+                </button>
+            }
+
+            @Html.ActionLink(
+                "Quay lại",
+                "Index",
+                null,
+                new { @class = "bg-[#A19AD3] text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-purple-600 transition-colors uppercase" }
+            )
+
             @Html.ActionLink(
                 "Thêm danh mục",
                 "Create",
@@ -68,7 +89,7 @@
         </table>
     </div>
 
-    <!-- Pagination -->
+    <!-- Pagination / scroll top -->
     <div class="p-6 flex justify-end gap-2 border-t border-gray-100">
         <button type="button"
                 onclick="document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' })"

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<WebApplication6.Models.Size>
+
+@{
+    ViewBag.Title = "Quản lý size";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Size</h2>
+<p class="text-sm text-gray-500 mb-6">Danh sách size dùng cho sản phẩm.</p>
+
+<div class="bg-white rounded-lg shadow-sm flex flex-col">
+    <div class="p-6 border-b border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <h3 class="text-lg font-semibold text-[#042954]">Tất cả size</h3>
+
+        <div class="flex gap-2 items-center">
+            @using (Html.BeginForm("Index", "Size",
+                new { area = "Admin" }, FormMethod.Get, new { @class = "flex gap-2 items-center" }))
+            {
+                <input type="text" name="search" value="@(ViewBag.Search ?? "")"
+                       class="border rounded px-3 py-1.5 text-sm"
+                       placeholder="Tìm theo tên size…" />
+                <button type="submit"
+                        class="bg-blue-500 text-white px-3 py-1.5 rounded text-sm">
+                    Tìm
+                </button>
+            }
+
+            @Html.ActionLink(
+                "Thêm size",
+                "Create",
+                null,
+                new { @class = "bg-[#FFA500] text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-orange-600" })
+        </div>
+    </div>
+
+    <div class="overflow-x-auto p-6">
+        <table class="w-full text-left border-collapse">
+            <thead class="bg-gray-50 text-sm text-gray-700 font-semibold">
+                <tr>
+                    <th class="p-3 rounded-tl">ID</th>
+                    <th class="p-3">Tên size</th>
+                    <th class="p-3">Trạng thái</th>
+                    <th class="p-3 rounded-tr text-right">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody class="text-sm">
+                @foreach (var item in Model)
+                {
+                    var rowClass = item.IsDeleted ? "text-gray-400" : "";
+                    <tr class="border-b border-gray-100 hover:bg-gray-50 @rowClass">
+                        <td class="p-3 text-blue-600 font-medium">#@item.SizeID</td>
+                        <td class="p-3">@item.SizeName</td>
+                        <td class="p-3">
+                            @(item.IsDeleted ? "Đã ẩn" : "Đang dùng")
+                        </td>
+                        <td class="p-3 text-right">
+                            <div class="inline-flex gap-2 text-xs">
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.SizeID },
+                                    new { @class = "px-2 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100" })
+                                @Html.ActionLink(
+                                    item.IsDeleted ? "Khôi phục" : "Ẩn",
+                                    "Delete",
+                                    new { id = item.SizeID },
+                                    new { @class = "px-2 py-1 rounded bg-red-50 text-red-600 hover:bg-red-100" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

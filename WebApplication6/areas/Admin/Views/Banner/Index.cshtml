@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebApplication6.Models.Banner>
+
+@{
+    ViewBag.Title = "Quản lý banner";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Banners</h2>
+<p class="text-sm text-gray-500 mb-6">Danh sách banner trang chủ.</p>
+
+<div class="bg-white rounded-lg shadow-sm flex flex-col">
+    <div class="p-6 border-b border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <h3 class="text-lg font-bold text-[#042954]">Danh sách banner</h3>
+
+        @using (Html.BeginForm("Index", "Banner", new { area = "Admin" }, FormMethod.Get,
+            new { @class = "flex gap-2 items-center" }))
+        {
+            <input type="text" name="search" value="@(ViewBag.Search ?? "")"
+                   placeholder="Tìm theo title / code…"
+                   class="border border-gray-300 rounded px-3 py-1.5 text-sm" />
+
+            <button type="submit"
+                    class="bg-blue-500 text-white px-3 py-1.5 rounded text-sm">
+                Tìm kiếm
+            </button>
+        }
+    </div>
+
+    <div class="overflow-x-auto p-6">
+        <table class="w-full text-left border-collapse">
+            <thead class="bg-gray-50 text-gray-700 font-bold text-sm">
+                <tr>
+                    <th class="p-3 rounded-tl">ID</th>
+                    <th class="p-3">Code</th>
+                    <th class="p-3">Title</th>
+                    <th class="p-3">Image</th>
+                    <th class="p-3">Đang dùng</th>
+                    <th class="p-3 rounded-tr text-right">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody class="text-sm">
+                @foreach (var item in Model)
+                {
+                    <tr class="hover:bg-gray-50 border-b border-gray-100">
+                        <td class="p-3 text-blue-600 font-medium">#@item.Id</td>
+                        <td class="p-3">@item.Code</td>
+                        <td class="p-3">@item.Title</td>
+                        <td class="p-3">
+                            @if (!string.IsNullOrEmpty(item.ImageUrl))
+                            {
+                                <img src="@item.ImageUrl" alt="@item.Title" class="h-8 rounded" />
+                            }
+                        </td>
+                        <td class="p-3">
+                            @(item.IsActive ? "Đang hiển thị" : "Ẩn")
+                        </td>
+                        <td class="p-3 text-right">
+                            <div class="inline-flex items-center gap-2 text-xs">
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.Id },
+                                    new { @class = "px-2 py-1 rounded bg-gray-50 text-gray-700 hover:bg-gray-100" })
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.Id },
+                                    new { @class = "px-2 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

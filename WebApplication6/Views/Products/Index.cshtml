@@ -103,9 +103,30 @@
         {
             foreach (var p in Model.Products)
             {
+                // ---- TÍNH ĐƯỜNG DẪN ẢNH Ở ĐÂY ----
+                var imgSrc = "";
+
+                if (string.IsNullOrEmpty(p.ImagePro))
+                {
+                    imgSrc = Url.Content("~/Content/images/no-image.png");
+                }
+                else if (p.ImagePro.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                {
+                    // URL ngoài (adidas, v.v.)
+                    imgSrc = p.ImagePro;
+                }
+                else
+                {
+                    // file trong thư mục Content/images
+                    imgSrc = Url.Content("~/Content/images/" + p.ImagePro);
+                }
+                // -----------------------------------
+
                 <a class="product-card" href="@Url.Action("Details", "Products", new { id = p.ProductID })">
                     <div class="product-image">
-                        <img src="@Url.Content("~/Content/images/" + (p.ImagePro ?? "no-image.png"))" alt="@p.NamePro" style="width:100%; height:100%; object-fit:cover;" />
+                        <img src="@imgSrc"
+                             alt="@p.NamePro"
+                             style="width:100%; height:100%; object-fit:cover;" />
                     </div>
                     <div class="product-info">
                         <div style="font-weight:bold;">@p.NamePro</div>
@@ -121,6 +142,7 @@
     </div>
 </div>
 
+
 <!--Java Script-->
-<script src="../Scripts/js/ProductIndex.js" />
+<script src="~/Scripts/js/ProductIndex.js"></script>
 

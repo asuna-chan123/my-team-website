@@ -1,0 +1,39 @@
+﻿@model WebApplication6.Models.Size
+
+@{
+    ViewBag.Title = "Ẩn / Khôi phục size";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-red-600 mb-2">
+    @(Model.IsDeleted ? "Khôi phục size" : "Ẩn size")
+</h2>
+<p class="text-sm text-gray-500 mb-6">
+    @(Model.IsDeleted
+        ? "Bạn có chắc muốn khôi phục size này?"
+        : "Bạn có chắc muốn ẩn size này? Các đơn hàng cũ vẫn giữ thông tin size.")
+</p>
+
+<div class="bg-white rounded-lg shadow-sm p-6 max-w-xl mb-4">
+    <p class="text-sm">
+        <span class="font-semibold">Tên size:</span> @Model.SizeName
+    </p>
+    <p class="text-sm">
+        <span class="font-semibold">Trạng thái:</span>
+        @(Model.IsDeleted ? "Đã ẩn" : "Đang dùng")
+    </p>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.SizeID)
+
+    <div class="flex gap-2">
+        <input type="submit"
+               value="Xác nhận"
+               class="bg-red-500 text-white px-4 py-2 rounded text-sm font-medium hover:bg-red-600 cursor-pointer" />
+        @Html.ActionLink("Quay lại", "Index", null,
+            new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+    </div>
+}

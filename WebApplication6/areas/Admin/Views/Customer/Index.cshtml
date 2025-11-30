@@ -1,4 +1,4 @@
-﻿@*@model IEnumerable<WebApplication6.Models.Customer>
+﻿@model IEnumerable<WebApplication6.Models.Customer>
 
 @{
     ViewBag.Title = "Quản lý khách hàng";
@@ -6,15 +6,36 @@
 }
 
 <h2 class="text-2xl font-bold text-[#042954] mb-2">Customers</h2>
-<p class="text-sm text-gray-500 mb-6">Danh sách khách hàng.</p>
+<p class="text-sm text-gray-500 mb-6">Danh sách tất cả khách hàng trong hệ thống.</p>
 
 <div class="bg-white rounded-lg shadow-sm flex flex-col">
+    <!-- Header card -->
     <div class="p-6 border-b border-gray-100 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
         <h3 class="text-lg font-bold text-[#042954]">All Customers</h3>
 
-        <div class="flex gap-2">
+        <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+            @using (Html.BeginForm("Index", "Customer",
+                new { area = "Admin" }, FormMethod.Get, new { @class = "flex gap-2 items-center" }))
+            {
+                <input type="text" name="search" value="@(ViewBag.Search ?? "")"
+                       placeholder="Tìm theo tên / SĐT / email…"
+                       class="border border-gray-300 rounded px-3 py-1.5 text-sm" />
+
+                <button type="submit"
+                        class="bg-blue-500 text-white px-3 py-1.5 rounded text-sm">
+                    Tìm kiếm
+                </button>
+            }
+
             @Html.ActionLink(
-                "Thêm khách hàng",
+                "Quay lại",
+                "Index",
+                null,
+                new { @class = "bg-[#A19AD3] text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-purple-600 transition-colors uppercase" }
+            )
+
+            @Html.ActionLink(
+                "Thêm khách",
                 "Create",
                 null,
                 new { @class = "bg-[#FFA500] text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-orange-600 transition-colors uppercase" }
@@ -22,45 +43,50 @@
         </div>
     </div>
 
+    <!-- Table -->
     <div class="overflow-x-auto p-6">
         <table class="w-full text-left border-collapse">
             <thead class="bg-gray-50 text-gray-700 font-bold text-sm">
                 <tr>
-                    <th class="p-3 rounded-tl"><input type="checkbox" /></th>
-                    <th class="p-3">ID</th>
-                    <th class="p-3">Tên khách</th>
-                    <th class="p-3">Email</th>
+                    <th class="p-3 rounded-tl">ID</th>
+                    <th class="p-3">Họ tên</th>
                     <th class="p-3">SĐT</th>
+                    <th class="p-3">Email</th>
+                    <th class="p-3">Tài khoản</th>
+                    <th class="p-3">Trạng thái</th>
                     <th class="p-3 rounded-tr text-right">Thao tác</th>
                 </tr>
             </thead>
             <tbody class="text-sm">
                 @foreach (var item in Model)
                 {
-                    var rowClass = item.IsDeleted ? "line-through text-gray-400" : "";
+                    var rowClass = item.IsLocked ? "text-gray-400" : "";
 
                     <tr class="hover:bg-gray-50 border-b border-gray-100 @rowClass">
-                        <td class="p-3"><input type="checkbox" /></td>
-                        <td class="p-3 text-blue-600 font-medium">#@item.CustomerID</td>
+                        <td class="p-3 text-blue-600 font-medium">#@item.IDCus</td>
                         <td class="p-3">@item.NameCus</td>
-                        <td class="p-3">@item.Email</td>
-                        <td class="p-3">@item.Phone</td>
+                        <td class="p-3">@item.PhoneCus</td>
+                        <td class="p-3">@item.EmailCus</td>
+                        <td class="p-3">@item.UserName</td>
+                        <td class="p-3">
+                            @(item.IsLocked ? "Đã khóa" : "Đang hoạt động")
+                        </td>
                         <td class="p-3 text-right">
                             <div class="inline-flex items-center gap-2 text-xs">
-                                @if (!item.IsDeleted)
+                                @if (!item.IsLocked)
                                 {
-                                    @Html.ActionLink("Sửa", "Edit", new { id = item.CustomerID },
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.IDCus },
                                         new { @class = "px-2 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100" })
-                                    @Html.ActionLink("Chi tiết", "Details", new { id = item.CustomerID },
-                                        new { @class = "px-2 py-1 rounded bg-gray-50 text-gray-700 hover:bg-gray-100" })
-                                }
-                                else
-                                {
-                                    <span class="px-2 py-1 rounded bg-gray-100 text-gray-400 cursor-not-allowed">Sửa</span>
-                                    <span class="px-2 py-1 rounded bg-gray-100 text-gray-400 cursor-not-allowed">Chi tiết</span>
                                 }
 
-                                @Html.ActionLink("Xóa", "Delete", new { id = item.CustomerID },
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.IDCus },
+                                    new { @class = "px-2 py-1 rounded bg-gray-50 text-gray-700 hover:bg-gray-100" })
+
+
+                                @Html.ActionLink(
+                                    item.IsLocked ? "Mở khóa" : "Khóa",
+                                    "Delete",
+                                    new { id = item.IDCus },
                                     new { @class = "px-2 py-1 rounded bg-red-50 text-red-600 hover:bg-red-100" })
                             </div>
                         </td>
@@ -77,4 +103,4 @@
             Kéo lên đầu
         </button>
     </div>
-</div>*@
+</div>

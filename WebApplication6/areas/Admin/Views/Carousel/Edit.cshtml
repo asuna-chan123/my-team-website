@@ -1,0 +1,51 @@
+﻿@model WebApplication6.Models.Carousel
+
+@{
+    ViewBag.Title = "Sửa Carousel";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Sửa Carousel</h2>
+<p class="text-sm text-gray-500 mb-6">
+    Cập nhật thông tin nhóm slide.
+</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.CarouselID)
+
+    <div class="bg-white rounded-lg shadow-sm p-6 max-w-xl">
+
+        <!-- FORM -->
+        <div class="grid gap-4">
+
+            <div>
+                @Html.LabelFor(m => m.Code, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.TextBoxFor(m => m.Code,
+                    new { @class = "w-full border rounded px-3 py-2 text-sm" })
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.Name, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.TextBoxFor(m => m.Name,
+                    new { @class = "w-full border rounded px-3 py-2 text-sm" })
+            </div>
+
+            <div class="flex gap-2 items-center">
+                @Html.CheckBoxFor(m => m.IsActive, new { @class = "mr-2" })
+                <span class="text-sm">Kích hoạt</span>
+            </div>
+
+        </div>
+
+        <div class="mt-6 flex gap-2">
+            <input type="submit"
+                   value="Lưu"
+                   class="bg-[#FFA500] text-white px-4 py-2 rounded text-sm font-medium hover:bg-orange-600 cursor-pointer" />
+
+            @Html.ActionLink("Quay lại", "Index", null,
+                new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+        </div>
+    </div>
+}

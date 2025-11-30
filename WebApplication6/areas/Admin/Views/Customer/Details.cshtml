@@ -1,4 +1,4 @@
-﻿@*@model WebApplication6.Models.Customer
+﻿@model WebApplication6.Models.Customer
 
 @{
     ViewBag.Title = "Chi tiết khách hàng";
@@ -6,42 +6,61 @@
 }
 
 <h2 class="text-2xl font-bold text-[#042954] mb-2">Chi tiết khách hàng</h2>
-<p class="text-sm text-gray-500 mb-6">Thông tin chi tiết của khách hàng.</p>
+<p class="text-sm text-gray-500 mb-6">Thông tin chi tiết khách hàng.</p>
 
-<div class="bg-white rounded-lg shadow-sm p-6 max-w-xl">
+<div class="bg-white rounded-lg shadow-sm p-6 max-w-3xl">
     <dl class="divide-y divide-gray-100">
         <div class="py-3 flex">
-            <dt class="w-1/3 text-sm font-medium text-gray-500">Mã KH</dt>
-            <dd class="w-2/3 text-sm text-gray-900">#@Model.CustomerID</dd>
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Mã khách hàng</dt>
+            <dd class="w-2/3 text-sm text-gray-900">#@Model.IDCus</dd>
         </div>
+
         <div class="py-3 flex">
-            <dt class="w-1/3 text-sm font-medium text-gray-500">Tên khách</dt>
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Họ tên</dt>
             <dd class="w-2/3 text-sm text-gray-900">@Model.NameCus</dd>
         </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Số điện thoại</dt>
+            <dd class="w-2/3 text-sm text-gray-900">@Model.PhoneCus</dd>
+        </div>
+
         <div class="py-3 flex">
             <dt class="w-1/3 text-sm font-medium text-gray-500">Email</dt>
-            <dd class="w-2/3 text-sm text-gray-900">@Model.Email</dd>
+            <dd class="w-2/3 text-sm text-gray-900">@Model.EmailCus</dd>
         </div>
+
         <div class="py-3 flex">
-            <dt class="w-1/3 text-sm font-medium text-gray-500">SĐT</dt>
-            <dd class="w-2/3 text-sm text-gray-900">@Model.Phone</dd>
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Tài khoản</dt>
+            <dd class="w-2/3 text-sm text-gray-900">@Model.UserName</dd>
         </div>
+
         <div class="py-3 flex">
-            <dt class="w-1/3 text-sm font-medium text-gray-500">Địa chỉ</dt>
-            <dd class="w-2/3 text-sm text-gray-900 whitespace-pre-line">@Model.Address</dd>
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Giới tính</dt>
+            <dd class="w-2/3 text-sm text-gray-900">@Model.Gender</dd>
         </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Ngày sinh</dt>
+            <dd class="w-2/3 text-sm text-gray-900">
+                @(Model.Birthday.HasValue ? Model.Birthday.Value.ToString("dd/MM/yyyy") : "")
+            </dd>
+        </div>
+
         <div class="py-3 flex">
             <dt class="w-1/3 text-sm font-medium text-gray-500">Trạng thái</dt>
             <dd class="w-2/3 text-sm text-gray-900">
-                @(Model.IsDeleted ? "Đã xóa" : "Đang sử dụng")
+                @(Model.IsLocked ? "Đã khóa" : "Đang hoạt động")
             </dd>
         </div>
     </dl>
+</div>
 
-    <div class="mt-6 flex gap-2">
-        @Html.ActionLink("Sửa", "Edit", new { id = Model.CustomerID },
-            new { @class = "px-4 py-2 rounded bg-blue-50 text-blue-600 text-sm hover:bg-blue-100" })
-        @Html.ActionLink("Quay lại", "Index", null,
-            new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
-    </div>
-</div>*@
+<div class="mt-6 flex gap-2">
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.IDCus },
+        new { @class = "px-4 py-2 rounded bg-blue-50 text-blue-600 text-sm hover:bg-blue-100" })
+    @Html.ActionLink(Model.IsLocked ? "Mở khóa" : "Khóa", "Delete", new { id = Model.IDCus },
+        new { @class = "px-4 py-2 rounded bg-red-50 text-red-600 text-sm hover:bg-red-100" })
+    @Html.ActionLink("Quay lại", "Index", null,
+        new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+</div>

@@ -1,4 +1,4 @@
-﻿<!--@model WebApplication6.Models.Customer
+﻿@model WebApplication6.Models.Customer
 
 @{
     ViewBag.Title = "Sửa khách hàng";
@@ -6,17 +6,139 @@
 }
 
 <h2 class="text-2xl font-bold text-[#042954] mb-2">Sửa khách hàng</h2>
-<p class="text-sm text-gray-500 mb-6">Chỉnh sửa thông tin khách hàng.</p>
+<p class="text-sm text-gray-500 mb-6">Cập nhật thông tin khách hàng.</p>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.CustomerID)
-    @Html.ValidationSummary(false, "", new { @class = "text-red-500 mb-3" })
+    @Html.HiddenFor(m => m.IDCus)
 
-    <div class="bg-white rounded-lg shadow-sm p-6 max-w-lg">
-        <!-- same fields như Create -->-->
-        <!--@* copy y chang các block NameCus, Email, Phone, Address như Create *@
-        ...
+    <div class="bg-white rounded-lg shadow-sm p-6 max-w-4xl">
+
+        @Html.ValidationSummary(false, "", new { @class = "text-red-500 mb-3 text-sm" })
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <!-- Họ tên -->
+            <div>
+                @Html.LabelFor(m => m.NameCus, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.TextBoxFor(
+                    m => m.NameCus,
+                    new
+                    {
+                        @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
+                                 "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
+                        required = "required"
+                    })
+                @Html.ValidationMessageFor(m => m.NameCus, "", new { @class = "text-red-500 text-xs" })
+            </div>
+
+            <!-- Số điện thoại -->
+            <div>
+                @Html.LabelFor(m => m.PhoneCus, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.TextBoxFor(
+                    m => m.PhoneCus,
+                    new
+                    {
+                        @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
+                                 "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
+                        required = "required",
+                        maxlength = "15",
+                        pattern = "^(0\\d{9}|\\+\\d{9,14})$",
+                        placeholder = "0xxxxxxxxx hoặc +84..."
+                    })
+                @Html.ValidationMessageFor(m => m.PhoneCus, "", new { @class = "text-red-500 text-xs" })
+            </div>
+
+            <!-- Email -->
+            <div>
+                @Html.LabelFor(m => m.EmailCus, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.TextBoxFor(
+                    m => m.EmailCus,
+                    new
+                    {
+                        @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
+                                 "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
+                        type = "email"
+                    })
+                @Html.ValidationMessageFor(m => m.EmailCus, "", new { @class = "text-red-500 text-xs" })
+            </div>
+
+            <!-- Tài khoản -->
+            <div>
+                @Html.LabelFor(m => m.UserName, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.TextBoxFor(
+                    m => m.UserName,
+                    new
+                    {
+                        @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
+                                 "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
+                    })
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-red-500 text-xs" })
+            </div>
+
+            <!-- Mật khẩu -->
+            <div>
+                @Html.LabelFor(m => m.Password, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.TextBoxFor(
+                    m => m.Password,
+                    new
+                    {
+                        @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
+                                 "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
+                        type = "password"
+                    })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-red-500 text-xs" })
+            </div>
+
+            <!-- Giới tính -->
+            <div>
+                @Html.LabelFor(m => m.Gender, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.DropDownListFor(
+                    m => m.Gender,
+                    new SelectList(new[]
+                    {
+                        new { Value = "", Text = "-- Chọn giới tính --" },
+                        new { Value = "Nam", Text = "Nam" },
+                        new { Value = "Nữ", Text = "Nữ" },
+                        new { Value = "Khác", Text = "Khác" }
+                    }, "Value", "Text", Model?.Gender),
+                    new
+                    {
+                        @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
+                                 "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
+                    })
+                @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-red-500 text-xs" })
+            </div>
+
+            <!-- Ngày sinh -->
+            <div>
+                @Html.LabelFor(m => m.Birthday, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.TextBoxFor(
+                    m => m.Birthday,
+                    "{0:yyyy-MM-dd}",
+                    new
+                    {
+                        @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
+                                 "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
+                        type = "date"
+                    })
+                @Html.ValidationMessageFor(m => m.Birthday, "", new { @class = "text-red-500 text-xs" })
+            </div>
+
+            <!-- Trạng thái khóa -->
+            <div class="flex items-center mt-2">
+                @Html.CheckBoxFor(m => m.IsLocked, new { @class = "mr-2" })
+                <span class="text-sm text-gray-700">Khóa tài khoản</span>
+            </div>
+        </div>
+
+        <div class="md:col-span-2 flex gap-2 mt-4">
+            <input type="submit"
+                   value="Lưu"
+                   class="bg-[#FFA500] text-white px-4 py-2 rounded text-sm font-medium hover:bg-orange-600 cursor-pointer" />
+            @Html.ActionLink("Quay lại", "Index", null,
+                new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+        </div>
     </div>
-}-->
+}

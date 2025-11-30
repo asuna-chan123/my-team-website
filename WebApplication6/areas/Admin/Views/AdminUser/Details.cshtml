@@ -1,0 +1,29 @@
+﻿@model WebApplication6.Models.AdminUser
+
+@{
+    ViewBag.Title = "Chi tiết tài khoản Admin";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold mb-4">Chi tiết tài khoản Admin</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>ID</dt>
+        <dd>@Model.ID</dd>
+
+        <dt>Tên đăng nhập</dt>
+        <dd>@Model.UserName</dd>
+
+        <dt>Vai trò</dt>
+        <dd>@Model.RoleUser</dd>
+
+        <dt>Mật khẩu</dt>
+        <dd>@Model.PasswordUser</dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>

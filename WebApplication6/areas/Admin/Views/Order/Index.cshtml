@@ -1,26 +1,63 @@
-﻿@model IEnumerable<WebApplication6.Models.Product>
+﻿@model IEnumerable<WebApplication6.Models.OrderPro>
 
 @{
-    ViewBag.Title = "Quản lý sản phẩm";
+    ViewBag.Title = "Quản lý đơn hàng";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    Func<int?, string> statusText = s =>
+    {
+        switch (s ?? 0)
+        {
+            case 0: return "Chờ duyệt";
+            case 1: return "Đang chuẩn bị";
+            case 2: return "Đang giao";
+            case 3: return "Hoàn thành";
+            case 4: return "Đã hủy";
+            default: return "Không rõ";
+        }
+    };
 }
 
-<h2 class="text-2xl font-bold text-[#042954] mb-2">Products</h2>
-<p class="text-sm text-gray-500 mb-6">Danh sách tất cả sản phẩm trong hệ thống.</p>
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Orders</h2>
+<p class="text-sm text-gray-500 mb-6">
+    Danh sách tất cả đơn hàng trong hệ thống.
+</p>
 
 <div class="bg-white rounded-lg shadow-sm flex flex-col">
     <!-- Header card -->
     <div class="p-6 border-b border-gray-100 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
-        <h3 class="text-lg font-bold text-[#042954]">All Products</h3>
+        <h3 class="text-lg font-bold text-[#042954]">All Orders</h3>
 
         <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
 
-            @Html.ActionLink(
-                "Thêm sản phẩm",
-                "Create",
-                null,
-                new { @class = "bg-[#FFA500] text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-orange-600 transition-colors uppercase" }
-            )
+            @using (Html.BeginForm("Index", "Order",
+                new { area = "Admin" }, FormMethod.Get, new { @class = "flex gap-2 items-center" }))
+            {
+                <input type="text" name="search" value="@(ViewBag.Search ?? "")"
+                       placeholder="Tìm theo mã đơn / tên / SĐT..."
+                       class="border border-gray-300 rounded px-3 py-1.5 text-sm" />
+
+                <select name="status" class="border border-gray-300 rounded px-3 py-1.5 text-sm">
+                    <option value="">Tất cả trạng thái</option>
+                    <option value="0" @(ViewBag.Status == 0 ? "selected" : "")>Chờ duyệt</option>
+                    <option value="1" @(ViewBag.Status == 1 ? "selected" : "")>Đang chuẩn bị</option>
+                    <option value="2" @(ViewBag.Status == 2 ? "selected" : "")>Đang giao</option>
+                    <option value="3" @(ViewBag.Status == 3 ? "selected" : "")>Hoàn thành</option>
+                    <option value="4" @(ViewBag.Status == 4 ? "selected" : "")>Đã hủy</option>
+                </select>
+
+                <button type="submit"
+                        class="bg-blue-500 text-white px-3 py-1.5 rounded text-sm">
+                    Lọc
+                </button>
+
+                @Html.ActionLink(
+                    "Thêm sản phẩm",
+                    "Create",
+                    null,
+                    new { @class = "bg-[#FFA500] text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-orange-600 transition-colors uppercase" }
+                )
+            }
         </div>
     </div>
 
@@ -29,67 +66,68 @@
         <table class="w-full text-left border-collapse">
             <thead class="bg-gray-50 text-gray-700 font-bold text-sm">
                 <tr>
-                    <th class="p-3 rounded-tl"><input type="checkbox" /></th>
-                    <th class="p-3">ID</th>
-                    <th class="p-3">Tên sản phẩm</th>
-                    <th class="p-3">Danh mục</th>
-                    <th class="p-3">Giá</th>
-                    <th class="p-3">Giới tính</th>
+                    <th class="p-3 rounded-tl">Mã đơn</th>
+                    <th class="p-3">Ngày đặt</th>
+                    <th class="p-3">Khách hàng</th>
+                    <th class="p-3">SĐT</th>
+                    <th class="p-3">Địa chỉ giao</th>
+                    <th class="p-3">Trạng thái</th>
+                    <th class="p-3">Tổng tiền</th>
                     <th class="p-3 rounded-tr text-right">Thao tác</th>
                 </tr>
             </thead>
             <tbody class="text-sm">
                 @foreach (var item in Model)
                 {
-                    var isDeleted = item.IsDeleted;                  // <– dùng cờ IsDeleted
-                    var rowClass = isDeleted ? "line-through text-gray-400" : "";
+                    var isCanceled = item.Status == 4;
+                    var rowClass = isCanceled ? "text-gray-400" : "";
+
+                    // TÍNH TOTAL CHO TỪNG ĐƠN
+                    decimal? total = item.TotalPrice;
+                    if (!total.HasValue && item.OrderDetails != null && item.OrderDetails.Any())
+                    {
+                        total = item.OrderDetails.Sum(d =>
+                            (decimal)(d.Quantity ?? 0) * (decimal)(d.UnitPrice ?? 0));
+                    }
+
 
                     <tr class="hover:bg-gray-50 border-b border-gray-100 @rowClass">
-                        <td class="p-3"><input type="checkbox" /></td>
-                        <td class="p-3 text-blue-600 font-medium">#@item.ProductID</td>
-                        <td class="p-3">@item.NamePro</td>
+                        <td class="p-3 text-blue-600 font-medium">#@item.ID</td>
                         <td class="p-3">
-                            @(item.Category != null ? item.Category.NameCate : "-")
+                            @(item.DateOrder.HasValue ? item.DateOrder.Value.ToString("dd/MM/yyyy") : "")
                         </td>
                         <td class="p-3">
-                            @(item.Price.HasValue ? item.Price.Value.ToString("N0") + " ₫" : "-")
+                            @(item.Customer != null ? item.Customer.NameCus : "N/A")
                         </td>
-                        <td class="p-3">@item.Gender</td>
+                        <td class="p-3">
+                            @(item.Customer != null ? item.Customer.PhoneCus : "")
+                        </td>
+                        <td class="p-3">@item.AddressDeliverry</td>
+                        <td class="p-3">@statusText(item.Status)</td>
+                        <td class="p-3">
+                            @(total.HasValue ? total.Value.ToString("N0") + " ₫" : "-")
+                        </td>
                         <td class="p-3 text-right">
                             <div class="inline-flex items-center gap-2 text-xs">
-                                @* Sản phẩm CHƯA xóa: nút Sửa + Chi tiết bình thường *@
-                                @if (!isDeleted)
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.ID },
+                                    new { @class = "px-2 py-1 rounded bg-gray-50 text-gray-700 hover:bg-gray-100" })
+
+                                @if (!isCanceled)
                                 {
-                                    @Html.ActionLink("Sửa", "Edit", new { id = item.ProductID },
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.ID },
                                         new { @class = "px-2 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100" })
-
-                                    @Html.ActionLink("Chi tiết", "Details", new { id = item.ProductID },
-                                        new { @class = "px-2 py-1 rounded bg-gray-50 text-gray-700 hover:bg-gray-100" })
-                                }
-                                else
-                                {
-                                    @* Sản phẩm ĐÃ xóa: disable hai nút này *@
-                                    <span class="px-2 py-1 rounded bg-gray-100 text-gray-400 cursor-not-allowed">
-                                        Sửa
-                                    </span>
-                                    <span class="px-2 py-1 rounded bg-gray-100 text-gray-400 cursor-not-allowed">
-                                        Chi tiết
-                                    </span>
                                 }
 
-                                @* Nút Xóa vẫn giữ để “xóa mềm” (đánh dấu) *@
-                                @Html.ActionLink("Xóa", "Delete", new { id = item.ProductID },
+                                @Html.ActionLink("Hủy đơn", "Delete", new { id = item.ID },
                                     new { @class = "px-2 py-1 rounded bg-red-50 text-red-600 hover:bg-red-100" })
                             </div>
                         </td>
                     </tr>
                 }
             </tbody>
-
         </table>
     </div>
 
-    <!-- Pagination -->
     <div class="p-6 flex justify-end gap-2 border-t border-gray-100">
         <button type="button"
                 onclick="document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' })"

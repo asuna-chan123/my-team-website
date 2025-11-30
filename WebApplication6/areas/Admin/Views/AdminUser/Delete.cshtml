@@ -1,0 +1,32 @@
+﻿@model WebApplication6.Models.AdminUser
+
+@{
+    ViewBag.Title = "Xóa tài khoản Admin";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold mb-4 text-red-600">Xóa tài khoản Admin</h2>
+
+<h3>Bạn có chắc chắn muốn xóa tài khoản này?</h3>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>ID</dt>
+        <dd>@Model.ID</dd>
+
+        <dt>Tên đăng nhập</dt>
+        <dd>@Model.UserName</dd>
+
+        <dt>Vai trò</dt>
+        <dd>@Model.RoleUser</dd>
+    </dl>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Xóa" class="btn btn-danger" />
+        @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-default ml-2" })
+    </p>
+}

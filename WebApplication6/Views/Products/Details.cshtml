@@ -1,27 +1,90 @@
-﻿@{
-    var imagesByColor = ViewBag.ImagesByColor as Dictionary<string, List<string>> ?? new Dictionary<string, List<string>>();
-    var defaultColor = (ViewBag.DefaultColor as string) ?? imagesByColor.Keys.FirstOrDefault() ?? "default";
-}
+﻿@model WebApplication6.Models.Product
+@using System.Collections.Generic
+@using System.Linq
+
 @{
+    ViewBag.Title = Model.NamePro;
+
+    // Lấy tên danh mục
+    var categoryName =
+        Model.Category != null ? Model.Category.NameCate : "";
+
+    // Hiển thị giới tính
     string genderDisplay =
         Model.Gender == "Nam" ? "Nam" :
         Model.Gender == "Nữ" ? "Nữ" :
         Model.Gender == "Unisex" ? "Unisex" :
         "Khác";
+
+    // Lấy danh sách ảnh theo màu
+    var imagesByColor =
+        ViewBag.ImagesByColor as Dictionary<int, List<string>>
+        ?? new Dictionary<int, List<string>>();
+
+    // Màu mặc định
+    int defaultColor = 0;
+    if (ViewBag.DefaultColor != null)
+    {
+        defaultColor = (int)ViewBag.DefaultColor;
+    }
+
+    else if (imagesByColor.Keys.Any())
+    {
+        defaultColor = imagesByColor.Keys.First();
+    }
+
+
+    // Lấy ảnh đầu tiên làm ảnh chính
+    string GetImagePath(string file)
+    {
+        if (string.IsNullOrEmpty(file))
+            return Url.Content("~/Content/images/no-image.png");
+
+        if (file.StartsWith("http", System.StringComparison.OrdinalIgnoreCase))
+            return file;
+
+        return Url.Content("~/Content/images/" + file);
+    }
+
+    string mainImage = imagesByColor.ContainsKey(defaultColor)
+        ? GetImagePath(imagesByColor[defaultColor].FirstOrDefault())
+        : Url.Content("~/Content/images/no-image.png");
+
+    var colorNames = ViewBag.ColorNames as Dictionary<int, string>
+                 ?? new Dictionary<int, string>();
 }
 
 <!DOCTYPE html>
 <html lang="vi">
-<head>
+
     <!--Chi tiết sản phẩm-->
     <!--CSS -->
     <link rel="stylesheet" href="@Url.Content("~/Content/css/Product-detail-Tshirt.css")" />
     <link rel="stylesheet" href="~/Content/css/fonts-reset.css">
-</head>
+
+<style>
+    .disabled-btn {
+        background-color: #ccc !important;
+        cursor: not-allowed !important;
+        opacity: 0.7;
+    }
+
+        .disabled-btn span {
+            opacity: 0.6;
+        }
+
+    .qty-btn-disabled {
+        opacity: 0.4;
+        cursor: not-allowed !important;
+        pointer-events: none; /* không thể click */
+    }
+
+</style>
+
 
 <div class="container" style="margin-top:5%;">
     <nav class="breadcrumb">
-        <a href="@Url.Action("Index","Home")">Trang chủ</a>
+        <a href="@Url.Action("ProductList","Product")">Trang chủ</a>
         <span class="sep">/</span>
 
         <a href="@Url.Action("Index","Products", new { gender = Model.Gender })">
@@ -29,8 +92,8 @@
         </a>
         <span class="sep">/</span>
 
-        <a href="@Url.Action("Index","Products", new { category = Model.CategoryName })">
-            @Model.CategoryName
+        <a href="@Url.Action("Index","Products", new { category = categoryName })">
+            @categoryName
         </a>
         <span class="sep">/</span>
 
@@ -41,35 +104,50 @@
 
     <div class="product-section">
         <div class="image-gallery">
+
+
+            <!-- ẢNH CHÍNH -->
             <div class="main-image">
-                <img id="mainImage" src="@(ViewBag.PrimaryImage ?? Url.Content("~/Content/images/no-image.png"))" alt="@Model?.NamePro" />
+                @{
+                    // lấy ảnh đầu tiên của màu mặc định
+                    var firstImage = imagesByColor.ContainsKey(defaultColor)
+                        ? imagesByColor[defaultColor].FirstOrDefault()
+                        : Url.Content("~/Content/images/no-image.png");
+                }
+                <img id="mainImage"
+                     src="@firstImage"
+                     alt="@Model.NamePro"
+                     style="width:100%; height:100%; object-fit:cover;" />
             </div>
 
-            <!-- CAROUSEL -->
+            <!-- CAROUSEL ẢNH -->
             <div class="thumb-carousel relative mt-3" style="display:flex; align-items:center; gap:8px;">
-                <button id="thumbPrev" class="thumb-nav"
-                        aria-label="Prev">
-                    ‹
-                </button>
-                <!-- Ảnh -->
-                <div id="thumbContainer" class="thumb-track" style="flex:1; overflow:hidden; display:flex; gap:8px;">
-                    @foreach (var img in (imagesByColor.ContainsKey(defaultColor) ? imagesByColor[defaultColor] : new List<string>()))
+                <button id="thumbPrev" class="thumb-nav">‹</button>
+                <div id="thumbContainer"
+                     class="thumb-track"
+                     style="flex:1;overflow:hidden;display:flex;gap:8px;">
+
+                    @if (imagesByColor.ContainsKey(defaultColor))
                     {
-                        <img class="thumb" src="@img" data-src="@img"
-                             style="width:125px; height:125px; object-fit:cover; cursor:pointer; padding:3px;" />
+                        foreach (var file in imagesByColor[defaultColor])
+                        {
+                            var thumbSrc = GetImagePath(file);
+                            <img class="thumb"
+                                 src="@thumbSrc"
+                                 data-src="@thumbSrc"
+                                 style="width:125px;height:125px;object-fit:cover;cursor:pointer;padding:3px;" />
+                        }
                     }
                 </div>
 
-                <button id="thumbNext" class="thumb-nav"
-                        aria-label="Prev">
-                    ›
-                </button>
+                <button id="thumbNext" class="thumb-nav">›</button>
             </div>
+
         </div>
 
         <div class="product-info">
             <div class="product-header">
-                <div class="product-category">@Model.CategoryName</div>
+                <div class="product-category">@categoryName</div>
                 <h1 class="product-title">@Model.NamePro</h1>
                 <div class="product-price"
                      id="productPrice"
@@ -77,54 +155,75 @@
                     @((Model.Price ?? 0).ToString("N0"))₫
                 </div>
                 <div class="rating">
-                    <div class="stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
+                    @*<div class="stars">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>*@
                     @*<span>1257</span>*@
                 </div>
             </div>
 
             <div class="color-section">
                 <div class="section-label">Màu sắc</div>
+
                 <div id="colorOptions" style="display:flex; gap:8px; flex-wrap:wrap;">
                     @foreach (var kv in imagesByColor)
                     {
                         var color = kv.Key;
-                        var thumb = kv.Value.FirstOrDefault() ?? "/Content/images/placeholder-60.png";
-                        // Hiển thị ô màu (thumbnail nhỏ)
-                        <div class="color-option" data-color="@color" style="cursor:pointer; text-align:center;">
-                            <img src="@Url.Content(thumb)" alt="@color" title="@color"
+                        var file = kv.Value.FirstOrDefault();
+                        var thumb = GetImagePath(file);
+
+                        // tên màu từ dictionary
+                        var colorLabel = colorNames.ContainsKey(color)
+                            ? colorNames[color]
+                            : $"Màu {color}";
+
+                        <div class="color-option"
+                             data-color="@color"
+                             data-name="@colorLabel" @* 👈 lưu luôn ColorName ở đây *@
+                             style="cursor:pointer;text-align:center;">
+
+                            <img src="@thumb"
+                                 alt="@colorLabel"
+                                 title="@colorLabel"
                                  style="width:75px;height:75px;object-fit:cover;padding:4px;" />
-                            <div style="font-size:12px">@color</div>
+
+                            <div style="font-size:12px">@colorLabel</div>
                         </div>
                     }
                 </div>
-                <div class="color-name">Processed Ink / White</div>
+
+                @{
+                    var selectedColorName = colorNames.ContainsKey(defaultColor)
+                        ? colorNames[defaultColor]
+                        : "Không rõ màu";
+                }
+                <div class="color-name" id="selectedColorName">
+                    @selectedColorName
+                </div>
             </div>
+
 
             <div class="size-section">
                 <div class="size-header">
                     <div class="section-label">Kích cỡ</div>
                 </div>
                 <div class="size-grid">
-                    <button class="size-option">XXS</button>
-                    <button class="size-option">XS</button>
                     <button class="size-option">S</button>
                     <button class="size-option">M</button>
                     <button class="size-option active">L</button>
                     <button class="size-option">XL</button>
-                    <button class="size-option">XXL</button>
-                    <button class="size-option">XXXL</button>
                 </div>
                 <div class="stock-info">
                     <span>ℹ️</span>
-                    <span>Đang còn hàng. </span>
+
+                    <span id="stockText">Đang kiểm tra tồn kho...</span>
                 </div>
             </div>
+
 
             <div class="action-buttons">
                 <button class="btn-primary " style="height:60px;">
@@ -168,12 +267,30 @@
                                     <li><span class="text-gray-500">Kích cỡ:</span> <span id="popupSize"></span></li>
                                     <li class="flex flex-wrap items-center gap-3 mt-3">
                                         <span class="text-gray-500 text-sm">Số lượng:</span>
-                                        <div class="flex items-center border rounded-md overflow-hidden">
-                                            <button type="button" onclick="changeQty(-1)" class="px-2 py-1 text-lg hover:bg-gray-200 sm:px-3 sm:py-1">−</button>
-                                            <span id="popupQty" class="px-2 min-w-[32px] text-center font-medium">1</span>
-                                            <button type="button" onclick="changeQty(1)" class="px-2 py-1 text-lg hover:bg-gray-200">+</button>
+                                        <div class="flex flex-col">
+                                            <div class="flex items-center border rounded-md overflow-hidden">
+                                                <button id="btnQtyMinus" type="button"
+                                                        onclick="changeQty(-1)"
+                                                        class="px-2 py-1 text-lg hover:bg-gray-200 sm:px-3 sm:py-1">
+                                                    −
+                                                </button>
+
+                                                <span id="popupQty" class="px-2 min-w-[32px] text-center font-medium">1</span>
+
+                                                <button id="btnQtyPlus" type="button"
+                                                        onclick="changeQty(1)"
+                                                        class="px-2 py-1 text-lg hover:bg-gray-200">
+                                                    +
+                                                </button>
+                                            </div>
+
+                                            <!-- chỗ hiện thông báo -->
+                                            <span id="qtyWarning"
+                                                  class="mt-1 text-xs text-red-500 hidden">
+                                            </span>
                                         </div>
                                     </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -221,17 +338,31 @@
             </div>
         }
     </div>
-
-    <!--Java Script-->
     <script>
-  window.imagesByColor = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.ImagesByColor ?? new Dictionary<string, List<string>>()));
-  window.defaultColor = "@(ViewBag.DefaultColor ?? "default")";
+    window.imagesByColor = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(
+        ViewBag.ImagesByColor ?? new Dictionary<int, List<string>>()
+    ));
+
+    window.defaultColor = "@(ViewBag.DefaultColor ?? 0)";
+
+    window.colorNames = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(
+        ViewBag.ColorNames ?? new Dictionary<int, string>()
+    ));
+
+    // 🔹 STOCK THEO MÀU + SIZE
+    window.variantStocks = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(
+        ViewBag.VariantStocks ?? new object[0]
+    ));
     </script>
+
+
+
+
 
     <!-- Load jQuery nếu cần (nếu bạn không dùng jQuery thì bỏ) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Load file JS riêng (defer để chạy sau khi DOM sẵn sàng) -->
-    <script src="@Url.Content("~/Scripts/js/Details.js")" defer></script>
+    <script src="@Url.Content("~/Scripts/js/Details.js")?v=3" defer></script>
 
 

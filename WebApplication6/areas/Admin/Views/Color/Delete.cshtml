@@ -1,0 +1,45 @@
+﻿@model WebApplication6.Models.Color
+
+@{
+    ViewBag.Title = "Ẩn / Khôi phục màu";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-red-600 mb-2">
+    @(Model.IsDeleted ? "Khôi phục màu" : "Ẩn màu")
+</h2>
+<p class="text-sm text-gray-500 mb-6">
+    @(Model.IsDeleted
+        ? "Bạn có chắc muốn khôi phục lại màu này để sử dụng?"
+        : "Bạn có chắc muốn ẩn màu này? Các nơi đang dùng vẫn giữ dữ liệu cũ.")
+</p>
+
+<div class="bg-white rounded-lg shadow-sm p-6 max-w-xl mb-4">
+    <p class="text-sm mb-2"><span class="font-semibold">Tên màu:</span> @Model.ColorName</p>
+    <p class="text-sm mb-2">
+        <span class="font-semibold">Mã màu:</span> @Model.ColorCode
+        @if (!string.IsNullOrWhiteSpace(Model.ColorCode))
+        {
+            <span class="inline-block ml-3 w-5 h-5 rounded-full border"
+                  style="background-color:@Model.ColorCode;"></span>
+        }
+    </p>
+    <p class="text-sm">
+        <span class="font-semibold">Trạng thái:</span>
+        @(Model.IsDeleted ? "Đã ẩn" : "Đang dùng")
+    </p>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ColorID)
+
+    <div class="flex gap-2">
+        <input type="submit"
+               value="Xác nhận"
+               class="bg-red-500 text-white px-4 py-2 rounded text-sm font-medium hover:bg-red-600 cursor-pointer" />
+        @Html.ActionLink("Quay lại", "Index", null,
+            new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+    </div>
+}

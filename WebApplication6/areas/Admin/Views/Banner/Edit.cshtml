@@ -1,0 +1,71 @@
+﻿@model WebApplication6.Models.Banner
+
+@{
+    ViewBag.Title = "Sửa banner";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Sửa banner</h2>
+<p class="text-sm text-gray-500 mb-6">Cập nhật nội dung banner trang chủ.</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="bg-white rounded-lg shadow-sm p-6 max-w-3xl space-y-4">
+
+        <div>
+            @Html.LabelFor(m => m.Code, "Code", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+            @Html.TextBoxFor(m => m.Code,
+                new { @class = "w-full border rounded px-3 py-2 text-sm" })
+            @Html.ValidationMessageFor(m => m.Code, "", new { @class = "text-red-500 text-xs" })
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Title, "Title", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+            @Html.TextBoxFor(m => m.Title,
+                new { @class = "w-full border rounded px-3 py-2 text-sm" })
+            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-red-500 text-xs" })
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Subtitle, "Subtitle", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+            @Html.TextBoxFor(m => m.Subtitle,
+                new { @class = "w-full border rounded px-3 py-2 text-sm" })
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.ImageUrl, "Image URL", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+            @Html.TextBoxFor(m => m.ImageUrl,
+                new { @class = "w-full border rounded px-3 py-2 text-sm" })
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.VideoUrl, "Video URL", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+            @Html.TextBoxFor(m => m.VideoUrl,
+                new { @class = "w-full border rounded px-3 py-2 text-sm" })
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.ButtonText, "Button text", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+            @Html.TextBoxFor(m => m.ButtonText,
+                new { @class = "w-full border rounded px-3 py-2 text-sm" })
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.ButtonLink, "Button link", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+            @Html.TextBoxFor(m => m.ButtonLink,
+                new { @class = "w-full border rounded px-3 py-2 text-sm" })
+        </div>
+
+        <div class="flex gap-2 pt-2">
+            <input type="submit"
+                   value="Lưu"
+                   class="bg-[#FFA500] text-white px-4 py-2 rounded text-sm font-medium hover:bg-orange-600 cursor-pointer" />
+
+            @Html.ActionLink("Quay lại", "Index", null,
+                new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+        </div>
+    </div>
+}

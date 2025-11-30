@@ -1,0 +1,80 @@
+﻿@model WebApplication6.Models.Carousel
+
+@{
+    ViewBag.Title = "Chi tiết Carousel";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Chi tiết Carousel</h2>
+<p class="text-sm text-gray-500 mb-6">
+    Thông tin nhóm slide và các item bên trong.
+</p>
+
+<div class="bg-white rounded-lg shadow-sm p-6 mb-6 max-w-xl">
+    <dl class="divide-y divide-gray-100 text-sm">
+        <div class="py-2 flex">
+            <dt class="w-1/3 text-gray-500">ID</dt>
+            <dd class="w-2/3 font-medium">#@Model.CarouselID</dd>
+        </div>
+
+        <div class="py-2 flex">
+            <dt class="w-1/3 text-gray-500">Code</dt>
+            <dd class="w-2/3">@Model.Code</dd>
+        </div>
+
+        <div class="py-2 flex">
+            <dt class="w-1/3 text-gray-500">Tên hiển thị</dt>
+            <dd class="w-2/3">@Model.Name</dd>
+        </div>
+
+        <div class="py-2 flex">
+            <dt class="w-1/3 text-gray-500">Trạng thái</dt>
+            <dd class="w-2/3">
+                @(Model.IsActive ?? false ? "Đang dùng" : "Tắt")
+            </dd>
+        </div>
+    </dl>
+
+    <div class="mt-4 flex gap-2">
+        @Html.ActionLink("Sửa", "Edit", new { id = Model.CarouselID },
+            new { @class = "px-4 py-2 rounded bg-blue-500 text-white text-sm hover:bg-blue-600" })
+
+        @Html.ActionLink("Quay lại", "Index", null,
+            new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+    </div>
+</div>
+
+@if (Model.CarouselItems != null && Model.CarouselItems.Any())
+{
+    <div class="bg-white rounded-lg shadow-sm p-6">
+        <h3 class="text-lg font-semibold mb-4">Các slide trong carousel</h3>
+
+        <table class="w-full text-left border-collapse text-sm">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="p-2">Order</th>
+                    <th class="p-2">Tiêu đề</th>
+                    <th class="p-2">Ảnh</th>
+                    <th class="p-2">Link</th>
+                    <th class="p-2">Chiều cao</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CarouselItems.OrderBy(i => i.Order))
+                {
+                    <tr class="border-b border-gray-100">
+                        <td class="p-2">@item.Order</td>
+                        <td class="p-2">@item.Title</td>
+                        <td class="p-2 truncate max-w-xs">@item.ImageUrl</td>
+                        <td class="p-2">@item.Link</td>
+                        <td class="p-2">@item.Height</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p class="text-sm text-gray-500">Carousel này chưa có slide nào.</p>
+}

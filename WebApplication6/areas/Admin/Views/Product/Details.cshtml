@@ -5,21 +5,11 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-@{
-    string imgSrc = Model.ImagePro;
-
-    if (!string.IsNullOrEmpty(imgSrc) &&
-        !imgSrc.StartsWith("http", StringComparison.OrdinalIgnoreCase))
-    {
-        // Trường hợp lưu chỉ là tên file -> dùng ảnh local
-        imgSrc = Url.Content("~/Content/images/" + imgSrc);
-    }
-}
-
 <h2 class="text-2xl font-bold text-[#042954] mb-2">Chi tiết sản phẩm</h2>
-<p class="text-sm text-gray-500 mb-6">Thông tin chi tiết của sản phẩm.</p>
+<p class="text-sm text-gray-500 mb-6">Thông tin chi tiết của sản phẩm và các biến thể.</p>
 
-<div class="bg-white rounded-lg shadow-sm p-6 max-w-2xl">
+@* Thông tin chung (dồn từ _ProductDetails.cshtml) *@
+<div class="bg-white rounded-lg shadow-sm p-6 max-w-3xl">
     <dl class="divide-y divide-gray-100">
         <div class="py-3 flex">
             <dt class="w-1/3 text-sm font-medium text-gray-500">Mã sản phẩm</dt>
@@ -32,22 +22,15 @@
         </div>
 
         <div class="py-3 flex">
-            <dt class="w-1/3 text-sm font-medium text-gray-500">Danh mục</dt>
-            <dd class="w-2/3 text-sm text-gray-900">
-                @(Model.Category != null ? Model.Category.NameCate : "-")
-            </dd>
-        </div>
-
-        <div class="py-3 flex">
-            <dt class="w-1/3 text-sm font-medium text-gray-500">Giá</dt>
-            <dd class="w-2/3 text-sm text-gray-900">
-                @(Model.Price.HasValue ? Model.Price.Value.ToString("N0") + " ₫" : "-")
-            </dd>
-        </div>
-
-        <div class="py-3 flex">
             <dt class="w-1/3 text-sm font-medium text-gray-500">Giới tính</dt>
             <dd class="w-2/3 text-sm text-gray-900">@Model.Gender</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Danh mục</dt>
+            <dd class="w-2/3 text-sm text-gray-900">
+                @(Model.Category != null ? Model.Category.NameCate : "")
+            </dd>
         </div>
 
         <div class="py-3 flex">
@@ -57,27 +40,116 @@
             </dd>
         </div>
 
-        <div class="py-3 flex items-start">
-            <dt class="w-1/3 text-sm font-medium text-gray-500">Hình ảnh</dt>
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-sm font-medium text-gray-500">Trạng thái</dt>
             <dd class="w-2/3 text-sm text-gray-900">
-                @if (!string.IsNullOrEmpty(imgSrc))
-                {
-                    <img src="@imgSrc"
-                         alt="@Model.NamePro"
-                         style="max-width:250px;border:1px solid #ccc;" />
-                }
-                else
-                {
-                    <span>Không có ảnh</span>
-                }
+                @(Model.IsDeleted ? "Đã ẩn" : "Đang bán")
             </dd>
         </div>
     </dl>
+</div>
 
-    <div class="mt-6 flex gap-2">
-        @Html.ActionLink("Sửa", "Edit", new { id = Model.ProductID },
-            new { @class = "px-4 py-2 rounded bg-blue-50 text-blue-600 text-sm hover:bg-blue-100" })
-        @Html.ActionLink("Quay lại", "Index", null,
-            new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+@{
+    var variants = Model.ProductVariants ?? new List<WebApplication6.Models.ProductVariant>();
+
+    var variantGroups = variants
+        .Where(v => !v.IsDeleted)
+        .GroupBy(v => new { v.ColorID, v.Price })
+        .OrderBy(g => g.Key.ColorID);
+}
+
+@if (variantGroups.Any())
+{
+    <h3 class="text-lg font-semibold mt-8 mb-4">Biến thể sản phẩm</h3>
+
+    <div class="bg-white rounded-lg shadow-sm p-4">
+        <table class="min-w-full text-sm border">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="border px-2 py-1">Màu</th>
+                    <th class="border px-2 py-1">Giá</th>
+                    <th class="border px-2 py-1">Size / Tồn kho</th>
+                    <th class="border px-2 py-1">Ảnh</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var g in variantGroups)
+                {
+                    var firstVariant = g.FirstOrDefault();
+                    var colorName = firstVariant?.Color != null
+                        ? firstVariant.Color.ColorName
+                        : ("ID: " + (g.Key.ColorID ?? 0));
+
+                    var images = (Model.ProductImages ?? new List<WebApplication6.Models.ProductImage>())
+                        .Where(pi => pi.ColorID == g.Key.ColorID)
+                        .OrderBy(pi => pi.SortOrder)
+                        .ToList();
+
+                    <tr class="border-t align-top">
+                        <!-- Màu -->
+                        <td class="border px-2 py-1">
+                            @colorName
+                        </td>
+
+                        <!-- Giá -->
+                        <td class="border px-2 py-1">
+                            @(g.Key.Price.HasValue
+                                ? g.Key.Price.Value.ToString("N0") + " ₫"
+                                : "-")
+                        </td>
+
+                        <!-- Size / Tồn kho -->
+                        <td class="border px-2 py-1">
+                            <ul class="list-disc list-inside space-y-1">
+                                @foreach (var v in g.OrderBy(x => x.Size.SizeName))
+                                {
+                                    var sizeName = v.Size != null
+                                        ? v.Size.SizeName
+                                        : ("ID: " + (v.SizeID ?? 0));
+
+                                    <li>@sizeName: @v.StockQty</li>
+                                }
+                            </ul>
+                        </td>
+
+                        <!-- Ảnh -->
+                        <td class="border px-2 py-1">
+                            @if (images.Any())
+                            {
+                                <ul class="list-disc list-inside space-y-1">
+                                    @foreach (var img in images)
+                                    {
+                                        <li>
+                                            <a href="@img.ImageUrl"
+                                               target="_blank"
+                                               class="text-blue-600 underline text-xs">
+                                                Ảnh @img.SortOrder
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <span class="text-gray-400 text-xs">Không có</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
+}
+else
+{
+    <p class="mt-4 text-sm text-gray-500">
+        Sản phẩm này chưa có biến thể nào.
+    </p>
+}
+
+<div class="mt-6 flex gap-2">
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.ProductID },
+        new { @class = "px-4 py-2 rounded bg-blue-50 text-blue-600 text-sm hover:bg-blue-100" })
+    @Html.ActionLink("Quay lại", "Index", null,
+        new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
 </div>

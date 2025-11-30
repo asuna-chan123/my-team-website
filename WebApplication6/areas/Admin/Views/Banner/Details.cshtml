@@ -1,0 +1,80 @@
+﻿@model WebApplication6.Models.Banner
+
+@{
+    ViewBag.Title = "Chi tiết banner";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-2xl font-bold text-[#042954] mb-4">Chi tiết banner</h2>
+
+<div class="bg-white rounded-lg shadow-sm p-6 max-w-3xl mb-6">
+    <dl class="divide-y divide-gray-100 text-sm">
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-gray-500">ID</dt>
+            <dd class="w-2/3 font-medium">#@Model.Id</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-gray-500">Code</dt>
+            <dd class="w-2/3">@Model.Code</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-gray-500">Title</dt>
+            <dd class="w-2/3">@Model.Title</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-gray-500">Subtitle</dt>
+            <dd class="w-2/3">@Model.Subtitle</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-gray-500">ImageUrl</dt>
+            <dd class="w-2/3 break-all">@Model.ImageUrl</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-gray-500">VideoUrl</dt>
+            <dd class="w-2/3 break-all">@Model.VideoUrl</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-gray-500">Button text</dt>
+            <dd class="w-2/3">@Model.ButtonText</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-gray-500">Button link</dt>
+            <dd class="w-2/3 break-all">@Model.ButtonLink</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-gray-500">Sort order</dt>
+            <dd class="w-2/3">@Model.SortOrder</dd>
+        </div>
+
+        <div class="py-3 flex">
+            <dt class="w-1/3 text-gray-500">Trạng thái</dt>
+            <dd class="w-2/3">
+                @(Model.IsActive ? "Đang hiển thị" : "Ẩn")
+            </dd>
+        </div>
+    </dl>
+
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <div class="mt-6">
+            <p class="text-sm text-gray-500 mb-2">Xem trước:</p>
+            <img src="@Model.ImageUrl" alt="@Model.Title" class="rounded shadow max-h-72" />
+        </div>
+    }
+</div>
+
+<div class="flex gap-2">
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.Id },
+        new { @class = "px-4 py-2 rounded bg-blue-500 text-white text-sm hover:bg-blue-600" })
+
+    @Html.ActionLink("Quay lại", "Index", null,
+        new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
+</div>

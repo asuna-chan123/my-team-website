@@ -1,110 +1,413 @@
-﻿@model WebApplication6.Models.Product
+﻿@model WebApplication6.ViewModels.OrderFormViewModel
+@using System.Web.Mvc
+@using Newtonsoft.Json
 
 @{
-    ViewBag.Title = "Thêm sản phẩm";
+    ViewBag.Title = "Tạo đơn hàng";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    var colorList = ViewBag.ColorList as SelectList;
+    var sizeList = ViewBag.SizeList as SelectList;
+    var priceDict = ViewBag.ProductPrices
+                    as Dictionary<int, decimal>
+                    ?? new Dictionary<int, decimal>();
+    var customerJson = ViewBag.CustomerJson as string ?? "[]";
+
+
 }
 
-<h2 class="text-2xl font-bold text-[#042954] mb-2">Thêm sản phẩm</h2>
-<p class="text-sm text-gray-500 mb-6">Tạo mới một sản phẩm trong hệ thống.</p>
+<h2 class="text-2xl font-bold text-[#042954] mb-2">Tạo đơn hàng mới</h2>
+<p class="text-sm text-gray-500 mb-6">Tạo đơn mới cho khách hàng.</p>
 
-@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { area = "Admin" }))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(false, "", new { @class = "text-red-500 mb-3" })
 
-    <div class="bg-white rounded-lg shadow-sm p-6 max-w-2xl">
-        <!-- Tên sản phẩm -->
-        <div class="mb-4">
-            @Html.LabelFor(m => m.NamePro, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.TextBoxFor(m => m.NamePro,
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
-                })
-            @Html.ValidationMessageFor(m => m.NamePro, "", new { @class = "text-red-500 text-xs" })
+    <div class="bg-white rounded-lg shadow-sm p-6 max-w-4xl">
+
+        <h3 class="text-lg font-semibold mb-4">Thông tin đơn hàng</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <!-- Tên khách hàng -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Khách hàng *</label>
+                <input type="text"
+                       id="customerName"
+                       name="CustomerName"
+                       list="customerSuggestions"
+                       value="@Model.CustomerName"
+                       autocomplete="off"
+                       required
+                       class="w-full border rounded px-3 py-2 text-sm" />
+                @Html.ValidationMessage("CustomerName", "", new { @class = "text-red-500 text-xs" })
+
+                @Html.HiddenFor(m => m.ExistingCustomerId, new { id = "ExistingCustomerId" })
+                <datalist id="customerSuggestions">
+                    @* như trước *@
+                </datalist>
+            </div>
+
+            <!-- Ngày đặt giữ nguyên -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Ngày đặt *</label>
+                <input type="date"
+                       id="DateOrder"
+                       name="Order.DateOrder"
+                       value="@(Model?.Order?.DateOrder != null
+                    ? ((DateTime)Model.Order.DateOrder).ToString("yyyy-MM-dd")
+                    : DateTime.Now.ToString("yyyy-MM-dd"))"
+                       required
+                       class="w-full border rounded px-3 py-2 text-sm" />
+                @Html.ValidationMessage("Order.DateOrder", "", new { @class = "text-red-500 text-xs" })
+            </div>
+
+            <!-- Số điện thoại -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Số điện thoại *</label>
+                <input type="text"
+                       id="customerPhone"
+                       name="CustomerPhone"
+                       value="@Model.CustomerPhone"
+                       required
+                       maxlength="15"
+                       pattern="^(0\d{9}|\+\d{9,14})$"
+                       class="w-full border rounded px-3 py-2 text-sm" />
+                @Html.ValidationMessage("CustomerPhone", "", new { @class = "text-red-500 text-xs" })
+            </div>
+
+            <!-- Email (không bắt buộc, nhưng phải có  nếu nhập) -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input type="email"
+                       id="customerEmail"
+                       name="CustomerEmail"
+                       value="@Model.CustomerEmail"
+                       class="w-full border rounded px-3 py-2 text-sm" />
+                @Html.ValidationMessage("CustomerEmail", "", new { @class = "text-red-500 text-xs" })
+            </div>
+
+            <!-- Địa chỉ giao hàng -->
+            <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Địa chỉ giao hàng *</label>
+                @Html.TextBoxFor(
+                    m => m.Order.AddressDeliverry,
+                    new
+                    {
+                        @class = "w-full border rounded px-3 py-2 text-sm",
+                        required = "required"
+                    })
+                @Html.ValidationMessage("Order.AddressDeliverry", "", new { @class = "text-red-500 text-xs" })
+            </div>
         </div>
 
-        <!-- Mô tả -->
-        <div class="mb-4">
-            @Html.LabelFor(m => m.DecriptionPro, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.TextAreaFor(m => m.DecriptionPro,
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
-                    rows = 4
-                })
-            @Html.ValidationMessageFor(m => m.DecriptionPro, "", new { @class = "text-red-500 text-xs" })
-        </div>
 
-        <!-- Danh mục -->
-        <div class="mb-4">
-            @Html.Label("Danh mục", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.DropDownList("CateID",
-                (SelectList)ViewBag.CateID,
-                "-- Chọn danh mục --",
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
-                })
-            @Html.ValidationMessageFor(m => m.CateID, "", new { @class = "text-red-500 text-xs" })
-        </div>
+    <hr class="my-6" />
 
-        <!-- Giá -->
-        <div class="mb-4">
-            @Html.LabelFor(m => m.Price, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.TextBoxFor(m => m.Price,
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
-                    type = "number",
-                    step = "1000"
-                })
-            @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-red-500 text-xs" })
-        </div>
+    <!-- ORDER DETAILS -->
+    <h3 class="text-lg font-semibold mb-4">Sản phẩm trong đơn</h3>
 
-        <!-- Giới tính -->
-        <div class="mb-4">
-            @Html.LabelFor(m => m.Gender, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.DropDownListFor(m => m.Gender,
-                new SelectList(new[]
-                {
-                    new { Value = "Nam", Text = "Nam" },
-                    new { Value = "Nữ", Text = "Nữ" },
-                    new { Value = "Unisex", Text = "Unisex" }
-                }, "Value", "Text"),
-                "-- Chọn giới tính --",
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]"
-                })
-            @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-red-500 text-xs" })
-        </div>
+    <table class="min-w-full text-sm border">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="border px-2 py-1 w-1/4">Sản phẩm</th>
+                <th class="border px-2 py-1 w-1/6">Màu</th>
+                <th class="border px-2 py-1 w-1/6">Size</th>
+                <th class="border px-2 py-1 w-1/12">SL</th>
+                <th class="border px-2 py-1 w-1/6">Đơn giá</th>
+                <th class="border px-2 py-1 w-1/6">Thành tiền</th>
+            </tr>
+        </thead>
 
-        <!-- Link ảnh -->
-        <div class="mb-6">
-            @Html.LabelFor(m => m.ImagePro, new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.TextBoxFor(m => m.ImagePro,
-                new
-                {
-                    @class = "w-full border border-gray-300 rounded px-3 py-2 text-sm " +
-                             "focus:outline-none focus:ring-1 focus:ring-[#FFA500] focus:border-[#FFA500]",
-                    placeholder = "Nhập URL ảnh (http...)"
-                })
-            @Html.ValidationMessageFor(m => m.ImagePro, "", new { @class = "text-red-500 text-xs" })
-        </div>
+        <tbody>
+            @for (int i = 0; i < Model.Details.Count; i++)
+            {
+                <tr class="detail-row">
+                    <!-- Product -->
+                    <td class="border px-2 py-1">
+                        @Html.DropDownListFor(
+                            m => m.Details[i].IDProduct,
+                            Model.ProductList,
+                            "--Sản phẩm--",
+                            new
+                                 {
+                                @class = "w-full border rounded px-2 py-1 text-xs product-select",
+                                data_row = i
+                            }
+                        )
+                    </td>
 
-        <div class="flex gap-2">
-            <input type="submit"
-                   value="Lưu"
-                   class="bg-[#FFA500] text-white px-4 py-2 rounded text-sm font-medium hover:bg-orange-600 transition-colors cursor-pointer" />
-            @Html.ActionLink("Quay lại", "Index", null,
-                new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
-        </div>
+                    <!-- Color (UI only) -->
+                    <td class="border px-2 py-1">
+                        <select name="Details[@i].ColorID"
+                                class="w-full border rounded px-2 py-1 text-xs">
+                            <option value="">--Màu--</option>
+                            @if (colorList != null)
+                            {
+                                foreach (var c in colorList)
+                                {
+                                    <option value="@c.Value">@c.Text</option>
+                                }
+                            }
+                        </select>
+                    </td>
+
+                    <!-- Size (UI only) -->
+                    <td class="border px-2 py-1">
+                        <select name="Details[@i].SizeID"
+                                class="w-full border rounded px-2 py-1 text-xs">
+                            <option value="">--Size--</option>
+                            @if (sizeList != null)
+                            {
+                                foreach (var s in sizeList)
+                                {
+                                    <option value="@s.Value">@s.Text</option>
+                                }
+                            }
+                        </select>
+                    </td>
+
+                    <!-- Quantity -->
+                    <td class="border px-2 py-1">
+                        @Html.TextBoxFor(
+                            m => m.Details[i].Quantity,
+                            new
+                                 {
+                                @class = "w-full border rounded px-2 py-1 text-xs qty-input",
+                                type = "number",
+                                min = "1",
+                                data_row = i
+                            }
+                        )
+                    </td>
+
+                    <!-- Unit price -->
+                    <td class="border px-2 py-1">
+                        @Html.TextBoxFor(
+                            m => m.Details[i].UnitPrice,
+                            new
+                                 {
+                                @class = "w-full border rounded px-2 py-1 text-xs price-input",
+                                type = "number",
+                                min = "0",
+                                data_row = i
+                            }
+                        )
+                    </td>
+
+                    <!-- Line Total -->
+                    <td class="border px-2 py-1">
+                        <span class="line-total" id="lineTotal_@i">0</span> đ
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="button"
+            id="addDetailRow"
+            class="mt-3 px-3 py-1 rounded bg-gray-200 text-xs hover:bg-gray-300">
+        + Thêm sản phẩm
+    </button>
+
+    <hr class="my-6" />
+
+    <!-- SUBMIT -->
+    <div class="flex gap-2">
+        <input type="submit"
+               value="Lưu đơn hàng"
+               class="bg-[#FFA500] text-white px-4 py-2 rounded text-sm font-medium hover:bg-orange-600 cursor-pointer" />
+
+        @Html.ActionLink("Quay lại", "Index", null,
+            new { @class = "px-4 py-2 rounded border border-gray-300 text-sm text-gray-700 hover:bg-gray-100" })
     </div>
+</div>
 }
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    var productPrices = @Html.Raw(JsonConvert.SerializeObject(priceDict));
+
+    var customers = @Html.Raw(customerJson); // [{IDCus,NameCus,PhoneCus,EmailCus},...]
+
+    var nameInput   = document.getElementById("customerName");
+    var phoneInput  = document.getElementById("customerPhone");
+    var emailInput  = document.getElementById("customerEmail");
+    var idHidden = document.getElementById("ExistingCustomerId");
+
+    function findCustomerByName(name) {
+        name = (name || "").trim().toLowerCase();
+        if (!name) return null;
+        for (var i = 0; i < customers.length; i++) {
+            if ((customers[i].NameCus || "").toLowerCase() === name) {
+                return customers[i];
+            }
+        }
+        return null;
+    }
+
+    // Khi user chọn / gõ tên
+    nameInput.addEventListener("change", function () {
+        var c = findCustomerByName(this.value);
+        if (c) {
+            // tìm thấy khách đã có
+            idHidden.value = c.IDCus;
+            phoneInput.value = c.PhoneCus || "";
+            emailInput.value = c.EmailCus || "";
+        } else {
+            // khách mới
+            idHidden.value = "";
+            // không xoá phone/email để user điền tiếp
+        }
+    });
+
+    // Nếu user chỉnh lại phone/email sau khi đã match -> tạo KH mới
+    function markAsNewCustomer() {
+        // chỉ cần clear id, server sẽ tạo mới
+        idHidden.value = "";
+    }
+    phoneInput.addEventListener("input", markAsNewCustomer);
+    emailInput.addEventListener("input", markAsNewCustomer);
+
+    function hookRow(rowIndex) {
+        var productSelect = document.querySelector('.product-select[data-row="' + rowIndex + '"]');
+        var priceInput    = document.querySelector('.price-input[data-row="' + rowIndex + '"]');
+        var qtyInput      = document.querySelector('.qty-input[data-row="' + rowIndex + '"]');
+        var lineTotalSpan = document.getElementById("lineTotal_" + rowIndex);
+
+        if (!productSelect || !priceInput || !qtyInput || !lineTotalSpan) return;
+
+        function updateLineTotal() {
+            var qty   = parseInt(qtyInput.value || "0");
+            var price = parseFloat(priceInput.value || "0");
+            var total = qty * price;
+            lineTotalSpan.innerText = total.toLocaleString();
+        }
+
+        function setPriceFromProduct() {
+            var pid = productSelect.value;
+            if (pid && productPrices[pid] != null) {
+                priceInput.value = productPrices[pid];
+            } else {
+                priceInput.value = "";
+            }
+            updateLineTotal();
+        }
+
+        productSelect.addEventListener("change", setPriceFromProduct);
+        qtyInput.addEventListener("input", updateLineTotal);
+        priceInput.addEventListener("input", updateLineTotal);
+
+        if (productSelect.value && !priceInput.value) {
+            setPriceFromProduct();
+        } else {
+            updateLineTotal();
+        }
+    }
+
+    // hook các dòng có sẵn
+    var rows = document.querySelectorAll("tr.detail-row");
+    for (var i = 0; i < rows.length; i++) {
+        hookRow(i);
+    }
+
+    // thêm dòng mới
+    document.getElementById("addDetailRow").addEventListener("click", function () {
+        var tbody = document.querySelector("tbody");
+        var rows  = tbody.querySelectorAll("tr.detail-row");
+        var i     = rows.length;
+
+        var newRow = rows[0].cloneNode(true);
+
+        newRow.querySelectorAll("select, input, span.line-total").forEach(function (el) {
+            if (el.tagName === "SELECT") {
+                if (el.classList.contains("product-select")) {
+                    el.name = "Details[" + i + "].IDProduct";
+                    el.setAttribute("data-row", i);      // <<< đổi ở đây
+                    el.selectedIndex = 0;
+                } else if (el.name.indexOf("ColorID") >= 0) {
+                    el.name = "Details[" + i + "].ColorID";
+                    el.selectedIndex = 0;
+                } else if (el.name.indexOf("SizeID") >= 0) {
+                    el.name = "Details[" + i + "].SizeID";
+                    el.selectedIndex = 0;
+                }
+            }
+            if (el.tagName === "INPUT") {
+                if (el.classList.contains("qty-input")) {
+                    el.name = "Details[" + i + "].Quantity";
+                    el.setAttribute("data-row", i);      // <<< đổi ở đây
+                    el.value = "1";
+                } else if (el.classList.contains("price-input")) {
+                    el.name = "Details[" + i + "].UnitPrice";
+                    el.setAttribute("data-row", i);      // <<< đổi ở đây
+                    el.value = "";
+                }
+            }
+            if (el.classList.contains("line-total")) {
+                el.id = "lineTotal_" + i;
+                el.innerText = "0";
+            }
+        });
+
+        tbody.appendChild(newRow);
+        hookRow(i);
+    });
+
+    var form = document.querySelector("form");
+
+    // Kiểm tra ít nhất 1 sản phẩm trước khi submit
+    form.addEventListener("submit", function (e) {
+        var rows = document.querySelectorAll("tr.detail-row");
+
+        var hasProduct = false;
+        var invalidColorSize = false;
+
+        rows.forEach(function (row) {
+            var productSel = row.querySelector("select.product-select");
+            var colorSel = row.querySelector("select[name*='.ColorID']");
+            var sizeSel = row.querySelector("select[name*='.SizeID']");
+
+            if (!productSel) return;
+
+            var productVal = productSel.value;
+
+            // Chỉ check dòng đang có sản phẩm
+            if (productVal && productVal !== "0") {
+                hasProduct = true;
+
+                // reset viền đỏ trước
+                if (colorSel) colorSel.classList.remove("border-red-500");
+                if (sizeSel) sizeSel.classList.remove("border-red-500");
+
+                // bắt buộc chọn màu
+                if (!colorSel || !colorSel.value) {
+                    invalidColorSize = true;
+                    if (colorSel) colorSel.classList.add("border-red-500");
+                }
+
+                // bắt buộc chọn size
+                if (!sizeSel || !sizeSel.value) {
+                    invalidColorSize = true;
+                    if (sizeSel) sizeSel.classList.add("border-red-500");
+                }
+            }
+        });
+
+        if (!hasProduct) {
+            e.preventDefault();
+            alert("Vui lòng chọn ít nhất 1 sản phẩm trong đơn hàng.");
+            return;
+        }
+
+        if (invalidColorSize) {
+            e.preventDefault();
+            alert("Vui lòng chọn Màu và Size cho tất cả sản phẩm đã chọn.");
+            return;
+        }
+    });
+
+});
+
+</script>

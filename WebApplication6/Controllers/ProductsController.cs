@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 using PagedList;
 using WebApplication6.Models;
 using WebApplication6.ViewModels;
@@ -21,12 +22,20 @@ namespace WebApplication6.Controllers
         // ================================
         // 📌 1. Trang danh sách sản phẩm
         // ================================
-        public ActionResult Index(string gender, string category, string priceSort)
+        public ActionResult Index(string gender, string category, string priceSort, string keyword)
         {
             // 1) Query gốc
             var q = db.Products
                       .Include(p => p.Category)
                       .Where(p => !p.IsDeleted);
+
+            // ====== LỌC THEO TỪ KHÓA (NAMEPRO) ======
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                // Tùy bạn, có thể thêm DescriptionPro nếu muốn
+                q = q.Where(p => p.NamePro.Contains(keyword));
+                // hoặc: q = q.Where(p => p.NamePro.Contains(keyword) || p.DecriptionPro.Contains(keyword));
+            }
 
             System.Diagnostics.Debug.WriteLine($"param gender={gender}");
             System.Diagnostics.Debug.WriteLine("Distinct genders in DB: " +
@@ -104,387 +113,123 @@ namespace WebApplication6.Controllers
             var vm = new ProductListViewModel
             {
                 Products = list,
-                Gender = gender,          // giữ nguyên để select lại trên view (male/female/unisex)
+                Gender = gender,          // giữ lại param gốc (male/female/unisex)
                 Category = category,
                 PriceSort = priceSort,
+                // nếu bạn có field Keyword trong VM thì set luôn:
+                Keyword = keyword,
                 AllCategories = db.Categories.Where(c => !c.IsDeleted).ToList()
             };
 
             return View(vm);
         }
 
-
-
         // ================================
         // 📌 2. Trang chi tiết sản phẩm
         // ================================
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            // 1. Không có id -> trả về 400
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
             var product = db.Products
-                            .Include(p => p.Category)
-                            .FirstOrDefault(p => p.ProductID == id.Value);
+                .Include(p => p.Category)
+                .Include(p => p.ProductVariants.Select(v => v.Size))  // 👉 lấy kèm Size
+                .FirstOrDefault(p => p.ProductID == id);
 
             if (product == null) return HttpNotFound();
 
-            // --- build grouped images by color from ~/Content/images/ ---
-            var imagesByColor = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+            // ----- ẢNH THEO MÀU (giữ như bạn đang có) -----
+            var images = db.ProductImages
+                           .Where(i => i.ProductID == id)
+                           .OrderBy(i => i.SortOrder)
+                           .ToList();
 
-            try
-            {
-                var imagesFolder = Server.MapPath("~/Content/images/");
+            var imagesByColor = images
+                .GroupBy(i => i.ColorID ?? 0)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g.Select(x => x.ImageUrl).ToList()
+                );
 
-                if (Directory.Exists(imagesFolder))
-                {
-                    // list all filenames in folder (just file names)
-                    var allFiles = Directory.GetFiles(imagesFolder)
-                                            .Select(Path.GetFileName)
-                                            .Where(n => !string.IsNullOrEmpty(n))
-                                            .ToList();
-
-                    // derive a basePrefix from product.ImagePro or product.NamePro
-                    string basePrefix = null;
-                    if (!string.IsNullOrEmpty(product.ImagePro))
-                    {
-                        var nameNoExt = Path.GetFileNameWithoutExtension(product.ImagePro);
-                        // take token before first underscore, so "OwnTheRun" from "OwnTheRun_Blue_01"
-                        basePrefix = nameNoExt.Split(new[] { '_' }, StringSplitOptions.RemoveEmptyEntries)
-                                              .FirstOrDefault() ?? nameNoExt;
-                    }
-                    else if (!string.IsNullOrEmpty(product.NamePro))
-                    {
-                        basePrefix = product.NamePro.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-                                                    .FirstOrDefault();
-                    }
-
-                    // matched files list
-                    List<string> matched = new List<string>();
-                    if (!string.IsNullOrEmpty(basePrefix))
-                    {
-                        // regex for start like ^OwnTheRun_ or ^OwnTheRun-
-                        var startPattern = "^" + Regex.Escape(basePrefix) + @"[_\-]";
-                        var startRegex = new Regex(startPattern, RegexOptions.IgnoreCase);
-
-                        matched = allFiles.Where(f =>
-                                startRegex.IsMatch(f)                                  // OwnTheRun_Blue_01 or OwnTheRun-Blue-01
-                             || f.IndexOf(basePrefix, StringComparison.OrdinalIgnoreCase) >= 0 // fallback contains
-                             || f.StartsWith(basePrefix, StringComparison.OrdinalIgnoreCase)    // defensive
-                        )
-                        .Distinct(StringComparer.OrdinalIgnoreCase)
-                        .ToList();
-                    }
-
-                    // fallback: search by name tokens if still empty
-                    if (!matched.Any() && !string.IsNullOrEmpty(product.NamePro))
-                    {
-                        var words = product.NamePro.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-                                                   .Where(w => w.Length > 2)
-                                                   .ToArray();
-                        foreach (var w in words)
-                        {
-                            var list = allFiles.Where(f => f.IndexOf(w, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
-                            foreach (var lf in list)
-                                if (!matched.Contains(lf, StringComparer.OrdinalIgnoreCase))
-                                    matched.Add(lf);
-                        }
-                    }
-
-                    // Debug: print matched files
-                    try
-                    {
-                        System.Diagnostics.Debug.WriteLine(
-                            $"Matched files for product {product.ProductID} (prefix='{basePrefix}'): "
-                            + (matched.Any() ? string.Join(", ", matched) : "<none>"));
-                    }
-                    catch { }
-
-                    // Group matched files by color token (pattern: Prefix_Color_XX.ext)
-                    foreach (var fname in matched.Distinct(StringComparer.OrdinalIgnoreCase))
-                    {
-                        var parts = fname.Split(new[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
-                        string color = "Default";
-                        if (parts.Length >= 2)
-                        {
-                            color = parts[1]; // e.g. "Blue" from OwnTheRun_Blue_01.jpg
-                        }
-
-                        var virt = Url.Content("~/Content/images/" + fname);
-                        if (!imagesByColor.ContainsKey(color)) imagesByColor[color] = new List<string>();
-                        imagesByColor[color].Add(virt);
-                    }
-
-                    // helper: extract numeric sort key from filename virtual path
-                    int GetSortKey(string virtualPath)
-                    {
-                        try
-                        {
-                            var fileName = Path.GetFileName(virtualPath); // OwnTheRun_Blue_01.jpg
-                            var nameWithoutExt = Path.GetFileNameWithoutExtension(fileName); // OwnTheRun_Blue_01
-                            var parts = nameWithoutExt.Split(new[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
-
-                            // try last token first
-                            var last = parts.Length > 0 ? parts.Last() : nameWithoutExt;
-
-                            if (int.TryParse(last, out var n)) return n;
-
-                            // try extract digits from last token
-                            var digits = new string(last.Where(char.IsDigit).ToArray());
-                            if (!string.IsNullOrEmpty(digits) && int.TryParse(digits, out n)) return n;
-
-                            // try find any numeric token from the end
-                            for (int i = parts.Length - 1; i >= 0; i--)
-                            {
-                                var p = parts[i];
-                                var d = new string(p.Where(char.IsDigit).ToArray());
-                                if (!string.IsNullOrEmpty(d) && int.TryParse(d, out n)) return n;
-                            }
-
-                            // no number found -> put at end
-                            return int.MaxValue;
-                        }
-                        catch
-                        {
-                            return int.MaxValue;
-                        }
-                    }
-
-                    // sort images inside each color group using GetSortKey
-                    foreach (var key in imagesByColor.Keys.ToList())
-                    {
-                        var sorted = imagesByColor[key]
-                            .Select(v => new { src = v, sortKey = GetSortKey(v) })
-                            .OrderBy(x => x.sortKey)
-                            .Select(x => x.src)
-                            .ToList();
-
-                        imagesByColor[key] = sorted;
-                    }
-                }
-            }
-            catch
-            {
-                // ignore filesystem errors — fallback handled below
-            }
-
-            // fallback: if nothing found, use product.ImagePro or placeholder
-            if (!imagesByColor.Any())
-            {
-                if (!string.IsNullOrEmpty(product.ImagePro))
-                {
-                    imagesByColor["Default"] = new List<string> { Url.Content("~/Content/images/" + product.ImagePro) };
-                }
-                else
-                {
-                    imagesByColor["Default"] = new List<string> { Url.Content("~/Content/images/no-image.png") };
-                }
-            }
-
-            // choose default color (prefer "Default")
-            string defaultColor = imagesByColor.ContainsKey("Default") ? "Default" : imagesByColor.Keys.FirstOrDefault();
-
-            // determine primary image (first of default color or first available)
-            string primaryImage = imagesByColor.ContainsKey(defaultColor) && imagesByColor[defaultColor].Any()
-                ? imagesByColor[defaultColor].First()
-                : imagesByColor.SelectMany(kv => kv.Value).FirstOrDefault();
-
-            // pass to view
             ViewBag.ImagesByColor = imagesByColor;
-            ViewBag.DefaultColor = defaultColor ?? "Default";
-            ViewBag.PrimaryImage = primaryImage ?? Url.Content("~/Content/images/no-image.png");
+            ViewBag.DefaultColor = imagesByColor.Keys.FirstOrDefault();
 
-            // build viewmodel
-            var vm = new ProductDetailViewModel
-            {
-                ProductID = product.ProductID,
-                NamePro = product.NamePro,
-                DecriptionPro = product.DecriptionPro,
-                Price = product.Price,        // giá từ database
-                ImagePro = product.ImagePro,
-                BannerVideoUrl = "https://player.vimeo.com/video/1009385367",
-                FeatureImageUrl = "https://cdn.example.com/yeezy1.jpg",
-                CategoryName = product.Category != null ? product.Category.NameCate : "Chưa có loại",
-                Gender = product.Gender
-            };
+            var colorNames = db.Colors.ToDictionary(c => c.ColorID, c => c.ColorName);
+            ViewBag.ColorNames = colorNames;
 
-            return View(vm);
-        }
-
-
-
-        // ================================
-        // 📌 3. Tạo mới sản phẩm
-        // ================================
-        public ActionResult Create()
-        {
-            ViewBag.CateID = new SelectList(db.Categories, "IDCate", "NameCate");
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,NamePro,DecriptionPro,CateID,Price,ImagePro")] Product product, HttpPostedFileBase ImageFile)
-        {
-            if (ModelState.IsValid)
-            {
-                if (ImageFile != null && ImageFile.ContentLength > 0)
+            // ----- STOCK THEO MÀU + SIZE -----
+            var variantStocks = product.ProductVariants
+                .Where(v => v.IsDeleted == false)
+                .Select(v => new
                 {
-                    string fileName = System.IO.Path.GetFileName(ImageFile.FileName);
-                    string path = Server.MapPath("~/Content/images/" + fileName);
-                    ImageFile.SaveAs(path);
-                    product.ImagePro = fileName;
-                }
+                    v.ColorID,
+                    SizeName = v.Size.SizeName,
+                    v.StockQty
+                })
+                .ToList();
 
-                db.Products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            ViewBag.VariantStocks = variantStocks;
+
+            return View(product);
+        }
+
+        // ================================
+        // 📌 3. Phân trang + lọc sản phẩm
+        // ================================
+        public ActionResult ProductList(
+        int? category,
+        int? page,
+        string searchString,
+        double? min,
+        double? max)
+        {
+            var query = db.Products
+                          .Include(p => p.Category)
+                          .AsQueryable();
+
+            // Lọc theo danh mục
+            if (category.HasValue)
+            {
+                query = query.Where(p => p.CateID == category.Value);
             }
 
-            ViewBag.CateID = new SelectList(db.Categories, "IDCate", "NameCate", product.CateID);
-            return View(product);
-        }
-
-        // ================================
-        // 📌 4. Chỉnh sửa sản phẩm
-        // ================================
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            Product product = db.Products.Find(id);
-            if (product == null)
-                return HttpNotFound();
-
-            ViewBag.CateID = new SelectList(db.Categories, "IDCate", "NameCate", product.CateID);
-            return View(product);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,NamePro,DecriptionPro,CateID,Price,ImagePro")] Product product, HttpPostedFileBase ImageFile)
-        {
-            if (ModelState.IsValid)
+            // Lọc theo tên
+            if (!string.IsNullOrWhiteSpace(searchString))
             {
-                var oldProduct = db.Products.AsNoTracking().FirstOrDefault(p => p.ProductID == product.ProductID);
-
-                if (ImageFile != null && ImageFile.ContentLength > 0)
-                {
-                    string fileName = System.IO.Path.GetFileName(ImageFile.FileName);
-                    string path = Server.MapPath("~/Content/images/" + fileName);
-                    ImageFile.SaveAs(path);
-                    product.ImagePro = fileName;
-                }
-                else
-                {
-                    product.ImagePro = oldProduct.ImagePro;
-                }
-
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var keyword = searchString.Trim();
+                query = query.Where(p => p.NamePro.Contains(keyword));
             }
 
-            ViewBag.CateID = new SelectList(db.Categories, "IDCate", "NameCate", product.CateID);
-            return View(product);
-        }
+            // Lọc theo khoảng giá
+            if (min.HasValue)
+            {
+                query = query.Where(p => p.Price >= (decimal)min.Value);
+            }
+            if (max.HasValue)
+            {
+                query = query.Where(p => p.Price <= (decimal)max.Value);
+            }
 
-        // ================================
-        // 📌 5. Xóa sản phẩm
-        // ================================
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            const int pageSize = 6;
+            int pageNumber = page ?? 1;
 
-            Product product = db.Products.Find(id);
-            if (product == null)
-                return HttpNotFound();
-
-            return View(product);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Product product = db.Products.Find(id);
-            db.Products.Remove(product);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        // ================================
-        // 📌 6. Phân trang + lọc sản phẩm
-        // ================================
-        public ActionResult ProductList(int? category, int? page, string SearchString,
-                                        double min = double.MinValue, double max = double.MaxValue)
-        {
-            var products = db.Products.Include(p => p.Category);
-
-            if (category != null)
-                products = products.Where(p => p.CateID == category);
-
-            if (!string.IsNullOrEmpty(SearchString))
-                products = products.Where(p => p.NamePro.Contains(SearchString.Trim()));
-
-            if (min >= 0 && max > 0)
-                products = products.Where(p => (double)p.Price >= min && (double)p.Price <= max);
-
-            int pageSize = 4;
-            int pageNumber = (page ?? 1);
-
-            var pagedProducts = products
+            var pagedProducts = query
                 .OrderBy(p => p.ProductID)
                 .ToPagedList(pageNumber, pageSize);
 
-            // LẤY CAROUSEL 1
-            var c1 = db.Carousels
-                       .Include(c => c.CarouselItems)
-                       .FirstOrDefault(c => c.Code == "carousel-1");
 
-            var carousel1Vm = new CarouselViewModel
-            {
-                Id = "carousel-1",
-                Title = c1?.Name,
-                Items = c1?.CarouselItems
-                         .OrderBy(i => i.Order)
-                         .Select(i => new CarouselItemViewModel
-                         {
-                             img = i.ImageUrl,
-                             price = i.Title,
-                             desc = i.Description,
-                             height = i.Height,
-                             link = i.Link
-                         })
-                         .ToList()
-            };
+            // Lấy 2 carousel dùng chung 1 hàm
+            var carousel1Vm = BuildCarousel("carousel-1");
+            var carousel2Vm = BuildCarousel("carousel-2");
 
-            // LẤY CAROUSEL 2
-            var c2 = db.Carousels
-                       .Include(c => c.CarouselItems)
-                       .FirstOrDefault(c => c.Code == "carousel-2");
+            // ======= LẤY BANNER ĐẦU & GIỮA TRANG TỪ DB =======
+            var topBanner = db.Banners
+                              .FirstOrDefault(b => b.Code == "home_top" && b.IsActive);
 
-            var carousel2Vm = new CarouselViewModel
-            {
-                Id = "carousel-2",
-                Title = c2?.Name,
-                Items = c2?.CarouselItems
-                         .OrderBy(i => i.Order)
-                         .Select(i => new CarouselItemViewModel
-                         {
-                             img = i.ImageUrl,
-                             price = i.Title,
-                             desc = i.Description,
-                             height = i.Height,
-                             link = i.Link
-                         })
-                         .ToList()
-            };
+            var middleBanner = db.Banners
+                                 .FirstOrDefault(b => b.Code == "home_middle" && b.IsActive);
+
+            ViewBag.TopBanner = topBanner;
+            ViewBag.MiddleBanner = middleBanner;
+            // ==================================================
 
             var vm = new ProductListViewModel
             {
@@ -495,6 +240,42 @@ namespace WebApplication6.Controllers
 
             return View(vm);
         }
+
+        private CarouselViewModel BuildCarousel(string code)
+        {
+            var carousel = db.Carousels
+                             .Include(c => c.CarouselItems)
+                             .FirstOrDefault(c => c.Code == code);
+
+            if (carousel == null)
+            {
+                return new CarouselViewModel
+                {
+                    Id = code,
+                    Title = string.Empty,
+                    Items = new List<CarouselItemViewModel>()
+                };
+            }
+
+            return new CarouselViewModel
+            {
+                Id = code,
+                Title = carousel.Name,
+                Items = carousel.CarouselItems
+                                .OrderBy(i => i.Order)
+                                .Select(i => new CarouselItemViewModel
+                                {
+                                    img = i.ImageUrl,
+                                    price = i.Title,
+                                    desc = i.Description,
+                                    height = i.Height,
+                                    link = i.Link
+                                })
+                                .ToList()
+            };
+        }
+
+
 
     }
 }

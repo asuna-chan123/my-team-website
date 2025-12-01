@@ -30,7 +30,7 @@ namespace WebApplication6.ViewModels.CartViewModels
 
         // LATER FIX: Thêm sản phẩm vào giỏ (Cập nhật: Thêm tham số color, size để xử lý biến thể)
         public void AddItem(int productId, string productImage, string productName,
-                           decimal unitPrice, int quantity, string category, string color, string size)
+                           decimal unitPrice, int quantity, string category, string color, string size, int stockQty = 99)
         {
             var existingItem = items.FirstOrDefault(i => i.ProductID == productId && i.Color == color && i.Size == size);
 
@@ -45,7 +45,8 @@ namespace WebApplication6.ViewModels.CartViewModels
                     Quantity = quantity,
                     Category = category,
                     Color = color,
-                    Size = size
+                    Size = size,
+                    StockQty = stockQty
                 });
             }
             else

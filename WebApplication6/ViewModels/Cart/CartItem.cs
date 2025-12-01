@@ -15,6 +15,7 @@ namespace WebApplication6.ViewModels.CartViewModels
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         public string Category { get; set; }
+        public int StockQty { get; set; }  // Available stock quantity
         public decimal TotalPrice => Quantity * UnitPrice;
     }
 }

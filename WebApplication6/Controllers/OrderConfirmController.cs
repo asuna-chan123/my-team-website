@@ -13,19 +13,18 @@ namespace WebApplication6.Controllers
     {
         private DBSportStoreEntities db = new DBSportStoreEntities();
 
-        // Helper: Lấy dịch vụ giỏ hàng
+        // Helper: Lấy service giỏ hàng
         private CartService GetCartService()
         {
             return new CartService(Session);
         }
 
-        // GET: OrderConfirm
-        // Hiển thị trang thông báo thành công (Thay thế cho trang Checkout cũ)
+        // GET: OrderConfirm - Hiển thị trang xác nhận đơn hàng
         public ActionResult Index(int? id)
         {
+            // Nếu không có ID đơn hàng, chuyển sang tạo đơn mới
             if (id == null)
             {
-                // Nếu không có ID, thử tạo đơn hàng tự động từ giỏ hàng hiện tại
                 return RedirectToAction("AutoCreate");
             }
 
@@ -39,10 +38,12 @@ namespace WebApplication6.Controllers
             return View(order);
         }
 
-        // Action mới: Tự động tạo đơn hàng (Bỏ qua bước điền form)
+        // Tạo đơn hàng tự động từ giỏ hàng
         public ActionResult AutoCreate()
         {
             var cart = GetCartService().GetCart();
+
+            // Kiểm tra giỏ hàng có sản phẩm không
             if (cart.Items.Count() == 0)
             {
                 return RedirectToAction("Index", "Cart");
@@ -50,51 +51,49 @@ namespace WebApplication6.Controllers
 
             try
             {
-                // 1. Kiểm tra xem đã có khách hàng trong Session chưa
-                int customerId;
-                if (Session["IDCus"] != null)
+                // Lấy ID khách hàng từ Session (đã đăng nhập)
+                int customerId = (int)Session["IDCus"];
+
+                // Tạo đơn hàng mới
+                var order = new OrderPro
                 {
-                    customerId = (int)Session["IDCus"];
-                }
-                else
-                {
-                    // Nếu chưa có, tạo khách hàng mới (Khách vãng lai)
-                    var customer = new Customer();
-                    customer.NameCus = "Khách vãng lai";
-                    customer.PhoneCus = "0000000000";
+                    DateOrder = DateTime.Now,
+                    AddressDeliverry = "Nhận tại cửa hàng",
+                    IDCus = customerId
+                };
 
-                    db.Customers.Add(customer);
-                    db.SaveChanges();
-
-                    customerId = customer.IDCus;
-                    Session["IDCus"] = customerId; // Lưu vào Session
-                }
-
-                // 2. Tạo đơn hàng
-                var order = new OrderPro();
-                order.DateOrder = DateTime.Now;
-                order.AddressDeliverry = "Nhận tại cửa hàng"; // Mặc định
-                order.IDCus = customerId;
-                
                 db.OrderProes.Add(order);
                 db.SaveChanges();
 
-                // 3. Lưu chi tiết
+                // Lưu chi tiết đơn hàng và trừ tồn kho
                 foreach (var item in cart.Items)
                 {
-                    var detail = new OrderDetail();
-                    detail.IDOrder = order.ID;
-                    detail.IDProduct = item.ProductID;
-                    detail.Quantity = item.Quantity;
-                    detail.UnitPrice = (double)item.UnitPrice;
+                    // Thêm chi tiết đơn hàng
+                    var detail = new OrderDetail
+                    {
+                        IDOrder = order.ID,
+                        IDProduct = item.ProductID,
+                        Quantity = item.Quantity,
+                        UnitPrice = (double)item.UnitPrice
+                    };
                     db.OrderDetails.Add(detail);
+
+                    // Trừ số lượng trong kho
+                    var variant = db.ProductVariants.FirstOrDefault(v =>
+                        v.ProductID == item.ProductID && !v.IsDeleted);
+
+                    if (variant != null)
+                    {
+                        variant.StockQty -= item.Quantity;
+                        if (variant.StockQty < 0)
+                        {
+                            variant.StockQty = 0; // Đảm bảo không âm
+                        }
+                    }
                 }
                 db.SaveChanges();
 
-                // 4. Xóa giỏ
-                GetCartService().ClearCart();
-
-                // 5. Chuyển hướng về trang Index (hiển thị Success)
+                // Chuyển về trang xác nhận thành công
                 return RedirectToAction("Index", new { id = order.ID });
             }
             catch (Exception ex)
@@ -102,15 +101,6 @@ namespace WebApplication6.Controllers
                 ViewBag.Error = ex.Message;
                 return RedirectToAction("Index", "Cart");
             }
-        }
-
-        // GET: OrderConfirm/Success/5
-        // Giữ lại action này nếu cần, hoặc có thể xóa nếu đã dùng Index làm Success
-        public ActionResult Success(int? id)
-        {
-            if (id == null) return RedirectToAction("Index", "Home");
-            var order = db.OrderProes.Find(id);
-            return View(order);
         }
 
         protected override void Dispose(bool disposing)

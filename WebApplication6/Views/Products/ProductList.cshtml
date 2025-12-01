@@ -1,13 +1,16 @@
-﻿@using Newtonsoft.Json
-@using PagedList.Mvc;
+﻿@using PagedList.Mvc
+@using WebApplication6.Models
+@using WebApplication6.ViewModels
 @model WebApplication6.ViewModels.ProductListViewModel
 
 @{
     ViewBag.Title = "Adidas";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
     var top = ViewBag.TopBanner as WebApplication6.Models.Banner;
     var mid = ViewBag.MiddleBanner as WebApplication6.Models.Banner;
 }
+
 @functions {
     public string ResolveImage(string imageUrl)
     {
@@ -16,60 +19,62 @@
             return Url.Content("~/Content/images/no-image.png");
         }
 
-        // Nếu là URL ngoài
         if (imageUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
         {
             return imageUrl;
         }
 
-        // Nếu là ảnh local
         return Url.Content("~/Content/images/" + imageUrl);
     }
 }
-<!--CSS -->
-<link rel="stylesheet" href="~/Content/css/ProductList.css">
-<link rel="stylesheet" href="~/Content/css/fonts-reset.css">
 
-<!-- Ảnh đầu trang -->
+<link rel="stylesheet" href="~/Content/css/ProductList.css" />
+<link rel="stylesheet" href="~/Content/css/fonts-reset.css" />
+
+<!-- BANNER ĐẦU TRANG -->
 <section class="hero-section banner-topp" style="margin-top:10%;">
     <div class="banner-containerr banner-imgg"
          style="background-image:url('@(top?.ImageUrl ?? "")')">
         <div class="hero-content">
             <div class="content-wrapper">
-                <h1 class="main-title" style="font-size: 35px; margin-right: 40%; border: 2px solid #000; background: #fff; color: #000; font-weight: bold;">
+                <h1 class="main-title"
+                    style="font-size:35px; margin-right:40%; border:2px solid #000; background:#fff; color:#000; font-weight:bold;">
                     @(top?.Title ?? "LIGHT THE BAY")
                 </h1>
 
-                <p class="subtitle" style="font-size: 25px; border: 2px solid #000;background: #fff;color: #000;font-weight: bold;">
+                <p class="subtitle"
+                   style="font-size:25px; border:2px solid #000; background:#fff; color:#000; font-weight:bold;">
                     @(top?.Subtitle ?? "Sẵn sàng tăng tốc cùng bộ sưu tập adidas x Mercedes")
                 </p>
 
-                <button class="cta-button" onclick="handleClick('@(top?.ButtonLink ?? Url.Action("Index", "Products"))')">
+                <button class="cta-button"
+                        onclick="handleClick('@(top?.ButtonLink ?? Url.Action("ProductList", "Products"))')">
                     <span>@(top?.ButtonText ?? "Mua ngay →")</span>
                 </button>
             </div>
         </div>
     </div>
 </section>
-@*Carousel*@
+
+<!-- CAROUSEL T-SHIRT -->
 <div class="container">
     <h1 class="section-title">T-shirt</h1>
-    <div class="carousel-container">
-        <button class="nav-button prev" id="prevBtn">‹</button>
-        <button class="nav-button next" id="nextBtn">›</button>
 
-        <div class="carousel-wrapper" id="carousel">
+    <div class="carousel-container js-carousel tshirt-carousel">
+        <button class="nav-button prev">‹</button>
+        <button class="nav-button next">›</button>
+
+        <div class="carousel-wrapper">
             @if (Model.Products != null && Model.Products.Any())
             {
                 foreach (var p in Model.Products)
                 {
                     <a href="@Url.Action("Details", "Products", new { id = p.ProductID })"
                        class="product-card-link">
-
-                        <div class="card card-main">
+                        <div class="card">
                             <img src="@ResolveImage(p.ImagePro)"
                                  alt="@p.NamePro"
-                                 class="card-image">
+                                 class="card-image" />
                             <div class="card-content">
                                 <h3 class="card-title">@String.Format("{0:N0}₫", p.Price)</h3>
                                 <p class="card-description">@p.NamePro</p>
@@ -81,108 +86,132 @@
             }
             else
             {
-                <div>Không có sản phẩm.</div>
+                <p>Không có sản phẩm.</p>
             }
         </div>
     </div>
 </div>
 
-<!-- video giữa trang -->
-
+<!-- BANNER GIỮA TRANG -->
 <section class="hero-section banner-topp">
     <div class="banner-containerr banner-imgg"
          style="background-image:url('@(mid?.ImageUrl ?? "")')">
         <div class="hero-content">
             <div class="content-wrapper">
-                <h1 class="main-title" style="font-size: 35px; margin-right: 40%; border: 2px solid #000; background: #fff; color: #000; font-weight: bold;">
-                    @(top?.Title ?? "LIGHT THE BAY")
+                <h1 class="main-title"
+                    style="font-size:35px; margin-right:40%; border:2px solid #000; background:#fff; color:#000; font-weight:bold;">
+                    @(mid?.Title ?? "LIGHT THE BAY")
                 </h1>
 
-                <p class="subtitle" style="font-size: 25px; border: 2px solid #000;background: #fff;color: #000;font-weight: bold;">
-                    @(top?.Subtitle ?? "Sẵn sàng tăng tốc cùng bộ sưu tập adidas x Mercedes")
+                <p class="subtitle"
+                   style="font-size:25px; border:2px solid #000; background:#fff; color:#000; font-weight:bold;">
+                    @(mid?.Subtitle ?? "Sẵn sàng tăng tốc cùng bộ sưu tập adidas x Mercedes")
                 </p>
 
-                <button class="cta-button" onclick="handleClick('@(top?.ButtonLink ?? Url.Action("Index", "Products"))')">
-                    <span>@(top?.ButtonText ?? "Mua ngay →")</span>
+                <button class="cta-button"
+                        onclick="handleClick('@(mid?.ButtonLink ?? Url.Action("ProductList", "Products"))')">
+                    <span>@(mid?.ButtonText ?? "Mua ngay →")</span>
                 </button>
             </div>
         </div>
     </div>
 </section>
 
-<template id="adidas-card-template" >
-    <div class="container">
-        <h1 class="section-title"></h1>
-        <div class="carousel-container">
-            <button class="nav-button prev">‹</button>
-            <button class="nav-button next">›</button>
-            <div class="carousel-wrapper"></div>
+@*carousel 1, 2 *@
+@helper RenderCarousel(CarouselViewModel carousel)
+{
+    if (carousel == null || carousel.Items == null || !carousel.Items.Any())
+    {
+        return;
+    }
+
+    <section class="carousel-section">
+        <div class="container">
+            <h1 class="section-title">@carousel.Title</h1>
+
+            <div class="carousel-container js-carousel">
+                <button class="nav-button prev">‹</button>
+                <button class="nav-button next">›</button>
+
+                <div class="carousel-wrapper">
+                    @foreach (var item in carousel.Items)
+                    {
+                        <a href="@item.link" class="product-card-link">
+                            <div class="card">
+                                <img src="@item.img"
+                                     class="card-image"
+                                     style="height:@(item.height ?? "380px"); object-fit:cover;" />
+                                <div class="card-content">
+                                    <h3 class="card-title">@item.price</h3>
+                                    <p class="card-description">@item.desc</p>
+                                    <span class="card-button">Mua ngay</span>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
         </div>
-    </div>
-</template>
+    </section>
+}
 
-<!-- Carousel 1 -->
-<section id="carousel-1 "
-         data-title="ICONIC KITS. TIMELESS LEGACY."
-         data-products='@Html.Raw(JsonConvert.SerializeObject(Model.Carousel1.Items))'>
-</section>
+@* Carousel từ viewmodel *@
+@RenderCarousel(Model.Carousel1)
+@RenderCarousel(Model.Carousel2)
 
-<!-- Carousel 2 -->
-<section id="carousel-2"
-         data-title="WHAT'S HOT."
-         data-products='@Html.Raw(JsonConvert.SerializeObject(Model.Carousel2.Items))'>
-</section>
-
-<!-- Mục lục -->
+<!-- MỤC LỤC PETRONAS -->
 <section class="petronas-section">
     <h1 class="section-title">Adidas x Mercedes-AMG Petronas F1</h1>
 
     <div class="product-grid">
         <div class="product-card" onclick="window.location.href='/Products/Index?gender=&category=2&priceSort='">
-            <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/global_mercedes_motorsport_ss25_launch_catlp_navigation_category_clothing_d_b73075d472.jpg" alt="Quần áo Mercedes-AMG Petronas F1">
+            <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/global_mercedes_motorsport_ss25_launch_catlp_navigation_category_clothing_d_b73075d472.jpg"
+                 alt="Quần áo Mercedes-AMG Petronas F1" />
             <div class="product-label">Quần áo</div>
         </div>
 
         <div class="product-card" onclick="window.location.href='/Products/Index?gender=&category=1&priceSort='">
-            <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/global_mercedes_motorsport_ss25_launch_catlp_navigation_category_footwear_d_28267e531d.jpg" alt="Giày Mercedes-AMG Petronas F1">
+            <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/global_mercedes_motorsport_ss25_launch_catlp_navigation_category_footwear_d_28267e531d.jpg"
+                 alt="Giày Mercedes-AMG Petronas F1" />
             <div class="product-label">Giày</div>
         </div>
 
         <div class="product-card" onclick="window.location.href='/Products/Index'">
-            <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/global_mercedes_motorsport_ss25_launch_catlp_navigation_category_accessories_d_4b82e8d5c6.jpg" alt="Phụ kiện Mercedes-AMG Petronas F1">
+            <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/global_mercedes_motorsport_ss25_launch_catlp_navigation_category_accessories_d_4b82e8d5c6.jpg"
+                 alt="Phụ kiện Mercedes-AMG Petronas F1" />
             <div class="product-label">Phụ kiện</div>
         </div>
 
         <div class="product-card" onclick="window.location.href='/Products/Index'">
-            <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/global_mercedes_motorsport_ss25_launch_catlp_navigation_category_all_motorsport_d_ac41c7cd6c.jpg" alt="Phụ kiện Mercedes-AMG Petronas F1">
+            <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/global_mercedes_motorsport_ss25_launch_catlp_navigation_category_all_motorsport_d_ac41c7cd6c.jpg"
+                 alt="Tất cả các sản phẩm Motorsport" />
             <div class="product-label">Tất cả các sản phẩm Motorsport</div>
         </div>
-
     </div>
 
     <nav class="category-navigation">
         <div class="category-column">
-            <h3 style=" margin-left:12%;">Giày</h3>
+            <h3 style="margin-left:12%;">Giày</h3>
             <ul>
-                <li><a href="../Products/Index?gender=&category=1&priceSort='">giày chạy bộ</a></li>
-                <li><a href="../Products/Index?gender=&category=1&priceSort='">giày đá bóng</a></li>
-                <li><a href="../Products/Index?gender=&category=1&priceSort='">giày bóng rổ</a></li>
-                <li><a href="../Products/Index?gender=&category=1&priceSort='">giày tập gym</a></li>
+                <li><a href="../Products/Index?gender=&category=1&priceSort=">giày chạy bộ</a></li>
+                <li><a href="../Products/Index?gender=&category=1&priceSort=">giày đá bóng</a></li>
+                <li><a href="../Products/Index?gender=&category=1&priceSort=">giày bóng rổ</a></li>
+                <li><a href="../Products/Index?gender=&category=1&priceSort=">giày tập gym</a></li>
             </ul>
         </div>
 
         <div class="category-column">
-            <h3 style=" margin-left:12%;">Quần</h3>
+            <h3 style="margin-left:12%;">Quần</h3>
             <ul>
                 <li><a href="../Products/Index?gender=&category=3&priceSort=">quần chạy bộ</a></li>
                 <li><a href="../Products/Index?gender=&category=3&priceSort=">quần bóng đá</a></li>
                 <li><a href="../Products/Index?gender=&category=3&priceSort=">quần short bóng rổ</a></li>
-                <li><a href="../Products/Index?gender=&category=3&priceSort=">quần dùi tập gym</a></li>
+                <li><a href="../Products/Index?gender=&category=3&priceSort=">quần đùi tập gym</a></li>
             </ul>
         </div>
 
         <div class="category-column">
-            <h3 style=" margin-left:12%;">Áo</h3>
+            <h3 style="margin-left:12%;">Áo</h3>
             <ul>
                 <li><a href="../Products/Index?gender=&category=2&priceSort=">áo singlet chạy bộ</a></li>
                 <li><a href="../Products/Index?gender=&category=2&priceSort=">áo đấu bóng đá</a></li>
@@ -192,7 +221,7 @@
         </div>
 
         <div class="category-column">
-            <h3 style=" margin-left:12%;">Phụ kiện</h3>
+            <h3 style="margin-left:12%;">Phụ kiện</h3>
             <ul>
                 <li><a href="../Products/Index">tất chạy bộ</a></li>
                 <li><a href="../Products/Index">găng tay thủ môn</a></li>
@@ -203,6 +232,4 @@
     </nav>
 </section>
 
-<script src="@Url.Content("~/Scripts/js/ProductList.js")"></script>
-
-
+<script src="~/Scripts/js/ProductList.js"></script>

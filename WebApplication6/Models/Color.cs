@@ -12,20 +12,23 @@ namespace WebApplication6.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Carousel
+    public partial class Color
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Carousel()
+        public Color()
         {
-            this.CarouselItems = new HashSet<CarouselItem>();
+            this.ProductVariants = new HashSet<ProductVariant>();
+            this.ProductImages = new HashSet<ProductImage>();
         }
     
-        public int CarouselID { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public int ColorID { get; set; }
+        public string ColorName { get; set; }
+        public string ColorCode { get; set; }
+        public bool IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CarouselItem> CarouselItems { get; set; }
+        public virtual ICollection<ProductVariant> ProductVariants { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductImage> ProductImages { get; set; }
     }
 }

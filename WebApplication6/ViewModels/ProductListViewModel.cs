@@ -13,11 +13,15 @@ namespace WebApplication6.ViewModels
         public string Category { get; set; }  // có thể là category name hoặc category id (chuỗi)
         public string PriceSort { get; set; }
         // thêm nếu muốn list category để render <select>
+        public string Keyword { get; set; }
         public IEnumerable<Category> AllCategories { get; set; }
 
+        public IEnumerable<CarouselItem> Carousel1Items { get; set; }
+        public IEnumerable<CarouselItem> Carousel2Items { get; set; }
         public CarouselViewModel Carousel1 { get; set; }
         public CarouselViewModel Carousel2 { get; set; }
         //public IEnumerable<WebApplication6.Models.Category> AllCategories { get; set; }
+
     }
 }
 

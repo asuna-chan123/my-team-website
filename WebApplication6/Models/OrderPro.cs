@@ -24,6 +24,8 @@ namespace WebApplication6.Models
         public Nullable<System.DateTime> DateOrder { get; set; }
         public Nullable<int> IDCus { get; set; }
         public string AddressDeliverry { get; set; }
+        public int Status { get; set; }
+        public Nullable<decimal> TotalPrice { get; set; }
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -33,5 +33,10 @@ namespace WebApplication6.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Carousel> Carousels { get; set; }
         public virtual DbSet<CarouselItem> CarouselItems { get; set; }
+        public virtual DbSet<Color> Colors { get; set; }
+        public virtual DbSet<ProductVariant> ProductVariants { get; set; }
+        public virtual DbSet<Size> Sizes { get; set; }
+        public virtual DbSet<ProductImage> ProductImages { get; set; }
+        public virtual DbSet<Banner> Banners { get; set; }
     }
 }

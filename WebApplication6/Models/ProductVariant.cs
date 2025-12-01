@@ -12,15 +12,19 @@ namespace WebApplication6.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDetail
+    public partial class ProductVariant
     {
-        public int ID { get; set; }
-        public Nullable<int> IDProduct { get; set; }
-        public Nullable<int> IDOrder { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<double> UnitPrice { get; set; }
+        public int VariantID { get; set; }
+        public int ProductID { get; set; }
+        public Nullable<int> ColorID { get; set; }
+        public Nullable<int> SizeID { get; set; }
+        public Nullable<decimal> Price { get; set; }
+        public int StockQty { get; set; }
+        public string ImagePro { get; set; }
+        public bool IsDeleted { get; set; }
     
-        public virtual OrderPro OrderPro { get; set; }
+        public virtual Color Color { get; set; }
         public virtual Product Product { get; set; }
+        public virtual Size Size { get; set; }
     }
 }

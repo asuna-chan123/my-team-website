@@ -26,6 +26,9 @@ namespace WebApplication6.Models
         public string EmailCus { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public Nullable<System.DateTime> Birthday { get; set; }
+        public string Gender { get; set; }
+        public bool IsLocked { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderPro> OrderProes { get; set; }

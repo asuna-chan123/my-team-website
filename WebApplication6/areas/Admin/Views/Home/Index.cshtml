@@ -49,21 +49,18 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
 
-        // ===== LẤY DATA TỪ SERVER (ViewBag) =====
+        // data từ server
         const orderLabels  = @Html.Raw(JsonConvert.SerializeObject(ViewBag.OrderLabels ?? new List<string>()));
         const orderCounts  = @Html.Raw(JsonConvert.SerializeObject(ViewBag.OrderCounts ?? new List<int>()));
         const statusLabels = @Html.Raw(JsonConvert.SerializeObject(ViewBag.StatusLabels ?? new List<string>()));
         const statusCounts = @Html.Raw(JsonConvert.SerializeObject(ViewBag.StatusCounts ?? new List<int>()));
 
-        // Bạn có thể mở F12 xem thử:
         console.log("orderLabels", orderLabels);
         console.log("orderCounts", orderCounts);
         console.log("statusLabels", statusLabels);
         console.log("statusCounts", statusCounts);
 
-        // =======================
-        // 1. BIỂU ĐỒ CỘT (STEP LINE) – SỐ ĐƠN THEO NGÀY
-        // =======================
+        //  BIỂU ĐỒ CỘT 
         const ordersData = {
             labels: orderLabels,
             datasets: [{
@@ -110,7 +107,6 @@
             ordersConfig
         );
 
-        // Nếu muốn đổi kiểu stepped bằng JS:
         const stepActions = [
             {
                 name: 'Step: false',
@@ -127,11 +123,9 @@
                 }
             }
         ];
-        // (nếu muốn có nút đổi step thì có thể render thêm nút giống đoạn trước mình gửi)
 
-        // =======================
-        // 2. BIỂU ĐỒ TRÒN – % TRẠNG THÁI ĐƠN
-        // =======================
+
+        //BIỂU ĐỒ TRÒN
 
         function colorize(opaque, hover, ctx) {
             const v = ctx.parsed; // giá trị
@@ -146,7 +140,6 @@
 
             if (opaque) return c;
 
-            // convert hex -> rgba
             const m = c.replace('#', '');
             const r = parseInt(m.substring(0, 2), 16);
             const g = parseInt(m.substring(2, 4), 16);
@@ -220,13 +213,5 @@
             }
         ];
 
-        //const actionsContainer = document.getElementById("statusActions");
-        //statusActions.forEach(act => {
-        //    const btn = document.createElement("button");
-        //    btn.textContent = act.name;
-        //    btn.className = "px-3 py-1 mr-2 border border-gray-300 rounded text-sm";
-        //    btn.addEventListener("click", () => act.handler(statusChart));
-        //    actionsContainer.appendChild(btn);
-        //});
     });
 </script>

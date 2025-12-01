@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using WebApplication6.Models;   // <-- namespace models của bạn
+using WebApplication6.Models;   
 
 namespace WebApplication6.Areas.Admin.Controllers
 {
@@ -10,7 +10,6 @@ namespace WebApplication6.Areas.Admin.Controllers
     {
         private DBSportStoreEntities db = new DBSportStoreEntities();
 
-        // GET: Admin/Category
         public ActionResult Index(string search)
         {
             // Lấy query gốc
@@ -27,16 +26,14 @@ namespace WebApplication6.Areas.Admin.Controllers
             // Để hiển thị lại trên ô search
             ViewBag.Search = search;
 
-            return View(list);   // -> Areas/Admin/Views/Category/Index.cshtml
+            return View(list);   
         }
 
-        // GET: Admin/Category/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Category/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Category category)
@@ -47,7 +44,7 @@ namespace WebApplication6.Areas.Admin.Controllers
             // chuẩn hóa tên
             var name = (category.NameCate ?? "").Trim();
 
-            // check trùng tên (không phân biệt hoa thường, kể cả cái đã IsDeleted)
+            // check trùng tên 
             bool exists = db.Categories.Any(c =>
                 c.NameCate.ToLower() == name.ToLower()
             );
@@ -65,16 +62,13 @@ namespace WebApplication6.Areas.Admin.Controllers
             }
 
             category.NameCate = name;
-            category.IsDeleted = false; // đảm bảo danh mục mới là đang active
+            category.IsDeleted = false; //danh mục mới là đang active
             db.Categories.Add(category);
             db.SaveChanges();
 
             return RedirectToAction("Index");
         }
 
-
-
-        // GET: Admin/Category/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,7 +81,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(category);
         }
 
-        // POST: Admin/Category/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Category category)
@@ -97,7 +90,7 @@ namespace WebApplication6.Areas.Admin.Controllers
 
             var name = (category.NameCate ?? "").Trim();
 
-            // check trùng với *danh mục khác*
+            // check trùng danh mục khác
             bool nameExists = db.Categories.Any(c =>
                 c.IDCate != category.IDCate &&       // bỏ qua chính nó
                 c.NameCate.ToLower() == name.ToLower()
@@ -124,9 +117,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-        // GET: Admin/Category/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -139,8 +129,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(category);
         }
 
-
-        // GET: Admin/Category/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -152,7 +140,7 @@ namespace WebApplication6.Areas.Admin.Controllers
 
             return View(category);
         }
-        // POST: Admin/Category/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

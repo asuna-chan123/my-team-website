@@ -11,7 +11,6 @@ namespace WebApplication6.Areas.Admin.Controllers
     {
         private DBSportStoreEntities db = new DBSportStoreEntities();
 
-        // GET: Admin/Banner
         public ActionResult Index(string search)
         {
             var query = db.Banners.AsQueryable();
@@ -33,8 +32,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             ViewBag.Search = search;
             return View(list);
         }
-
-        // GET: Admin/Banner/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -45,7 +42,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(banner);
         }
 
-        // GET: Admin/Banner/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -56,7 +52,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(banner);
         }
 
-        // POST: Admin/Banner/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Banner banner)
@@ -65,7 +60,7 @@ namespace WebApplication6.Areas.Admin.Controllers
             banner.Code = (banner.Code ?? "").Trim();
             banner.Title = (banner.Title ?? "").Trim();
 
-            // validate cơ bản
+            // validate 
             if (string.IsNullOrWhiteSpace(banner.Code))
                 ModelState.AddModelError("Code", "Vui lòng nhập mã code.");
 

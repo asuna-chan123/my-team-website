@@ -20,7 +20,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return RedirectToAction("Login", "Auth", new { area = "Admin" });
         }
 
-        // GET: Admin/AdminUser
         public ActionResult Index()
         {
             if (!IsLoggedIn()) return RequireLogin();
@@ -29,7 +28,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(list);
         }
 
-        // GET: Admin/AdminUser/Details/5
         public ActionResult Details(int? id)
         {
             if (!IsLoggedIn()) return RequireLogin();
@@ -43,14 +41,12 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(user);
         }
 
-        // GET: Admin/AdminUser/Create
         public ActionResult Create()
         {
             if (!IsLoggedIn()) return RequireLogin();
             return View();
         }
 
-        // POST: Admin/AdminUser/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserName,RoleUser,PasswordUser")] AdminUser user)
@@ -66,7 +62,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(user);
         }
 
-        // GET: Admin/AdminUser/Edit/5
         public ActionResult Edit(int? id)
         {
             if (!IsLoggedIn()) return RequireLogin();
@@ -80,7 +75,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(user);
         }
 
-        // POST: Admin/AdminUser/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,UserName,RoleUser,PasswordUser")] AdminUser user)
@@ -96,7 +90,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(user);
         }
 
-        // GET: Admin/AdminUser/Delete/5
         public ActionResult Delete(int? id)
         {
             if (!IsLoggedIn()) return RequireLogin();
@@ -110,7 +103,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(user);
         }
 
-        // POST: Admin/AdminUser/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

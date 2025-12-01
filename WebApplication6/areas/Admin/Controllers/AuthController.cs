@@ -8,13 +8,11 @@ namespace WebApplication6.Areas.Admin.Controllers
     {
         private DBSportStoreEntities db = new DBSportStoreEntities();
 
-        // GET: Admin/Auth/Login
         public ActionResult Login()
         {
             return View();
         }
 
-        // POST: Admin/Auth/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(string username, string password)
@@ -25,7 +23,6 @@ namespace WebApplication6.Areas.Admin.Controllers
                 return View();
             }
 
-            // kiểm tra trong bảng AdminUser
             var user = db.AdminUsers
                          .FirstOrDefault(u => u.UserName == username && u.PasswordUser == password);
 
@@ -35,16 +32,13 @@ namespace WebApplication6.Areas.Admin.Controllers
                 return View();
             }
 
-            // Lưu vào session
             Session["AdminUser"] = user;
             Session["AdminUserName"] = user.UserName;
             Session["AdminRole"] = user.RoleUser;
 
-            // chuyển tới trang admin home
             return RedirectToAction("Index", "Home", new { area = "Admin" });
         }
 
-        // GET: Admin/Auth/Logout
         public ActionResult Logout()
         {
             Session["AdminUser"] = null;

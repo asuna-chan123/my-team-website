@@ -11,7 +11,6 @@ namespace WebApplication6.Areas.Admin.Controllers
     {
         private DBSportStoreEntities db = new DBSportStoreEntities();
 
-        // GET: Admin/Customer
         public ActionResult Index(string search)
         {
             var customers = db.Customers.AsQueryable();
@@ -30,7 +29,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(customers.OrderBy(c => c.IDCus).ToList());
         }
 
-        // GET: Admin/Customer/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -40,20 +38,15 @@ namespace WebApplication6.Areas.Admin.Controllers
 
             return View(customer);
         }
-
-        // GET: Admin/Customer/Create
-        // GET: Admin/Customer/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Customer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Customer customer)
         {
-            // ----- VALIDATE CƠ BẢN -----
             if (string.IsNullOrWhiteSpace(customer.NameCus))
                 ModelState.AddModelError("NameCus", "Vui lòng nhập tên khách hàng.");
 
@@ -66,7 +59,7 @@ namespace WebApplication6.Areas.Admin.Controllers
                 ModelState.AddModelError("EmailCus", "Email không hợp lệ.");
             }
 
-            // ----- CHECK TRÙNG DỮ LIỆU -----
+            // KT trùng
             // SĐT
             if (!string.IsNullOrWhiteSpace(customer.PhoneCus))
             {
@@ -76,7 +69,7 @@ namespace WebApplication6.Areas.Admin.Controllers
                     ModelState.AddModelError("PhoneCus", "Số điện thoại này đã tồn tại.");
             }
 
-            // Email (nếu có nhập)
+            // Email 
             if (!string.IsNullOrWhiteSpace(customer.EmailCus))
             {
                 bool emailExists = db.Customers
@@ -85,7 +78,7 @@ namespace WebApplication6.Areas.Admin.Controllers
                     ModelState.AddModelError("EmailCus", "Email này đã được sử dụng.");
             }
 
-            // UserName (nếu có nhập)
+            // UserName 
             if (!string.IsNullOrWhiteSpace(customer.UserName))
             {
                 bool userExists = db.Customers
@@ -94,13 +87,13 @@ namespace WebApplication6.Areas.Admin.Controllers
                     ModelState.AddModelError("UserName", "Tên tài khoản đã tồn tại.");
             }
 
-            // Nếu có lỗi => quay lại view
+            // quay lại view nếu lỗi
             if (!ModelState.IsValid)
             {
                 return View(customer);
             }
 
-            // ----- LƯU KHÁCH HÀNG -----
+            // Lưu vào DB
             customer.IsLocked = customer.IsLocked; // giữ nguyên checkbox
             db.Customers.Add(customer);
             db.SaveChanges();
@@ -108,9 +101,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-
-        // GET: Admin/Customer/Edit/5
-        // GET: Admin/Customer/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -121,12 +111,11 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(customer);
         }
 
-        // POST: Admin/Customer/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Customer customer)
         {
-            // --------- VALIDATE CƠ BẢN ---------
+
             if (string.IsNullOrWhiteSpace(customer.NameCus))
                 ModelState.AddModelError("NameCus", "Vui lòng nhập tên khách hàng.");
 
@@ -139,7 +128,6 @@ namespace WebApplication6.Areas.Admin.Controllers
                 ModelState.AddModelError("EmailCus", "Email không hợp lệ.");
             }
 
-            // --------- CHECK TRÙNG (BỎ QUA CHÍNH NÓ) ----------
             // SĐT
             if (!string.IsNullOrWhiteSpace(customer.PhoneCus))
             {
@@ -176,7 +164,6 @@ namespace WebApplication6.Areas.Admin.Controllers
                 return View(customer);
             }
 
-            // --------- UPDATE DB ----------
             var dbCustomer = db.Customers.Find(customer.IDCus);
             if (dbCustomer == null) return HttpNotFound();
 

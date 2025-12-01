@@ -10,7 +10,6 @@ namespace WebApplication6.Areas.Admin.Controllers
     {
         private readonly DBSportStoreEntities db = new DBSportStoreEntities();
 
-        // GET: Admin/Color
         public ActionResult Index(string search)
         {
             var query = db.Colors.AsQueryable();
@@ -32,7 +31,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(list);
         }
 
-        // GET: Admin/Color/Create
         public ActionResult Create()
         {
             var model = new Color
@@ -42,7 +40,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(model);
         }
 
-        // POST: Admin/Color/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Color color)
@@ -69,7 +66,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Admin/Color/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -80,12 +76,10 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(color);
         }
 
-        // POST: Admin/Color/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Color color)
         {
-            // kiểm tra trùng nhưng bỏ qua bản ghi hiện tại
             if (db.Colors.Any(c =>
                     c.ColorID != color.ColorID &&
                     !c.IsDeleted &&
@@ -113,13 +107,11 @@ namespace WebApplication6.Areas.Admin.Controllers
 
             dbColor.ColorName = color.ColorName;
             dbColor.ColorCode = color.ColorCode;
-            // IsDeleted chỉnh ở action Delete/Restore
 
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        // GET: Admin/Color/Delete/5  (xóa / khôi phục mềm)
         public ActionResult Delete(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -130,7 +122,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(color);
         }
 
-        // POST: Admin/Color/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -138,7 +129,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             var color = db.Colors.Find(id);
             if (color == null) return HttpNotFound();
 
-            // toggle IsDeleted
             color.IsDeleted = !color.IsDeleted;
             db.SaveChanges();
 

@@ -9,7 +9,6 @@ namespace WebApplication6.Areas.Admin.Controllers
     {
         private readonly DBSportStoreEntities db = new DBSportStoreEntities();
 
-        // GET: Admin/Size
         public ActionResult Index(string search)
         {
             var query = db.Sizes.AsQueryable();
@@ -20,7 +19,6 @@ namespace WebApplication6.Areas.Admin.Controllers
                 query = query.Where(s => s.SizeName.Contains(search));
             }
 
-            // Sắp xếp: đang dùng trước, sau đó theo SizeID (bé -> lớn)
             var list = query
                 .OrderBy(s => s.IsDeleted)
                 .ThenBy(s => s.SizeID)
@@ -30,20 +28,16 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(list);
         }
 
-
-        // GET: Admin/Size/Create
         public ActionResult Create()
         {
             var model = new Size { IsDeleted = false };
             return View(model);
         }
 
-        // POST: Admin/Size/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Size size)
         {
-            // chuẩn hóa tên size
             var name = (size.SizeName ?? "").Trim();
 
             // kiểm tra trùng (kể cả size đã IsDeleted = true)
@@ -65,8 +59,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-
-        // GET: Admin/Size/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -77,14 +69,12 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(size);
         }
 
-        // POST: Admin/Size/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Size size)
         {
             var name = (size.SizeName ?? "").Trim();
 
-            // kiểm tra trùng, bỏ qua chính nó
             bool exists = db.Sizes.Any(s =>
                 s.SizeID != size.SizeID &&
                 s.SizeName == name);
@@ -107,8 +97,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-
-        // GET: Admin/Size/Delete/5  (ẩn / khôi phục mềm)
         public ActionResult Delete(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -119,7 +107,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(size);
         }
 
-        // POST: Admin/Size/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -12,17 +12,14 @@ namespace WebApplication6.Areas.Admin.Controllers
     {
         private DBSportStoreEntities db = new DBSportStoreEntities();
 
-        // GET: Admin/Product
-
         [HttpGet]
         public ActionResult Index(string search)
         {
-            // ✅ Nếu bạn muốn HIỂN THỊ CẢ sản phẩm đã xóa (để gạch ngang)
-            // thì bỏ Where(p => !p.IsDeleted) đi
+
             var products = db.Products
                              .Include(p => p.Category);
+                               //.Where(p => !p.IsDeleted);
 
-            // Nếu có từ khoá search thì lọc theo NamePro
             if (!string.IsNullOrWhiteSpace(search))
             {
                 string keyword = search.Trim();
@@ -31,12 +28,11 @@ namespace WebApplication6.Areas.Admin.Controllers
 
             products = products.OrderBy(p => p.ProductID);
 
-            ViewBag.Search = search; // để đổ lại vào ô input
+            ViewBag.Search = search; 
 
             return View(products.ToList());
         }
 
-        // GET: Admin/Product/Details/5
         public ActionResult Details(int id)
         {
             var product = db.Products
@@ -48,7 +44,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(product);
         }
 
-        // ========= CREATE GET =========
         public ActionResult Create()
         {
             var vm = new ProductFormViewModel();
@@ -57,8 +52,8 @@ namespace WebApplication6.Areas.Admin.Controllers
             for (int i = 0; i < 10; i++)
             {
                 var v = new ProductVariantViewModel();
-                v.SizeStocks.Add(new VariantSizeStockViewModel()); // 1 cặp size/stock trống
-                v.ImageUrls.Add("");                               // 1 ô url trống
+                v.SizeStocks.Add(new VariantSizeStockViewModel());
+                v.ImageUrls.Add("");                              
                 vm.Variants.Add(v);
             }
 
@@ -105,7 +100,6 @@ namespace WebApplication6.Areas.Admin.Controllers
                     .Where(u => !string.IsNullOrWhiteSpace(u))
                     .ToList();
 
-                // insert ProductImage theo màu
                 int sortOrder = 1;
                 foreach (var url in validUrls)
                 {
@@ -123,11 +117,10 @@ namespace WebApplication6.Areas.Admin.Controllers
                     firstProductImage = validUrls.First();
                 }
 
-                // mỗi SizeStocks => 1 ProductVariant
                 foreach (var ss in v.SizeStocks ?? new List<VariantSizeStockViewModel>())
                 {
                     if (!ss.SizeID.HasValue || ss.SizeID.Value == 0) continue;
-                    // nếu muốn: bỏ qua dòng hoàn toàn rỗng
+
                     if (ss.StockQty <= 0 && !v.Price.HasValue) continue;
 
                     var variant = new ProductVariant
@@ -154,11 +147,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-
-        // ========= END CREATE =========
-
-        // GET: Admin/Product/Edit/5
-        // Admin/ProductController.cs
         public ActionResult Edit(int id)
         {
             var product = db.Products
@@ -173,7 +161,6 @@ namespace WebApplication6.Areas.Admin.Controllers
                 Product = product
             };
 
-            // dropdown
             var categories = db.Categories.Where(c => !c.IsDeleted).ToList();
             ViewBag.CategoryList = new SelectList(categories, "IDCate", "NameCate", product.CateID);
 
@@ -182,7 +169,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             vm.ColorList = new SelectList(colors, "ColorID", "ColorName");
             vm.SizeList = new SelectList(sizes, "SizeID", "SizeName");
 
-            // gom các ProductVariant theo ColorID + Price
             var groups = product.ProductVariants
                 .Where(v => !v.IsDeleted)
                 .GroupBy(v => new { v.ColorID, v.Price });
@@ -256,7 +242,7 @@ namespace WebApplication6.Areas.Admin.Controllers
             // update thông tin chung
             db.Entry(productDb).CurrentValues.SetValues(model.Product);
 
-            // xoá hết biến thể & ảnh cũ
+            // xoá hết biến thể, ảnh cũ
             db.ProductVariants.RemoveRange(productDb.ProductVariants.ToList());
             db.ProductImages.RemoveRange(productDb.ProductImages.ToList());
 
@@ -286,7 +272,7 @@ namespace WebApplication6.Areas.Admin.Controllers
                 if (firstProductImage == null && validUrls.Any())
                     firstProductImage = validUrls.First();
 
-                // mỗi SizeStocks => 1 ProductVariant
+                // mỗi SizeStocks 1 ProductVariant
                 foreach (var ss in v.SizeStocks ?? new List<VariantSizeStockViewModel>())
                 {
                     if (!ss.SizeID.HasValue || ss.SizeID.Value == 0) continue;
@@ -314,9 +300,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-        // GET: Admin/Product/Delete/5
         public ActionResult Delete(int id)
         {
             var product = db.Products
@@ -328,7 +311,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(product);
         }
 
-        // POST: Admin/Product/Delete/5 (xóa mềm)
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int ProductID)

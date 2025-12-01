@@ -23,9 +23,7 @@ namespace WebApplication6.ViewModels
         public List<VariantSizeStockViewModel> SizeStocks { get; set; }
     = new List<VariantSizeStockViewModel>();
 
-        // DANH SÁCH URL ẢNH CHO MỖI BIẾN THỂ
         public List<string> ImageUrls { get; set; } = new List<string>();
-        // URL ảnh theo biến thể
         public string ImageUrl { get; set; }
     }
 }

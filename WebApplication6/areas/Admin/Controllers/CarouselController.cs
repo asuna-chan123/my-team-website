@@ -10,7 +10,6 @@ namespace WebApplication6.Areas.Admin.Controllers
     {
         private DBSportStoreEntities db = new DBSportStoreEntities();
 
-        // GET: Admin/Carousel
         public ActionResult Index()
         {
             // có thể đếm luôn số item trong từng carousel
@@ -22,7 +21,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(list);
         }
 
-        // GET: Admin/Carousel/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -36,7 +34,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(carousel);
         }
 
-        // GET: Admin/Carousel/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -47,7 +44,6 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(carousel);
         }
 
-        // POST: Admin/Carousel/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CarouselID,Code,Name,IsActive")] Carousel carousel)
@@ -61,6 +57,5 @@ namespace WebApplication6.Areas.Admin.Controllers
             return View(carousel);
         }
 
-        // nếu muốn sau này thêm Create / Delete thì mình bổ sung sau
     }
 }

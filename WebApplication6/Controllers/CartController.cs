@@ -20,55 +20,38 @@ namespace WebApplication6.Controllers
             return new CartService(Session);
         }
 
-        // LATER FIX: [GET] Thêm vào giỏ hàng (Mặc định) - Cập nhật: Truyền tham số mặc định cho color/size
-        [HttpGet]
-        public ActionResult AddToCart(int id, int quantity = 1)
-        {
-            var product = dbStore.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
 
-            var cartService = GetCartService();
-            cartService.GetCart().AddItem(
-                product.ProductID,
-                product.ImagePro,
-                product.NamePro,
-                product.Price ?? 0,
-                quantity,
-                product.Category.NameCate,
-                "", "" // Default color/size
-            );
 
-            return RedirectToAction("Index");
-        }
-
-        // LATER FIX: [POST] Thêm vào giỏ hàng từ trang chi tiết (Nhận Color, Size, Quantity từ form)
+        // Lấy thông tin sản phẩm (ProductVariant)  ProductID, Màu, Size
         [HttpPost]
         public ActionResult AddToCart(int ProductID, string Color, string Size, int Quantity)
         {
+            // Kiểm tra sản phẩm có tồn tại không
             var product = dbStore.Products.Find(ProductID);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-
-            var cartService = GetCartService();
-            cartService.GetCart().AddItem(
-                product.ProductID,
-                product.ImagePro,
+            if (product == null) return HttpNotFound();
+            // Lấy thông tin variant dựa trên ProductID, Màu, Size
+            var variant = dbStore.ProductVariants.FirstOrDefault(v =>
+                v.ProductID == ProductID &&
+                v.Color.ColorName == Color &&
+                v.Size.SizeName == Size &&
+                !v.IsDeleted);
+            // Thêm sản phẩm vào giỏ hàng
+            // Ưu tiên ảnh và số lượng từ variant, nếu không có thì lấy từ product
+            GetCartService().GetCart().AddItem(
+                ProductID,
+                variant?.ImagePro ?? product.ImagePro,
                 product.NamePro,
                 product.Price ?? 0,
                 Quantity,
                 product.Category.NameCate,
                 Color,
-                Size
+                Size,
+                variant?.StockQty ?? 0
             );
 
             return RedirectToAction("Index");
         }
-
+        //xóa sản phẩm khỏi giỏ hàng
         [HttpGet]
         public ActionResult RemoveFromCart(int id)
         {
@@ -99,10 +82,8 @@ namespace WebApplication6.Controllers
         public ActionResult Index()
         {
             var cart = GetCartService().GetCart();
-            
-            // Populate Featured Products (Top 8)
             cart.FeaturedProducts = dbStore.Products.OrderByDescending(p => p.Price).Take(8).ToList();
-            
+
             return View(cart);
         }
 

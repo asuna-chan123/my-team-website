@@ -1,4 +1,4 @@
-﻿@model WebApplication6.Models.Product
+@model WebApplication6.Models.Product
 @using System.Collections.Generic
 @using System.Linq
 
@@ -27,14 +27,12 @@
     {
         defaultColor = (int)ViewBag.DefaultColor;
     }
-
     else if (imagesByColor.Keys.Any())
     {
         defaultColor = imagesByColor.Keys.First();
     }
 
-
-    // Lấy ảnh đầu tiên làm ảnh chính
+    // Hàm xử lý đường dẫn ảnh
     string GetImagePath(string file)
     {
         if (string.IsNullOrEmpty(file))
@@ -46,21 +44,20 @@
         return Url.Content("~/Content/images/" + file);
     }
 
-    string mainImage = imagesByColor.ContainsKey(defaultColor)
-        ? GetImagePath(imagesByColor[defaultColor].FirstOrDefault())
-        : Url.Content("~/Content/images/no-image.png");
+    // Ảnh chính
+    string firstImageRaw = imagesByColor.ContainsKey(defaultColor)
+        ? imagesByColor[defaultColor].FirstOrDefault()
+        : null;
+    string firstImage = GetImagePath(firstImageRaw);
 
+    // Tên màu
     var colorNames = ViewBag.ColorNames as Dictionary<int, string>
-                 ?? new Dictionary<int, string>();
+                     ?? new Dictionary<int, string>();
 }
 
-<!DOCTYPE html>
-<html lang="vi">
-
-    <!--Chi tiết sản phẩm-->
-    <!--CSS -->
-    <link rel="stylesheet" href="@Url.Content("~/Content/css/Product-detail-Tshirt.css")" />
-    <link rel="stylesheet" href="~/Content/css/fonts-reset.css">
+<!--Chi tiết sản phẩm-->
+<link rel="stylesheet" href="@Url.Content("~/Content/css/Product-detail-Tshirt.css")" />
+<link rel="stylesheet" href="~/Content/css/fonts-reset.css">
 
 <style>
     .disabled-btn {
@@ -69,18 +66,65 @@
         opacity: 0.7;
     }
 
-        .disabled-btn span {
-            opacity: 0.6;
-        }
+    .disabled-btn span {
+        opacity: 0.6;
+    }
 
     .qty-btn-disabled {
         opacity: 0.4;
         cursor: not-allowed !important;
-        pointer-events: none; /* không thể click */
+        pointer-events: none;
     }
 
-</style>
+    .product-description-wrapper {
+        margin-top: 40px;
+        padding-top: 32px;
+        border-top: 1px solid #e5e5e5;
+    }
 
+    .product-description-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+
+    .product-description-label {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .product-description-toggle {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        padding: 4px 0;
+        font-size: 18px;
+        line-height: 1;
+        transform: rotate(0deg);
+        transition: transform 0.2s ease;
+    }
+
+    .product-description-toggle.collapsed {
+        transform: rotate(180deg);
+    }
+
+    .product-description-body {
+        margin-top: 32px;
+        max-width: 720px;
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .product-description-body h1,
+    .product-description-body h2 {
+        font-size: 28px;
+        line-height: 1.2;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+    }
+</style>
 
 <div class="container" style="margin-top:5%;">
     <nav class="breadcrumb">
@@ -100,20 +144,11 @@
         <span>@Model.NamePro</span>
     </nav>
 
-
-
     <div class="product-section">
+        <!-- CỘT TRÁI: HÌNH & MÔ TẢ -->
         <div class="image-gallery">
-
-
             <!-- ẢNH CHÍNH -->
             <div class="main-image">
-                @{
-                    // lấy ảnh đầu tiên của màu mặc định
-                    var firstImage = imagesByColor.ContainsKey(defaultColor)
-                        ? imagesByColor[defaultColor].FirstOrDefault()
-                        : Url.Content("~/Content/images/no-image.png");
-                }
                 <img id="mainImage"
                      src="@firstImage"
                      alt="@Model.NamePro"
@@ -143,8 +178,26 @@
                 <button id="thumbNext" class="thumb-nav">›</button>
             </div>
 
+            <!-- MÔ TẢ SẢN PHẨM -->
+            @if (!string.IsNullOrWhiteSpace(Model.DecriptionPro))
+            {
+                <section id="productDescription" class="product-description-wrapper">
+                    <div class="product-description-header" onclick="toggleDescription()">
+                        <span class="product-description-label" style="font-size:30px;">Mô tả</span>
+                    </div>
+
+                    <div id="productDescriptionBody" class="product-description-body">
+                        @Html.Raw(
+                            (Model.DecriptionPro ?? "")
+                                .Replace("\r\n", "<br />")
+                                .Replace("\n", "<br />")
+                        )
+                    </div>
+                </section>
+            }
         </div>
 
+        <!-- CỘT PHẢI: THÔNG TIN & NÚT -->
         <div class="product-info">
             <div class="product-header">
                 <div class="product-category">@categoryName</div>
@@ -154,18 +207,9 @@
                      data-price="@(Model.Price ?? 0)">
                     @((Model.Price ?? 0).ToString("N0"))₫
                 </div>
-                <div class="rating">
-                    @*<div class="stars">
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                </div>*@
-                    @*<span>1257</span>*@
-                </div>
             </div>
 
+            <!-- MÀU SẮC -->
             <div class="color-section">
                 <div class="section-label">Màu sắc</div>
 
@@ -176,14 +220,13 @@
                         var file = kv.Value.FirstOrDefault();
                         var thumb = GetImagePath(file);
 
-                        // tên màu từ dictionary
                         var colorLabel = colorNames.ContainsKey(color)
                             ? colorNames[color]
                             : $"Màu {color}";
 
                         <div class="color-option"
                              data-color="@color"
-                             data-name="@colorLabel" @* 👈 lưu luôn ColorName ở đây *@
+                             data-name="@colorLabel"
                              style="cursor:pointer;text-align:center;">
 
                             <img src="@thumb"
@@ -206,7 +249,7 @@
                 </div>
             </div>
 
-
+            <!-- SIZE -->
             <div class="size-section">
                 <div class="size-header">
                     <div class="section-label">Kích cỡ</div>
@@ -219,34 +262,33 @@
                 </div>
                 <div class="stock-info">
                     <span>ℹ️</span>
-
                     <span id="stockText">Đang kiểm tra tồn kho...</span>
                 </div>
             </div>
 
-
+            <!-- NÚT THÊM GIỎ HÀNG (MỞ POPUP) -->
             <div class="action-buttons">
-                <button class="btn-primary " style="height:60px;">
+                <button class="btn-primary" style="height:60px;">
                     <span>🛒</span>
                     THÊM VÀO GIỎ HÀNG
                 </button>
             </div>
-
         </div>
     </div>
+
     <!-- POPUP GIỎ HÀNG -->
     <div id="cartPopup" class="fixed inset-0 hidden items-center justify-center bg-black/50 z-[9999]">
-        @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { id = "orderForm" }))// sửa
+        @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { id = "orderForm" }))
         {
-            <!-- CÁC INPUT ẨN GỬI SANG TRANG ĐẶT HÀNG -->
+            <!-- HIDDEN GỬI SANG SERVER -->
             <input type="hidden" name="ProductID" value="@Model.ProductID" />
-            <input type="hidden" name="ImagePro" id="hfImagePro" value="@Model.ImagePro" /> <!-- fix -->
-            <input type="hidden" name="Color" id="hfColor" value="" />
-            <input type="hidden" name="Size" id="hfSize" value="" />
+            <input type="hidden" name="ImagePro" id="hfImagePro" value="@firstImage" />
+            <input type="hidden" name="Color" id="hfColor" />
+            <input type="hidden" name="Size" id="hfSize" />
             <input type="hidden" name="Quantity" id="hfQty" value="1" />
 
             <div class="mx-4 bg-white w-full max-w-5xl rounded-lg shadow-2xl relative">
-                <!-- tắt x -->
+                <!-- nút đóng -->
                 <button type="button" class="absolute -right-3 -top-3 bg-white border rounded-md w-10 h-10 flex items-center justify-center text-2xl"
                         aria-label="Đóng" onclick="closeCartPopup()">
                     ✕
@@ -254,18 +296,27 @@
 
                 <div class="p-6">
                     <div class="grid grid-cols-12 gap-6">
-                        <!-- trái -->
+                        <!-- TRÁI -->
                         <div class="col-span-12 md:col-span-6 flex gap-6">
-                            <img id="popupImage" src="" alt="Product"
+                            <img id="popupImage" src="@firstImage" alt="Product"
                                  class="w-40 h-40 object-cover rounded-md bg-gray-100 border" />
                             <div class="min-w-0">
                                 <h3 id="popupName" class="text-lg font-bold uppercase leading-tight">
+                                    @Model.NamePro
                                 </h3>
-                                <div id="popupUnitPrice" class="font-semibold mt-1"> </div>
+                                <div id="popupUnitPrice" class="font-semibold mt-1">
+                                    @((Model.Price ?? 0).ToString("N0"))₫
+                                </div>
 
                                 <ul class="mt-3 text-sm leading-6 space-y-1 list-none p-0 m-0">
-                                    <li><span class="text-gray-500">Colour:</span> <span id="popupColor"></span></li>
-                                    <li><span class="text-gray-500">Kích cỡ:</span> <span id="popupSize"></span></li>
+                                    <li>
+                                        <span class="text-gray-500">Colour:</span>
+                                        <span id="popupColor"></span>
+                                    </li>
+                                    <li>
+                                        <span class="text-gray-500">Kích cỡ:</span>
+                                        <span id="popupSize"></span>
+                                    </li>
                                     <li class="flex flex-wrap items-center gap-3 mt-3">
                                         <span class="text-gray-500 text-sm">Số lượng:</span>
                                         <div class="flex flex-col">
@@ -285,13 +336,11 @@
                                                 </button>
                                             </div>
 
-                                            <!-- chỗ hiện thông báo -->
                                             <span id="qtyWarning"
                                                   class="mt-1 text-xs text-red-500 hidden">
                                             </span>
                                         </div>
                                     </li>
-
                                 </ul>
                             </div>
                         </div>
@@ -300,7 +349,7 @@
                             <div class="w-px h-full bg-gray-200 mx-auto"></div>
                         </div>
 
-                        <!-- bên phải -->
+                        <!-- PHẢI -->
                         <div class="col-span-12 md:col-span-5">
                             <h4 class="font-bold mb-2">GIỎ HÀNG CỦA BẠN</h4>
 
@@ -328,7 +377,6 @@
                             </div>
                             <div class="text-xs text-gray-500 mt-1">(Đã bao gồm thuế)</div>
 
-                            <!-- nút này sẽ gọi JS để set hidden rồi submit form -->
                             <button type="button" onclick="confirmAddToCart()"
                                     class="mt-3 w-full border border-gray-900 py-3 rounded-md font-semibold tracking-wide">
                                 THÊM VÀO GIỎ HÀNG
@@ -339,7 +387,10 @@
             </div>
         }
     </div>
-    <script>
+</div>
+
+<!-- Xuất dữ liệu sang JS -->
+<script>
     window.imagesByColor = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(
         ViewBag.ImagesByColor ?? new Dictionary<int, List<string>>()
     ));
@@ -350,20 +401,13 @@
         ViewBag.ColorNames ?? new Dictionary<int, string>()
     ));
 
-    // 🔹 STOCK THEO MÀU + SIZE
     window.variantStocks = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(
         ViewBag.VariantStocks ?? new object[0]
     ));
-    </script>
+</script>
 
+<!-- jQuery (nếu Details.js dùng jQuery) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-
-
-
-    <!-- Load jQuery nếu cần (nếu bạn không dùng jQuery thì bỏ) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <!-- Load file JS riêng (defer để chạy sau khi DOM sẵn sàng) -->
-    <script src="@Url.Content("~/Scripts/js/Details.js")?v=3" defer></script>
-
-
+<!-- JS xử lý chi tiết sản phẩm -->
+<script src="@Url.Content("~/Scripts/js/Details.js")?v=3" defer></script>

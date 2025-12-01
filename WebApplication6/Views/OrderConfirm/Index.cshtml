@@ -10,9 +10,9 @@
         totalAmount = Model.OrderDetails.Sum(d => (d.Quantity ?? 0) * (d.UnitPrice ?? 0));
     }
 }
-https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css
+
 <style>
-    https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css
+ 
     .order-confirm-icon {
         width: 64px;
         height: 64px;
@@ -26,7 +26,7 @@ https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css
     }
 
     .order-details-box {
-        border: 2px solid black; /* Yêu cầu: Đường kẻ đen */
+        border: 2px solid black; 
         border-radius: 8px;
         padding: 32px;
         margin-bottom: 32px;
@@ -48,8 +48,7 @@ https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css
     }
 
     .product-img {
-        width: 80px;
-        height: 80px;
+        max-width:150px;
         object-fit: cover;
         border-radius: 4px;
         background-color: #f8f9fa;
@@ -89,83 +88,85 @@ https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css
     }
     else
     {
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <!-- Header -->
-                <div class="text-center mb-5">                    
-                    <h1 class="font-weight-bold text-uppercase mb-3">ĐẶT HÀNG THÀNH CÔNG</h1>
-                    <p class="text-muted" style="font-size: 18px;">Thank you for your purchase. Your order #@Model.ID has been confirmed.</p>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <!-- tiêu đề -->
+        <div class="text-center mb-5">
+            <h1 class="font-weight-bold text-uppercase mb-3">ĐẶT HÀNG THÀNH CÔNG</h1>
+            <p class="text-muted" style="font-size: 18px;">Thank you for your purchase. Your order #@Model.ID has been confirmed.</p>
+        </div>
+
+        <!-- Body -->
+        <div class="order-details-box  " style="border-radius:0px;">
+            <h5 class="font-weight-bold text-uppercase mb-4" style="letter-spacing: 1px;">ORDER DETAILS</h5>
+
+            <div class="row mb-4">
+                <div class="col-md-6 mb-4">
+                    <p class="order-label">ORDER NUMBER</p>
+                    <p class="order-value">@Model.ID</p>
                 </div>
+                <div class="col-md-6 mb-4">
+                    <p class="order-label">ORDER DATE</p>
+                    <p class="order-value">@(Model.DateOrder.HasValue ? Model.DateOrder.Value.ToString("MMM dd, yyyy") : "N/A")</p>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <p class="order-label">ESTIMATED DELIVERY</p>
+                    <p class="order-value">
+                        @(Model.DateOrder.HasValue ? Model.DateOrder.Value.AddDays(3).ToString("MMM dd") + " - " + Model.DateOrder.Value.AddDays(5).ToString("MMM dd, yyyy") : "N/A")
+                    </p>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <p class="order-label">TOTAL AMOUNT</p>
+                    <p class="order-value">@String.Format("{0:N0}₫", totalAmount)</p>
+                </div>
+            </div>
 
-                <!-- Order Details Box -->
-                <div class="order-details-box  "style="border-radius:0px;">
-                    <h5 class="font-weight-bold text-uppercase mb-4" style="letter-spacing: 1px;">ORDER DETAILS</h5>
+            <div class="border-top pt-4">
+                <h6 class="order-label mb-4">ITEMS ORDERED</h6>
 
-                    <div class="row mb-4">
-                        <div class="col-md-6 mb-4">
-                            <p class="order-label">ORDER NUMBER</p>
-                            <p class="order-value">@Model.ID</p>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <p class="order-label">ORDER DATE</p>
-                            <p class="order-value">@(Model.DateOrder.HasValue ? Model.DateOrder.Value.ToString("MMM dd, yyyy") : "N/A")</p>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <p class="order-label">ESTIMATED DELIVERY</p>
-                            <p class="order-value">
-                                @(Model.DateOrder.HasValue ? Model.DateOrder.Value.AddDays(3).ToString("MMM dd") + " - " + Model.DateOrder.Value.AddDays(5).ToString("MMM dd, yyyy") : "N/A")
-                            </p>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <p class="order-label">TOTAL AMOUNT</p>
-                            <p class="order-value">@String.Format("{0:N0}₫", totalAmount)</p>
-                        </div>
-                    </div>
-
-                    <div class="border-top pt-4">
-                        <h6 class="order-label mb-4">ITEMS ORDERED</h6>
-
-                        @foreach (var detail in Model.OrderDetails)
-                        {
-                            <div class="media mb-4">
-                                <div class="mr-3">
-                                    @if (detail.Product != null)
-                                    {
-                                        <img src="@Url.Content("~/Content/images/" + (detail.Product.ImagePro ?? "no-image.png"))"
-                                             alt="@detail.Product.NamePro"
-                                             class="product-img border" />
-                                    }
-                                </div>
+                @foreach (var detail in Model.OrderDetails)
+                {
+                    <div class="row">
+                        
+                            <div class="col-md-4 mb-3">
+                                @if (detail.Product != null)
+                                {
+                                    <img src="@detail.Product.ImagePro"
+                                         alt="@detail.Product.NamePro"
+                                         class="product-img border"  />
+                                }
+                            </div>
+                            <div class="col-md-4 mb-3">
                                 <div class="media-body">
                                     <h6 class="mt-0 font-weight-bold text-uppercase">@(detail.Product != null ? detail.Product.NamePro : "Product")</h6>
+                                    
                                     <div class="text-muted small">
-                                        Qty: @detail.Quantity
+                                        Số Lượng: @detail.Quantity
                                     </div>
                                     <div class="font-weight-bold mt-1">
                                         @String.Format("{0:N0}₫", detail.UnitPrice)
                                     </div>
                                 </div>
-                            </div>
-                        }
+                            </div>                        
                     </div>
-                </div>
-
-                <!-- Buttons -->
-                <div class="text-center">
-                    <div class="row justify-content-center">
-                        <div class="col-md-5 mb-3">
-                            <a href="@Url.Action("Index", "Products")" class="btn-adidas">
-                                CONTINUE SHOPPING
-                            </a>
-                        </div>
-                        <div class="col-md-5 mb-3">
-                            <a href="@Url.Action("ProductList", "Products")" class="btn-adidas">
-                                VỀ TRANG CHỦ
-                            </a>
-                        </div>
+                }
+            </div>
+            <!-- Buttons -->
+            <div class="text-center">
+                <div class="row justify-content-center">
+                    <div class="col-md-5 mb-3">
+                        <a href="@Url.Action("OrderHistory", "OrderHistory")" class="btn-adidas">
+                            LỊCH SỬ ĐƠN HÀNG
+                        </a>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <a href="@Url.Action("ProductList", "Products")" class="btn-adidas">
+                            VỀ TRANG CHỦ
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    }
+    </div>    
 </div>
+    }

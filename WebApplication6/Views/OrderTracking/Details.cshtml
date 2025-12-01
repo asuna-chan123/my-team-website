@@ -1,4 +1,4 @@
-﻿@model WebApplication6.ViewModels.ShippingOrderViewModel
+﻿@model WebApplication6.ViewModels.ShippingOrderVM
 @{
     ViewBag.Title = "Chi tiết đơn hàng #" + Model.OrderID;
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -30,7 +30,7 @@
 </head>
 <div class="container" style="margin-top: 100px; margin-bottom: 50px;">
     <div class="mb-3">
-        <a href="@Url.Action("Index", "OrderTracking")" class="btn-adidas">
+        <a href="@Url.Action("OrderHistory", "OrderHistory")" class="btn-adidas">
             &larr; Quay lại danh sách
         </a>
     </div>
@@ -71,9 +71,19 @@
                     {
                         <tr>
                             <td>
-                                <img src="~/Content/images/@item.ProductImage" alt="@item.ProductName" class="img-fluid" style="max-height: 80px;" />
+                                <img src="@item.ProductImage" alt="@item.ProductName" class="img-fluid" style="max-height: 120px;" />
                             </td>
-                            <td>@item.ProductName</td>
+                            <td>
+                                @item.ProductName
+                                @if (!string.IsNullOrEmpty(item.Color))
+                                {
+                                    <br /><small class="text-muted">Màu: @item.Color</small>
+                                }
+                                @if (!string.IsNullOrEmpty(item.Size))
+                                {
+                                    <br /><small class="text-muted">Size: @item.Size</small>
+                                }
+                            </td>
                             <td class="text-center">@item.Quantity</td>
                             <td class="text-end">@item.Price.ToString("N0")₫</td>
                             <td class="text-end fw-bold">@item.TotalPrice.ToString("N0")₫</td>
